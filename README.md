@@ -1,14 +1,14 @@
-# Proyecto EcoRuta-Temuco Frontend
+# Proyecto EcoRuta-Temuco
 
 ## Integrantes y roles (Sprint actual)
 
 | Nombre | Rol ágil |
 |---|---|
-|  |  |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
+| Carlos Melendez | Product Owner |
+| Lisette Delgado | Scrum Master |
+| Ariel Covarrubia | Developer |
+| Patricio Salazar | Developer |
+| Beatriz Martin | QA/tester |
 
 ## Descripción breve
 
@@ -34,11 +34,11 @@ npm run dev
 ## Estado del proyecto
 
 - Sprint actual: Sprint 0 (Kickoff)
-- Última actualización: (fecha)
+- Última actualización: (20 de Agosto)
 
 ## Tablero Kanban
 
-Enlace al tablero: (agregar enlace)
+[Enlace al tablero trello](https://trello.com/b/ALyR2lp3)
 
 ## Enlace de despliegue
 
