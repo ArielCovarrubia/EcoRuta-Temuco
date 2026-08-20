@@ -1,4 +1,4 @@
-# Proyecto EcoRuta-Temuco
+# Proyecto EcoRuta-Temuco / The Frontend Dropout (TFD)
 
 ## Integrantes y roles (Sprint actual)
 
@@ -42,4 +42,4 @@ npm run dev
 
 ## Enlace de despliegue
 
-(agregar enlace una vez desplegado)
+*no se encuentra disponible
