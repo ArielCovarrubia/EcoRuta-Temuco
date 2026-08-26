@@ -1,0 +1,101 @@
+Lista de historia sobre usuarios:
+
+(Usuario 1) "Como emprendedor de manualidades en Pucón 
+quiero ofrecer mis productos a vecinos de mi sector,
+para que me ayuden a visibilizar mis productos a
+turistas que vengan de vacaciones."
+
+Criterios de acpetación: 
+- La plataforma le ayuda a visibilizar su
+ emprendimiento a gente de Pucón.
+- Redireccionar la venta de los productos por medio
+ la aplicación web.
+
+
+(Usuario 2) "Como director del Parque Nacional Villarrica,
+quiero incentivar a nuestros turistas a que vengan a
+visitar nuestro parque, para que podamos ofrecerles
+un buen panorama en un lugar limpio y natural."
+
+Criterios de acpetación:
+- Presenta rutas e información de actividades
+ dedicadas al cuidado del entorno.
+- Direcciona información de un sitio establecido
+
+
+(Usuario 3) "Como presidente de un Curso escolar, quiero ver
+recomendaciones para lugares de eventos (como
+discotecas) para que podamos celebrar nuestro
+periodo escolar con mis compañeros."
+
+Criterios de acpetación:
+- Muestra el valor del entorno local a partir de
+  panoramas recreativos
+- Visibilizar de lugares turísticos para turistas que
+  no conocen lugares en la región de La Araucanía
+
+
+(Usuario 4) "Como Joven en práctica para ser Meteorólogo,
+quiero ver la información climática de ciertos
+sectores en la región de la Araucanía, para hacer mi
+tesis sobre “El impacto climático en Zonas
+naturales”."
+
+Criterios de acpetación:
+- Muestra de rutas y lugares accesibles para el
+  paso de usuario en entornos naturales
+- Seguridad al momento de hacer actividades como
+  senderismo en la zona.
+- Información climática en lugares concurridos
+
+
+(Usuario 5) " Como la tutora de mi hijito que irá a su gira de
+curso, quiero tener la información de los centros
+médicos u hospitales, para comentárselo a su
+presidente de curso (Mi hijo es epiléptico y su
+compañero es el encargado de hacer el viaje junto a
+su profesor)."
+
+Criterios de acpetación:
+- Disponibilidad de medios de contacto para los
+  usuarios en caso de requerir zonas de consulta
+  urgentes.
+-adaptación de colores para personas fotosensibles
+
+
+(Usuario 6) "Como ayudante de doña Matilde (persona de tercera
+edad), quiero establecer un número de contacto al
+asilo al que ella pertenece, para que pueda tener
+nuestro número en caso de requerir nuestra ayuda."
+
+Criterios de acpetación:
+- Accesibilidad para personas con diferentes
+  necesidades.
+- Contactos de emergencia para usuarios
+  pertenecientes a la zona
+
+
+(Usuario 7) "Como un usuario que vive en Lican Ray, quiero
+visualizar los horarios de bus que van camino a
+Villarrica, para así llegar a una buena hora a mi
+trabajo ubicado en Villarrica."
+
+Criterios de acpetación:
+- Sistema de rutas para diferentes puntos en la
+  región.
+- Acceso a información clara y actualizada en la
+  movilización de lugares o rutas.
+
+
+(Usuario 8) "Cómo panadería Miraflor de Pitrufquén, queremos
+un medio para informar sobre nuestra nueva sede
+ubicada en Valdivia, para que aquellas personas que
+son de Valdivia conozcan un nuevo lugar para
+comprar sus insumos."
+
+Criterios de acpetación:
+- Fuente para compartir los medios de
+  comunicación locales de la región.
+- Medios en que los emprendedores pueden
+  mostrar y actualizar su información a partir
+  de redes y medios digitales.
