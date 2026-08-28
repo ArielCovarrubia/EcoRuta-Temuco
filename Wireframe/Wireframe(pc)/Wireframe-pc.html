@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+        <title>EcoRuta Temuco </title>
+        <link rel="stylesheet" href="EstiloWireframe2.css">
+    </head>
+    <body>
+        <header>
+            <h1>EcoRuta Temuco</h1>
+            <nav>
+                <a href="#inicio">Inicio</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+            <button aria-label="abrir menú de accesibilidad" aria-expanded="false">accesibilidad</button>
+        </header>
+        <main class="contenedor_principal">  
+            <section class="baner" aria-label="Banner de la página">
+                 <div class="titulo_baner">
+                    <h2 id="titulo-baner"> Rutas ecologicas</h2>
+                    <p> Descubre las mejores rutas, senderos, parques naturales y atractivos de la zona</p>
+                    <span class="flecha-indicador">↓</span>
+                </div>
+                <div class="imagen_banner">
+                    <img src="https://contenido.farellonesautomotriz.cl/hubfs/Farellones%20Automotriz/rutas-chile-blog.jpg" alt="Rutas ecológicas en Temuco" class="baner-img">
+                </div>
+                <div class="descripcion-baner" aria-labelledby="banner-descripcion">
+                    <ul>
+                        <li>Explora la naturaleza y la biodiversidad de Temuco.</li>
+                        <li>Disfruta de actividades al aire libre y senderismo.</li>
+                        <li>Descubre la historia y cultura local a través de monumentos y sitios históricos.</li>
+                        <a href="#rutas" class="btn-scroll" aria-label="Bajar a las rutas disponibles">↓</a>
+                    </ul>
+                </div>
+            </section>
+            <div class="contenedor_derecho">
+                <section class="rutas" aria-labelledby="titulo-rutas">
+                    <h2 id="titulo-rutas">Rutas Populares</h2>
+                    <div class="cartas-img">
+                        <article class="carta">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWSElOJpaq5w2OSjtYOClLwdhYBU1V-ugJ2QrUKt4LJKdNY1zk1mB4gVqN&s=10" alt="Cerro Ñielol" class="ruta-img">
+                                <h3>Cerro Ñielol</h3>
+                                <p>Disfruta de vistas panorámicas de la ciudad de Temuco desde este impresionante cerro.</p>
+                            </article>
+                        <article class="carta">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Looking_out_over_Lago_Conguillio.jpg?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original" alt="Parque Nacional Huerquehue" class="ruta-img">
+                            <h3>Parque Nacional Huerquehue</h3>
+                            <p>Disfruta de senderos rodeados de naturaleza y vistas panorámicas de la región.</p>
+                        </article>
+                        <article class="carta">
+                            <img src="https://laderasur.com/wp-content/uploads/2019/09/mirador-lonquimay2.jpg" alt="Reserva Nacional Malalcahuello" class="ruta-img">
+                            <h3>Reserva Nacional Malalcahuello</h3>
+                            <p>Sendero exologico con flora y fauna nativa.</p>
+                        </article>
+                        <article class="carta">
+                            <img src ="https://www.temuco.cl/wp-content/uploads/2023/10/DJI_0007-1030x773.jpg" alt="Isla Cautín" class="ruta-img">
+                                <h3>Isla Cautín</h3>
+                                <p>Espacio verde ideal para caminatas y actividades al aire libre.</p>
+                        </article>
+                        <article class="carta">
+                            <img src="https://chileestuyo.cl/wp-content/uploads/2024/10/Che-Mamull.jpg" alt="Monumentos" class="ruta-img">
+                                <h3>Monumento Cerro Ñielol</h3>
+                                <p>Disfruta de la historia y la cultura de Temuco en este emblemático monumento.</p>
+                            </article>
+                    </div>
+                </section>
+                <section class="destacado" aria-labelledby="titulo-destacado">
+                    <h2 id="titulo-destacado">Ruta Recomendada Del Día</h2>
+                    <article class="carta-horizontal">
+                        <div class="imagen-destacada">
+                            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/5e/26/7e/malalcahuello.jpg?w=900&h=500&s=1" alt="vista destacada">
+                        </div>
+                        <div class="contenido-carta">
+                            <h3>Reserva Nacional Malalcahuello</h3>
+                            <p>Explora la belleza natural de la Reserva Nacional Malalcahuello, un destino ideal para los amantes de la naturaleza y el senderismo. Disfruta de sus paisajes impresionantes y su rica biodiversidad.</p>
+                        </div>
+                        <a href="#ve-mas" class="carta-btn" aria-label="Ver más información sobre la ruta destacada">Ver más</a>
+                    </article>
+                </section>
+            </div>         
+            <div class="contenedor_bajo"></div>
+        </main>
+
+        <footer>
+            <div class="contenido">
+                <h3>Contacto</h3>
+                <p>Temuco, Región de La Araucanía, Chile</p>
+                <p>Teléfono: <a href="tel:+56912345678">+56 9 1234 5678</a></p>
+                <p>Email: <a href="mailto:info@ecoruta.cl">info@ecoruta.cl</a></p>
+                </div>
+            <div class="redes-sociales">
+                    <h3>Síguenos</h3>
+                    <a href="https://www.facebook.com/ecoruta" target="_blank" rel="noopener noreferrer" aria-label="Facebook">Facebook</a>
+                    <a href="https://www.instagram.com/ecoruta" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+                    <a href="https://www.twitter.com/ecoruta" target="_blank" rel="noopener noreferrer" aria-label="Twitter">Twitter</a>
+            </div>
+        </footer>
+        <div id="accesibilidad" class="accesibilidad oculto" role="dialog" aria.modal="true" aria-labelledby="titulo-acc">
+            <div class="acc-header">
+                <h3 id="titulo-acc">Menú De Accesibilidad</h3>
+                <button id="btn-cerrar-acc" class="btn-cerrar" aria-labelledby="cerrar menu de accesibilidad">X</button>
+            </div>
+            <div class="acc-body">
+                <div class="acc-info-btn">
+                    <span> como funciona la accesibilidad</span>
+            </div>
+        </div>
+    </body>
+</html>
