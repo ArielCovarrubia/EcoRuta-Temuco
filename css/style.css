@@ -221,3 +221,59 @@ footer .contenido, footer .redes-sociales {
 footer .redes-sociales a {
     margin: 0 0.5rem;
 }
+
+
+.seleccion-ciudad {
+    text-align: center;
+}
+
+.seleccion-ciudad h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+    color:#1b5e20;
+}
+.grilla-ciudades {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.carta-ciudad {
+    background-color: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1.2rem;
+}
+.ciudad-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+.carta-ciudad h3 {
+    font-size: 1.25rem;
+    color: #2e7d32;
+    margin: 1rem 0 0.5rem 0;
+    text-align: center;
+}
+.carta-ciudad p {
+    font-size: 0.9rem;
+    color: #4a5568;
+    text-align: center;
+    padding: 0 1rem 1.2rem 1rem;
+}
+.btn-ciudad {
+    display: inline-block;
+    background-color: #2e7d32;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+.btn-ciudad:hover {
+    background-color: #1b5e20;
+}
