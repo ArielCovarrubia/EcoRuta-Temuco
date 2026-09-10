@@ -1,44 +1,46 @@
-# Product Owner feedback log
+# Registro de comentarios del Product Owner
 
 ---
 
-## Record [10/09/2026] - Synchronization of Progress and Start-up Requirements
+## Registro [10/09/2026] - Sincronización del progreso y requisitos de puesta en marcha
 
-**Author:** Carlos Meléndez Díaz (Product Owner)
-**Objective:** Convey key clarifications from client interviews to guide the layout and development of the homepage, and document a restructuring of the files within GitHub.
-
----
-
-### General summary of progress
-- The user stories (`Stories_U.md`) are being updated with real user pain points and specific acceptance criteria for QA.
-- The distribution order of the files within the `main` repository on GitHub was restructured.
-- The requirements for the main page were validated in conjunction with the client's vision.
+**Autor:** Carlos Meléndez Díaz (Product Owner)
+**Objetivo:** Transmitir las aclaraciones clave obtenidas en las entrevistas con el cliente para orientar el diseño y el desarrollo de la página de inicio, y documentar la reestructuración de los archivos en GitHub.
 
 ---
 
-### Key business clarification (Homepage)
-**prioritization:** To provide an informative and accessible space where users can access general information about the sustainability landscape in La Araucanía.
-
-**Required information:** The key features of the site should be distributed across different pages.
-* The main site must include a brief description of the purpose of EcoRuta-Temuco.
-* The client also recommends that one of the first things users see be an image of a landscape in La Araucanía.
-* A visible section providing access to the various features the platform will offer (a 'hamburger' style button or tab).
-* Responsible use of the emergency section (ensure the button is visible but does not overshadow the main page entry section).
+### Resumen general de los avances
+- Las historias de usuario (`Stories_U.md`) se están actualizando con las problemáticas reales del usuario y criterios de aceptación específicos para QA.
+- Se reestructuró el orden de distribución de los archivos dentro del repositorio `main` en GitHub.
+- Se validaron las necesidades de la página principal en conjunto con la visión del cliente.
 
 ---
 
-### Requests and Observations by Role
+### Aclaración clave sobre el negocio (Página de inicio)
+**priorización:** Ofrecer un espacio informativo y accesible donde los usuarios puedan acceder a información general sobre panormas sustentables en La Araucanía.
 
-* **For Developers (@ArielCovarrubia / @PatricioSalazar):**
-- [Ensure that the tourism site pages are not only mobile-responsive but also well-structured—distributing content effectively rather than crowding everything onto a single page—and that information is added to the platform's home section.]
-* **For QA/Tester (@BeatrizMartin):**
-- [Consider the acceptance criteria in the user stories for navigation testing and semantic tags.]
-* **For Srum Master (@LisetteDelgado):**
-* [The backlog tasks related to site definition will be moved to review following the publication of this feedback. Please log progress in the EcoRuta Drive.]
+
+**Información obligatoria:** Las características clave del sitio deben distribuirse entre diferentes páginas.
+* El sitio principal debe incluir una breve descripción del propósito de EcoRuta-Temuco.
+* El cliente también recomienda que una de las primeras cosas que vean los usuarios sea una imagen de un paisaje de La Araucanía.
+* Una sección visible que permite acceder a las diversas funciones que ofrecerá la plataforma (un botón o pestaña de estilo «hamburguesa»).
+* Ubicación adecuada de la sección de emergencia (asegurar que el botón sea visible sin eclipsar la sección de acceso principal).
+* Los elementos clave del sitio deben distribuirse de forma ordenada entre las distintas páginas, en lugar de estar saturados.
 
 ---
 
-### Next Steps
-- Complete the detailed drafting of the remaining user stories.
-- Review the HTML/CSS layout proposals together with the team.
-- Organize the web application sections into pages based on the features and client requirements.
+### Solicitudes y observaciones por rol
+
+* **Para Developers (@ArielCovarrubia / @PatricioSalazar):**
+- [Asegúrense de que las páginas del sitio turístico no solo sean adaptables a dispositivos móviles, sino que también estén bien estructuradas —distribuyendo el contenido de manera eficaz en lugar de saturar una sola página— y de que se incorpore información a la sección de inicio de la plataforma..]
+* **Para QA/Tester (@BeatrizMartin):**
+- [Considerar los criterios de aceptación de las historias de usuario para las pruebas de navegación y las etiquetas semánticas..]
+* **Para Srum Master (@LisetteDelgado):**
+* [Las tareas pendientes relacionadas con la definición del sitio se trasladarán a la fase de revisión tras la publicación de estos comentarios. Por favor, registre los avances en la carpeta de Drive de EcoRuta.]
+
+---
+
+### Siguientes pasos
+- Completar la redacción detallada de las historias de usuario restantes.
+- Revisar las propuestas de diseño HTML/CSS junto con el equipo.
+- Organizar las secciones de la aplicación web en páginas, basándose en las funcionalidades y los requisitos del cliente.
