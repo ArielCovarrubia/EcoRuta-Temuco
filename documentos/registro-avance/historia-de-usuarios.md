@@ -4,7 +4,7 @@
 
 **Product Owner:** Carlos Meléndez Díaz
 
-**Update date:** 28/08/2026
+**Update date:** 10/09/2026
 
 ---
 
@@ -21,13 +21,7 @@
 | **HU-07** | Usuario residente de Lican Ray | 'Could have' |  Por discutir |
 | **HU-08** | Panadería Miraflor de Pitrufquén | 'Must have' | Por hacer
 
-## Detalle de Historia de Usuario
+***
+### HU-01: Emprendedor de manualidades en Pucón
 
-### (Información de Historia)
-
-#### (Historia de Usuario)
-
-#### (Criterios de Aceptación y Detalles (QA))
-
-
----
+**Prioridad:** Must have
