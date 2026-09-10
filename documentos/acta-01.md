@@ -7,7 +7,7 @@ Meeting Type: In-person
 
 1. Attendance
 
-**Present:
+Present:
 * Ariel Covarrubia (Developer 1)
 * Lisette Delgado (Scrum Master)
 * Beatriz Martin (QA Tester)
@@ -17,15 +17,15 @@ Meeting Type: In-person
 2. Progress Description by Team Member
 
 Ariel Covarrubia & Patricio Salazar (Developers):
-created the initial wireframe.
+* created the initial wireframe.
 
 Beatriz Martin & Carlos Melendez (QA Tester / Product Owner):
-Provided feedback regarding user stories, noted writing errors, and adjusted stories that did not align with the main goal.
+* Provided feedback regarding user stories, noted writing errors, and adjusted stories that did not align with the main goal.
 
-3. Identified Problems (Blockers Affecting Team Progress)
-Meeting scheduling: Schedule overlaps/conflicts making meeting attendance difficult.
+3. Identified Problems (Blockers Affecting Team Progress):
+* Meeting scheduling: Schedule overlaps/conflicts making meeting attendance difficult.
 
-4. Resolutions and Agreements
+4. Resolutions and Agreements:
 Agreed to hold two meetings per week, scheduled as follows:
-Wednesday (In-person):** 12:40 PM to 2:00 PM
-Thursday (Online / Discord):** 6:00 PM to 8:00 PM
+* Wednesday (In-person):12:40 PM to 2:00 PM.
+* Thursday (Online / Discord): 6:00 PM to 8:00 PM.
