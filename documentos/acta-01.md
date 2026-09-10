@@ -1,18 +1,18 @@
 Meeting Minutes No. 1 - The Frontend Dropout (EcoRuta-Temuco).
 
-Date: 08/26/2026  
-Time: 12:40 PM - 2:00 PM  
-Recorded by: Lisette Delgado  
-Meeting Type: In-person  
+Date: 26/08/2026.
+Time: 12:40 PM - 2:00 PM.
+Recorded by: Lisette Delgado.
+Meeting Type: In-person.
 
 1. Attendance
 
 Present:
-* Ariel Covarrubia (Developer 1)
-* Lisette Delgado (Scrum Master)
-* Beatriz Martin (QA Tester)
-* Carlos Melendez (Product Owner)
-* Patricio Salazar (Developer 2)
+* Ariel Covarrubia (Developer 1).
+* Lisette Delgado (Scrum Master).
+* Beatriz Martin (QA Tester).
+* Carlos Melendez (Product Owner).
+* Patricio Salazar (Developer 2).
 
 2. Progress Description by Team Member
 
