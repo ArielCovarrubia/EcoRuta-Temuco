@@ -16,10 +16,10 @@ Present:
 
 2. Progress Description by Team Member
 
-Ariel Covarrubia & Patricio Salazar (Developers):
+Ariel Covarrubia and Patricio Salazar (Developers):
 * created the initial wireframe.
 
-Beatriz Martin & Carlos Melendez (QA Tester / Product Owner):
+Beatriz Martin and Carlos Melendez (QA Tester / Product Owner):
 * Provided feedback regarding user stories, noted writing errors, and adjusted stories that did not align with the main goal.
 
 3. Identified Problems (Blockers Affecting Team Progress):
