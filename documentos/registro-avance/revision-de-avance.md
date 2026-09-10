@@ -7,7 +7,7 @@
 ---
 
 ## Tareas Revisadas: Validación Técnica, Accesibilidad y Navegación
-**Asignado a (Desarrollador):** Ariel Covarrubia & Patricio Salazar (Developer 1 & Developer 2)
+**Asignado a (Developers):** Ariel Covarrubia & Patricio Salazar (Developer 1 & Developer 2)
 **Referencia:** Tareas de QA Tester (validar HTML, navegación por teclado, semántica HTML).
 
 ### 1. Correspondencia y Ajuste a Requerimientos
