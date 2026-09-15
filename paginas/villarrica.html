@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+        <title>EcoRuta Villarrica</title>
+        <link rel="stylesheet" href="../css/style.css">
+    </head>
+    <body>
+        <header>
+            <h1>EcoRuta Villarrica</h1>
+            <nav>
+                <a href="../index.html">Inicio</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+            <button aria-label="abrir menú de accesibilidad" aria-expanded="false">accesibilidad</button>
+        </header>
+        <main>  
+            <section class="baner" aria-label="Banner de la página">
+                <img src="../assets/imagenes/baner-villarrica.jpg" alt="Costanera de Villarrica junto al lago con el volcán nevado al fondo" class="baner-img">
+                <div class="contenido-baner">
+                    <h2 id="titulo-baner">Descubre las rutas ecológicas de Villarrica</h2>
+                    <p>Explora el lago, la costanera y los paisajes lacustres más tranquilos de la región.</p>
+                    <a href="#rutas" class="btn-scroll" aria-label="Bajar a las rutas disponibles">↓</a>
+                </div>
+            </section>
+            <section class="rutas" aria-labelledby="titulo-rutas">
+                <h2 id="titulo-rutas">Rutas populares</h2>
+                <div class="cartas-img">
+                    <article class="carta">
+                        <img src="../assets/imagenes/costanera-villarrica.jpg" alt="Costanera con playa de arena volcánica junto al lago Villarrica" class="ruta-img">
+                            <h3>Costanera de Villarrica</h3>
+                            <p>Camina junto al lago disfrutando de vistas panorámicas del volcán y los cerros cercanos.</p>
+                        </article>
+                    <article class="carta">
+                        <img src="../assets/imagenes/museo-villarrica.jpg" alt="Sala de museo con piezas arqueológicas mapuche en exhibición" class="ruta-img">
+                        <h3>Museo Histórico y Arqueológico</h3>
+                        <p>Conoce la cultura mapuche y la historia de la fundación de la ciudad.</p>
+                    </article>
+                    <article class="carta">
+                        <img src="../assets/imagenes/feria-costumbrista.jpg" alt="Puestos de artesanía mapuche en la feria costumbrista de Villarrica" class="ruta-img">
+                        <h3>Feria Costumbrista Mapuche</h3>
+                        <p>Descubre artesanía, gastronomía y tradiciones del pueblo mapuche.</p>
+                    </article>
+                    <article class="carta">
+                        <img src="../assets/imagenes/termas-geometricas.jpg" alt="Pasarelas de madera entre pozas termales rojas rodeadas de vegetación" class="ruta-img">
+                            <h3>Termas Geométricas</h3>
+                            <p>Recorre pasarelas de madera entre pozas termales en un entorno natural único.</p>
+                    </article>
+                    <article class="carta">
+                        <img src="../assets/imagenes/mirador-villarrica.jpg" alt="Mirador con vista panorámica del lago y el volcán desde un cerro cercano" class="ruta-img">
+                            <h3>Mirador Bellavista</h3>
+                            <p>Disfruta de una vista panorámica completa del lago y el volcán desde las alturas.</p>
+                        </article>
+                </div>
+            </section>
+            <section class="destacado" aria-labelledby="titulo-destacado">
+                <h2 id="titulo-destacado">Ruta recomendada del día</h2>
+
+                        <article class="carta-horizontal">
+                            <img src="../assets/imagenes/lago-villarrica-destacado.jpg" alt="Atardecer sobre el lago Villarrica con el volcán reflejado en el agua">
+                    <div class="contenido-carta">
+                        <h3>Atardecer en el Lago Villarrica</h3>
+                        <p>Vive un atardecer inolvidable junto al lago, con el volcán reflejado en sus aguas calmas. Ideal para cerrar el día con tranquilidad y paisajes de postal.</p>
+                    </div>
+                    <a href="#ve-mas" class="carta-btn" aria-label="Ver más información sobre la ruta destacada">Ver más</a>
+                </article>
+            </section>
+                
+
+        </main>
+
+        <footer>
+            <div class="contenido">
+                <h3>Contacto</h3>
+                <p>Villarrica, Región de La Araucanía, Chile</p>
+                <p>Teléfono: <a href="tel:+56912345678">+56 9 1234 5678</a></p>
+                <p>Email: <a href="mailto:info@ecoruta.cl">info@ecoruta.cl</a></p>
+                </div>
+            <div class="redes-sociales">
+                    <h3>Síguenos</h3>
+                    <a href="https://www.facebook.com/ecoruta" target="_blank" rel="noopener noreferrer" aria-label="Facebook">Facebook</a>
+                    <a href="https://www.instagram.com/ecoruta" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+                    <a href="https://www.twitter.com/ecoruta" target="_blank" rel="noopener noreferrer" aria-label="Twitter">Twitter</a>
+            </div>
+        </footer>
+        <div id="accesibilidad" class="accesibilidad oculto" role="dialog" aria-modal="true" aria-labelledby="titulo-acc">
+            <div class="acc-header">
+                <h3 id="titulo-acc">Menú de accesibilidad</h3>
+                <button id="btn-cerrar-acc" class="btn-cerrar" aria-label="cerrar menú de accesibilidad">X</button>
+            </div>
+            <div class="acc-body">
+                <div class="acc-info-btn">
+                    <span>Cómo funciona la accesibilidad</span>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
