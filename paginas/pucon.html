@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+        <title>EcoRuta Pucón</title>
+        <link rel="stylesheet" href="../css/style.css">
+    </head>
+    <body>
+        <header>
+            <h1>EcoRuta Pucón</h1>
+            <nav>
+                <a href="../index.html">Inicio</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+            <button aria-label="abrir menú de accesibilidad" aria-expanded="false">accesibilidad</button>
+        </header>
+        <main>  
+            <section class="baner" aria-label="Banner de la página">
+                <img src="../assets/imagenes/baner-pucon.jpg" alt="Camino de tierra rodeado de bosque nativo y vapor de aguas termales cerca de Pucón" class="baner-img">
+                <div class="contenido-baner">
+                    <h2 id="titulo-baner">Descubre las rutas ecológicas de Pucón</h2>
+                    <p>Explora termas, cascadas y bosques nativos en la capital turística del sur de Chile.</p>
+                    <a href="#rutas" class="btn-scroll" aria-label="Bajar a las rutas disponibles">↓</a>
+                </div>
+            </section>
+            <section class="rutas" aria-labelledby="titulo-rutas">
+                <h2 id="titulo-rutas">Rutas populares</h2>
+                <div class="cartas-img">
+                    <article class="carta">
+                        <img src="../assets/imagenes/salto-la-china.jpg" alt="Cascada de agua cayendo entre rocas volcánicas rodeada de bosque nativo" class="ruta-img">
+                            <h3>Salto La China</h3>
+                            <p>Camina hasta esta cascada escondida entre bosque nativo, ideal para una caminata corta.</p>
+                        </article>
+                    <article class="carta">
+                        <img src="../assets/imagenes/termas-huife.jpg" alt="Piscinas termales de piedra rodeadas de vegetación nativa junto a un río" class="ruta-img">
+                        <h3>Termas de Huife</h3>
+                        <p>Relájate en aguas termales naturales rodeadas de bosque nativo.</p>
+                    </article>
+                    <article class="carta">
+                        <img src="../assets/imagenes/ojos-caburgua.jpg" alt="Pozas de agua turquesa formadas por pequeñas cascadas entre la roca volcánica" class="ruta-img">
+                        <h3>Ojos del Caburgua</h3>
+                        <p>Descubre estas pozas de agua cristalina escondidas entre bosque y roca volcánica.</p>
+                    </article>
+                    <article class="carta">
+                        <img src="../assets/imagenes/reserva-cani.jpg" alt="Sendero de trekking rodeado de araucarias milenarias en la Reserva Nacional Cañi" class="ruta-img">
+                            <h3>Reserva Nacional Cañi</h3>
+                            <p>Recorre senderos entre araucarias milenarias en uno de los bosques nativos mejor conservados de la zona.</p>
+                    </article>
+                    <article class="carta">
+                        <img src="../assets/imagenes/canon-trancura.jpg" alt="Río de aguas turquesas atravesando un cañón rocoso rodeado de vegetación" class="ruta-img">
+                            <h3>Cañón del Río Trancura</h3>
+                            <p>Disfruta de rafting y paisajes de aguas turquesas en este cañón rodeado de naturaleza.</p>
+                        </article>
+                </div>
+            </section>
+            <section class="destacado" aria-labelledby="titulo-destacado">
+                <h2 id="titulo-destacado">Ruta recomendada del día</h2>
+
+                        <article class="carta-horizontal">
+                            <img src="../assets/imagenes/termas-huife-destacado.jpg" alt="Piscinas termales humeantes rodeadas de bosque nativo al atardecer">
+                    <div class="contenido-carta">
+                        <h3>Termas de Huife</h3>
+                        <p>Relájate en piscinas de aguas termales naturales rodeadas de bosque nativo, a pocos minutos de Pucón. Una experiencia ideal para descansar después de un día de aventura.</p>
+                    </div>
+                    <a href="#ve-mas" class="carta-btn" aria-label="Ver más información sobre la ruta destacada">Ver más</a>
+                </article>
+            </section>
+                
+
+        </main>
+
+        <footer>
+            <div class="contenido">
+                <h3>Contacto</h3>
+                <p>Pucón, Región de La Araucanía, Chile</p>
+                <p>Teléfono: <a href="tel:+56912345678">+56 9 1234 5678</a></p>
+                <p>Email: <a href="mailto:info@ecoruta.cl">info@ecoruta.cl</a></p>
+                </div>
+            <div class="redes-sociales">
+                    <h3>Síguenos</h3>
+                    <a href="https://www.facebook.com/ecoruta" target="_blank" rel="noopener noreferrer" aria-label="Facebook">Facebook</a>
+                    <a href="https://www.instagram.com/ecoruta" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+                    <a href="https://www.twitter.com/ecoruta" target="_blank" rel="noopener noreferrer" aria-label="Twitter">Twitter</a>
+            </div>
+        </footer>
+        <div id="accesibilidad" class="accesibilidad oculto" role="dialog" aria-modal="true" aria-labelledby="titulo-acc">
+            <div class="acc-header">
+                <h3 id="titulo-acc">Menú de accesibilidad</h3>
+                <button id="btn-cerrar-acc" class="btn-cerrar" aria-label="cerrar menú de accesibilidad">X</button>
+            </div>
+            <div class="acc-body">
+                <div class="acc-info-btn">
+                    <span>Cómo funciona la accesibilidad</span>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
