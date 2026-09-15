@@ -1,26 +1,30 @@
-/* reset y configuracion basica */
+/* Reset and base configuration */
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+/* Page body */
 body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: #f4f7f6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(180deg, #f4f7f6 0%, #edf6ee 100%);
     color: #2d3748;
     line-height: 1.6;
-    padding-bottom: 20px;
+    min-height: 100vh;
+    margin: 0;
+    letter-spacing: 0.1px;
 }
 
+/* Images */
 img {
     max-width: 100%;
     height: auto;
     display: block;
 }
-/* Headers */
+/* Header and navigation */
 header {
     background-color: #ffffff;
-    padding: 1rem;
+    padding: 1.3rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -29,13 +33,15 @@ header {
     gap: 1rem;
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
 }
 
 header h1{
-    font-size: 1.3rem;
-    color: #2e7d32;
-    margin: auto;
+    font-size: 2rem;
+    color: #1b5e20;
+    margin: 0;
+    text-align: center;
 }
 
 header nav a {
@@ -59,14 +65,16 @@ header button {
     cursor: pointer;
 }
 
+/* Main layout */
 main {
-    max-width: 400px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 1rem;
+    padding: 2rem 1rem;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 }
+/* Banner section */
 .baner {
     background-color: #ffffff;
     border-radius: 16px;
@@ -107,6 +115,7 @@ main {
     font-weight: bold;
 }
 
+/* Popular routes section */
 .rutas h2 {
     font-size: 1.1rem;
     margin-bottom: 0.8rem;
@@ -147,6 +156,7 @@ main {
     padding: 0 0.5rem 0.5rem 0.5rem;
 }
 
+/* Featured route section */
 .destacado h2 {
     font-size: 1.1rem;
     margin-bottom: 0.8rem;
@@ -205,6 +215,7 @@ main {
     background-color: #1b5e20;
 }
 
+/* Footer */
 footer {
     background-color: #1b5e20;
     color: #ffffff;
@@ -232,38 +243,52 @@ footer .redes-sociales a {
 }
 
 
+/* City selection section */
 .seleccion-ciudad {
     text-align: center;
 }
 
 .seleccion-ciudad h2 {
-    font-size: 1.3rem;
-    margin-bottom: 1.2rem;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
     color:#1b5e20;
 }
-.grilla-ciudades {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+.intro-portada {
+    font-size: 1.1rem;
+    color: #4a5568;
+    margin-bottom: 1rem;
 }
+.grilla-ciudades {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+/* City cards */
 .carta-ciudad {
     background-color: #ffffff;
-    border-radius: 16px;
+    border-radius: 18px;
     overflow: hidden;
     border: 1px solid #e2e8f0;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
     padding-bottom: 1.2rem;
 }
+.carta-ciudad:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+}
 .ciudad-img {
     width: 100%;
-    height: 180px;
+    height: 240px;
     object-fit: cover;
+    display: block;
 }
 .carta-ciudad h3 {
     font-size: 1.25rem;
-    color: #2e7d32;
+    color: #1b5e20;
     margin: 1rem 0 0.5rem 0;
     text-align: center;
 }
@@ -279,10 +304,104 @@ footer .redes-sociales a {
     color: #ffffff;
     text-decoration: none;
     padding: 0.6rem 1.5rem;
-    border-radius: 20px;
-    font-size: 0.9rem;
+    border-radius: 999px;
     font-weight: bold;
+    font-size: 0.9rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 8px 18px rgba(46, 125, 50, 0.2);
+    align-self: center;
 }
 .btn-ciudad:hover {
-    background-color: #1b5e20;
+    transform: scale(1.04);
+    box-shadow: 0 10px 24px rgba(46, 125, 50, 0.3);
+}
+
+/* Responsive layout for mobile devices */
+@media (max-width: 768px) {
+    main {
+        width: 100%;
+        padding: 1.25rem 0.9rem;
+        gap: 1.25rem;
+    }
+
+    header {
+        padding: 1rem;
+        justify-content: space-between;
+        gap: 0.75rem;
+        flex-wrap: nowrap;
+    }
+
+    header h1 {
+        width: auto;
+        font-size: 1rem;
+        white-space: nowrap;
+    }
+
+    header nav {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        white-space: nowrap;
+    }
+
+    header nav a {
+        margin: 0;
+        font-size: 0.72rem;
+    }
+
+    header button {
+        flex-shrink: 0;
+        padding: 0.45rem 0.55rem;
+        font-size: 0.65rem;
+    }
+
+    .grilla-ciudades {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .cartas-img {
+        gap: 1rem;
+    }
+
+    .carta {
+        min-width: 0;
+    }
+
+    .ruta-img {
+        height: 135px;
+    }
+
+    .carta h3 {
+        padding: 0.7rem 0.75rem 0.35rem;
+    }
+
+    .carta p {
+        padding: 0 0.75rem 0.9rem;
+    }
+
+    .seleccion-ciudad h2 {
+        font-size: 1.5rem;
+    }
+
+    .carta-horizontal {
+        flex-wrap: wrap;
+        padding: 1rem;
+    }
+
+    .carta-horizontal img {
+        width: 100%;
+        height: 170px;
+    }
+
+    .contenido-carta {
+        flex-basis: calc(100% - 0.1rem);
+    }
+
+    .carta-btn {
+        width: 100%;
+        text-align: center;
+        align-self: stretch;
+        padding: 0.65rem 0.8rem;
+    }
 }
