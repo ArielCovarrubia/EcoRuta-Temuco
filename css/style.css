@@ -316,6 +316,45 @@ footer .redes-sociales a {
     box-shadow: 0 10px 24px rgba(46, 125, 50, 0.3);
 }
 
+/* Contact page */
+.contacto {
+    text-align: center;
+}
+
+.contacto h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #1b5e20;
+}
+
+.info-contacto {
+    background-color: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+    padding: 1.2rem;
+}
+
+.info-contacto p {
+    font-size: 0.9rem;
+    color: #4a5568;
+    margin-bottom: 0.5rem;
+}
+
+.info-contacto a {
+    color: #2e7d32;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.redes-sociales-contacto {
+    margin-top: 0.8rem;
+}
+
+.redes-sociales-contacto a {
+    margin: 0 0.5rem;
+}
+
 /* Responsive layout for mobile devices */
 @media (max-width: 768px) {
     main {
