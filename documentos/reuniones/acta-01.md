@@ -1,31 +1,41 @@
-Meeting Minutes No. 1 - The Frontend Dropout (EcoRuta-Temuco).
+Acta de Reunión N.º 1 - The Frontend Dropout (EcoRuta-Temuco).
 
-Date: 26/08/2026.
-Time: 12:40 PM - 2:00 PM.
-Recorded by: Lisette Delgado.
-Meeting Type: In-person.
+Fecha: 26/08/2026.
 
-1. Attendance
+Hora: 12:40 PM - 2:00 PM.
 
-Present:
-* Ariel Covarrubia (Developer 1).
+Registrado por: Lisette Delgado.
+
+Tipo de reunión: Presencial.
+
+1. Asistencia
+
+# Presentes:
+
+* Ariel Covarrubia (Desarrollador 1).
 * Lisette Delgado (Scrum Master).
-* Beatriz Martin (QA Tester).
-* Carlos Melendez (Product Owner).
-* Patricio Salazar (Developer 2).
+* Beatriz Martin (Probadora de Control de Calidad / QA Tester).
+* Carlos Melendez (Propietario del Producto / Product Owner).
+* Patricio Salazar (Desarrollador 2).
 
-2. Progress Description by Team Member
+2. Descripción de Avances por Integrante del Equipo.
 
-Ariel Covarrubia and Patricio Salazar (Developers):
-* created the initial wireframe.
+# Ariel Covarrubia y Patricio Salazar (Desarrolladores):
 
-Beatriz Martin and Carlos Melendez (QA Tester / Product Owner):
-* Provided feedback regarding user stories, noted writing errors, and adjusted stories that did not align with the main goal.
+* Crearon el primer wireframe (esquema inicial).
 
-3. Identified Problems (Blockers Affecting Team Progress):
-* Meeting scheduling: Schedule overlaps/conflicts making meeting attendance difficult.
+# Beatriz Martin y Carlos Melendez (QA Tester / Product Owner):
 
-4. Resolutions and Agreements:
-Agreed to hold two meetings per week, scheduled as follows:
-* Wednesday (In-person):12:40 PM to 2:00 PM.
-* Thursday (Online / Discord): 6:00 PM to 8:00 PM.
+* Entregaron retroalimentación sobre las historias de usuario, señalaron errores de redacción y ajustaron las historias que no se alineaban con el objetivo principal.
+
+3. Problemas Identificados (Bloqueos que Afectan el Progreso del Equipo):
+
+* Programación de reuniones: Cruces o conflictos de horario que dificultan la asistencia a las reuniones.
+
+4. Resoluciones y Acuerdos:
+
+Se acordó realizar dos reuniones por semana, programadas de la siguiente manera:
+
+* Miércoles (Presencial): 12:40 PM a 2:00 PM.
+* Jueves (En línea / Discord): 6:00 PM a 8:00 PM.
+
