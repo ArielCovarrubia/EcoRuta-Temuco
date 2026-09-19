@@ -1,25 +1,35 @@
-Meeting Minutes No. 3 - The Frontend Dropout (EcoRuta-Temuco).
+Acta de reunión N.° 3 - The Frontend Dropout (EcoRuta-Temuco).
 
-Date: 06/09/2026.
-Time: 7:00 PM - 8:00 PM.  
-Recorded by: Lisette Delgado.
-Meeting Type: Online / Discord.
+Fecha: 06/09/2026.
 
-1. Attendance
+Hora: 7:00 PM - 8:00 PM.
 
-Present:
+Registrado por: Lisette Delgado.
+
+Tipo de reunión: En línea / Discord.
+
+1. Asistencia
+
+# Presentes:
+
 * Ariel Covarrubia (Developer 1).
+
 * Beatriz Martin (QA Tester).
+
 * Carlos Melendez (Product Owner).
 
-# Absent:
+# Ausentes:
+
 * Lisette Delgado (Scrum Master).
+
 * Patricio Salazar (Developer 2).
 
-2. Meeting Context.
-This session functioned primarily as an assistance/alignment meeting rather than a regular work session, as the meeting scheduled for Thursday was not held (the team agreed to reschedule it for that day).
+2. Contexto de la reunión.
 
-4. Results and actions taken.
-* Adjusted primary and high-priority tasks required for project development.
-* Added new tasks to the Trello board.
+* Esta sesión funcionó principalmente como una reunión de asistencia/alineación en lugar de una sesión de trabajo regular, ya que la reunión programada para el jueves no se realizó (el equipo acordó reprogramarla para este día).
 
+3. Resultados y acciones tomadas
+
+* Se ajustaron las tareas primarias y de alta prioridad requeridas para el desarrollo del proyecto.
+
+* Se agregaron nuevas tareas al tablero de Trello.
