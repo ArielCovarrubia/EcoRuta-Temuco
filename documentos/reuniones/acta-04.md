@@ -43,4 +43,4 @@ Carlos Melendez (Product Owner):
 Patricio Salazar (Developer 2):
 * Escribir texto alt descriptivo para las imágenes.
 * Reestructurar las carpetas en el repositorio.
-* Revisar la ortografía, gramática y nombres de los puntos turísticos.
+* Revisar la ortografía, gramática y nombres de los puntos turísticos. 
