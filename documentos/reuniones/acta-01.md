@@ -1,4 +1,4 @@
-Acta de Reunión N.º 1 - The Frontend Dropout (EcoRuta-Temuco).
+Acta de Reunión N.° 1 - The Frontend Dropout (EcoRuta-Temuco).
 
 Fecha: 26/08/2026.
 
@@ -12,11 +12,11 @@ Tipo de reunión: Presencial.
 
 # Presentes:
 
-* Ariel Covarrubia (Desarrollador 1).
+* Ariel Covarrubia (Developer 1).
 * Lisette Delgado (Scrum Master).
-* Beatriz Martin (Probadora de Control de Calidad / QA Tester).
-* Carlos Melendez (Propietario del Producto / Product Owner).
-* Patricio Salazar (Desarrollador 2).
+* Beatriz Martin (QA Tester).
+* Carlos Melendez (Product Owner).
+* Patricio Salazar (Developer 2).
 
 2. Descripción de Avances por Integrante del Equipo.
 
