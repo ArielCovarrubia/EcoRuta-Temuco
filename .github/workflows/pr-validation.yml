@@ -1,0 +1,16 @@
+name: PR Validation Suite
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  check-pr-metadata:
+    uses: beatmartin/.github/.github/workflows/check-pr-metadata.yml@main
+
+  check-commits:
+    needs: check-pr-metadata
+    uses: beatmartin/.github/.github/workflows/check-commits.yml@main
