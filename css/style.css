@@ -88,6 +88,16 @@ header button:hover {
     transform: translateY(-2px);
 }
 
+.acciones-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.acciones-header button {
+    margin: 0;
+}
+
 /* Main layout */
 main {
     max-width: 1100px;
@@ -277,21 +287,37 @@ footer .redes-sociales a {
     text-align: center;
 }
 
+.portada-cabecera {
+    max-width: 720px;
+    margin: 1rem auto 0;
+}
+
+.etiqueta-portada {
+    color: #2e7d32;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    margin-bottom: 0.6rem;
+    text-transform: uppercase;
+}
+
 .seleccion-ciudad h2 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
     color:#1b5e20;
 }
 .intro-portada {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: #4a5568;
-    margin-bottom: 1rem;
+    margin: 0 auto;
+    max-width: 560px;
 }
 .grilla-ciudades {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    margin-top: 1.5rem;
+    margin-top: 2.5rem;
 }
 /* City cards */
 .carta-ciudad {
@@ -425,6 +451,13 @@ footer .redes-sociales a {
         padding: 0.45rem 0.65rem;
         font-size: 0.65rem;
     }
+    .acciones-header{
+        gap: 0.35rem;
+    }
+    .acciones-header button {
+        padding: 0.45rem 0.55rem;
+        font-size: 0.62rem;
+    }
 
     .grilla-ciudades {
         grid-template-columns: 1fr;
@@ -451,7 +484,20 @@ footer .redes-sociales a {
     }
 
     .seleccion-ciudad h2 {
-        font-size: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .portada-cabecera {
+            margin-top: 0.5rem;
+        }
+
+        .etiqueta-portada {
+            font-size: 0.7rem;
+            letter-spacing: 0.8px;
+        }
+
+        .intro-portada {
+            font-size: 0.95rem;
     }
 
     .carta-horizontal {
@@ -475,17 +521,7 @@ footer .redes-sociales a {
         padding: 0.65rem 0.8rem;
     }
 }
-    .carta_ciudad {
-    background-color: #ffffff;
-    border-radius: 18px;
-    overflow: hidden;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 1.2rem;
-}
+
     .carta-ciudad:hover {
     transform: translateY(-6px);
     box-shadow: 0 14px 30px rgba(0,0,0,0.12);
@@ -522,4 +558,44 @@ body.texto-grande {
     color: #4a5568;
     line-height: 1.8;
     margin-bottom: 1rem;
+}
+
+body.modo-oscuro {
+    background: #17221b;
+    color: #edf5ee;
+}
+
+body.modo-oscuro header,
+body.modo-oscuro .baner,
+body.modo-oscuro .carta,
+body.modo-oscuro .carta-horizontal,
+body.modo-oscuro .carta-ciudad,
+body.modo-oscuro .info-contacto,
+body.modo-oscuro .detalle-ruta {
+    background-color: #243329;
+    border-color: #45614c;
+}
+
+body.modo-oscuro header h1,
+body.modo-oscuro .seleccion-ciudad h2,
+body.modo-oscuro .carta-ciudad h3,
+body.modo-oscuro .detalle-ruta h2 {
+    color: #b8e0b8;
+}
+
+body.modo-oscuro header nav a {
+    background-color: #243329;
+}
+
+body.modo-oscuro p,
+body.modo-oscuro .carta p,
+body.modo-oscuro .carta-ciudad p,
+body.modo-oscuro .info-contacto p,
+body.modo-oscuro .detalle-ruta p,
+body.modo-oscuro .intro-portada {
+    color: #d5e3d7;
+}
+
+body.modo-oscuro footer {
+    background-color: #101810;
 }

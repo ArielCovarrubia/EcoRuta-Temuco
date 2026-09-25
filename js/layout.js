@@ -1,5 +1,6 @@
 const currentPath = window.location.pathname;
 const isInsidePages = currentPath.includes('/paginas/');
+const isInsideExtraPages = currentPath.includes('/paginas extra/') || currentPath.includes('/paginas%20extra/');
 const basePath = isInsidePages ? 'components/' : 'paginas/components/';
 
 fetch(`${basePath}header.html`)
@@ -13,10 +14,45 @@ fetch(`${basePath}header.html`)
 
     headerContainer.innerHTML = data;
 
-    const botonAccesibilidad = headerContainer.querySelector('button')
-    botonAccesibilidad.addEventListener('click', () => {
-        document.body.classList.toggle('texto-grande');
-    })
+    const botonTema = headerContainer.querySelector('#btn-tema');
+    const botonAccesibilidad = headerContainer.querySelector('#btn-accesibilidad');
+
+    const temaGuardado = localStorage.getItem('tema');
+    if (temaGuardado === 'oscuro') {
+      document.body.classList.add('modo-oscuro');
+      if (botonTema) {
+        botonTema.textContent = 'Modo claro';
+        botonTema.setAttribute('aria-pressed', 'true');
+      }
+    }
+
+    const textoGrandeGuardado = localStorage.getItem('textoGrande');
+    if (textoGrandeGuardado === 'true') {
+      document.body.classList.add('texto-grande');
+      if (botonAccesibilidad) {
+        botonAccesibilidad.setAttribute('aria-pressed', 'true');
+      }
+    }
+
+    if (botonTema) {
+      botonTema.addEventListener('click', () => {
+        const modoOscuroActivo = document.body.classList.toggle('modo-oscuro');
+
+        botonTema.textContent = modoOscuroActivo ? 'Modo claro' : 'Modo oscuro';
+
+        botonTema.setAttribute('aria-pressed', String(modoOscuroActivo));
+        localStorage.setItem('tema', modoOscuroActivo ? 'oscuro' : 'claro');
+      });
+    }
+
+    if (botonAccesibilidad) {
+      botonAccesibilidad.addEventListener('click', () => {
+        const textoGrandeActivo = document.body.classList.toggle('texto-grande');
+
+        botonAccesibilidad.setAttribute('aria-pressed', String(textoGrandeActivo));
+        localStorage.setItem('textoGrande', String(textoGrandeActivo));
+      });
+    }
 
     const pageTitle = document.body.dataset.pageTitle || 'EcoRuta';
     const titleElement = headerContainer.querySelector('#page-title');
@@ -37,7 +73,11 @@ fetch(`${basePath}header.html`)
     }
 
     if (contactLink) {
-      contactLink.href = isInsidePages ? 'contacto.html' : 'paginas/contacto.html';
+      contactLink.href = isInsideExtraPages
+        ? 'contacto.html'
+        : isInsidePages
+          ? 'paginas extra/contacto.html'
+          : 'paginas/paginas extra/contacto.html';
     }
   })
   .catch(error => {
