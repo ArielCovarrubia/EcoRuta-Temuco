@@ -12,7 +12,7 @@
 
 ## Descripción breve
 
-> Breve descripción del proyecto EcoRuta Temuco desarrollado por el equipo.
+Eco Ruta Temuco, desarrollado por The Frontend Dropout (TFD), es una plataforma web e interactiva que conecta a los turistas con la riqueza natural y cultural de la novena región, o sea la Araucanía. El objetivo de esta plataforma es visibilizar los atractivos locales y promover un ecoturismo responsable, centralizando mapas, rutas y emprendimientos propiamente tales de la región en un solo lugar accesible.
 
 ## Tecnologías utilizadas
 
@@ -34,7 +34,7 @@ npm run dev
 ## Estado del proyecto
 
 - Sprint actual: Sprint 1 
-- Última actualización: (09 de septiembre)
+- Última actualización: (23 de septiembre)
 
 ## Tablero Kanban
 
