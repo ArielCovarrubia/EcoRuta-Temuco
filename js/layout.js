@@ -1,7 +1,7 @@
 const currentPath = window.location.pathname;
 const isInsidePages = currentPath.includes('/paginas/');
 const isInsideExtraPages = currentPath.includes('/paginas extra/') || currentPath.includes('/paginas%20extra/');
-const basePath = isInsidePages ? 'components/' : 'paginas/components/';
+const basePath = isInsideExtraPages ? '../components/' : isInsidePages ? 'components/' : 'paginas/components/';
 
 fetch(`${basePath}header.html`)
   .then(response => {
@@ -69,7 +69,7 @@ fetch(`${basePath}header.html`)
     }
 
     if (homeLink) {
-      homeLink.href = isInsidePages ? '../index.html' : 'index.html';
+      homeLink.href = isInsideExtraPages ? '../../index.html' : isInsidePages ? '../index.html' : 'index.html';
     }
 
     if (contactLink) {
