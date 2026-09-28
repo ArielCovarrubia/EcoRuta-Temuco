@@ -33,8 +33,8 @@ npm run dev
 
 ## Estado del proyecto
 
-- Sprint actual: Sprint 1 
-- Última actualización: (23 de septiembre)
+- Sprint actual: Finalización del Sprint 1
+- Última actualización: (27 de septiembre)
 
 ## Tablero Kanban
 
