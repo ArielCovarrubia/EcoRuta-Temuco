@@ -42,4 +42,4 @@ npm run dev
 
 ## Enlace de despliegue
 
-*no se encuentra disponible
+[EcoRuta Araucanía] (https://arielcovarrubia.github.io/EcoRuta-Temuco/index.html)
