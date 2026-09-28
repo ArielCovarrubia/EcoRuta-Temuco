@@ -31,6 +31,7 @@ fetch(`${basePath}header.html`)
       document.body.classList.add('texto-grande');
       if (botonAccesibilidad) {
         botonAccesibilidad.setAttribute('aria-pressed', 'true');
+        botonAccesibilidad.setAttribute('aria-label', 'Desactivar texto grande');
       }
     }
 
@@ -50,6 +51,10 @@ fetch(`${basePath}header.html`)
         const textoGrandeActivo = document.body.classList.toggle('texto-grande');
 
         botonAccesibilidad.setAttribute('aria-pressed', String(textoGrandeActivo));
+        botonAccesibilidad.setAttribute(
+          'aria-label',
+          textoGrandeActivo ? 'Desactivar texto grande' : 'Activar texto grande'
+        );
         localStorage.setItem('textoGrande', String(textoGrandeActivo));
       });
     }
@@ -66,6 +71,10 @@ fetch(`${basePath}header.html`)
 
     if (!isInsidePages && navegation) {
         navegation.remove();
+        const header = headerContainer.querySelector('header');
+        if (header) {
+          header.classList.add('sin-navegacion');
+        }
     }
 
     if (homeLink) {
