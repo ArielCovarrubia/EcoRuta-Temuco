@@ -4,11 +4,11 @@
 
 | Nombre | Rol ágil |
 |---|---|
-| Carlos Melendez | Product Owner |
-| Lisette Delgado | Scrum Master |
-| Ariel Covarrubia | Developer |
-| Patricio Salazar | Developer |
-| Beatriz Martin | QA/tester |
+| Beatriz Martin | Product Owner |
+| Patricio Salazar | Scrum Master |
+| Lisette Delgado | Developer |
+| Carlos Melendez | Developer |
+| Ariel Covarrubia | QA/tester |
 
 ## Descripción breve
 
@@ -33,8 +33,8 @@ npm run dev
 
 ## Estado del proyecto
 
-- Sprint actual: Finalización del Sprint 1
-- Última actualización: (27 de septiembre)
+- Sprint actual: Inicio de Sprint 2
+- Última actualización: (30 de septiembre)
 
 ## Tablero Kanban
 
