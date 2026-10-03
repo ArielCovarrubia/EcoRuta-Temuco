@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Capturamos el formulario y todos sus elementos usando sus IDs
-  const formulario = document.getElementById('formulario-contacto');
-  const inputNombre = document.getElementById('nombre');
-  const inputEmail = document.getElementById('email');
-  const inputMensaje = document.getElementById('mensaje');
+  const form = document.getElementById('formulario-contacto');
+  if (!form) return;
+
+  const nombreInput = document.getElementById('nombre');
+  const emailInput = document.getElementById('email');
+  const mensajeInput = document.getElementById('mensaje');
   const btnEnviar = document.getElementById('btn-enviar');
 
   const errorNombre = document.getElementById('error-nombre');
@@ -11,85 +12,61 @@ document.addEventListener('DOMContentLoaded', () => {
   const errorMensaje = document.getElementById('error-mensaje');
   const mensajeExito = document.getElementById('mensaje-exito');
 
-  if (!formulario) return; 
+  const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
- 
-  function esEmailValido(email) {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  }
+  function validarCampos() {
+    let esValido = true;
 
-  function validarNombre() {
-    const valor = inputNombre.value.trim();
-    if (valor === '') {
-      mostrarError(inputNombre, errorNombre, 'El nombre no puede estar vacío.');
-      return false;
+    if (nombreInput.value.trim() === '') {
+      errorNombre.textContent = 'El nombre es obligatorio.';
+      nombreInput.classList.add('invalido');
+      esValido = false;
+    } else {
+      errorNombre.textContent = '';
+      nombreInput.classList.remove('invalido');
     }
-    mostrarExito(inputNombre, errorNombre);
-    return true;
-  }
 
-  function validarEmail() {
-    const valor = inputEmail.value.trim();
-    if (!esEmailValido(valor)) {
-      mostrarError(inputEmail, errorEmail, 'Ingresa un correo electrónico válido.');
-      return false;
+    if (emailInput.value.trim() === '') {
+      errorEmail.textContent = 'El correo electrónico es obligatorio.';
+      emailInput.classList.add('invalido');
+      esValido = false;
+    } else if (!regexEmail.test(emailInput.value.trim())) {
+      errorEmail.textContent = 'Ingresa un correo electrónico válido.';
+      emailInput.classList.add('invalido');
+      esValido = false;
+    } else {
+      errorEmail.textContent = '';
+      emailInput.classList.remove('invalido');
     }
-    mostrarExito(inputEmail, errorEmail);
-    return true;
-  }
 
-  function validarMensaje() {
-    const valor = inputMensaje.value.trim();
-    if (valor.length < 10) {
-      mostrarError(inputMensaje, errorMensaje, 'El mensaje debe tener al menos 10 caracteres.');
-      return false;
+    if (mensajeInput.value.trim().length < 10) {
+      errorMensaje.textContent = 'El mensaje debe tener al menos 10 caracteres.';
+      mensajeInput.classList.add('invalido');
+      esValido = false;
+    } else {
+      errorMensaje.textContent = '';
+      mensajeInput.classList.remove('invalido');
     }
-    mostrarExito(inputMensaje, errorMensaje);
-    return true;
+
+    btnEnviar.disabled = !esValido;
+    return esValido;
   }
 
-  
-  function mostrarError(input, elementoError, mensaje) {
-    input.style.borderColor = '#c62828'; 
-    input.style.backgroundColor = '#ffebee';
-    elementoError.textContent = mensaje; 
-    elementoError.style.color = '#c62828';
-  }
+  nombreInput.addEventListener('input', validarCampos);
+  emailInput.addEventListener('input', validarCampos);
+  mensajeInput.addEventListener('input', validarCampos);
 
-  function mostrarExito(input, elementoError) {
-    input.style.borderColor = '#2e7d32'; 
-    input.style.backgroundColor = '#e8f5e9';
-    elementoError.textContent = '';
-  }
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-  function evaluarEstadoGeneral() {
-    const v1 = validarNombre();
-    const v2 = validarEmail();
-    const v3 = validarMensaje();
-
-    
-    btnEnviar.disabled = !(v1 && v2 && v3);
-  }
-
-  inputNombre.addEventListener('input', evaluarEstadoGeneral);
-  inputEmail.addEventListener('input', evaluarEstadoGeneral);
-  inputMensaje.addEventListener('input', evaluarEstadoGeneral);
-
-  formulario.addEventListener('submit', (e) => {
-    e.preventDefault(); 
-
-    if (!btnEnviar.disabled) {
-      mensajeExito.textContent = '¡Gracias por contactar a EcoRuta Temuco! Tu mensaje fue enviado con éxito.';
-      mensajeExito.style.color = '#2e7d32';
-
-      formulario.reset();
-      [inputNombre, inputEmail, inputMensaje].forEach(input => {
-        input.style.borderColor = '#ccc';
-        input.style.backgroundColor = '#ffffff';
-      });
-
+    if (validarCampos()) {
+      mensajeExito.textContent = '¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.';
+      form.reset();
       btnEnviar.disabled = true;
+
+      setTimeout(() => {
+        mensajeExito.textContent = '';
+      }, 5000);
     }
   });
 });
