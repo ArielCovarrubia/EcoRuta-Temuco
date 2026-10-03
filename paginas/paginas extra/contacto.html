@@ -30,8 +30,8 @@
                     <form id="formulario-contacto" novalidate>
                         <div class="campo-grupo">
                             <label for="nombre">Nombre:</label>
-                            <input type="text" id="nombre" placeholder="Tu nombre completo">
-                            <small class="mensaje-error" id="error-nombre"></small>
+                            <input type="text" id="nombre" placeholder="Tu nombre completo" aria-describedby="error-nombre">
+                            <small class="mensaje-error" id="error-nombre" aria-live="polite"></small>
                         </div>
                         <div class="campo-grupo">
                             <label for="email">Correo electrónico:</label>
