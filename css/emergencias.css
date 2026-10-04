@@ -1,0 +1,41 @@
+/* Botón siempre visible en pantalla */
+.btn-emergencia-sticky {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000; /* Asegura que flotante esté por encima de todo */
+    background-color: #d32f2f;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 50px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s;
+}
+
+/* Estado al pasar el mouse o dar foco con teclado */
+.btn-emergencia-sticky:hover,
+.btn-emergencia-sticky:focus {
+    background-color: #b71c1c;
+    transform: scale(1.05); /* Efecto visual notorio */
+    outline: 3px solid #ffeb3b; /* Borde de alto contraste */
+}
+
+/* Panel Desplegable */
+.panel-emergencia {
+    position: fixed;
+    bottom: 75px;
+    right: 20px;
+    background: white;
+    border: 2px solid #d32f2f;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
+.oculto {
+    display: none;
+}

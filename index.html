@@ -6,6 +6,8 @@
         content="width=device-width, initial-scale=1.0">
         <title>EcoRutas La Araucanía: Inicio</title>
         <link rel="stylesheet" href="css/style.css">
+        <!-- Se enlazó la nueva hoja de estilos aquí -->
+        <link rel="stylesheet" href="css/emergencias.css">
     </head>
     <body data-page-title="EcoRuta Araucanía">
         <div id="header-container"></div>
@@ -41,7 +43,25 @@
         </main>
 
         <div id="footer-container"></div>
+
+        <!-- Componente Flotante de Emergencias (Sprint 2 - HU-05 / RN-03) -->
+        <button id="btn-emergencia-flotante" class="btn-emergencia-sticky" aria-label="Abrir contactos de emergencia" aria-expanded="false">
+            <span class="texto-btn">Emergencia</span>
+        </button>
+
+        <div id="panel-emergencia" class="panel-emergencia oculto" tabindex="-1">
+            <h3>Contactos de Emergencia</h3>
+            <ul>
+                <li><a href="#" onclick="return false;"> Carabineros: 133</a></li>
+                <li><a href="#" onclick="return false;"> Ambulancia: 131</a></li>
+                <li><a href="#" onclick="return false;"> Bomberos: 132</a></li>
+                <li><a href="#" onclick="return false;"> CONAF: 130</a></li>
+            </ul>
+        </div>
+
         <script src="js/layout.js"></script>
+        <!-- Carga de tu script con el atributo defer -->
+        <script src="js/emergencias.js" defer></script>
     </body>
 </html>
 
