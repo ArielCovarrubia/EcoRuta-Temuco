@@ -107,3 +107,47 @@ fetch(`${basePath}footer.html`)
   .catch(error => {
     console.error('Error loading footer:', error);
   });
+
+function inyectarModuloEmergencias() {
+  // Evitar duplicación si el módulo ya existe
+  if (document.getElementById('btn-emergencia-flotante')) return;
+
+  const emergenciaHTML = `
+    <button id="btn-emergencia-flotante" class="btn-emergencia-sticky" aria-label="Abrir directorio de contactos de emergencia" aria-expanded="false">
+      <span class="texto-btn"> Emergencia</span>
+    </button>
+    <div id="panel-emergencia" class="panel-emergencia oculto" tabindex="-1">
+        <h3>Contactos de Emergencia</h3>
+        <p class="aviso-medico">Este panel es un directorio informativo directo con entidades públicas y no constituye una garantía de atención médica directa por parte de EcoRuta.</p>
+        <ul>
+            <li><a href="tel:133" onclick="return false;"> Carabineros: 133</a></li>
+            <li><a href="tel:131" onclick="return false;"> Ambulancia (SAMU): 131</a></li>
+            <li><a href="tel:132" onclick="return false;"> Bomberos: 132</a></li>
+            <li><a href="tel:130" onclick="return false;"> CONAF (Incendios): 130</a></li>
+        </ul>
+    </div>
+  `;
+
+  document.body.insertAdjacentHTML('beforeend', emergenciaHTML);
+
+  const btnEmergencia = document.getElementById('btn-emergencia-flotante');
+  const panelEmergencia = document.getElementById('panel-emergencia');
+
+  if (btnEmergencia && panelEmergencia) {
+    btnEmergencia.addEventListener('click', () => {
+      const estaOculto = panelEmergencia.classList.toggle('oculto');
+      btnEmergencia.setAttribute('aria-expanded', String(!estaOculto));
+
+      if (!estaOculto) {
+        panelEmergencia.focus();
+      }
+    });
+  }
+}
+
+// Inyectar el botón tan pronto como el DOM esté listo
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', inyectarModuloEmergencias);
+} else {
+  inyectarModuloEmergencias();
+}
