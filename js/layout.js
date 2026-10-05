@@ -137,6 +137,10 @@ function inyectarModuloEmergencias() {
     btnEmergencia.addEventListener('click', () => {
       const estaOculto = panelEmergencia.classList.toggle('oculto');
       btnEmergencia.setAttribute('aria-expanded', String(!estaOculto));
+
+      if (!estaOculto) {
+        panelEmergencia.focus();
+      }
     });
   }
 }
