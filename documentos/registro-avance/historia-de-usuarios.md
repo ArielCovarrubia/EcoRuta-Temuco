@@ -4,7 +4,7 @@
 
 **Product Owner:** Beatriz Martin
 
-**Update date:** 03/10/2026
+**Update date:** 12/10/2026
 
 ---
 
