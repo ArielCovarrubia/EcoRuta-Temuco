@@ -245,6 +245,34 @@ fetch(`${basePath}footer.html`)
         console.error('Error al cargar el pie de página:', error);
     });
 
+    
+function cargarAvisoCookies() {
+    const contenedorExistente =
+        document.getElementById('aviso-cookies');
+
+    // Si el aviso ya existe en la página, no duplicarlo.
+    if (contenedorExistente) {
+        iniciarPreferenciasCookies();
+        return;
+    }
+
+    fetch(`${basePath}aviso-cookies.html`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('No se pudo cargar el aviso de cookies');
+            }
+
+            return response.text();
+        })
+        .then(html => {
+            document.body.insertAdjacentHTML('beforeend', html);
+            iniciarPreferenciasCookies();
+        })
+        .catch(error => {
+            console.error('Error al cargar el aviso de cookies:', error);
+        });
+}
+
 function iniciarPreferenciasCookies() {
     const aviso = document.getElementById('aviso-cookies');
 
@@ -583,7 +611,7 @@ function inyectarModuloEmergencias() {
 
 
 function iniciarModulos() {
-    iniciarPreferenciasCookies();
+    cargarAvisoCookies();
     inyectarModuloEmergencias();
 }
 
