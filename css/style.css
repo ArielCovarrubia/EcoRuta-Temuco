@@ -906,20 +906,28 @@ body.modo-oscuro .panel-emergencia ul li a:focus {
     font: inherit;
 }
 
+:root {
+    --tamano-fuente: 16px;
+}
+
+body {
+    font-size: var(--tamano-fuente);
+}
+
 body.texto-pequeno {
-    font-size: 14px;
+    --tamano-fuente: 14px;
 }
 
 body.texto-normal {
-    font-size: 16px;
+    --tamano-fuente: 16px;
 }
 
 body.texto-grande {
-    font-size: 19px;
+    --tamano-fuente: 19px;
 }
 
 body.texto-muy-grande {
-    font-size: 23px;
+    --tamano-fuente: 23px;
 }
 
 body.alto-contraste {
