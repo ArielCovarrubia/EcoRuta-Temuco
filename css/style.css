@@ -907,3 +907,231 @@ body.modo-oscuro .carta-ciudad strong {
 body.modo-oscuro .contacto-emprendedor p {
     color: #cbd5e0 !important;
 }
+
+#menu-accesibilidad {
+    display: grid;
+    gap: 12px;
+    min-width: 200px;
+    padding: 16px;
+    margin-top: 8px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    background: #fff;
+    color: #222;
+}
+
+#menu-accesibilidad[hidden] {
+    display: none;
+}
+
+#menu-accesibilidad label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#menu-accesibilidad select {
+    width: 100%;
+    padding: 8px;
+}
+
+#menu-accesibilidad input,
+#menu-accesibilidad select,
+#menu-accesibilidad button {
+    font: inherit;
+}
+
+:root {
+    --tamano-fuente: 16px;
+}
+
+body {
+    font-size: var(--tamano-fuente);
+}
+
+body.texto-pequeno {
+    --tamano-fuente: 14px;
+}
+
+body.texto-normal {
+    --tamano-fuente: 16px;
+}
+
+body.texto-grande {
+    --tamano-fuente: 19px;
+}
+
+body.texto-muy-grande {
+    --tamano-fuente: 23px;
+}
+
+body.alto-contraste {
+    background: #000;
+    color: #fff;
+}
+
+body.alto-contraste a {
+    color: #ffff00;
+}
+
+body.alto-contraste button,
+body.alto-contraste select {
+    background: #000;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+body.modo-oscuro {
+    background: #181818;
+    color: #f5f5f5;
+}
+
+body.modo-oscuro a {
+    color: #9ec5ff;
+}
+
+body.modo-oscuro #menu-accesibilidad {
+    background: #222;
+    color: #fff;
+    border-color: #777;
+}
+
+body.modo-oscuro #menu-accesibilidad select {
+    background: #333;
+    color: #fff;
+}
+
+#btn-accesibilidad:focus-visible,
+#menu-accesibilidad input:focus-visible,
+#menu-accesibilidad select:focus-visible {
+    outline: 3px solid #2878ff;
+    outline-offset: 3px;
+}
+
+#aviso-cookies {
+    position: fixed;
+    inset: auto 20px 20px 20px;
+    z-index: 1000;
+    padding: 20px;
+    background: #ffffff;
+    color: #222222;
+    border: 2px solid #555555;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+#aviso-cookies[hidden] {
+    display: none;
+}
+
+.contenido-cookies {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.botones-cookies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.botones-cookies button {
+    padding: 10px 16px;
+    cursor: pointer;
+    border-radius: 6px;
+    border: 1px solid #333333;
+}
+
+@media (max-width: 600px) {
+    #aviso-cookies {
+        inset: auto 10px 10px 10px;
+    }
+}
+
+#panel-preferencias {
+    background: #ffffff;
+    color: #222222;
+}
+
+#panel-preferencias label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 12px 0;
+}
+
+#panel-preferencias input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+
+#panel-preferencias button:focus-visible,
+#aviso-cookies button:focus-visible {
+    outline: 3px solid #2878ff;
+    outline-offset: 3px;
+}
+
+/* Contactos de emergencia: nombre, llamada y copia */
+.panel-emergencia ul li {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 8px;
+}
+
+.panel-emergencia ul li a {
+    display: inline-block;
+    padding: 8px 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.panel-emergencia .btn-copiar-telefono {
+    padding: 8px 10px;
+    border: 1px solid #777;
+    border-radius: 4px;
+    background: #ffffff;
+    color: #222222;
+    cursor: pointer;
+}
+
+.panel-emergencia .btn-copiar-telefono:hover,
+.panel-emergencia .btn-copiar-telefono:focus-visible {
+    outline: 2px solid #2878ff;
+    outline-offset: 2px;
+}
+
+.panel-emergencia .btn-copiar-telefono[hidden] {
+    display: none;
+}
+
+#cerrar-panel-emergencia {
+    margin-top: 12px;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+body.modo-oscuro .panel-emergencia .btn-copiar-telefono,
+body.modo-oscuro #cerrar-panel-emergencia {
+    background: #2a2a2a;
+    color: #ffffff;
+    border: 1px solid #aaaaaa;
+}
+
+#estado-copia-telefono {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+@media (max-width: 350px) {
+    .panel-emergencia {
+        width: auto;
+        left: 10px;
+        right: 10px;
+    }
+
+    .panel-emergencia ul li {
+        gap: 5px;
+    }
+}

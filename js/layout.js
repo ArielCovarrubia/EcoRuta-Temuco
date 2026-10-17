@@ -1,153 +1,622 @@
 const currentPath = window.location.pathname;
+
 const isInsidePages = currentPath.includes('/paginas/');
-const isInsideExtraPages = currentPath.includes('/paginas extra/') || currentPath.includes('/paginas%20extra/');
-const basePath = isInsideExtraPages ? '../components/' : isInsidePages ? 'components/' : 'paginas/components/';
+
+const isInsideExtraPages =
+    currentPath.includes('/paginas extra/') ||
+    currentPath.includes('/paginas%20extra/');
+
+const basePath = isInsideExtraPages
+    ? '../components/'
+    : isInsidePages
+        ? 'components/'
+        : 'paginas/components/';
+
+
+
 
 fetch(`${basePath}header.html`)
-  .then(response => {
-    if (!response.ok) throw new Error('Header not found');
-    return response.text();
-  })
-  .then(data => {
-    const headerContainer = document.getElementById('header-container');
-    if (!headerContainer) return;
-
-    headerContainer.innerHTML = data;
-
-    const botonTema = headerContainer.querySelector('#btn-tema');
-    const botonAccesibilidad = headerContainer.querySelector('#btn-accesibilidad');
-
-    const temaGuardado = localStorage.getItem('tema');
-    if (temaGuardado === 'oscuro') {
-      document.body.classList.add('modo-oscuro');
-      if (botonTema) {
-        botonTema.textContent = 'Modo claro';
-        botonTema.setAttribute('aria-pressed', 'true');
-      }
-    }
-
-    const textoGrandeGuardado = localStorage.getItem('textoGrande');
-    if (textoGrandeGuardado === 'true') {
-      document.body.classList.add('texto-grande');
-      if (botonAccesibilidad) {
-        botonAccesibilidad.setAttribute('aria-pressed', 'true');
-        botonAccesibilidad.setAttribute('aria-label', 'Desactivar texto grande');
-      }
-    }
-
-    if (botonTema) {
-      botonTema.addEventListener('click', () => {
-        const modoOscuroActivo = document.body.classList.toggle('modo-oscuro');
-
-        botonTema.textContent = modoOscuroActivo ? 'Modo claro' : 'Modo oscuro';
-
-        botonTema.setAttribute('aria-pressed', String(modoOscuroActivo));
-        localStorage.setItem('tema', modoOscuroActivo ? 'oscuro' : 'claro');
-      });
-    }
-
-    if (botonAccesibilidad) {
-      botonAccesibilidad.addEventListener('click', () => {
-        const textoGrandeActivo = document.body.classList.toggle('texto-grande');
-
-        botonAccesibilidad.setAttribute('aria-pressed', String(textoGrandeActivo));
-        botonAccesibilidad.setAttribute(
-          'aria-label',
-          textoGrandeActivo ? 'Desactivar texto grande' : 'Activar texto grande'
-        );
-        localStorage.setItem('textoGrande', String(textoGrandeActivo));
-      });
-    }
-
-    const pageTitle = document.body.dataset.pageTitle || 'EcoRuta';
-    const titleElement = headerContainer.querySelector('#page-title');
-    if (titleElement) {
-      titleElement.textContent = pageTitle;
-    }
-
-    const homeLink = headerContainer.querySelector('[data-link="home"]');
-    const contactLink = headerContainer.querySelector('[data-link="contact"]');
-    const navegation = headerContainer.querySelector('nav');
-
-    if (!isInsidePages && navegation) {
-        navegation.remove();
-        const header = headerContainer.querySelector('header');
-        if (header) {
-          header.classList.add('sin-navegacion');
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('No se pudo cargar la cabecera');
         }
-    }
 
-    if (homeLink) {
-      homeLink.href = isInsideExtraPages ? '../../index.html' : isInsidePages ? '../index.html' : 'index.html';
-    }
+        return response.text();
+    })
+    .then(data => {
+        const headerContainer =
+            document.getElementById('header-container');
 
-    if (contactLink) {
-      contactLink.href = isInsideExtraPages
-        ? 'contacto.html'
-        : isInsidePages
-          ? 'paginas extra/contacto.html'
-          : 'paginas/paginas extra/contacto.html';
-    }
-  })
-  .catch(error => {
-    console.error('Error loading header:', error);
-  });
+        if (!headerContainer) return;
+
+        headerContainer.innerHTML = data;
+
+        const botonAccesibilidad =
+            headerContainer.querySelector('#btn-accesibilidad');
+
+        const menuAccesibilidad =
+            headerContainer.querySelector('#menu-accesibilidad');
+
+        const selectorTexto =
+            headerContainer.querySelector('#tamano-texto');
+
+        const controlContraste =
+            headerContainer.querySelector('#contraste-alto');
+
+        const controlTema =
+            headerContainer.querySelector('#btn-tema');
+
+        if (botonAccesibilidad && menuAccesibilidad) {
+            botonAccesibilidad.addEventListener('click', () => {
+                const abierto =
+                    botonAccesibilidad.getAttribute('aria-expanded') === 'true';
+
+                botonAccesibilidad.setAttribute(
+                    'aria-expanded',
+                    String(!abierto)
+                );
+
+                menuAccesibilidad.hidden = abierto;
+            });
+        }
+
+        const guardarAccesibilidad =
+            localStorage.getItem('guardarAccesibilidad') !== 'false';
+
+        const temaGuardado = guardarAccesibilidad
+            ? localStorage.getItem('tema')
+            : null;
+
+        const contrasteGuardado = guardarAccesibilidad
+            ? localStorage.getItem('contrasteAlto')
+            : null;
+
+        const textoGuardado = guardarAccesibilidad
+            ? localStorage.getItem('tamanoTexto')
+            : null;
+
+        document.body.classList.toggle(
+            'modo-oscuro',
+            temaGuardado === 'oscuro'
+        );
+
+        if (controlTema) {
+            controlTema.checked = temaGuardado === 'oscuro';
+        }
+
+        document.body.classList.toggle(
+            'alto-contraste',
+            contrasteGuardado === 'true'
+        );
+
+        if (controlContraste) {
+            controlContraste.checked = contrasteGuardado === 'true';
+        }
+
+        const tamanosValidos = [
+            'pequeno',
+            'normal',
+            'grande',
+            'muy-grande'
+        ];
+
+        const tamanoInicial = tamanosValidos.includes(textoGuardado)
+            ? textoGuardado
+            : 'normal';
+
+        function aplicarTamanoTexto(tamano) {
+            document.body.classList.remove(
+                'texto-pequeno',
+                'texto-normal',
+                'texto-grande',
+                'texto-muy-grande',
+                'texto-grande-antiguo'
+            );
+
+            document.body.classList.add(`texto-${tamano}`);
+        }
+
+        aplicarTamanoTexto(tamanoInicial);
+
+        if (selectorTexto) {
+            selectorTexto.value = tamanoInicial;
+
+            selectorTexto.addEventListener('change', () => {
+                const tamano = selectorTexto.value;
+
+                if (!tamanosValidos.includes(tamano)) return;
+
+                aplicarTamanoTexto(tamano);
+
+                if (
+                    localStorage.getItem('guardarAccesibilidad') !== 'false'
+                ) {
+                    localStorage.setItem('tamanoTexto', tamano);
+                }
+            });
+        }
+
+        // Cambiar alto contraste.
+        if (controlContraste) {
+            controlContraste.addEventListener('change', () => {
+                const activo = controlContraste.checked;
+
+                document.body.classList.toggle('alto-contraste', activo);
+
+                if (
+                    localStorage.getItem('guardarAccesibilidad') !== 'false'
+                ) {
+                    localStorage.setItem(
+                        'contrasteAlto',
+                        String(activo)
+                    );
+                }
+            });
+        }
+
+        // Cambiar modo oscuro.
+        if (controlTema) {
+            controlTema.addEventListener('change', () => {
+                const activo = controlTema.checked;
+
+                document.body.classList.toggle('modo-oscuro', activo);
+
+                if (
+                    localStorage.getItem('guardarAccesibilidad') !== 'false'
+                ) {
+                    localStorage.setItem(
+                        'tema',
+                        activo ? 'oscuro' : 'claro'
+                    );
+                }
+            });
+        }
+
+        // Título de la página.
+        const pageTitle =
+            document.body.dataset.pageTitle || 'EcoRuta';
+
+        const titleElement =
+            headerContainer.querySelector('#page-title');
+
+        if (titleElement) {
+            titleElement.textContent = pageTitle;
+        }
+
+        // Enlaces de navegación.
+        const homeLink =
+            headerContainer.querySelector('[data-link="home"]');
+
+        const contactLink =
+            headerContainer.querySelector('[data-link="contact"]');
+
+        const navegacion =
+            headerContainer.querySelector('nav');
+
+        if (!isInsidePages && navegacion) {
+            navegacion.remove();
+
+            const header =
+                headerContainer.querySelector('header');
+
+            if (header) {
+                header.classList.add('sin-navegacion');
+            }
+        }
+
+        if (homeLink) {
+            homeLink.href = isInsideExtraPages
+                ? '../../index.html'
+                : isInsidePages
+                    ? '../index.html'
+                    : 'index.html';
+        }
+
+        if (contactLink) {
+            contactLink.href = isInsideExtraPages
+                ? 'contacto.html'
+                : isInsidePages
+                    ? 'paginas extra/contacto.html'
+                    : 'paginas/paginas extra/contacto.html';
+        }
+    })
+    .catch(error => {
+        console.error('Error al cargar la cabecera:', error);
+    });
+
 
 fetch(`${basePath}footer.html`)
-  .then(response => {
-    if (!response.ok) throw new Error('Footer not found');
-    return response.text();
-  })
-  .then(data => {
-    const footerContainer = document.getElementById('footer-container');
-    if (footerContainer) {
-      footerContainer.innerHTML = data;
-    }
-  })
-  .catch(error => {
-    console.error('Error loading footer:', error);
-  });
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('No se pudo cargar el pie de página');
+        }
 
-function inyectarModuloEmergencias() {
-  // Evitar duplicación si el módulo ya existe
-  if (document.getElementById('btn-emergencia-flotante')) return;
+        return response.text();
+    })
+    .then(data => {
+        const footerContainer =
+            document.getElementById('footer-container');
 
-  const emergenciaHTML = `
-    <button id="btn-emergencia-flotante" class="btn-emergencia-sticky" aria-label="Abrir directorio de contactos de emergencia" aria-expanded="false">
-      <span class="texto-btn"> Emergencia</span>
-    </button>
-    <div id="panel-emergencia" class="panel-emergencia oculto" tabindex="-1">
-        <h3>Contactos de Emergencia</h3>
-        <p class="aviso-medico">Este panel es un directorio informativo directo con entidades públicas y no constituye una garantía de atención médica directa por parte de EcoRuta.</p>
-        <ul>
-            <li><a href="tel:133" onclick="return false;"> Carabineros: 133</a></li>
-            <li><a href="tel:131" onclick="return false;"> Ambulancia (SAMU): 131</a></li>
-            <li><a href="tel:132" onclick="return false;"> Bomberos: 132</a></li>
-            <li><a href="tel:130" onclick="return false;"> CONAF (Incendios): 130</a></li>
-        </ul>
-    </div>
-  `;
-
-  document.body.insertAdjacentHTML('beforeend', emergenciaHTML);
-
-  const btnEmergencia = document.getElementById('btn-emergencia-flotante');
-  const panelEmergencia = document.getElementById('panel-emergencia');
-
-  if (btnEmergencia && panelEmergencia) {
-    btnEmergencia.addEventListener('click', () => {
-      const estaOculto = panelEmergencia.classList.toggle('oculto');
-      btnEmergencia.setAttribute('aria-expanded', String(!estaOculto));
-
-      if (!estaOculto) {
-        panelEmergencia.focus();
-      }
+        if (footerContainer) {
+            footerContainer.innerHTML = data;
+        }
+    })
+    .catch(error => {
+        console.error('Error al cargar el pie de página:', error);
     });
-  }
+
+    
+function cargarAvisoCookies() {
+    const contenedorExistente =
+        document.getElementById('aviso-cookies');
+
+    // Si el aviso ya existe en la página, no duplicarlo.
+    if (contenedorExistente) {
+        iniciarPreferenciasCookies();
+        return;
+    }
+
+    fetch(`${basePath}aviso-cookies.html`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('No se pudo cargar el aviso de cookies');
+            }
+
+            return response.text();
+        })
+        .then(html => {
+            document.body.insertAdjacentHTML('beforeend', html);
+            iniciarPreferenciasCookies();
+        })
+        .catch(error => {
+            console.error('Error al cargar el aviso de cookies:', error);
+        });
 }
 
-// Inyectar el botón tan pronto como el DOM esté listo
+function iniciarPreferenciasCookies() {
+    const aviso = document.getElementById('aviso-cookies');
+
+    if (!aviso) return;
+
+    const botonAceptar =
+        document.getElementById('aceptar-cookies');
+
+    const botonRechazar =
+        document.getElementById('rechazar-cookies');
+
+    const botonGestionar =
+        document.getElementById('gestionar-cookies');
+
+
+    const decisionGuardada =
+        localStorage.getItem('decisionCookies');
+
+    aviso.hidden = Boolean(decisionGuardada);
+
+    // Aceptar preferencias opcionales.
+    if (botonAceptar) {
+        botonAceptar.addEventListener('click', () => {
+            localStorage.setItem('decisionCookies', 'aceptar');
+            localStorage.setItem('preferenciasOpcionales', 'true');
+            localStorage.setItem('guardarAccesibilidad', 'true');
+
+            aviso.hidden = true;
+        });
+    }
+
+
+    if (botonRechazar) {
+        botonRechazar.addEventListener('click', () => {
+            localStorage.setItem('decisionCookies', 'rechazar');
+            localStorage.setItem('preferenciasOpcionales', 'false');
+            localStorage.setItem('guardarAccesibilidad', 'false');
+            localStorage.setItem('guardarIdioma', 'false');
+
+            localStorage.removeItem('tema');
+            localStorage.removeItem('contrasteAlto');
+            localStorage.removeItem('tamanoTexto');
+
+            aviso.hidden = true;
+        });
+    }
+
+    // Abrir el panel de gestión.
+    if (botonGestionar) {
+        botonGestionar.addEventListener('click', () => {
+            let panel =
+                document.getElementById('panel-preferencias');
+
+            // Crear el panel una sola vez.
+            if (!panel) {
+                panel = document.createElement('section');
+
+                panel.id = 'panel-preferencias';
+                panel.setAttribute('role', 'dialog');
+                panel.setAttribute(
+                    'aria-labelledby',
+                    'titulo-preferencias'
+                );
+
+                panel.innerHTML = `
+                    <h2 id="titulo-preferencias">
+                        Gestionar preferencias
+                    </h2>
+
+                    <p>
+                        Elige qué preferencias deseas guardar
+                        en este navegador.
+                    </p>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            id="preferencia-accesibilidad"
+                        >
+                        Recordar preferencias de accesibilidad
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            id="preferencia-idioma"
+                        >
+                        Recordar preferencia de idioma
+                    </label>
+
+                    <div class="botones-cookies">
+                        <button
+                            type="button"
+                            id="guardar-preferencias"
+                        >
+                            Guardar preferencias
+                        </button>
+
+                        <button
+                            type="button"
+                            id="cerrar-preferencias"
+                        >
+                            Cancelar
+                        </button>
+
+                        <button
+                            type="button"
+                            id="revocar-preferencias"
+                        >
+                            Revocar preferencias
+                        </button>
+                    </div>
+                `;
+
+                aviso.appendChild(panel);
+            }
+
+            const accesibilidad =
+                document.getElementById('preferencia-accesibilidad');
+
+            const idioma =
+                document.getElementById('preferencia-idioma');
+
+            accesibilidad.checked =
+                localStorage.getItem('guardarAccesibilidad') !== 'false';
+
+            idioma.checked =
+                localStorage.getItem('guardarIdioma') === 'true';
+
+            panel.hidden = false;
+
+            document.getElementById('guardar-preferencias').onclick = () => {
+                const guardarAccesibilidad = accesibilidad.checked;
+                const guardarIdioma = idioma.checked;
+
+                localStorage.setItem(
+                    'guardarAccesibilidad',
+                    String(guardarAccesibilidad)
+                );
+
+                localStorage.setItem(
+                    'guardarIdioma',
+                    String(guardarIdioma)
+                );
+
+                localStorage.setItem(
+                    'decisionCookies',
+                    'personalizada'
+                );
+
+                localStorage.setItem(
+                    'preferenciasOpcionales',
+                    String(guardarAccesibilidad || guardarIdioma)
+                );
+
+                if (!guardarAccesibilidad) {
+                    localStorage.removeItem('tema');
+                    localStorage.removeItem('contrasteAlto');
+                    localStorage.removeItem('tamanoTexto');
+
+                    document.body.classList.remove(
+                        'modo-oscuro',
+                        'alto-contraste',
+                        'texto-pequeno',
+                        'texto-normal',
+                        'texto-grande',
+                        'texto-muy-grande'
+                    );
+
+                    document.body.classList.add('texto-normal');
+
+                    const selector =
+                        document.getElementById('tamano-texto');
+
+                    if (selector) selector.value = 'normal';
+
+                    const tema =
+                        document.getElementById('btn-tema');
+
+                    if (tema) tema.checked = false;
+
+                    const contraste =
+                        document.getElementById('contraste-alto');
+
+                    if (contraste) contraste.checked = false;
+                }
+
+                panel.hidden = true;
+                aviso.hidden = true;
+            };
+
+            document.getElementById('cerrar-preferencias').onclick = () => {
+                panel.hidden = true;
+            };
+
+            document.getElementById('revocar-preferencias').onclick = () => {
+                localStorage.removeItem('decisionCookies');
+                localStorage.removeItem('preferenciasOpcionales');
+                localStorage.removeItem('guardarAccesibilidad');
+                localStorage.removeItem('guardarIdioma');
+
+                localStorage.removeItem('tema');
+                localStorage.removeItem('contrasteAlto');
+                localStorage.removeItem('tamanoTexto');
+
+                panel.hidden = true;
+                aviso.hidden = false;
+            };
+        });
+    }
+}
+
+
+function inyectarModuloEmergencias() {
+    if (document.getElementById('btn-emergencia-flotante')) return;
+
+    const emergenciaHTML = `
+        <button
+            id="btn-emergencia-flotante"
+            class="btn-emergencia-sticky"
+            type="button"
+            aria-label="Abrir contactos de emergencia"
+            aria-expanded="false"
+            aria-controls="panel-emergencia"
+        >
+            <span class="texto-btn">Emergencia</span>
+        </button>
+
+        <section
+            id="panel-emergencia"
+            class="panel-emergencia oculto"
+            tabindex="-1"
+            aria-labelledby="titulo-emergencia"
+        >
+            <h3 id="titulo-emergencia">Contactos de emergencia</h3>
+
+            <p class="aviso-medico">
+                Directorio informativo de teléfonos públicos de emergencia.
+                EcoRutas no garantiza la atención directa de estos servicios.
+            </p>
+
+            <ul>
+                <li>
+                    <span>Carabineros</span>
+                    <a href="tel:133" aria-label="Llamar a Carabineros al 133">133</a>
+                    <button type="button" class="btn-copiar-telefono"
+                        data-telefono="133">Copiar</button>
+                </li>
+                <li>
+                    <span>Ambulancia (SAMU)</span>
+                    <a href="tel:131" aria-label="Llamar a SAMU al 131">131</a>
+                    <button type="button" class="btn-copiar-telefono"
+                        data-telefono="131">Copiar</button>
+                </li>
+                <li>
+                    <span>Bomberos</span>
+                    <a href="tel:132" aria-label="Llamar a Bomberos al 132">132</a>
+                    <button type="button" class="btn-copiar-telefono"
+                        data-telefono="132">Copiar</button>
+                </li>
+                <li>
+                    <span>CONAF (incendios forestales)</span>
+                    <a href="tel:130" aria-label="Llamar a CONAF al 130">130</a>
+                    <button type="button" class="btn-copiar-telefono"
+                        data-telefono="130">Copiar</button>
+                </li>
+            </ul>
+
+            <p id="estado-copia-telefono" role="status" aria-live="polite"></p>
+
+            <button id="cerrar-panel-emergencia" type="button">
+                Cerrar
+            </button>
+        </section>
+    `;
+
+    document.body.insertAdjacentHTML('beforeend', emergenciaHTML);
+
+    const boton =
+        document.getElementById('btn-emergencia-flotante');
+
+    const panel =
+        document.getElementById('panel-emergencia');
+
+    const botonCerrar =
+        document.getElementById('cerrar-panel-emergencia');
+
+    const estadoCopia =
+        document.getElementById('estado-copia-telefono');
+
+    boton.addEventListener('click', () => {
+        const abierto =
+            boton.getAttribute('aria-expanded') === 'true';
+
+        boton.setAttribute('aria-expanded', String(!abierto));
+        panel.classList.toggle('oculto', abierto);
+
+        if (!abierto) {
+            panel.focus();
+        }
+    });
+
+    botonCerrar.addEventListener('click', () => {
+        panel.classList.add('oculto');
+        boton.setAttribute('aria-expanded', 'false');
+        boton.focus();
+    });
+
+    panel.querySelectorAll('.btn-copiar-telefono').forEach(botonCopiar => {
+        botonCopiar.addEventListener('click', async () => {
+            const telefono = botonCopiar.dataset.telefono;
+
+            try {
+                await navigator.clipboard.writeText(telefono);
+                estadoCopia.textContent = `Número ${telefono} copiado.`;
+            } catch (error) {
+                estadoCopia.textContent =
+                    'No se pudo copiar automáticamente. Selecciona el número para copiarlo.';
+            }
+        });
+    });
+
+    const esComputador = window.matchMedia(
+        '(hover: hover) and (pointer: fine)'
+    );
+
+    function actualizarBotonesCopiar() {
+        panel.querySelectorAll('.btn-copiar-telefono').forEach(botonCopiar => {
+            botonCopiar.hidden = !esComputador.matches;
+        });
+    }
+
+    actualizarBotonesCopiar();
+    esComputador.addEventListener('change', actualizarBotonesCopiar);
+}
+
+
+function iniciarModulos() {
+    cargarAvisoCookies();
+    inyectarModuloEmergencias();
+}
+
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', inyectarModuloEmergencias);
+    document.addEventListener('DOMContentLoaded', iniciarModulos);
 } else {
   inyectarModuloEmergencias();
 }
@@ -223,3 +692,4 @@ if (document.readyState === 'loading') {
 } else {
   cargarEmprendedoresPublicados();
 }
+    iniciarModulos();
