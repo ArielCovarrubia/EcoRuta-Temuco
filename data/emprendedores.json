@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "nombre": "Cabañas y Guiado EcoCanelo",
+        "descripcion": "Alojamiento ecológico rodeado de bosque nativo con recorridos guiados por el Cerro Ñielol.",
+        "ubicacion": "Temuco",
+        "whatsapp": "+56 9 1234 9876",
+        "redesSociales": "@ecocanelo_temuco",
+        "puntajeSustentable": 10,
+        "estado": "Publicado"
+    },
+    {
+        "id": 2,
+        "nombre": "Artesanías Pewenche",
+        "descripcion": "Tallados en madera nativa y teñidos tradicionales.",
+        "ubicacion": "Villarrica",
+        "whatsapp": "+ 56 9 8765 4321",
+        "redesSociales": "@artesanias_pewenche",
+        "puntajeSustentable": 8,
+        "estado": "Pendiente"
+    },
+    {
+        "id": 3,
+        "nombre": "Sabores del Bosque",
+        "descripcion": "Repostería artesanal con frutos silvestres de La Araucanía.",
+        "ubicacion": "Pucón",
+        "whatsapp": "+56 9 5555 6656",
+        "redesSociales": "@sabores_pucon",
+        "puntajeSustentable": 12,
+        "estado": "Publicado"
+    },
+    {
+        "id": 4,
+        "nombre": "Recorridos Cautín",
+        "descripcion": "Arriendo de bicicletas ecológicas y excursiones guiadas a lo largo de la ribera de Isla Cautín.",
+        "ubicacion": "Temuco",
+        "whatsapp": "+56 9 4444 3333",
+        "redesSociales": "@recorridos_cautin",
+        "puntajeSustentable": 5,
+        "estado": "Inactivo"
+    }
+]
