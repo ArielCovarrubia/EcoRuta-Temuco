@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ruta Villarrica</title>
     <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body data-page-title="EcoRuta Villarrica">
     <div id="header-container"></div>
@@ -14,13 +15,37 @@
             <h2>Atardecer en el Lago Villarrica</h2>
             <img src="../../assets/imagenes/lago-villarrica-destacado.jpg" alt="Ruta destacada">
             <p>Desde la costanera de Villarrica se puede disfrutar de uno de los atardeceres más fotografiados de la región, con el volcán Villarrica reflejado en las aguas calmas del lago. Un momento perfecto para caminar o cerrar el día después de recorrer la ciudad.</p>
-            <p>Ubicación: Villarrica, Chile</p>
-            <p>Duración: 1 hora</p>
+            <p><strong>Ubicación:</strong> Villarrica, Chile</p>
+            <p><strong>Duración:</strong> 1 hora</p>
+
+            <section class="seccion-mapa" style="margin: 1.5rem 0;">
+                <h2>Ubicación de la Ruta</h2>
+                <div id="mapa-ruta" class="mapa-contenedor"></div>
+            </section>
+
             <a href="../villarrica.html" class="btn-ciudad">Volver</a>
         </section>
     </main>
 
     <div id="footer-container"></div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        const lat = -39.2858;
+        const lng = -72.2272;
+
+        const mapa = L.map('mapa-ruta').setView([lat, lng], 13);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(mapa);
+
+        L.marker([lat, lng]).addTo(mapa)
+            .bindPopup('<b>Atardecer en el Lago Villarrica</b><br>Punto de inicio de la ruta.')
+            .openPopup();
+    </script>
+
     <script src="../../js/layout.js"></script>
 </body>
 </html>

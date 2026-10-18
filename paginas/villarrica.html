@@ -6,6 +6,7 @@
         content="width=device-width, initial-scale=1.0">
         <title>EcoRuta Villarrica</title>
         <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     </head>
     <body data-page-title="EcoRuta Villarrica">
         <div id="header-container"></div>
@@ -47,6 +48,10 @@
                         </article>
                 </div>
             </section>
+            <section class="seccion-emprendedores">
+                <h2>Emprendedores Locales Destacados</h2>
+                <div id="contenedor-emprendedores" class="grilla-ciudades"></div>
+            </section>
             <section class="destacado" aria-labelledby="titulo-destacado">
                 <h2 id="titulo-destacado">Ruta recomendada del día</h2>
 
@@ -59,11 +64,37 @@
                     <a href="paginas extra/ruta-villarrica.html" class="carta-btn" aria-label="Ver más información sobre la ruta destacada">Ver más</a>
                 </article>
             </section>
+            <section class="seccion-mapa">
+                <h2>Ubicación de la Ruta</h2>
+                <div id="mapa-ruta" class="mapa-contenedor"></div>
+            </section>
                 
 
         </main>
 
         <div id="footer-container"></div>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+        <script>
+            // Coordenadas de Villarrica
+            const lat = -39.2858;
+            const lng = -72.2272;
+
+            // 1. Inicializar el mapa
+            const mapa = L.map('mapa-ruta').setView([lat, lng], 13);
+
+            // 2. Cargar los azulejos de OpenStreetMap
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(mapa);
+
+            // 3. Marcador en Villarrica
+            L.marker([lat, lng]).addTo(mapa)
+                .bindPopup('<b>Ruta Villarrica</b><br>Punto de partida del recorrido.')
+                .openPopup();
+        </script>
+        
         <script src="../js/layout.js"></script>
     </body>
 </html>

@@ -18,37 +18,37 @@ document.addEventListener('DOMContentLoaded', () => {
     let esValido = true;
 
     if (nombreInput.value.trim() === '') {
-      errorNombre.textContent = 'El nombre es obligatorio.';
+      if (errorNombre) errorNombre.textContent = 'El nombre es obligatorio.';
       nombreInput.classList.add('invalido');
       esValido = false;
     } else {
-      errorNombre.textContent = '';
+      if (errorNombre) errorNombre.textContent = '';
       nombreInput.classList.remove('invalido');
     }
 
     if (emailInput.value.trim() === '') {
-      errorEmail.textContent = 'El correo electrónico es obligatorio.';
+      if (errorEmail) errorEmail.textContent = 'El correo electrónico es obligatorio.';
       emailInput.classList.add('invalido');
       esValido = false;
     } else if (!regexEmail.test(emailInput.value.trim())) {
-      errorEmail.textContent = 'Ingresa un correo electrónico válido.';
+      if (errorEmail) errorEmail.textContent = 'Ingresa un correo electrónico válido.';
       emailInput.classList.add('invalido');
       esValido = false;
     } else {
-      errorEmail.textContent = '';
+      if (errorEmail) errorEmail.textContent = '';
       emailInput.classList.remove('invalido');
     }
 
     if (mensajeInput.value.trim().length < 10) {
-      errorMensaje.textContent = 'El mensaje debe tener al menos 10 caracteres.';
+      if (errorMensaje) errorMensaje.textContent = 'El mensaje debe tener al menos 10 caracteres.';
       mensajeInput.classList.add('invalido');
       esValido = false;
     } else {
-      errorMensaje.textContent = '';
+      if (errorMensaje) errorMensaje.textContent = '';
       mensajeInput.classList.remove('invalido');
     }
 
-    btnEnviar.disabled = !esValido;
+    if (btnEnviar) btnEnviar.disabled = !esValido;
     return esValido;
   }
 
@@ -60,12 +60,12 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
 
     if (validarCampos()) {
-      mensajeExito.textContent = '¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.';
+      if (mensajeExito) mensajeExito.textContent = '¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.';
       form.reset();
-      btnEnviar.disabled = true;
+      if (btnEnviar) btnEnviar.disabled = true;
 
       setTimeout(() => {
-        mensajeExito.textContent = '';
+        if (mensajeExito) mensajeExito.textContent = '';
       }, 5000);
     }
   });

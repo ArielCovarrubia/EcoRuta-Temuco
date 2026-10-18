@@ -618,5 +618,78 @@ function iniciarModulos() {
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', iniciarModulos);
 } else {
-    iniciarModulos();
+  inyectarModuloEmergencias();
 }
+
+// ==========================================================================
+// CÁTALOGO DE EMPRENDEDORES (HU-03 / Fetch de emprendedores publicados)
+// ==========================================================================
+
+async function cargarEmprendedoresPublicados() {
+  const contenedor = document.getElementById('contenedor-emprendedores');
+  // Si en la página actual no existe el contenedor, no hace nada
+  if (!contenedor) return;
+
+  // 1. Mostrar estado visible "Cargando..."
+  contenedor.innerHTML = '<p class="mensaje-cargando">Cargando emprendedores...</p>';
+
+  // Determinar la ruta relativa correcta al JSON según dónde esté la página actual
+  const jsonPath = isInsidePages ? '../data/emprendedores.json' : 'data/emprendedores.json';
+
+  try {
+    // 2. Consumir el archivo JSON con fetch y async/await
+    const respuesta = await fetch(jsonPath);
+
+    if (!respuesta.ok) {
+      throw new Error(`HTTP Error: ${respuesta.status}`);
+    }
+
+    const datos = await respuesta.json();
+
+    // 3. Filtrar emprendedores con estado "Publicado"
+    let publicados = datos.filter(emp => emp.estado === 'Publicado');
+
+    // Novedad: Si estamos en una página de detalle de ciudad, filtramos también por ubicación
+    const tituloPagina = document.body.dataset.pageTitle || '';
+
+    if (tituloPagina.includes('Temuco')) {
+      publicados = publicados.filter(emp => emp.ubicacion.toLowerCase() === 'temuco');
+    } else if (tituloPagina.includes('Pucón')) {
+      publicados = publicados.filter(emp => emp.ubicacion.toLowerCase() === 'pucón');
+    } else if (tituloPagina.includes('Villarrica')) {
+      publicados = publicados.filter(emp => emp.ubicacion.toLowerCase() === 'villarrica');
+    }
+
+    // 4. Dibujar las tarjetas dinámicamente en el DOM
+    publicados.forEach(emp => {
+      const tarjeta = document.createElement('article');
+      tarjeta.className = 'carta-ciudad'; // Usa las clases que ya tienen en CSS
+
+      tarjeta.innerHTML = `
+        <h3>${emp.nombre}</h3>
+        <p><strong>Ubicación:</strong> ${emp.ubicacion}</p>
+        <p>${emp.descripcion}</p>
+        <p><strong>Puntaje Sustentable:</strong> ${emp.puntajeSustentable} / 12</p>
+        <div class="contacto-emprendedor" style="margin-top: 0.8rem; text-align: center;">
+          <a href="https://wa.me/${emp.whatsapp.replace('+', '')}" target="_blank" class="btn-ciudad">WhatsApp</a>
+          <p style="font-size: 0.8rem; margin-top: 0.4rem; color: #4a5568;">${emp.redesSociales}</p>
+        </div>
+      `;
+
+      contenedor.appendChild(tarjeta);
+    });
+
+  } catch (error) {
+    // 5. Manejo amigable con try/catch sin romper el sitio
+    console.error('Error al cargar la lista de emprendedores:', error);
+    contenedor.innerHTML = '<p class="mensaje-error">No se pudieron cargar los emprendedores en este momento.</p>';
+  }
+}
+
+// Inyectar o cargar cuando el DOM esté listo
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', cargarEmprendedoresPublicados);
+} else {
+  cargarEmprendedoresPublicados();
+}
+    iniciarModulos();

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ruta Pucón</title>
     <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body data-page-title="EcoRuta Pucón">
     <div id="header-container"></div>
@@ -14,13 +15,36 @@
             <h2>Termas de Huife</h2>
             <img src="../../assets/imagenes/termas-huife-destacado.jpg" alt="Ruta destacada">
             <p>Las Termas de Huife se encuentran a orillas del río Liucura, a pocos minutos de Pucón. Sus piscinas de piedra están rodeadas de bosque nativo y ofrecen aguas termales que superan los 40 grados, ideales para descansar después de un día de aventura.</p>
-            <p>Ubicación: Pucón, Chile</p>
-            <p>Duración: 2 horas</p>
+            <p><strong>Ubicación:</strong> Pucón, Chile</p>
+            <p><strong>Duración:</strong> 2 horas</p>
+
+            <section class="seccion-mapa" style="margin: 1.5rem 0;">
+                <h2>Ubicación de la Ruta</h2>
+                <div id="mapa-ruta" class="mapa-contenedor"></div>
+            </section>
+
             <a href="../pucon.html" class="btn-ciudad">Volver</a>
         </section>
     </main>
 
     <div id="footer-container"></div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        const lat = -39.2821;
+        const lng = -71.9754;
+
+        const mapa = L.map('mapa-ruta').setView([lat, lng], 13);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(mapa);
+
+        L.marker([lat, lng]).addTo(mapa)
+            .bindPopup('<b>Termas de Huife</b><br>Punto de inicio de la ruta.')
+            .openPopup();
+    </script>
     <script src="../../js/layout.js"></script>
 </body>
 </html>
