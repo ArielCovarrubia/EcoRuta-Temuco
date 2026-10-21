@@ -633,18 +633,20 @@ async function cargarEmprendedoresPublicados() {
   // 1. Mostrar estado visible "Cargando..."
   contenedor.innerHTML = '<p class="mensaje-cargando">Cargando emprendedores...</p>';
 
-  // Determinar la ruta relativa correcta al JSON según dónde esté la página actual
-  const jsonPath = isInsidePages ? '../data/emprendedores.json' : 'data/emprendedores.json';
+  // 2. URL del endpoint público de MockAPI (reemplaza la URL que estaba en la carpeta data)
+  const apiUrl = 'https://6ad90babf89c5702ed9a6190.mockapi.io/emprendedores';
 
   try {
-    // 2. Consumir el archivo JSON con fetch y async/await
-    const respuesta = await fetch(jsonPath);
+    // Consumir la API remota con fetch y async/await
+    const respuesta = await fetch(apiUrl);
 
     if (!respuesta.ok) {
       throw new Error(`HTTP Error: ${respuesta.status}`);
     }
 
     const datos = await respuesta.json();
+
+    contenedor.innerHTML = '';
 
     // 3. Filtrar emprendedores con estado "Publicado"
     let publicados = datos.filter(emp => emp.estado === 'Publicado');
@@ -671,7 +673,7 @@ async function cargarEmprendedoresPublicados() {
         <p>${emp.descripcion}</p>
         <p><strong>Puntaje Sustentable:</strong> ${emp.puntajeSustentable} / 12</p>
         <div class="contacto-emprendedor" style="margin-top: 0.8rem; text-align: center;">
-          <a href="https://wa.me/${emp.whatsapp.replace('+', '')}" target="_blank" class="btn-ciudad">WhatsApp</a>
+          <a href="https://wa.me/${emp.whatsapp.replace(/\+|\s/g, '')}" target="_blank" class="btn-ciudad">WhatsApp</a>
           <p style="font-size: 0.8rem; margin-top: 0.4rem; color: #4a5568;">${emp.redesSociales}</p>
         </div>
       `;
@@ -686,10 +688,13 @@ async function cargarEmprendedoresPublicados() {
   }
 }
 
-// Inyectar o cargar cuando el DOM esté listo
+// Ejecutar módulos y catálogo al cargar el DOM
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', cargarEmprendedoresPublicados);
+    document.addEventListener('DOMContentLoaded', () => {
+        iniciarModulos();
+        cargarEmprendedoresPublicados();
+    });
 } else {
-  cargarEmprendedoresPublicados();
-}
     iniciarModulos();
+    cargarEmprendedoresPublicados();
+}
