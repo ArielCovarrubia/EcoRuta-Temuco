@@ -56,23 +56,24 @@ Durante la jornada se evaluó la dificultad técnica de la implementación del c
 ### Solicitudes y observaciones por rol
 
 * **Para Developers (@CarlosMeléndez / @LisetteDelgado):**
-- [Atender las asignaciones de código respetando rigurosamente el checklist de "Priorización de Tareas" estipulado en este documento.]
-- [Apoyarse en documentación para asegurar que la inyección dinámica del DOM controle bien las caídas de la API, mitigando la carga técnica evidenciada en el Planning Poker.]
+    - [**Prioridad Alta**: Solucionar BUG-04 elevando el `z-index` de `#aviso-cookies` a 10000+ y agregando una capa modal con `backdrop-filter: blur(4px)`. Solucionar BUG-06 rediseñando `#menu-accesibilidad` como una ventana flotante superpuesta (`position: absolute; right: 0; top: 100%;`) y agregando un evento de cierre al hacer clic fuera (click-outside) o presionar Esc].
+    - [**Prioridad Alta**: Solucionar BUG-07 cambiando el selector de tamaño de texto por un grupo de botones discretos (ej. radio buttons o con `aria-pressed`) y una zona con `aria-live="polite"` que confirme dinámicamente el cambio (ej. "Tamaño de texto ajustado a Grande")].
+    - [**Prioridad Media**: Solucionar BUG-05 ajustando el flexbox de `header.sin-navegacion` a `justify-content: space-between; flex-direction: row;`. Solucionar BUG-08 eliminando la regla de la línea 560 y unificando el control bajo variables CSS `--tamano-fuente`]
 
 * **Para QA/Tester (@ArielCovarrubia):**
-- [Administrar de manera centralizada el apartado de "Issues" en GitHub durante esta semana de prueba, documentando cada hallazgo con pasos claros de reproducción.]
-- [Auditar que los parches de accesibilidad cumplan con las normativas (RN-04), centrando las pruebas en TalkBack/VoiceOver y navegación por teclado.]
-- [Documentar los hallazgos técnicos en el registro de avance con pasos claros de reproducción, facilitando el seguimiento de bugs en el Backlog.]
+    - [Administrar de manera centralizada el apartado de "Issues" en GitHub durante esta semana de prueba, documentando cada hallazgo con pasos claros de reproducción.]
+    - [Auditar que los parches de accesibilidad cumplan con las normativas (RN-04), centrando las pruebas en TalkBack/VoiceOver y navegación por teclado.]
+    - [Documentar los hallazgos técnicos en el registro de avance con pasos claros de reproducción, facilitando el seguimiento de bugs en el Backlog.]
 
 * **Para Product Owner (@BeatrizMartin):**
-- [Mantener alineación de Historias de Usuario (HU) con Criterios de Aceptación (AC) y Reglas de Negocio.]
-- [Aplicar la matriz de 12 puntos de la RN-02 sobre los emprendimientos en MockAPI, definiendo qué fichas pasan a estado "Publicado".]
-- [Mantener el Product Backlog priorizado y actualizado según las observaciones del equipo docente y las pruebas de usabilidad.]
-- [Mantener las historias "Could Have" (Favoritos, Itinerarios, Newsletter) documentadas en el Backlog únicamente como referencias para escalar el proyecto a futuro.]
+    - [Mantener alineación de Historias de Usuario (HU) con Criterios de Aceptación (AC) y Reglas de Negocio.]
+    - [Aplicar la matriz de 12 puntos de la RN-02 sobre los emprendimientos en MockAPI, definiendo qué fichas pasan a estado "Publicado".]
+    - [Mantener el Product Backlog priorizado y actualizado según las observaciones del equipo docente y las pruebas de usabilidad.]
+    - [Mantener las historias "Could Have" (Favoritos, Itinerarios, Newsletter) documentadas en el Backlog únicamente como referencias para escalar el proyecto a futuro.]
 
 * **Para Scrum Master (@PatricioSalazar):**
-- [Supervisar que el tablero Kanban y los nuevos "Issues" de GitHub estén sincronizados y respeten el orden de priorización acordado.]
-- [Tomar en cuenta la retroalimentación de los desarrolladores sobre la sensación de lentitud del Sprint, asegurando espacios para resolver bloqueos técnicos (especialmente con la API).]
+    - [Supervisar que el tablero Kanban y los nuevos "Issues" de GitHub estén sincronizados y respeten el orden de priorización acordado.]
+    - [Tomar en cuenta la retroalimentación de los desarrolladores sobre la sensación de lentitud del Sprint, asegurando espacios para resolver bloqueos técnicos (especialmente con la API).]
 
 ---
 
