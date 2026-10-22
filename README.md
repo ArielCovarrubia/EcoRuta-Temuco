@@ -33,8 +33,17 @@ npm run dev
 
 ## Estado del proyecto
 
-- Sprint actual: Inicio de Sprint 2
-- Última actualización: (30 de septiembre)
+- Sprint actual: Semana 4 de Sprint 2
+- Última actualización: (21 de octubre)
+
+## Consumo de API / Integración
+
+El proyecto consume una **Mock API REST (de Emprendedores)** que provee la información requerida para el despliegue dinámico de contenidos en el layout.
+
+* **Tipo de API:** Mock API REST (formato JSON).
+* **Origen de datos:** Endpoint remoto (`https://6ad90babf89c5702ed9a6190.mockapi.io/emprendedores`) con datos de simulados de la entidad *Emprendedores*.
+* **Mecanismo de consumo:** Peticiones HTTP asíncronas utilizando `fetch` con `async/await` estructurado dentro de bloques `try/catch` para el control de excepciones y validación de estados (`respuestas.ok`)
+* **Manipulación del DOM:** Procesamiento del conjunto de datos e inyección dinámica en la interfaz a través de `innerHTML`.
 
 ## Tablero Kanban
 
