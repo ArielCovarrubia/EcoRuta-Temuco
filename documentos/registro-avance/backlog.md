@@ -150,13 +150,13 @@ Todas las implementaciones desarrolladas a partir del Sprint 2 deben cumplir obl
 
 | ID | Incidencia / Hallazgo | Prioridad | Asignado | Estado | Observación |
 | :---: | :--- | :---: | :---: | :---: | :--- |
-| **BUG-02** | ISSUE N.° 02: Falta de etiqueta `<meta name="description">` | **Media** | Developer 2 | **Pendiente** | Retomar como primera instancia en Sprint 2 |
-| **BUG-03** | ISSUE N.° 03: Bloqueos de rendimiento y carga (peso imágenes) | **Media** | Developer 1 | **Parcialmente Resuelto** | Mejoró a Performance 74 (Temuco), 62 (Pucón) y 58 (Villarrica), pero requiere más optimización|
-| **BUG-04** | Aviso de cookies detrás del apartado de emergencias | **Alta** | Developers | **Pendiente** | Conflicto de superposición por `z-index`. |
-| **BUG-05** | Distribución incorrecta y centrado en el Header | **Media** | Developers | **Pendiente** | En portada, los elementos se apilan en vez de distribuirse a los costados. |
-| **BUG-06** | Expansión indebida del Header por Menú de Accesibilidad en móviles | **Alta** | Developers | **Pendiente** | El menú estira la cabecera fija y carece de comportamiento flotante. |
-| **BUG-07** | Lectura corrida de tamaños de texto en lectores de pantalla (A11y) | **Alta** | Developers | **Pendiente** | Falta `aria-live="polite"` y el `<select>` se lee de corrido. |
-| **BUG-08** | Conflicto de reglas CSS en tamaño grande | **Baja** | Developers | **Pendiente** | Conflicto de font-size en `style.css` entre rem y px. |
+| **BUG-02** | Falta de etiqueta `<meta name="description">` | **Media** | Developer 2 | **Pendiente** | Agregar etiqueta de metadatos principal para SEO en todas las vistas. |
+| **BUG-03** | Bloqueos de rendimiento y carga (peso imágenes) | **Media** | Developer 1 | **Parcialmente Resuelto** | Mejoró performance, pero requiere migración pendiente a formato `.webp` y atributo `loading="lazy"`. |
+| **BUG-04** | Aviso de cookies detrás del apartado de emergencias | **Alta** | Developers | **Pendiente (Fase 1)** | Elevar `z-index` de `#aviso-cookies` a 10000+ y aplicar capa modal con `backdrop-filter: blur(4px)`. |
+| **BUG-05** | Distribución incorrecta y centrado en el Header | **Media** | Developers | **Pendiente (Fase 3)** | Ajustar el flexbox a `justify-content: space-between; flex-direction: row;`. |
+| **BUG-06** | Expansión indebida del Header por Menú de Accesibilidad en móviles | **Alta** | Developers | **Pendiente (Fase 1)** | Cambiar a `position: absolute` flotante (`right: 0; top: 100%;`), agregar elevación (`box-shadow`) y evento de cierre (*click-outside* / Esc). |
+| **BUG-07** | Lectura corrida de tamaños de texto en lectores de pantalla (A11y) | **Alta** | Developers | **Pendiente (Fase 2)** | Cambiar el `<select>` por botones discretos y añadir zona accesible con `aria-live="polite"` para confirmación auditiva dinámica. |
+| **BUG-08** | Conflicto de reglas CSS en tamaño grande | **Baja** | Developers | **Pendiente (Fase 3)** | Eliminar regla `font-size` de la línea 560 y unificar el control bajo la variable CSS `--tamano-fuente`. |
 ---
 
 ## Historial de Revisiones
