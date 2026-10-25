@@ -22,14 +22,17 @@
         </button>
 
         <div id="menu-accesibilidad" hidden>
-            <label for="tamano-texto">Tamaño del texto</label>
+            <fieldset class="grupo-tamano-texto">
+                <legend>Tamaño del texto</legend>
+                <div class="botones-tamano">
+                    <button type="button" class="btn-tamano" data-tamano="pequeno" aria-pressed="false">Pequeño</button>
+                    <button type="button" class="btn-tamano" data-tamano="normal" aria-pressed="true">Normal</button>
+                    <button type="button" class="btn-tamano" data-tamano="grande" aria-pressed="false">Grande</button>
+                    <button type="button" class="btn-tamano" data-tamano="muy-grande" aria-pressed="false">Muy grande</button>
+                </div>
+            </fieldset>
 
-            <select id="tamano-texto">
-                <option value="pequeno">Pequeño</option>
-                <option value="normal" selected>Normal</option>
-                <option value="grande">Grande</option>
-                <option value="muy-grande">Muy grande</option>
-            </select>
+            <p id="anuncio-accesibilidad" class="sr-only" aria-live="polite" aria-atomic="true"></p>
 
             <label>
                 <input type="checkbox" id="contraste-alto">

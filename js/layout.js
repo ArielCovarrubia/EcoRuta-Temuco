@@ -93,6 +93,9 @@ fetch(`${basePath}header.html`)
             controlContraste.checked = contrasteGuardado === 'true';
         }
 
+        const botonesTamano = headerContainer.querySelectorAll('.btn-tamano');
+        const anuncioAccesibilidad = headerContainer.querySelector('#anuncio-accesibilidad')
+
         const tamanosValidos = [
             'pequeno',
             'normal',
@@ -100,11 +103,18 @@ fetch(`${basePath}header.html`)
             'muy-grande'
         ];
 
+        const nombreTamano = {
+            'pequeno': 'Pequeño',
+            'normal': 'Normal',
+            'grande': 'Grande',
+            'muy-grande': 'Muy grande'
+        };
+
         const tamanoInicial = tamanosValidos.includes(textoGuardado)
             ? textoGuardado
             : 'normal';
 
-        function aplicarTamanoTexto(tamano) {
+        function aplicarTamanoTexto(tamano, anunciar = false) {
             document.body.classList.remove(
                 'texto-pequeno',
                 'texto-normal',
@@ -114,27 +124,34 @@ fetch(`${basePath}header.html`)
             );
 
             document.body.classList.add(`texto-${tamano}`);
+            
+            // 1. Actualiza el estado visual/accesible de los botones
+             botonesTamano.forEach(btn => {
+                const esActivo = btn.dataset.tamano === tamano;
+                btn.setAttribute('aria-pressed', String(esActivo));
+             });
+
+             // 2. Anuncio por voz para lectores de pantalla (Requisito WAI-ARIA / Ariel)
+             if (anunciar && anuncioAccesibilidad) {
+                const nombreLegible = nombreTamano[tamano] || tamano;
+                anuncioAccesibilidad.textContent = `Tamaño del texto establecido en ${nombreLegible}.`;
+             }
         }
 
-        aplicarTamanoTexto(tamanoInicial);
+        aplicarTamanoTexto(tamanoInicial, false);
 
-        if (selectorTexto) {
-            selectorTexto.value = tamanoInicial;
-
-            selectorTexto.addEventListener('change', () => {
-                const tamano = selectorTexto.value;
-
+        botonesTamano.forEach(boton => {
+            boton.addEventListener('click', () => {
+                const tamano = boton.dataset.tamano;
                 if (!tamanosValidos.includes(tamano)) return;
-
-                aplicarTamanoTexto(tamano);
-
-                if (
-                    localStorage.getItem('guardarAccesibilidad') !== 'false'
-                ) {
+            
+                aplicarTamanoTexto(tamano, true);
+               
+                if (localStorage.getItem('guardarAccesibilidad') !== 'false') {
                     localStorage.setItem('tamanoTexto', tamano);
                 }
             });
-        }
+        });
 
         // Cambiar alto contraste.
         if (controlContraste) {
@@ -630,14 +647,20 @@ async function cargarEmprendedoresPublicados() {
   // Si en la página actual no existe el contenedor, no hace nada
   if (!contenedor) return;
 
-  // 1. Mostrar estado visible "Cargando..."
-  contenedor.innerHTML = '<p class="mensaje-cargando">Cargando emprendedores...</p>';
+  let mensajeEstado = contenedor.querySelector('.mensaje-estado');
+  if (!mensajeEstado) {
+    mensajeEstado = document.createElement('p');
+    mensajeEstado.className = 'mensaje-estado mensaje-cargando';
+    contenedor.appendChild(mensajeEstado);
+  }
 
-  // 2. URL del endpoint público de MockAPI (reemplaza la URL que estaba en la carpeta data)
+  mensajeEstado.classList.remove('oculto', 'mensaje-error');
+  mensajeEstado.classList.add('mensaje-cargando');
+  mensajeEstado.textContent = 'Cargando emprendedores...';
+
   const apiUrl = 'https://6ad90babf89c5702ed9a6190.mockapi.io/emprendedores';
 
   try {
-    // Consumir la API remota con fetch y async/await
     const respuesta = await fetch(apiUrl);
 
     if (!respuesta.ok) {
@@ -662,10 +685,15 @@ async function cargarEmprendedoresPublicados() {
       publicados = publicados.filter(emp => emp.ubicacion.toLowerCase() === 'villarrica');
     }
 
+    if (publicados.length === 0) {
+        contenedor.innerHTML = '<p class="mensaje-info">No hay emprendedores disponibles para esta ubicación.</p>';
+        return;
+    }
+
     // 4. Dibujar las tarjetas dinámicamente en el DOM
     publicados.forEach(emp => {
       const tarjeta = document.createElement('article');
-      tarjeta.className = 'carta-ciudad'; // Usa las clases que ya tienen en CSS
+      tarjeta.className = 'carta-ciudad';
 
       tarjeta.innerHTML = `
         <h3>${emp.nombre}</h3>
@@ -684,7 +712,13 @@ async function cargarEmprendedoresPublicados() {
   } catch (error) {
     // 5. Manejo amigable con try/catch sin romper el sitio
     console.error('Error al cargar la lista de emprendedores:', error);
-    contenedor.innerHTML = '<p class="mensaje-error">No se pudieron cargar los emprendedores en este momento.</p>';
+
+    contenedor.innerHTML = '';
+    const parrafoError = document.createElement('p');
+    parrafoError.classList.add('mensaje-error');
+    parrafoError.textContent = 'No se pudieron cargar los emprendedores en este momento. Por favor, intenta nuevamente más tarde.';
+
+    contenedor.appendChild(parrafoError);
   }
 }
 
