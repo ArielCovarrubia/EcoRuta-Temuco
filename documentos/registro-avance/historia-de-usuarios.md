@@ -34,7 +34,6 @@ Detalle resumido de historias de usuarios
 | **HU-20** | Como usuario interesado, quiero recibir un boletín de eventos, para mantenerme actualizado voluntariamente. | Could have | por discutir |
 | **HU-21** | Como usuario extranjero, quiero poder cambiar el idioma a inglés, para comprender las actividades disponibles. | Should have | Por hacer |
 | **HU-22** | Como turista, quiero filtrar y generar rutas dinámicamente según comuna, dificultad y actividad, para armar mi panorama ideal. | Must have | Por hacer |
-| **HU-23** | Como turista, quiero visualizar el clima actual en las fichas de rutas, para evaluar las condiciones antes del recorrido. | Must have | Por hacer |
 ***
 # Historias de Usuarios y Criterios de Aceptación - EcoRuta-Temuco
 
@@ -50,22 +49,21 @@ Son indispensables y caen dentro del Sprint actual.
 - **HU-14 (Redes Sociales):** Habilitación de canales de contacto complementarios y oficiales.
 - **HU-17 (Consumo de API):** Carga dinámica de emprendimientos usando una base de datos centralizada (MockAPI/Google Sheets) validando el estado "Publicado".
 - **HU-22 (Buscador y Generador de Rutas):** Sistema de filtrado multicriterio sin recarga de página para buscar rutas ideales.
-- **HU-23 (Consumo API de Clima):** Bloque asíncrono para consumir y mostrar el clima actual en tiempo real dentro de las rutas.
 
 ### Historias Valiosas pero no críticas (Should Have)
 Aportan gran valor a la plataforma, pero el sitio puede funcionar inicialmente sin ellas.
 - **HU-03 (Rutas para grupos):** el enfoque hacia las rutas, se alinea con el turismo sustentable en grupo.
+- **HU-04 (Clima) y HU-12 (Mapas Interactivos):** Herramientas útiles de campo, aplazadas para futuras iteraciones.
 - **HU-05 (Emergencias):** Válida en el ámbito de salud (directorio), catalogada como funcionalidad secundaria.
 - **HU-12 (Mapas Interactivos):** Implementación referencial utilizando la alternativa de código abierto (OpenStreetMap).
 - **HU-13 (Validación e Implementación de página de formulario):** Uso de JS para evitar envío de datos erróneos en la creación de envío de formulario.
 - **HU-15 (Cookies de preferencias):** Preservar la configuración visual elegida por el usuario de manera segura.
+- **HU-16 (Migración a TypeScript):** Transición técnica progresiva para mejorar el tipado del código.
 - **HU-21 (Selector de Idioma):** Opción complementaria de accesibilidad (ES/EN) con persistencia de elección vinculada a HU-15.
 
 ### Mejoras Futuras (Could Have)
 Aportan valor que se podría implementar, pero son prescindibles para el Sprint actual
-- **HU-04 (Clima) y HU-12 (Mapas Interactivos):** Herramientas útiles de campo, aplazadas para futuras iteraciones.
 - **HU-06 (Asilos personalizados):** Podría requerir almacenamiento local (`localStorage`) a futuro para guardar contactos específicos del usuario.
-- **HU-16 (Migración a TypeScript):** Transición técnica progresiva para mejorar el tipado del código.
 - **HU-18, HU-19, HU-20 (Registro de Usuarios):** Creación de cuentas, itinerarios personalizados, favoritos y newsletters.
 
 ### Fuera de Alcance (Won't Have)
@@ -128,14 +126,15 @@ Fuera de las restricciones del proyecto.
   - [ ] Añadir una función de sugerencia de rutas según el tiempo disponible del usuario.
   - [ ] Elaborar la justificación técnica del uso exclusivo del frontend para esta lógica (velocidad y escalabilidad).
 
-### HU-23: Consumo de API Externa de Clima
+  
+## Prioridad Media (Should Have)
+
+### HU-04: Consumo de API Externa de Clima
 - **Objetivo:** Proveer información meteorológica inmediata dentro del catálogo de rutas para fomentar la planificación segura.
 - **Criterios clave:**
   - [ ] Conectar asíncronamente (`fetch`) a una API pública como Open-Meteo o WeatherAPI.
   - [ ] Inyectar el estado del tiempo y la temperatura actual en las fichas visuales de cada ruta.
   - [ ] Añadir bloque `try/catch` obligatorio y un mensaje de contingencia visual si el servicio externo falla.
-  
-## Prioridad Media (Should Have)
 
 ### HU-05: Contactos médicos de emergencia (Optimizado)
 - **Objetivo:** Directorio visible, directo y seguro para reaccionar ante imprevistos.
