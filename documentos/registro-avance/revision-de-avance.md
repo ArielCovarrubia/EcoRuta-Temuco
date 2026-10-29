@@ -27,6 +27,8 @@ Se dio seguimiento al estado de los hallazgos técnicos formalizados en el docum
 * **BUG-05 (Distribución incorrecta y centrado en el Header):** **Pendiente.** En la portada, `header.sin-navegacion` continúa con `flex-direction: column` y centrado en escritorio y móvil, apilando el título y el botón de accesibilidad en lugar de alinearlos a los extremos izquierdo y derecho.
 * **BUG-06 (Expansión indebida del Header por Menú de Accesibilidad en móviles):** **Pendiente.** El contenedor `#menu-accesibilidad` continúa en flujo estático (`position: static`), lo que estira la cabecera fija verticalmente al abrirse en pantallas móviles. Pendiente conversión a contenedor flotante (`position: absolute`) con eventos de cierre al pulsar fuera o tecla `Escape`.
 * **BUG-08 (Conflicto de reglas CSS en tamaño grande):** **Pendiente (Deuda técnica).** Persiste la duplicidad entre `font-size: 1.15rem` (Línea 560) y `--tamano-fuente: 19px` (Línea 960) en `css/style.css`.
+* **BUG-09 (Falta de `rel="noopener noreferrer"` en WhatsApp de emprendedores):** **Nuevo Hallazgo (Semana 4).** En `layout.js` (Línea 704), el enlace a WhatsApp generado dinámicamente contiene `target="_blank"` pero carece del atributo de seguridad `rel="noopener noreferrer"`, incumpliendo la regla RN-01.
+* **BUG-10 (Atrapamiento de scroll en mapas móviles Leaflet):** **Nuevo Hallazgo (Semana 4).** En celulares, el gesto táctil vertical sobre `#mapa-ruta` queda atrapado como desplazamiento del mapa, bloqueando el scroll de la página (WCAG 2.1.2).
 
 ---
 
