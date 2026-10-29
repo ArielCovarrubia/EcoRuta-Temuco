@@ -4,7 +4,7 @@
 
 **Product Owner:** Beatriz Martin
 
-**Update date:** 12/10/2026
+**Update date:** 28/10/2026
 
 ---
 
@@ -33,6 +33,7 @@ Detalle resumido de historias de usuarios
 | **HU-19** | Como turista registrado, quiero organizar mis guardados en itinerarios por día, para planificar mi viaje. | Could have | por discutir |
 | **HU-20** | Como usuario interesado, quiero recibir un boletín de eventos, para mantenerme actualizado voluntariamente. | Could have | por discutir |
 | **HU-21** | Como usuario extranjero, quiero poder cambiar el idioma a inglés, para comprender las actividades disponibles. | Should have | Por hacer |
+| **HU-22** | Como turista, quiero filtrar y generar rutas dinámicamente según comuna, dificultad y actividad, para armar mi panorama ideal. | Must have | Por hacer |
 ***
 # Historias de Usuarios y Criterios de Aceptación - EcoRuta-Temuco
 
@@ -47,21 +48,22 @@ Son indispensables y caen dentro del Sprint actual.
 - **HU-11 (Accesibilidad JS):** Cambio de estilos y clases en el DOM para controles visuales de accesibilidad.
 - **HU-14 (Redes Sociales):** Habilitación de canales de contacto complementarios y oficiales.
 - **HU-17 (Consumo de API):** Carga dinámica de emprendimientos usando una base de datos centralizada (MockAPI/Google Sheets) validando el estado "Publicado".
+- **HU-22 (Buscador y Generador de Rutas):** Sistema de filtrado multicriterio sin recarga de página para buscar rutas ideales.
 
 ### Historias Valiosas pero no críticas (Should Have)
 Aportan gran valor a la plataforma, pero el sitio puede funcionar inicialmente sin ellas.
 - **HU-03 (Rutas para grupos):** el enfoque hacia las rutas, se alinea con el turismo sustentable en grupo.
+- **HU-04 (Clima) y HU-12 (Mapas Interactivos):** Herramientas útiles de campo, aplazadas para futuras iteraciones.
 - **HU-05 (Emergencias):** Válida en el ámbito de salud (directorio), catalogada como funcionalidad secundaria.
 - **HU-12 (Mapas Interactivos):** Implementación referencial utilizando la alternativa de código abierto (OpenStreetMap).
 - **HU-13 (Validación e Implementación de página de formulario):** Uso de JS para evitar envío de datos erróneos en la creación de envío de formulario.
 - **HU-15 (Cookies de preferencias):** Preservar la configuración visual elegida por el usuario de manera segura.
+- **HU-16 (Migración a TypeScript):** Transición técnica progresiva para mejorar el tipado del código.
 - **HU-21 (Selector de Idioma):** Opción complementaria de accesibilidad (ES/EN) con persistencia de elección vinculada a HU-15.
 
 ### Mejoras Futuras (Could Have)
 Aportan valor que se podría implementar, pero son prescindibles para el Sprint actual
-- **HU-04 (Clima) y HU-12 (Mapas Interactivos):** Herramientas útiles de campo, aplazadas para futuras iteraciones.
 - **HU-06 (Asilos personalizados):** Podría requerir almacenamiento local (`localStorage`) a futuro para guardar contactos específicos del usuario.
-- **HU-16 (Migración a TypeScript):** Transición técnica progresiva para mejorar el tipado del código.
 - **HU-18, HU-19, HU-20 (Registro de Usuarios):** Creación de cuentas, itinerarios personalizados, favoritos y newsletters.
 
 ### Fuera de Alcance (Won't Have)
@@ -97,9 +99,10 @@ Fuera de las restricciones del proyecto.
 ### HU-11: Accesibilidad visual (baja visión)
 - **Objetivo:** Controles interactivos para activar alto contraste y aumento de texto.
 - **Criterios clave:**
-> 1. [ ] Crear un menú desplegable pequeño con opciones de Tamaño de texto y Alto contraste. (actualmente está como botón)
-> 2. [ ] Conservar la legibilidad de tarjetas sin desbordar el contenido en pantallas móviles al aplicar zoom.
-> 3. [ ] Guardar las preferencias temporalmente sin exigir una cuenta de usuario, notificando su propósito.
+> 1. [x] Crear un menú desplegable pequeño con opciones de Tamaño de texto y Alto contraste. 
+> 2. [x] Conservar la legibilidad de tarjetas sin desbordar el contenido en pantallas móviles al aplicar zoom.
+> 3. [x] Guardar las preferencias temporalmente sin exigir una cuenta de usuario, notificando su propósito.
+> 4. [ ] Afinación de distribución y visualización del funcionamiento dentro de las páginas
 
 ### HU-14: Redes sociales oficiales (Contacto)
 - **Objetivo:** Utilizar las redes oficiales del proyecto como canal complementario de contacto.
@@ -110,46 +113,57 @@ Fuera de las restricciones del proyecto.
 ### HU-17: Catálogo Dinámico de Emprendimientos (Consumo API)
 - **Objetivo:** Cargar las fichas de los emprendimientos desde una base de datos centralizada y validada.
 - **Criterios clave:**
-> 1. [ ] Implementar asincronía (`fetch`) para traer datos en formato JSON (Ej: Google Sheets o MockAPI).
-> 2. [ ] Mostrar en el DOM únicamente los emprendimientos que posean el estado "Publicado".
-> 3. [ ] Integrar manejo de errores (mostrar mensaje comprensible si la API falla, no pantalla en blanco).
+> 1. [x] Implementar asincronía (`fetch`) para traer datos en formato JSON (Ej: Google Sheets o MockAPI).
+> 2. [x] Mostrar en el DOM únicamente los emprendimientos que posean el estado "Publicado".
+> 3. [x] Integrar manejo de errores (mostrar mensaje comprensible si la API falla, no pantalla en blanco).
+> 4. [ ] Afinación de distribución de funcionamiento dentro de las páginas
 
+### HU-22: Buscador y Generador Dinámico de Rutas
+- **Objetivo:** Encontrar y recomendar rutas turísticas de forma rápida utilizando múltiples variables simultáneas.
+- **Criterios clave:**
+  - [ ] Implementar filtrado en tiempo real por Comuna, Dificultad y Tipo de Actividad.
+  - [ ] Manipular el DOM directamente mediante métodos `.filter()` y `event.preventDefault()` sin recargar la vista.
+  - [ ] Añadir una función de sugerencia de rutas según el tiempo disponible del usuario.
+  - [ ] Elaborar la justificación técnica del uso exclusivo del frontend para esta lógica (velocidad y escalabilidad).
+
+  
 ## Prioridad Media (Should Have)
+
+### HU-04: Consumo de API Externa de Clima
+- **Objetivo:** Proveer información meteorológica inmediata dentro del catálogo de rutas para fomentar la planificación segura.
+- **Criterios clave:**
+  - [ ] Conectar asíncronamente (`fetch`) a una API pública como Open-Meteo o WeatherAPI.
+  - [ ] Inyectar el estado del tiempo y la temperatura actual en las fichas visuales de cada ruta.
+  - [ ] Añadir bloque `try/catch` obligatorio y un mensaje de contingencia visual si el servicio externo falla.
 
 ### HU-05: Contactos médicos de emergencia (Optimizado)
 - **Objetivo:** Directorio visible, directo y seguro para reaccionar ante imprevistos.
 - **Criterios clave:**
-> 1. [ ] Permitir realizar llamadas directas al hacer clic en números desde dispositivos móviles (`tel:`).
-> 2. [ ] Habilitar un botón para "Copiar número" al consultar la plataforma desde computadores de escritorio.
+> 1. [x] Permitir realizar llamadas directas al hacer clic en números desde dispositivos móviles (`tel:`).
+> 2. [x] Habilitar un botón para "Copiar número" al consultar la plataforma desde computadores de escritorio.
 > 3. [x] Incluir el texto legal: *"Este panel es un directorio informativo... y no constituye una garantía de atención médica directa"*.
 
 ### HU-12: Mapas interactivos por ciudad (OpenStreetMap)
 - **Objetivo:** Proveer orientación territorial integrando mapas de código abierto.
 - **Criterios clave:**
-> 1. [ ] Conectar la plataforma a la API de OpenStreetMap (Leaflet).
-> 2. [ ] Mostrar ubicación general de atractivos o la distribución de comunas (Temuco, Pucón, Villarrica).
+> 1. [x] Conectar la plataforma a la API de OpenStreetMap (Leaflet).
+> 2. [x] Mostrar ubicación general de atractivos o la distribución de comunas (Temuco, Pucón, Villarrica).
+> 3. [ ] Afinación de distribución de funcionamiento dentro de las páginas
 
 ### HU-13: Implementación y validación dinámica de Formulario.
 - **Objetivo:** página de formulario el cual debe validar sus campos antes de enviar los datos.
 - **Criterios clave:**
-> 1. [ ] Agregación del apartado de formulario en las rutas
-> 2. [ ] Validar campos de texto vacíos (marcando en rojo si hay error)
-> 3. [ ] Mostrar mensaje dinámico modificando `.textContent` si los datos son correctos.
+> 1. [x] Agregación del apartado de formulario en las rutas
+> 2. [x] Validar campos de texto vacíos (marcando en rojo si hay error)
+> 3. [x] Mostrar mensaje dinámico modificando `.textContent` si los datos son correctos.
+> 4. [ ] Afinación de distribución de funcionamiento dentro de EcoRuta
 
 ### HU-15: Cookies de preferencias de accesibilidad
 - **Objetivo:** Guardar configuraciones del usuario (modo oscuro, zoom, idioma) de forma segura.
 - **Criterios clave:**
-> 1. [ ] Desplegar un aviso en la primera visita explicando el propósito de las cookies (solo accesibilidad, no publicidad).
-> 2. [ ] Permitir al usuario aceptar o rechazar el almacenamiento de sus preferencias.
-> 3. [ ] Aplicar la configuración guardada automáticamente al cambiar entre las vistas de Pucón, Temuco y Villarrica.
-
-### HU-21: Selector de Idioma (Accesibilidad)
-- **Objetivo:** Permitir al visitante extranjero cambiar el idioma del sitio de manera fácil.
-- **Criterios clave:**
-> 1. [ ] Implementar un control simple en el menú de accesibilidad para alternar entre Español (ES) e Inglés (EN).
-> 2. [ ] Evitar recolección de datos personales, limitándose a aplicar traducciones dinámicas o redirecciones de layout.
-
-## Prioridad Baja / Tareas Técnicas (Could Have)
+> 1. [x] Desplegar un aviso en la primera visita explicando el propósito de las cookies (solo accesibilidad, no publicidad).
+> 2. [x] Permitir al usuario aceptar o rechazar el almacenamiento de sus preferencias.
+> 3. [x] Aplicar la configuración guardada automáticamente al cambiar entre las vistas de Pucón, Temuco y Villarrica.
 
 ### HU-16: Migración progresiva a TypeScript
 - **Objetivo:** Aumentar la solidez del código mediante tipado estático.
@@ -157,3 +171,9 @@ Fuera de las restricciones del proyecto.
 > 1. [ ] Crear `tsconfig.json` con configuración compatible con el navegador.
 > 2. [ ] Convertir la lógica inicial (`layout.js`) definiendo interfaces para los botones del menú y enlaces del DOM.
 > 3. [ ] Compilar y verificar que la accesibilidad siga funcionando sin errores de consola.
+
+### HU-21: Selector de Idioma (Accesibilidad)
+- **Objetivo:** Permitir al visitante extranjero cambiar el idioma del sitio de manera fácil.
+- **Criterios clave:**
+> 1. [ ] Implementar un control simple en el menú de accesibilidad para alternar entre Español (ES) e Inglés (EN).
+> 2. [ ] Evitar recolección de datos personales, limitándose a aplicar traducciones dinámicas o redirecciones de layout.

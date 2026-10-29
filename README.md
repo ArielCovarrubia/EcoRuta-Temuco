@@ -34,7 +34,7 @@ npm run dev
 ## Estado del proyecto
 
 - Sprint actual: Semana 4 de Sprint 2
-- Última actualización: (21 de octubre)
+- Última actualización: 25 de octubre
 
 ## Consumo de API / Integración
 
