@@ -32,6 +32,7 @@ header {
     flex-wrap: wrap;
     gap: 1rem;
     position: sticky;
+    position: relative;
     top: 0;
     z-index: 10;
     box-shadow: 0 2px 4px rgba(0,0,0,0.08);
@@ -92,6 +93,7 @@ header button:hover {
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    position: relative;
 }
 
 .acciones-header button {
@@ -105,6 +107,13 @@ header.sin-navegacion {
 }
 
 header.sin-navegacion .acciones-header {
+    margin: 0;
+}
+
+header.sin-navegacion .acciones-header {
+    position: absolute;
+    top: 12px;
+    right: 16px;
     margin: 0;
 }
 
@@ -476,8 +485,13 @@ footer .redes-sociales a {
     }
 
     header.sin-navegacion .acciones-header {
-        grid-column: 1;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: auto;
+    justify-content: flex-end;
     }
+
     .acciones-header button {
         padding: 0.4rem 0.45rem;
         font-size: 0.65rem;
@@ -557,13 +571,8 @@ footer .redes-sociales a {
     box-shadow: 0 14px 30px rgba(0,0,0,0.12);
 }
 
-body.texto-grande {
-    font-size: 1.15rem;
-}
 
-body.texto-grande p {
-    font-size: 1.05em;
-}
+
 
 .detalle-ruta {
     background: #ffffff;
@@ -909,15 +918,25 @@ body.modo-oscuro .contacto-emprendedor p {
 }
 
 #menu-accesibilidad {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    z-index: 100;
+
     display: grid;
     gap: 12px;
+
+    width: min(280px, calc(100vw - 24px));
     min-width: 200px;
     padding: 16px;
-    margin-top: 8px;
-    border: 1px solid #888;
-    border-radius: 10px;
-    background: #fff;
-    color: #222;
+
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+
+    background-color: #ffffff;
+    color: #222222;
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
 }
 
 #menu-accesibilidad[hidden] {
@@ -942,27 +961,27 @@ body.modo-oscuro .contacto-emprendedor p {
 }
 
 :root {
-    --tamano-fuente: 16px;
+    font-size: 100%;
 }
 
-body {
-    font-size: var(--tamano-fuente);
+/* Tamaño pequeño */
+html.texto-pequeno {
+    font-size: 87.5%;
 }
 
-body.texto-pequeno {
-    --tamano-fuente: 14px;
+/* Tamaño normal */
+html.texto-normal {
+    font-size: 100%;
 }
 
-body.texto-normal {
-    --tamano-fuente: 16px;
+/* Tamaño grande */
+html.texto-grande {
+    font-size: 118.75%;
 }
 
-body.texto-grande {
-    --tamano-fuente: 19px;
-}
-
-body.texto-muy-grande {
-    --tamano-fuente: 23px;
+/* Tamaño muy grande */
+html.texto-muy-grande {
+    font-size: 143.75%;
 }
 
 body.alto-contraste {
