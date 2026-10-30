@@ -47,17 +47,54 @@ fetch(`${basePath}header.html`)
             headerContainer.querySelector('#btn-tema');
 
         if (botonAccesibilidad && menuAccesibilidad) {
+
+            function cerrarMenuAccesibilidad() {
+                menuAccesibilidad.hidden = true;
+
+                botonAccesibilidad.setAttribute(
+                    'aria-expanded',
+                    'false'
+                );
+            }
+
+            // Abrir y cerrar al presionar el botón
             botonAccesibilidad.addEventListener('click', () => {
                 const abierto =
                     botonAccesibilidad.getAttribute('aria-expanded') === 'true';
 
-                botonAccesibilidad.setAttribute(
-                    'aria-expanded',
-                    String(!abierto)
-                );
+                if (abierto) {
+                    cerrarMenuAccesibilidad();
+                } else {
+                    menuAccesibilidad.hidden = false;
 
-                menuAccesibilidad.hidden = abierto;
+                    botonAccesibilidad.setAttribute(
+                        'aria-expanded',
+                        'true'
+                    );
+                }
             });
+
+            // Cerrar al hacer clic fuera del menú
+            document.addEventListener('click', (evento) => {
+                if (
+                    !menuAccesibilidad.contains(evento.target) &&
+                    !botonAccesibilidad.contains(evento.target)
+                ) {
+                    cerrarMenuAccesibilidad();
+                }
+            });
+
+            // Cerrar al presionar Escape
+            document.addEventListener('keydown', (evento) => {
+                if (
+                    evento.key === 'Escape' &&
+                    botonAccesibilidad.getAttribute('aria-expanded') === 'true'
+                ) {
+                    cerrarMenuAccesibilidad();
+                    botonAccesibilidad.focus();
+                }
+            });
+
         }
 
         const guardarAccesibilidad =
@@ -124,18 +161,29 @@ fetch(`${basePath}header.html`)
             );
 
             document.body.classList.add(`texto-${tamano}`);
-            
-            // 1. Actualiza el estado visual/accesible de los botones
-             botonesTamano.forEach(btn => {
+
+            // Aplicar el tamaño también al elemento raíz html.
+            document.documentElement.classList.remove(
+                'texto-pequeno',
+                'texto-normal',
+                'texto-grande',
+                'texto-muy-grande'
+            );
+
+            document.documentElement.classList.add(`texto-${tamano}`);
+
+            // 1. Actualiza el estado visual/accesible de los botones.
+            botonesTamano.forEach(btn => {
                 const esActivo = btn.dataset.tamano === tamano;
                 btn.setAttribute('aria-pressed', String(esActivo));
-             });
+            });
 
-             // 2. Anuncio por voz para lectores de pantalla (Requisito WAI-ARIA / Ariel)
-             if (anunciar && anuncioAccesibilidad) {
+            // 2. Anuncio para lectores de pantalla.
+            if (anunciar && anuncioAccesibilidad) {
                 const nombreLegible = nombreTamano[tamano] || tamano;
-                anuncioAccesibilidad.textContent = `Tamaño del texto establecido en ${nombreLegible}.`;
-             }
+                anuncioAccesibilidad.textContent =
+                    `Tamaño del texto establecido en ${nombreLegible}.`;
+            }
         }
 
         aplicarTamanoTexto(tamanoInicial, false);
@@ -169,6 +217,14 @@ fetch(`${basePath}header.html`)
                     );
                 }
             });
+
+            // Permitir activar con Enter.
+            controlContraste.addEventListener('keydown', (evento) => {
+                if (evento.key === 'Enter') {
+                    evento.preventDefault();
+                    controlContraste.click();
+                }
+            });
         }
 
         // Cambiar modo oscuro.
@@ -185,6 +241,14 @@ fetch(`${basePath}header.html`)
                         'tema',
                         activo ? 'oscuro' : 'claro'
                     );
+                }
+            });
+
+            // Permitir activar con Enter.
+            controlTema.addEventListener('keydown', (evento) => {
+                if (evento.key === 'Enter') {
+                    evento.preventDefault();
+                    controlTema.click();
                 }
             });
         }
