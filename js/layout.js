@@ -374,6 +374,79 @@ function iniciarPreferenciasCookies() {
 
     aviso.hidden = Boolean(decisionGuardada);
 
+    // Controlar el teclado mientras el aviso esté abierto.
+    if (!aviso.dataset.tecladoConfigurado) {
+
+        aviso.dataset.tecladoConfigurado = 'true';
+
+        document.addEventListener('keydown', (evento) => {
+
+            if (aviso.hidden) return;
+
+            const panel = document.getElementById('panel-preferencias');
+            const panelAbierto = panel && !panel.hidden;
+
+            // Cerrar preferencias con Escape.
+            if (evento.key === 'Escape' && panelAbierto) {
+                evento.preventDefault();
+                panel.hidden = true;
+                botonGestionar.focus();
+                return;
+            }
+
+            // Permitir activar los checkbox con Enter.
+            if (
+                evento.key === 'Enter' &&
+                evento.target.matches('input[type="checkbox"]') &&
+                panelAbierto
+            ) {
+                evento.preventDefault();
+                evento.target.click();
+                return;
+            }
+
+            // Mantener el foco dentro del contenido activo.
+            if (evento.key === 'Tab') {
+
+                const zonaActiva = panelAbierto
+                    ? panel
+                    : aviso.querySelector('.contenido-cookies');
+
+                const elementos = zonaActiva.querySelectorAll(
+                    'button:not([disabled]), input:not([disabled]), select:not([disabled]), a[href], textarea:not([disabled])'
+                );
+
+                if (elementos.length === 0) return;
+
+                const primero = elementos[0];
+                const ultimo = elementos[elementos.length - 1];
+
+                if (!zonaActiva.contains(document.activeElement)) {
+                    evento.preventDefault();
+                    (evento.shiftKey ? ultimo : primero).focus();
+                    return;
+                }
+
+                if (evento.shiftKey && document.activeElement === primero) {
+                    evento.preventDefault();
+                    ultimo.focus();
+                } else if (
+                    !evento.shiftKey &&
+                    document.activeElement === ultimo
+                ) {
+                    evento.preventDefault();
+                    primero.focus();
+                }
+            }
+        });
+    }
+
+    // Colocar el foco dentro del aviso cuando aparece.
+    if (!aviso.hidden && !aviso.dataset.focoInicial) {
+        aviso.dataset.focoInicial = 'true';
+        botonAceptar.focus();
+    }
+
     // Aceptar preferencias opcionales.
     if (botonAceptar) {
         botonAceptar.addEventListener('click', () => {
@@ -484,6 +557,7 @@ function iniciarPreferenciasCookies() {
                 localStorage.getItem('guardarIdioma') === 'true';
 
             panel.hidden = false;
+            accesibilidad.focus();
 
             document.getElementById('guardar-preferencias').onclick = () => {
                 const guardarAccesibilidad = accesibilidad.checked;
@@ -547,6 +621,7 @@ function iniciarPreferenciasCookies() {
 
             document.getElementById('cerrar-preferencias').onclick = () => {
                 panel.hidden = true;
+                botonGestionar.focus();
             };
 
             document.getElementById('revocar-preferencias').onclick = () => {
@@ -694,12 +769,6 @@ function inyectarModuloEmergencias() {
 function iniciarModulos() {
     cargarAvisoCookies();
     inyectarModuloEmergencias();
-}
-
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', iniciarModulos);
-} else {
-  inyectarModuloEmergencias();
 }
 
 // ==========================================================================
