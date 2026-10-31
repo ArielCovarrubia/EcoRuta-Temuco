@@ -82,7 +82,11 @@
             const lng = -71.9754;
 
             // 1. Inicializar el mapa
-            const mapa = L.map('mapa-ruta').setView([lat, lng], 13);
+            const mapa = L.map('mapa-ruta', {
+                    scrollWheelZoom: false,
+                    dragging: !L.Browser.mobile,
+                    tap: !L.Browser.mobile
+                }).setView([lat, lng], 13);
 
             // 2. Cargar los azulejos de OpenStreetMap
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {

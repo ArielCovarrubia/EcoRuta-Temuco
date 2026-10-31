@@ -834,7 +834,7 @@ async function cargarEmprendedoresPublicados() {
         <p>${emp.descripcion}</p>
         <p><strong>Puntaje Sustentable:</strong> ${emp.puntajeSustentable} / 12</p>
         <div class="contacto-emprendedor" style="margin-top: 0.8rem; text-align: center;">
-          <a href="https://wa.me/${emp.whatsapp.replace(/\+|\s/g, '')}" target="_blank" class="btn-ciudad">WhatsApp</a>
+          <a href="https://wa.me/${emp.whatsapp.replace(/\+|\s/g, '')}" target="_blank" rel="noopener noreferrer" class="btn-ciudad">WhatsApp</a>
           <p style="font-size: 0.8rem; margin-top: 0.4rem; color: #4a5568;">${emp.redesSociales}</p>
         </div>
       `;
