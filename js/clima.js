@@ -21,7 +21,10 @@ const ciudades = {
 
 // Identificar la ciudad según el título de la página
 function obtenerCiudad() {
-    const titulo = document.title.toLowerCase();
+    const titulo = document.title
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '');
 
     if (titulo.includes("pucon")) {
         return ciudades.pucon;
