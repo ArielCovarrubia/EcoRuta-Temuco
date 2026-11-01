@@ -8,6 +8,7 @@
         <title>EcoRuta Temuco</title>
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" />
     </head>
     <body data-page-title="EcoRuta Temuco">
         <div id="header-container"></div>
@@ -75,6 +76,7 @@
 
         <div id="footer-container"></div>
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <script src="https://unpkg.com/leaflet-gesture-handling"></script>
 
         <script>
             // Coordenadas del punto turístico (Ejemplo: Plaza de Armas de Temuco)
@@ -82,7 +84,9 @@
             const lng = -72.5901;
 
             // Inicializar el mapa en el contenedor 'mapa-ruta' con un zoom de 13
-            const mapa = L.map('mapa-ruta').setView([lat,lng], 13);
+            const mapa = L.map('mapa-ruta', {
+                    gestureHandling: true
+                }).setView([lat, lng], 13);
 
             // Cargar los azulejos de OpenStreetMap
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {

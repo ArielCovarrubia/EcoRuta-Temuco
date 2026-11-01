@@ -1028,11 +1028,35 @@ body.modo-oscuro #menu-accesibilidad select {
     outline-offset: 3px;
 }
 
+/* Modal de aviso de cookies */
 #aviso-cookies {
     position: fixed;
-    inset: auto 20px 20px 20px;
-    z-index: 1000;
+    inset: 0;
+    z-index: 10001;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
     padding: 20px;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+#aviso-cookies[hidden] {
+    display: none;
+}
+
+/* Contenido del aviso */
+.contenido-cookies {
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+
+    padding: 24px;
     background: #ffffff;
     color: #222222;
     border: 2px solid #555555;
@@ -1040,15 +1064,7 @@ body.modo-oscuro #menu-accesibilidad select {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 }
 
-#aviso-cookies[hidden] {
-    display: none;
-}
-
-.contenido-cookies {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
+/* Botones */
 .botones-cookies {
     display: flex;
     flex-wrap: wrap;
@@ -1061,17 +1077,19 @@ body.modo-oscuro #menu-accesibilidad select {
     cursor: pointer;
     border-radius: 6px;
     border: 1px solid #333333;
+    font: inherit;
 }
 
-@media (max-width: 600px) {
-    #aviso-cookies {
-        inset: auto 10px 10px 10px;
-    }
-}
-
+/* Panel de preferencias */
 #panel-preferencias {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 0;
+    padding: 18px;
     background: #ffffff;
     color: #222222;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
 }
 
 #panel-preferencias label {
@@ -1090,6 +1108,26 @@ body.modo-oscuro #menu-accesibilidad select {
 #aviso-cookies button:focus-visible {
     outline: 3px solid #2878ff;
     outline-offset: 3px;
+}
+
+/* Adaptación a pantallas pequeñas */
+@media (max-width: 600px) {
+    #aviso-cookies {
+        padding: 12px;
+    }
+
+    .contenido-cookies {
+        max-height: 95vh;
+        padding: 18px;
+    }
+
+    .botones-cookies {
+        flex-direction: column;
+    }
+
+    .botones-cookies button {
+        width: 100%;
+    }
 }
 
 /* Contactos de emergencia: nombre, llamada y copia */

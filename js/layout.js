@@ -374,6 +374,79 @@ function iniciarPreferenciasCookies() {
 
     aviso.hidden = Boolean(decisionGuardada);
 
+    // Controlar el teclado mientras el aviso esté abierto.
+    if (!aviso.dataset.tecladoConfigurado) {
+
+        aviso.dataset.tecladoConfigurado = 'true';
+
+        document.addEventListener('keydown', (evento) => {
+
+            if (aviso.hidden) return;
+
+            const panel = document.getElementById('panel-preferencias');
+            const panelAbierto = panel && !panel.hidden;
+
+            // Cerrar preferencias con Escape.
+            if (evento.key === 'Escape' && panelAbierto) {
+                evento.preventDefault();
+                panel.hidden = true;
+                botonGestionar.focus();
+                return;
+            }
+
+            // Permitir activar los checkbox con Enter.
+            if (
+                evento.key === 'Enter' &&
+                evento.target.matches('input[type="checkbox"]') &&
+                panelAbierto
+            ) {
+                evento.preventDefault();
+                evento.target.click();
+                return;
+            }
+
+            // Mantener el foco dentro del contenido activo.
+            if (evento.key === 'Tab') {
+
+                const zonaActiva = panelAbierto
+                    ? panel
+                    : aviso.querySelector('.contenido-cookies');
+
+                const elementos = zonaActiva.querySelectorAll(
+                    'button:not([disabled]), input:not([disabled]), select:not([disabled]), a[href], textarea:not([disabled])'
+                );
+
+                if (elementos.length === 0) return;
+
+                const primero = elementos[0];
+                const ultimo = elementos[elementos.length - 1];
+
+                if (!zonaActiva.contains(document.activeElement)) {
+                    evento.preventDefault();
+                    (evento.shiftKey ? ultimo : primero).focus();
+                    return;
+                }
+
+                if (evento.shiftKey && document.activeElement === primero) {
+                    evento.preventDefault();
+                    ultimo.focus();
+                } else if (
+                    !evento.shiftKey &&
+                    document.activeElement === ultimo
+                ) {
+                    evento.preventDefault();
+                    primero.focus();
+                }
+            }
+        });
+    }
+
+    // Colocar el foco dentro del aviso cuando aparece.
+    if (!aviso.hidden && !aviso.dataset.focoInicial) {
+        aviso.dataset.focoInicial = 'true';
+        botonAceptar.focus();
+    }
+
     // Aceptar preferencias opcionales.
     if (botonAceptar) {
         botonAceptar.addEventListener('click', () => {
@@ -391,8 +464,7 @@ function iniciarPreferenciasCookies() {
             localStorage.setItem('decisionCookies', 'rechazar');
             localStorage.setItem('preferenciasOpcionales', 'false');
             localStorage.setItem('guardarAccesibilidad', 'false');
-            localStorage.setItem('guardarIdioma', 'false');
-
+            
             localStorage.removeItem('tema');
             localStorage.removeItem('contrasteAlto');
             localStorage.removeItem('tamanoTexto');
@@ -436,13 +508,6 @@ function iniciarPreferenciasCookies() {
                         Recordar preferencias de accesibilidad
                     </label>
 
-                    <label>
-                        <input
-                            type="checkbox"
-                            id="preferencia-idioma"
-                        >
-                        Recordar preferencia de idioma
-                    </label>
 
                     <div class="botones-cookies">
                         <button
@@ -473,32 +538,21 @@ function iniciarPreferenciasCookies() {
 
             const accesibilidad =
                 document.getElementById('preferencia-accesibilidad');
-
-            const idioma =
-                document.getElementById('preferencia-idioma');
-
+                
             accesibilidad.checked =
                 localStorage.getItem('guardarAccesibilidad') !== 'false';
-
-            idioma.checked =
-                localStorage.getItem('guardarIdioma') === 'true';
-
+            
             panel.hidden = false;
+            accesibilidad.focus();
 
             document.getElementById('guardar-preferencias').onclick = () => {
                 const guardarAccesibilidad = accesibilidad.checked;
-                const guardarIdioma = idioma.checked;
-
+                
                 localStorage.setItem(
                     'guardarAccesibilidad',
                     String(guardarAccesibilidad)
                 );
-
-                localStorage.setItem(
-                    'guardarIdioma',
-                    String(guardarIdioma)
-                );
-
+            
                 localStorage.setItem(
                     'decisionCookies',
                     'personalizada'
@@ -506,7 +560,7 @@ function iniciarPreferenciasCookies() {
 
                 localStorage.setItem(
                     'preferenciasOpcionales',
-                    String(guardarAccesibilidad || guardarIdioma)
+                    String(guardarAccesibilidad)
                 );
 
                 if (!guardarAccesibilidad) {
@@ -547,14 +601,14 @@ function iniciarPreferenciasCookies() {
 
             document.getElementById('cerrar-preferencias').onclick = () => {
                 panel.hidden = true;
+                botonGestionar.focus();
             };
 
             document.getElementById('revocar-preferencias').onclick = () => {
                 localStorage.removeItem('decisionCookies');
                 localStorage.removeItem('preferenciasOpcionales');
                 localStorage.removeItem('guardarAccesibilidad');
-                localStorage.removeItem('guardarIdioma');
-
+                
                 localStorage.removeItem('tema');
                 localStorage.removeItem('contrasteAlto');
                 localStorage.removeItem('tamanoTexto');
@@ -696,12 +750,6 @@ function iniciarModulos() {
     inyectarModuloEmergencias();
 }
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', iniciarModulos);
-} else {
-  inyectarModuloEmergencias();
-}
-
 // ==========================================================================
 // CÁTALOGO DE EMPRENDEDORES (HU-03 / Fetch de emprendedores publicados)
 // ==========================================================================
@@ -765,7 +813,7 @@ async function cargarEmprendedoresPublicados() {
         <p>${emp.descripcion}</p>
         <p><strong>Puntaje Sustentable:</strong> ${emp.puntajeSustentable} / 12</p>
         <div class="contacto-emprendedor" style="margin-top: 0.8rem; text-align: center;">
-          <a href="https://wa.me/${emp.whatsapp.replace(/\+|\s/g, '')}" target="_blank" class="btn-ciudad">WhatsApp</a>
+          <a href="https://wa.me/${emp.whatsapp.replace(/\+|\s/g, '')}" target="_blank" rel="noopener noreferrer" class="btn-ciudad">WhatsApp</a>
           <p style="font-size: 0.8rem; margin-top: 0.4rem; color: #4a5568;">${emp.redesSociales}</p>
         </div>
       `;
