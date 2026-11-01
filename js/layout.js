@@ -464,8 +464,7 @@ function iniciarPreferenciasCookies() {
             localStorage.setItem('decisionCookies', 'rechazar');
             localStorage.setItem('preferenciasOpcionales', 'false');
             localStorage.setItem('guardarAccesibilidad', 'false');
-            localStorage.setItem('guardarIdioma', 'false');
-
+            
             localStorage.removeItem('tema');
             localStorage.removeItem('contrasteAlto');
             localStorage.removeItem('tamanoTexto');
@@ -509,13 +508,6 @@ function iniciarPreferenciasCookies() {
                         Recordar preferencias de accesibilidad
                     </label>
 
-                    <label>
-                        <input
-                            type="checkbox"
-                            id="preferencia-idioma"
-                        >
-                        Recordar preferencia de idioma
-                    </label>
 
                     <div class="botones-cookies">
                         <button
@@ -546,33 +538,21 @@ function iniciarPreferenciasCookies() {
 
             const accesibilidad =
                 document.getElementById('preferencia-accesibilidad');
-
-            const idioma =
-                document.getElementById('preferencia-idioma');
-
+                
             accesibilidad.checked =
                 localStorage.getItem('guardarAccesibilidad') !== 'false';
-
-            idioma.checked =
-                localStorage.getItem('guardarIdioma') === 'true';
-
+            
             panel.hidden = false;
             accesibilidad.focus();
 
             document.getElementById('guardar-preferencias').onclick = () => {
                 const guardarAccesibilidad = accesibilidad.checked;
-                const guardarIdioma = idioma.checked;
-
+                
                 localStorage.setItem(
                     'guardarAccesibilidad',
                     String(guardarAccesibilidad)
                 );
-
-                localStorage.setItem(
-                    'guardarIdioma',
-                    String(guardarIdioma)
-                );
-
+            
                 localStorage.setItem(
                     'decisionCookies',
                     'personalizada'
@@ -580,7 +560,7 @@ function iniciarPreferenciasCookies() {
 
                 localStorage.setItem(
                     'preferenciasOpcionales',
-                    String(guardarAccesibilidad || guardarIdioma)
+                    String(guardarAccesibilidad)
                 );
 
                 if (!guardarAccesibilidad) {
@@ -628,8 +608,7 @@ function iniciarPreferenciasCookies() {
                 localStorage.removeItem('decisionCookies');
                 localStorage.removeItem('preferenciasOpcionales');
                 localStorage.removeItem('guardarAccesibilidad');
-                localStorage.removeItem('guardarIdioma');
-
+                
                 localStorage.removeItem('tema');
                 localStorage.removeItem('contrasteAlto');
                 localStorage.removeItem('tamanoTexto');

@@ -8,6 +8,7 @@
         <title>EcoRuta Pucón</title>
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" />
     </head>
     <body data-page-title="EcoRuta Pucón">
         <div id="header-container"></div>
@@ -75,6 +76,7 @@
 
         <div id="footer-container"></div>
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <script src="https://unpkg.com/leaflet-gesture-handling"></script>
 
         <script>
             // Coordenadas de Pucón (Zona Centro / Lago)
@@ -83,9 +85,7 @@
 
             // 1. Inicializar el mapa
             const mapa = L.map('mapa-ruta', {
-                    scrollWheelZoom: false,
-                    dragging: !L.Browser.mobile,
-                    tap: !L.Browser.mobile
+                    gestureHandling: true
                 }).setView([lat, lng], 13);
 
             // 2. Cargar los azulejos de OpenStreetMap

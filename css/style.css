@@ -1034,9 +1034,12 @@ body.modo-oscuro #menu-accesibilidad select {
     inset: 0;
     z-index: 10001;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 12px;
     padding: 20px;
+    overflow-y: auto;
     background: rgba(0, 0, 0, 0.55);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
