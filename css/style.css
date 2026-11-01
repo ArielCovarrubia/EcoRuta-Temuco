@@ -206,6 +206,37 @@ main {
     padding: 0 0.5rem 0.5rem 0.5rem;
 }
 
+/* Información meteorológica de las rutas */
+.info-clima {
+    margin: 0.5rem;
+    margin-top: auto;
+    padding: 0.75rem;
+    background-color: #edf6ee;
+    border: 1px solid #c8e6c9;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    color: #2d3748;
+}
+
+.info-clima h4 {
+    color: #1b5e20;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+
+.info-clima p {
+    font-size: 0.75rem;
+    padding: 0;
+    margin-bottom: 0.25rem;
+    color: #4a5568;
+}
+
+.info-clima p:last-child {
+    margin-top: 0.5rem;
+    font-size: 0.68rem;
+    color: #64748b;
+}
+
 /* Featured route section */
 .destacado h2 {
     font-size: 1.1rem;
@@ -1291,4 +1322,23 @@ body.modo-oscuro .btn-tamano[aria-pressed="true"] {
     background-color: #1b5e20;
     color: #ffffff;
     border-color: #81c784;
+}
+
+/* Información del clima en modo oscuro */
+body.modo-oscuro .info-clima {
+    background-color: #304536;
+    border-color: #45614c;
+    color: #edf5ee;
+}
+
+body.modo-oscuro .info-clima h4 {
+    color: #b8e0b8;
+}
+
+body.modo-oscuro .info-clima p {
+    color: #e2e8f0;
+}
+
+body.modo-oscuro .info-clima p:last-child {
+    color: #b8c8bb;
 }
