@@ -425,6 +425,57 @@ footer .redes-sociales a {
     text-align: center;
 }
 
+.enlace-retorno {
+    position: sticky;
+    top: 1rem;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    width: fit-content;
+    margin: 1.2rem 0 0 2rem;
+    padding: 0.5rem 1.2rem;
+    border-radius: 999px;
+    background-color: #e8f5e9;
+    color: #1b5e20;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.enlace-retorno::before {
+    content: "←";
+}
+
+.enlace-retorno:hover {
+    background-color: #c8e6c9;
+}
+
+.enlace-retorno:focus-visible {
+    outline: 2px solid #2878ff;
+    outline-offset: 2px;
+}
+
+.enlace-retorno[hidden] {
+    display: none;
+}
+
+body.modo-oscuro .enlace-retorno {
+    background-color: #2e3b2f;
+    color: #a5d6a7;
+}
+
+body.modo-oscuro .enlace-retorno:hover {
+    background-color: #3b4d3c;
+}
+
+body.alto-contraste .enlace-retorno {
+    background-color: #000000;
+    border: 1.5px solid #ffff00;
+    color: #ffff00;
+}
+
 .contacto h2 {
     font-size: 1.2rem;
     margin-bottom: 1rem;
