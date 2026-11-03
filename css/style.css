@@ -445,7 +445,7 @@ footer .redes-sociales a {
 }
 
 .enlace-retorno::before {
-    content: "←";
+    content: "\2190";
 }
 
 .enlace-retorno:hover {
@@ -457,6 +457,7 @@ footer .redes-sociales a {
     outline-offset: 2px;
 }
 
+/* Respetar el atributo hidden aunque haya display definido */
 .enlace-retorno[hidden] {
     display: none;
 }
@@ -1392,4 +1393,191 @@ body.modo-oscuro .info-clima p {
 
 body.modo-oscuro .info-clima p:last-child {
     color: #b8c8bb;
+}
+
+/* ==========================================================================
+   Página de contacto: datos en tarjetas con ícono y redes sociales
+   ========================================================================== */
+.datos-contacto {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.dato-contacto {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dato-contacto:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dato-contacto {
+        transition: none;
+    }
+
+    .dato-contacto:hover {
+        transform: none;
+    }
+}
+
+.icono-dato {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.icono-dato svg {
+    width: 22px;
+    height: 22px;
+}
+
+.etiqueta-dato {
+    color: #2e7d32;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.valor-dato {
+    color: #2d3748;
+    font-size: 0.95rem;
+}
+
+.valor-dato a {
+    color: #1b5e20;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.valor-dato a:hover {
+    text-decoration: underline;
+}
+
+.botones-redes {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.2rem;
+}
+
+.botones-redes a {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #e8f5e9;
+    color: #1b5e20;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.botones-redes a:hover {
+    background-color: #2e7d32;
+    color: #ffffff;
+}
+
+.valor-dato a:focus-visible,
+.botones-redes a:focus-visible {
+    outline: 2px solid #2878ff;
+    outline-offset: 2px;
+}
+
+@media (max-width: 1024px) {
+    .datos-contacto {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .datos-contacto {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* En computador el enlace de retorno queda en el margen izquierdo, bajo el
+   título del header, y no empuja el banner hacia abajo. */
+@media (min-width: 1380px) {
+    .enlace-retorno {
+        margin-bottom: -3.6rem;
+    }
+}
+
+/* Si el margen es angosto, se muestra solo "Volver". El texto completo
+   sigue disponible para lectores de pantalla. */
+@media (min-width: 1380px) and (max-width: 1679px) {
+    .texto-retorno-extra {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+    }
+}
+
+body.modo-oscuro .dato-contacto {
+    background-color: #243329;
+    border-color: #45614c;
+}
+
+body.modo-oscuro .icono-dato {
+    background-color: #2e3b2f;
+    color: #a5d6a7;
+}
+
+body.modo-oscuro .etiqueta-dato {
+    color: #a5d6a7;
+}
+
+body.modo-oscuro .valor-dato {
+    color: #edf5ee;
+}
+
+body.modo-oscuro .valor-dato a {
+    color: #b8e0b8;
+}
+
+body.modo-oscuro .botones-redes a {
+    background-color: #2e3b2f;
+    color: #a5d6a7;
+}
+
+body.modo-oscuro .botones-redes a:hover {
+    background-color: #a5d6a7;
+    color: #1b1b1b;
+}
+
+body.alto-contraste .dato-contacto {
+    background-color: #000000;
+    border-color: #ffff00;
+}
+
+body.alto-contraste .valor-dato,
+body.alto-contraste .etiqueta-dato {
+    color: #ffffff;
+}
+
+body.modo-oscuro .contacto h2 {
+    color: #b8e0b8;
 }
