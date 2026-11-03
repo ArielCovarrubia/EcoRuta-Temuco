@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
         <link rel="stylesheet" href="https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" />
+        <link rel="stylesheet" href="../css/buscador.css">
     </head>
     <body data-page-title="EcoRuta Pucón">
         <div id="header-container"></div>
@@ -22,6 +23,38 @@
             </section>
             <section class="rutas" aria-labelledby="titulo-rutas">
                 <h2 id="titulo-rutas">Rutas populares</h2>
+
+                <div class="contenedor-buscador">
+                    <form id="form-filtros-rutas" class="formulario-filtros" aria-label="Filtros para buscar rutas">
+                        <div class="grupo-filtro">
+                            <label for="filtro-dificultad">Dificultad:</label>
+                            <select id="filtro-dificultad" name="dificultad">
+                                <option value="">Todas</option>
+                                <option value="Fácil">Fácil</option>
+                                <option value="Media">Media</option>
+                                <option value="Difícil">Difícil</option>
+                            </select>
+                        </div>
+
+                        <div class="grupo-filtro">
+                            <label for="filtro-actividad">Tipo de Actividad</label>
+                            <select id="filtro-actividad" name="tipoActividad">
+                                <option value="">Todas</option>
+                                <option value="Senderismo">Senderismo</option>
+                                <option value="Trekking">Trekking</option>
+                                <option value="Cultura y Naturaleza">Cultura y Naturaleza</option>
+                            </select>
+                        </div>
+
+                        <button type="button" id="btn-limpiar-filtros" class="btn-limpiar">Limpiar filtros</button>
+                    </form>
+
+                    <!-- Mensaje amigable cuando no hay resultados-->
+                     <p id="mensaje-sin-resultados" class="mensaje-no-resultados oculto" role="status" aria-live="polite">
+                        No se encontraron rutas que coincidan con los filtros seleccionados.
+                     </p>
+                </div>
+
                 <div class="cartas-img">
                     <article class="carta">
                         <img src="../assets/imagenes/salto-la-china.webp" alt="Cascada de agua cayendo entre rocas volcánicas rodeada de bosque nativo" class="ruta-img" loading="lazy">
@@ -98,7 +131,9 @@
             L.marker([lat, lng]).addTo(mapa)
                 .bindPopup('<b>Ruta Pucón</b><br>Punto de partida del recorrido.')
         </script>
-        
+
+        <script type="module" src="../js/buscador.js"></script>
+        <script src="../js/clima.js"></script>
         <script src="../js/layout.js"></script>
     </body>
 </html>

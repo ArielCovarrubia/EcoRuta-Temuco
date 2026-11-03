@@ -1,0 +1,73 @@
+.contenedor-buscador {
+    margin: 1.5rem 0 2rem 0;
+    padding: 1rem;
+    background-color: #f4f6f8;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.formulario-filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.grupo-filtro {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    flex: 1;
+    min-width: 180px;
+}
+
+.grupo-filtro label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.grupo-filtro select,
+.grupo-filtro input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+
+.btn-limpiar {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: auto;
+    transition: background-color 0.2s ease;
+}
+
+.btn-limpiar:hover,
+.btn-limpiar:focus {
+    background-color: #c0392b;
+    outline: 2px solid #27ae60;
+}
+
+.carta.oculto {
+    display: none !important;
+}
+
+.mensaje-no-resultados {
+    padding: 1rem;
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.mensaje-no-resultados.oculto {
+    display: none !important;
+}
