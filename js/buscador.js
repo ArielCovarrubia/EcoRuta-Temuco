@@ -1,4 +1,4 @@
-import { rutas, filtrarRutas } from './rutas.js';
+import { rutas, filtrarRutas, obtenerRutaDelDia } from './rutas.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const formFiltros = document.getElementById('form-filtros-rutas');
@@ -14,6 +14,30 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (pageTitle.includes('Temuco')) comunaActual = 'Temuco';
     else if (pageTitle.includes('Villarrica')) comunaActual = 'Villarrica';
 
+    const rutaDia = obtenerRutaDelDia(rutas, comunaActual);
+    if (rutaDia) {
+        const destacado = document.querySelector('.destacado');
+        if (destacado) {
+            const h3 = destacado.querySelector('h3');
+            const p = destacado.querySelector('p');
+            const img = destacado.querySelector('img');
+            const btn = destacado.querySelector('.carta-btn');
+
+            if (h3) h3.textContent = rutaDia.nombre;
+            if (p) p.textContent = rutaDia.descripcion;
+            if (img) img.src = '../' + rutaDia.imagen;
+
+            if (btn) {
+                if (rutaDia.urlDetalle) {
+                    btn.href = rutaDia.urlDetalle;
+                    btn.hidden = false;
+                } else {
+                    btn.hidden = true;
+                }
+            }
+        }
+    }
+
     if (!formFiltros) return;
 
     function aplicarFiltros() {
@@ -24,16 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const rutasFiltradas = filtrarRutas(rutas, filtros);
-        const nombresVisibles = rutasFiltradas.map(r => r.nombre.toLowerCase());
-
+        
+        const idsVisibles = new Set(rutasFiltradas.map(r => r.id));
         const tarjetas = document.querySelectorAll('.cartas-img .carta');
         let visiblesContador = 0;
 
         tarjetas.forEach(tarjeta => {
-            const titulo = tarjeta.querySelector('h3')?.textContent?.toLocaleLowerCase() || '';
-
-            const esCoincidente = (!filtros.dificultad && !filtros.tipoActividad) ||
-                                  nombresVisibles.some(nombre => titulo.includes(nombre));
+            const idTarjeta = Number(tarjeta.dataset.id);
+            const esCoincidente = idsVisibles.has(idTarjeta);
 
             if (esCoincidente) {
                 tarjeta.classList.remove('oculto');
@@ -51,6 +73,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
+
+    formFiltros.addEventListener('submit', (event) => {
+        event.preventDefault();
+        aplicarFiltros();
+    });
 
     if (selectDificultad) selectDificultad.addEventListener('change', aplicarFiltros);
     if (selectActividad) selectActividad.addEventListener('change', aplicarFiltros);

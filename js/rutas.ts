@@ -1,9 +1,11 @@
+export type Dificultad = 'Fácil' | 'Media' | 'Difícil';
+
 export interface Ruta {
     id: number;
     nombre: string;
     comuna: string;
     descripcion: string;
-    dificultad: 'Fácil' | 'Media' | 'Difícil' |string;
+    dificultad: Dificultad;
     tipoActividad: string;
     imagen: string;
     urlDetalle?: string;
@@ -27,7 +29,7 @@ export const rutas: Ruta[] = [
         dificultad: "Fácil",
         tipoActividad: "Senderismo",
         imagen: "assets/imagenes/cerro-nielol.webp",
-        urlDetalle: "paginas/paginas extra/ruta-temuco.html"
+        urlDetalle: "paginas extra/ruta-temuco.html"
     },
     {
         id: 2,
@@ -77,7 +79,7 @@ export const rutas: Ruta[] = [
         dificultad: "Fácil",
         tipoActividad: "Senderismo",
         imagen: "assets/imagenes/salto-la-china.webp",
-        urlDetalle: "paginas/paginas extra/ruta-pucon.html"
+        urlDetalle: "paginas extra/ruta-pucon.html"
     },
     {
         id: 7,
@@ -127,7 +129,7 @@ export const rutas: Ruta[] = [
         dificultad: "Fácil",
         tipoActividad: "Senderismo",
         imagen: "assets/imagenes/costanera-villarrica.webp",
-        urlDetalle: "paginas/paginas extra/ruta-villarrica.html"
+        urlDetalle: "paginas extra/ruta-villarrica.html"
     },
     {
         id: 12,
@@ -171,15 +173,16 @@ export const rutas: Ruta[] = [
 export function obtenerRutaDelDia(listaRutas: Ruta[], comuna: string, fecha: Date = new Date()): Ruta | null {
     // Filtrado de rutas pertenecientes a la comuna
     const rutasComuna = listaRutas.filter(
-        r => r.comuna.toLocaleLowerCase() === comuna.toLocaleLowerCase()
+        r => r.comuna.toLowerCase() === comuna.toLowerCase()
     );
 
     if (rutasComuna.length === 0) return null;
-    
 
-    const inicioAño = new Date(fecha.getFullYear(), 0, 0);
-    const diferenciaTiempo = fecha.getTime() - inicioAño.getTime();
-    const diaDelAño = Math.floor(diferenciaTiempo / (1000 * 60 * 60 *24));
+
+    const diaDelAño = Math.floor(
+        (Date.UTC(fecha.getFullYear(), fecha.getMonth(), fecha.getDate()) -
+         Date.UTC(fecha.getFullYear(), 0, 0)) / 86400000
+    );
 
     const indiceSeleccionado = diaDelAño % rutasComuna.length;
     return rutasComuna[indiceSeleccionado];
@@ -192,10 +195,10 @@ export function filtrarRutas(listaRutas: Ruta[], filtros: FiltrosRuta): Ruta[] {
             ruta.comuna.toLowerCase() === filtros.comuna.toLocaleLowerCase();
 
         const coincideDificultad = !filtros.dificultad ||
-            ruta.dificultad.toLocaleLowerCase() === filtros.dificultad.toLocaleLowerCase();
+            ruta.dificultad.toLowerCase() === filtros.dificultad.toLocaleLowerCase();
 
         const coincideActividad = !filtros.tipoActividad ||
-            ruta.tipoActividad.toLocaleLowerCase().includes(filtros.tipoActividad.toLocaleLowerCase());
+            ruta.tipoActividad.toLowerCase().includes(filtros.tipoActividad.toLocaleLowerCase());
 
         return coincideComuna && coincideDificultad && coincideActividad
     });

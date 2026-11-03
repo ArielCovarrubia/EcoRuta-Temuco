@@ -10,7 +10,7 @@ export const rutas = [
         dificultad: "Fácil",
         tipoActividad: "Senderismo",
         imagen: "assets/imagenes/cerro-nielol.webp",
-        urlDetalle: "paginas/paginas extra/ruta-temuco.html"
+        urlDetalle: "paginas extra/ruta-temuco.html"
     },
     {
         id: 2,
@@ -59,7 +59,7 @@ export const rutas = [
         dificultad: "Fácil",
         tipoActividad: "Senderismo",
         imagen: "assets/imagenes/salto-la-china.webp",
-        urlDetalle: "paginas/paginas extra/ruta-pucon.html"
+        urlDetalle: "paginas extra/ruta-pucon.html"
     },
     {
         id: 7,
@@ -108,7 +108,7 @@ export const rutas = [
         dificultad: "Fácil",
         tipoActividad: "Senderismo",
         imagen: "assets/imagenes/costanera-villarrica.webp",
-        urlDetalle: "paginas/paginas extra/ruta-villarrica.html"
+        urlDetalle: "paginas extra/ruta-villarrica.html"
     },
     {
         id: 12,
@@ -149,12 +149,11 @@ export const rutas = [
 ];
 export function obtenerRutaDelDia(listaRutas, comuna, fecha = new Date()) {
     // Filtrado de rutas pertenecientes a la comuna
-    const rutasComuna = listaRutas.filter(r => r.comuna.toLocaleLowerCase() === comuna.toLocaleLowerCase());
+    const rutasComuna = listaRutas.filter(r => r.comuna.toLowerCase() === comuna.toLowerCase());
     if (rutasComuna.length === 0)
         return null;
-    const inicioAño = new Date(fecha.getFullYear(), 0, 0);
-    const diferenciaTiempo = fecha.getTime() - inicioAño.getTime();
-    const diaDelAño = Math.floor(diferenciaTiempo / (1000 * 60 * 60 * 24));
+    const diaDelAño = Math.floor((Date.UTC(fecha.getFullYear(), fecha.getMonth(), fecha.getDate()) -
+        Date.UTC(fecha.getFullYear(), 0, 0)) / 86400000);
     const indiceSeleccionado = diaDelAño % rutasComuna.length;
     return rutasComuna[indiceSeleccionado];
 }
@@ -163,9 +162,9 @@ export function filtrarRutas(listaRutas, filtros) {
         const coincideComuna = !filtros.comuna ||
             ruta.comuna.toLowerCase() === filtros.comuna.toLocaleLowerCase();
         const coincideDificultad = !filtros.dificultad ||
-            ruta.dificultad.toLocaleLowerCase() === filtros.dificultad.toLocaleLowerCase();
+            ruta.dificultad.toLowerCase() === filtros.dificultad.toLocaleLowerCase();
         const coincideActividad = !filtros.tipoActividad ||
-            ruta.tipoActividad.toLocaleLowerCase().includes(filtros.tipoActividad.toLocaleLowerCase());
+            ruta.tipoActividad.toLowerCase().includes(filtros.tipoActividad.toLocaleLowerCase());
         return coincideComuna && coincideDificultad && coincideActividad;
     });
 }
