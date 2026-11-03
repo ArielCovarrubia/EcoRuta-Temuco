@@ -101,20 +101,19 @@ header button:hover {
 }
 
 header.sin-navegacion {
-    justify-content: center;
-    flex-direction: column;
-    gap: 0.6rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header.sin-navegacion h1 {
+    text-align: left;
 }
 
 header.sin-navegacion .acciones-header {
-    margin: 0;
-}
-
-header.sin-navegacion .acciones-header {
-    position: absolute;
-    top: 12px;
-    right: 16px;
-    margin: 0;
+    position: static;
+    margin-left: auto;
 }
 
 /* Main layout */
@@ -532,7 +531,10 @@ body.alto-contraste .enlace-retorno {
     }
 
     header.sin-navegacion {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
     }
 
     header h1 {
@@ -568,11 +570,9 @@ body.alto-contraste .enlace-retorno {
     }
 
     header.sin-navegacion .acciones-header {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    width: auto;
-    justify-content: flex-end;
+    position: static;
+    top: auto;
+    right: auto;
     }
 
     .acciones-header button {
