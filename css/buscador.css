@@ -71,3 +71,7 @@
 .mensaje-no-resultados.oculto {
     display: none !important;
 }
+
+.carta-btn[hidden] {
+    display: none !important;
+}

@@ -25,7 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (h3) h3.textContent = rutaDia.nombre;
             if (p) p.textContent = rutaDia.descripcion;
-            if (img) img.src = '../' + rutaDia.imagen;
+            if (img) {
+                img.src = '../' + rutaDia.imagen;
+                img.alt = rutaDia.nombre;
+            }
 
             if (btn) {
                 if (rutaDia.urlDetalle) {
