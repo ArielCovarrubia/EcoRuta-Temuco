@@ -1,87 +1,91 @@
 <header>
     <h1 id="page-title">EcoRuta</h1>
 
-    <nav aria-label="Navegación principal">
-        <a class="link-nav" data-link="home" href="../index.html" data-i18n="header.home">
-            Inicio
-        </a>
-    
-    </nav>
+    <div class="header-derecha">
 
-    <div class="acciones-header">
+        <nav aria-label="Navegación principal">
+            <a class="link-nav" data-link="home" href="../index.html" data-i18n="header.home">
+                Inicio
+            </a>
+        </nav>
 
-        <button id="btn-accesibilidad" type="button" aria-expanded="false" aria-haspopup="true"
-            aria-controls="menu-accesibilidad" data-i18n="header.accessibility">
-            Accesibilidad
-        </button>
+        <div class="acciones-header">
 
-        <div id="menu-accesibilidad" hidden>
+            <button id="btn-accesibilidad" type="button" aria-expanded="false" aria-haspopup="true"
+                aria-controls="menu-accesibilidad" data-i18n="header.accessibility">
+                Accesibilidad
+            </button>
 
-            <fieldset class="grupo-tamano-texto">
-                <legend data-i18n="header.textSize">
-                    Tamaño del texto
-                </legend>
+            <div id="menu-accesibilidad" hidden>
 
-                <div class="botones-tamano">
+                <fieldset class="grupo-tamano-texto">
+                    <legend data-i18n="header.textSize">
+                        Tamaño del texto
+                    </legend>
 
-                    <button type="button" class="btn-tamano" data-tamano="pequeno" aria-pressed="false"
-                        data-i18n="header.small">
-                        Pequeño
-                    </button>
+                    <div class="botones-tamano">
 
-                    <button type="button" class="btn-tamano" data-tamano="normal" aria-pressed="true"
-                        data-i18n="header.normal">
-                        Normal
-                    </button>
+                        <button type="button" class="btn-tamano" data-tamano="pequeno" aria-pressed="false"
+                            data-i18n="header.small">
+                            Pequeño
+                        </button>
 
-                    <button type="button" class="btn-tamano" data-tamano="grande" aria-pressed="false"
-                        data-i18n="header.large">
-                        Grande
-                    </button>
+                        <button type="button" class="btn-tamano" data-tamano="normal" aria-pressed="true"
+                            data-i18n="header.normal">
+                            Normal
+                        </button>
 
-                    <button type="button" class="btn-tamano" data-tamano="muy-grande" aria-pressed="false"
-                        data-i18n="header.veryLarge">
-                        Muy grande
-                    </button>
+                        <button type="button" class="btn-tamano" data-tamano="grande" aria-pressed="false"
+                            data-i18n="header.large">
+                            Grande
+                        </button>
 
-                </div>
-            </fieldset>
+                        <button type="button" class="btn-tamano" data-tamano="muy-grande" aria-pressed="false"
+                            data-i18n="header.veryLarge">
+                            Muy grande
+                        </button>
 
-            <p id="anuncio-accesibilidad" class="sr-only" aria-live="polite" aria-atomic="true"></p>
+                    </div>
+                </fieldset>
 
-            <label>
-                <input type="checkbox" id="contraste-alto">
-                <span data-i18n="header.highContrast">
-                    Alto contraste
-                </span>
-            </label>
+                <p id="anuncio-accesibilidad" class="sr-only" aria-live="polite" aria-atomic="true"></p>
 
-            <label>
-                <input type="checkbox" id="btn-tema">
-                <span data-i18n="header.darkMode">
-                    Modo oscuro
-                </span>
-            </label>
-
-            <div class="selector-idioma">
-
-                <label for="selector-idioma" data-i18n="header.language">
-                    Idioma
+                <label>
+                    <input type="checkbox" id="contraste-alto">
+                    <span data-i18n="header.highContrast">
+                        Alto contraste
+                    </span>
                 </label>
 
-                <select id="selector-idioma">
-                    <option value="es">Español</option>
-                    <option value="en">English</option>
-                </select>
+                <label>
+                    <input type="checkbox" id="btn-tema">
+                    <span data-i18n="header.darkMode">
+                        Modo oscuro
+                    </span>
+                </label>
+
+                <div class="selector-idioma">
+
+                    <label for="selector-idioma" data-i18n="header.language">
+                        Idioma
+                    </label>
+
+                    <select id="selector-idioma">
+                        <option value="es">Español</option>
+                        <option value="en">English</option>
+                    </select>
+
+                </div>
+
+                <a id="enlace-contacto" data-link="contact" href="../paginas extra/contacto.html">
+                    <span data-i18n="header.contact">
+                        Contacto
+                    </span>
+                </a>
 
             </div>
 
-            <a id="enlace-contacto" data-link="contact" href="../paginas extra/contacto.html">
-                <span data-i18n="header.contact">
-                    Contacto
-                </span>
-            </a>
-
         </div>
+
     </div>
 </header>
