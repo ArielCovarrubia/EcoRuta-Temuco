@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Calculadora interna de sustentabilidad | EcoRuta</title>
+    <style>
+        :root { color-scheme: light; font-family: system-ui, sans-serif; color: #183b2b; background: #f3f7f2; }
+        body { max-width: 760px; margin: 0 auto; padding: 2rem 1rem; }
+        main { background: white; padding: clamp(1.25rem, 4vw, 2.5rem); border-radius: 1rem; box-shadow: 0 8px 28px #183b2b18; }
+        h1 { margin-top: 0; }
+        .intro { color: #43564a; }
+        fieldset { border: 0; border-top: 1px solid #d9e3d9; margin: 0; padding: 1rem 0; display: grid; grid-template-columns: 1fr minmax(8rem, 12rem); gap: 1rem; align-items: center; }
+        label { font-weight: 600; }
+        select, button { font: inherit; padding: .65rem .8rem; border: 1px solid #738779; border-radius: .4rem; }
+        button { margin-top: 1rem; background: #17633e; color: white; border: 0; font-weight: 700; cursor: pointer; }
+        button:focus-visible, select:focus-visible { outline: 3px solid #e4a82c; outline-offset: 2px; }
+        #resultado { min-height: 1.5rem; margin-top: 1.5rem; padding: 1rem; border-radius: .5rem; font-weight: 700; }
+        #resultado:empty { padding: 0; }
+        .estado-aprobado { background: #e5f5e9; color: #155b2c; }
+        .estado-pendiente { background: #fff4d6; color: #684d00; }
+        .estado-rechazado { background: #fce8e6; color: #8a2118; }
+        @media (max-width: 480px) { fieldset { grid-template-columns: 1fr; gap: .5rem; } }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Calculadora de sustentabilidad</h1>
+        <p class="intro">Herramienta interna para evaluar un emprendimiento antes de decidir su publicación. Asigna de 0 a 2 puntos por criterio.</p>
+        <form id="calculadora-puntaje">
+            <fieldset>
+                <label for="impactoAmbiental">Impacto ambiental</label>
+                <select id="impactoAmbiental" name="impactoAmbiental"><option value="0">0 — No cumple</option><option value="1">1 — Cumple parcialmente</option><option value="2">2 — Cumple</option></select>
+            </fieldset>
+            <fieldset>
+                <label for="aporteLocal">Aporte local</label>
+                <select id="aporteLocal" name="aporteLocal"><option value="0">0 — No cumple</option><option value="1">1 — Cumple parcialmente</option><option value="2">2 — Cumple</option></select>
+            </fieldset>
+            <fieldset>
+                <label for="relacionNaturaleza">Relación con la naturaleza</label>
+                <select id="relacionNaturaleza" name="relacionNaturaleza"><option value="0">0 — No cumple</option><option value="1">1 — Cumple parcialmente</option><option value="2">2 — Cumple</option></select>
+            </fieldset>
+            <fieldset>
+                <label for="cultura">Cultura y patrimonio</label>
+                <select id="cultura" name="cultura"><option value="0">0 — No cumple</option><option value="1">1 — Cumple parcialmente</option><option value="2">2 — Cumple</option></select>
+            </fieldset>
+            <fieldset>
+                <label for="practicasResponsables">Prácticas responsables</label>
+                <select id="practicasResponsables" name="practicasResponsables"><option value="0">0 — No cumple</option><option value="1">1 — Cumple parcialmente</option><option value="2">2 — Cumple</option></select>
+            </fieldset>
+            <fieldset>
+                <label for="pertinenciaTerritorial">Pertinencia territorial</label>
+                <select id="pertinenciaTerritorial" name="pertinenciaTerritorial"><option value="0">0 — No cumple</option><option value="1">1 — Cumple parcialmente</option><option value="2">2 — Cumple</option></select>
+            </fieldset>
+            <button type="submit">Calcular</button>
+        </form>
+        <div id="resultado" aria-live="polite" role="status"></div>
+    </main>
+    <script src="../../js/puntaje.js" defer></script>
+</body>
+</html>
