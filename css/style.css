@@ -48,7 +48,7 @@ header h1{
 .header-derecha {
     display: flex;
     align-items: center;
-    gap: 0.35rem;
+    gap: 1rem;
 }
 
 header nav {
@@ -522,6 +522,15 @@ body.alto-contraste .enlace-retorno {
         text-align: left;
     }
 
+    .header-derecha {
+        gap: 0.35rem;
+    }
+
+    .header nav a {
+        padding: 0.4rem 0.65rem;
+        font-size: 0.72rem;
+    }
+
     .acciones-header {
         gap: 0.35rem;
     }
@@ -529,6 +538,11 @@ body.alto-contraste .enlace-retorno {
     .acciones-header button {
         padding: 0.4rem 0.45rem;
         font-size: 0.65rem;
+    }
+
+    
+    .header #menu-accesibilidad {
+        right: 0.75rem;
     }
 
     .grilla-ciudades {
@@ -955,7 +969,7 @@ body.modo-oscuro .contacto-emprendedor p {
 #menu-accesibilidad {
     position: absolute;
     top: calc(100% + 10px);
-    right: 0;
+    right: 2rem;
     z-index: 100;
 
     display: grid;
