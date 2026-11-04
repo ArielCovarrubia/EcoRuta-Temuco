@@ -15,19 +15,34 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (pageTitle.includes('Villarrica')) comunaActual = 'Villarrica';
 
     const rutaDia = obtenerRutaDelDia(rutas, comunaActual);
+
     if (rutaDia) {
         const destacado = document.querySelector('.destacado');
+
         if (destacado) {
             const h3 = destacado.querySelector('h3');
             const p = destacado.querySelector('p');
             const img = destacado.querySelector('img');
             const btn = destacado.querySelector('.carta-btn');
 
-            if (h3) h3.textContent = rutaDia.nombre;
-            if (p) p.textContent = rutaDia.descripcion;
+            const numeroRuta = rutaDia.id;
+            const idioma = document.documentElement.lang || 'es';
+            const prefijo = comunaActual.toLowerCase();
+
+            const nombreTraducido = obtenerTraduccion(
+                `${prefijo}.route${numeroRuta}Name`
+            );
+
+            const descripcionTraducida = obtenerTraduccion(
+                `${prefijo}.route${numeroRuta}Description`
+            );
+
+            if (h3) h3.textContent = nombreTraducido || rutaDia.nombre;
+            if (p) p.textContent = descripcionTraducida || rutaDia.descripcion;
+
             if (img) {
                 img.src = '../' + rutaDia.imagen;
-                img.alt = rutaDia.nombre;
+                img.alt = nombreTraducido || rutaDia.nombre;
             }
 
             if (btn) {
