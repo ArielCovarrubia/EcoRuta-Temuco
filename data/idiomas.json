@@ -30,7 +30,7 @@
             "revoke": "Revocar consentimiento",
             "accessibilityPreference": "Recordar preferencias de accesibilidad",
             "languagePreference": "Recordar preferencia de idioma",
-            "preferencestitle": "Gestionar preferencias",
+            "preferencesTitle": "Gestionar preferencias",
             "preferencesDescription": "Elige qué preferencias deseas guardar en este navegador."
         },
         "contact": {
