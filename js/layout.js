@@ -280,12 +280,6 @@ fetch(`${basePath}header.html`)
         if (!isInsidePages && navegacion) {
             navegacion.remove();
 
-            const header =
-                headerContainer.querySelector('header');
-
-            if (header) {
-                header.classList.add('sin-navegacion');
-            }
         }
 
         if (homeLink) {
@@ -302,6 +296,23 @@ fetch(`${basePath}header.html`)
                 : isInsidePages
                     ? 'paginas extra/contacto.html'
                     : 'paginas/paginas extra/contacto.html';
+        }
+
+        const headerPrincipal = headerContainer.querySelector('header');
+        const tituloHeader = headerPrincipal?.querySelector('h1');
+        const derechaHeader = headerPrincipal?.querySelector('.header-derecha');
+
+        if (headerPrincipal && tituloHeader && derechaHeader) {
+            const revisarApilado = () => {
+                const apilado =
+                    derechaHeader.offsetTop >
+                    tituloHeader.offsetTop + tituloHeader.offsetHeight / 2;
+
+                headerPrincipal.classList.toggle('header-apilado', apilado);
+            };
+
+            revisarApilado();
+            new ResizeObserver(revisarApilado).observe(headerPrincipal);
         }
     })
     .catch(error => {
