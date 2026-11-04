@@ -63,17 +63,17 @@ export function crearSuites() {
                     }
                 },
                 {
-                    nombre: "Debe filtrar correctamente por Comuna 'Temuco' (5 rutas)",
-                    ejecutar: () => {
-                        const resultado = filtrarRutas(rutas, { comuna: "Temuco" });
-                        expect(resultado.length).toBe(5);
-                        resultado.forEach(r => expect(r.comuna).toBe("Temuco"));
-                    }
-                },
-                {
                     nombre: "Debe filtrar correctamente por Comuna 'Pucón' (5 rutas)",
                     ejecutar: () => {
                         const resultado = filtrarRutas(rutas, { comuna: "Pucón" });
+                        expect(resultado.length).toBe(5);
+                        resultado.forEach(r => expect(r.comuna).toBe("Pucón"));
+                    }
+                },
+                {
+                    nombre: "Debe filtrar correctamente por Comuna 'pucon' sin tilde (5 rutas)",
+                    ejecutar: () => {
+                        const resultado = filtrarRutas(rutas, { comuna: "pucon" });
                         expect(resultado.length).toBe(5);
                         resultado.forEach(r => expect(r.comuna).toBe("Pucón"));
                     }
@@ -177,6 +177,14 @@ export function crearSuites() {
                     nombre: "Debe retornar una ruta válida para 'Pucón'",
                     ejecutar: () => {
                         const ruta = obtenerRutaDelDia(rutas, "Pucón");
+                        expect(ruta).toBeTruthy();
+                        expect(ruta === null || ruta === void 0 ? void 0 : ruta.comuna).toBe("Pucón");
+                    }
+                },
+                {
+                    nombre: "Debe retornar una ruta válida para 'pucon' sin tilde",
+                    ejecutar: () => {
+                        const ruta = obtenerRutaDelDia(rutas, "pucon");
                         expect(ruta).toBeTruthy();
                         expect(ruta === null || ruta === void 0 ? void 0 : ruta.comuna).toBe("Pucón");
                     }

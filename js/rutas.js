@@ -147,9 +147,16 @@ export const rutas = [
         imagen: "assets/imagenes/mirador-villarrica.webp"
     }
 ];
+// Normaliza textos para comparar sin distinguir mayúsculas ni tildes.
+function normalizarTexto(texto) {
+    return texto
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
+}
 export function obtenerRutaDelDia(listaRutas, comuna, fecha = new Date()) {
     // Filtrado de rutas pertenecientes a la comuna
-    const rutasComuna = listaRutas.filter(r => r.comuna.toLowerCase() === comuna.toLowerCase());
+    const rutasComuna = listaRutas.filter(r => normalizarTexto(r.comuna) === normalizarTexto(comuna));
     if (rutasComuna.length === 0)
         return null;
     const diaDelAño = Math.floor((Date.UTC(fecha.getFullYear(), fecha.getMonth(), fecha.getDate()) -
@@ -160,7 +167,7 @@ export function obtenerRutaDelDia(listaRutas, comuna, fecha = new Date()) {
 export function filtrarRutas(listaRutas, filtros) {
     return listaRutas.filter(ruta => {
         const coincideComuna = !filtros.comuna ||
-            ruta.comuna.toLowerCase() === filtros.comuna.toLocaleLowerCase();
+            normalizarTexto(ruta.comuna) === normalizarTexto(filtros.comuna);
         const coincideDificultad = !filtros.dificultad ||
             ruta.dificultad.toLowerCase() === filtros.dificultad.toLocaleLowerCase();
         const coincideActividad = !filtros.tipoActividad ||
