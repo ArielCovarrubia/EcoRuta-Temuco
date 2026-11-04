@@ -17,78 +17,120 @@
             <section class="baner" aria-label="Banner de la página">
                 <img src="../assets/imagenes/baner-temuco.webp" alt="Carretera pavimentada atravesando un bosque nativo con montañas y volcán nevado al fondo" class="baner-img">
                 <div class="contenido-baner">
-                    <h2 id="titulo-baner">Descubre las rutas ecológicas de Temuco</h2>
-                    <p>Explora los mejores senderos, parques naturales y miradores de la región.</p>
+                    <h2 id="titulo-baner" data-i18n="temuco.title">
+                        Descubre las rutas ecológicas de Temuco
+                    </h2>
+                    <p data-i18n="temuco.description">
+                        Explora los mejores senderos, parques naturales y miradores de la región.
+                    </p>
                 </div>
             </section>
             <section class="rutas" aria-labelledby="titulo-rutas">
-                <h2 id="titulo-rutas">Rutas populares</h2>
+                <h2 id="titulo-rutas" data-i18n="routes.popular">
+                    Rutas populares
+                </h2>
 
                 <div class="contenedor-buscador">
                     <form id="form-filtros-rutas" class="formulario-filtros" aria-label="Filtros para buscar rutas">
                         <div class="grupo-filtro">
-                            <label for="filtro-dificultad">Dificultad:</label>
+                            <label for="filtro-dificultad" data-i18n="routes.difficulty">
+                                Dificultad:
+                            </label>
+                        
                             <select id="filtro-dificultad" name="dificultad">
-                                <option value="">Todas</option>
-                                <option value="Fácil">Fácil</option>
-                                <option value="Media">Media</option>
-                                <option value="Difícil">Difícil</option>
+                                <option value="" data-i18n="routes.all">Todas</option>
+                                <option value="Fácil" data-i18n="routes.easy">Fácil</option>
+                                <option value="Media" data-i18n="routes.medium">Media</option>
+                                <option value="Difícil" data-i18n="routes.hard">Difícil</option>
                             </select>
                         </div>
 
                         <div class="grupo-filtro">
-                            <label for="filtro-actividad">Tipo de Actividad</label>
+                            <label for="filtro-actividad" data-i18n="routes.activityType">
+                                Tipo de Actividad:
+                            </label>
+                        
                             <select id="filtro-actividad" name="tipoActividad">
-                                <option value="">Todas</option>
-                                <option value="Senderismo">Senderismo</option>
-                                <option value="Trekking">Trekking</option>
-                                <option value="Cultura y Naturaleza">Cultura y Naturaleza</option>
+                                <option value="" data-i18n="routes.all">Todas</option>
+                                <option value="Senderismo" data-i18n="routes.hiking">Senderismo</option>
+                                <option value="Trekking" data-i18n="routes.trekking">Trekking</option>
+                                <option value="Cultura y Naturaleza" data-i18n="routes.cultureNature">
+                                    Cultura y Naturaleza
+                                </option>
                             </select>
                         </div>
 
-                        <button type="button" id="btn-limpiar-filtros" class="btn-limpiar">Limpiar filtros</button>
+                        <button type="button" id="btn-limpiar-filtros" class="btn-limpiar" data-i18n="routes.clearFilters">
+                            Limpiar filtros
+                        </button>
                     </form>
 
                     <!-- Mensaje amigable cuando no hay resultados-->
-                     <p id="mensaje-sin-resultados" class="mensaje-no-resultados oculto" role="status" aria-live="polite">
+                    <p id="mensaje-sin-resultados" class="mensaje-no-resultados oculto" role="status" aria-live="polite"
+                        data-i18n="routes.noResults">
                         No se encontraron rutas que coincidan con los filtros seleccionados.
-                     </p>
+                    </p>
                 </div>
 
                 <div class="cartas-img">
                     <article class="carta" data-id="1">
-                        <img src="../assets/imagenes/cerro-nielol.webp" alt="Mirador de madera con vista panorámica de la ciudad de Temuco rodeado de vegetación" class="ruta-img" loading="lazy">
-                            <h3>Cerro Ñielol</h3>
-                            <p>Admira vistas panorámicas de la ciudad de Temuco desde este impresionante cerro.</p>
+                        <img src="../assets/imagenes/cerro-nielol.webp"
+                            alt="Mirador de madera con vista panorámica de la ciudad de Temuco rodeado de vegetación" class="ruta-img"
+                            loading="lazy">
+                        <h3 data-i18n="temuco.route1Name">Cerro Ñielol</h3>
+                        <p data-i18n="temuco.route1Description">
+                            Admira vistas panorámicas de la ciudad de Temuco desde este impresionante cerro.
+                        </p>
+                    </article>
+                    
+                        <article class="carta" data-id="2">
+                            <img src="../assets/imagenes/paque-huerquehue.webp"
+                                alt="Vista aérea de lagos color turquesa rodeados de bosque nativo en el Parque Nacional Huerquehue"
+                                class="ruta-img" loading="lazy">
+                            <h3 data-i18n="temuco.route2Name">Parque Nacional Huerquehue</h3>
+                            <p data-i18n="temuco.route2Description">
+                                Recorre senderos rodeados de naturaleza y disfruta de vistas panorámicas de la región.
+                            </p>
                         </article>
-                    <article class="carta" data-id="2">
-                        <img src="../assets/imagenes/paque-huerquehue.webp" alt="Vista aérea de lagos color turquesa rodeados de bosque nativo en el Parque Nacional Huerquehue" class="ruta-img" loading="lazy">
-                        <h3>Parque Nacional Huerquehue</h3>
-                        <p>Recorre senderos rodeados de naturaleza y disfruta de vistas panorámicas de la región.</p>
-                    </article>
-                    <article class="carta" data-id="3">
-                        <img src="../assets/imagenes/reserva-malalcahuello.webp" alt="Volcán nevado con laderas de tierra volcánica bajo un cielo despejado" class="ruta-img" loading="lazy">
-                        <h3>Reserva Nacional Malalcahuello</h3>
-                        <p>Camina por un sendero ecológico rodeado de flora y fauna nativa.</p>
-                    </article>
-                    <article class="carta" data-id="4">
-                        <img src="../assets/imagenes/isla-cautin.webp" alt="Vista aérea de un área verde con senderos junto a una zona urbana" class="ruta-img" loading="lazy">
-                            <h3>Isla Cautín</h3>
-                            <p>Disfruta de este espacio verde ideal para caminatas y actividades al aire libre.</p>
-                    </article>
-                    <article class="carta" data-id="5">
-                        <img src="../assets/imagenes/monumento-cerro-nielol.webp" alt="Esculturas de madera con árboles nativos por detrás" class="ruta-img" loading="lazy">
-                            <h3>Monumento Cerro Ñielol</h3>
-                            <p>Conoce la historia y la cultura de Temuco en este emblemático monumento.</p>
+                    
+                        <article class="carta" data-id="3">
+                            <img src="../assets/imagenes/reserva-malalcahuello.webp"
+                                alt="Volcán nevado con laderas de tierra volcánica bajo un cielo despejado" class="ruta-img" loading="lazy">
+                            <h3 data-i18n="temuco.route3Name">Reserva Nacional Malalcahuello</h3>
+                            <p data-i18n="temuco.route3Description">
+                                Camina por un sendero ecológico rodeado de flora y fauna nativa.
+                            </p>
                         </article>
-                </div>
+                    
+                        <article class="carta" data-id="4">
+                            <img src="../assets/imagenes/isla-cautin.webp"
+                                alt="Vista aérea de un área verde con senderos junto a una zona urbana" class="ruta-img" loading="lazy">
+                            <h3 data-i18n="temuco.route4Name">Isla Cautín</h3>
+                            <p data-i18n="temuco.route4Description">
+                                Disfruta de este espacio verde ideal para caminatas y actividades al aire libre.
+                            </p>
+                        </article>
+                    
+                        <article class="carta" data-id="5">
+                            <img src="../assets/imagenes/monumento-cerro-nielol.webp"
+                                alt="Esculturas de madera con árboles nativos por detrás" class="ruta-img" loading="lazy">
+                            <h3 data-i18n="temuco.route5Name">Monumento Cerro Ñielol</h3>
+                            <p data-i18n="temuco.route5Description">
+                                Conoce la historia y la cultura de Temuco en este emblemático monumento.
+                            </p>
+                        </article>
+                    </div>
             </section>
             <section class="seccion-emprendedores">
-                <h2>Emprendedores Locales Destacados</h2>
+                <h2 data-i18n="routes.entrepreneurs">
+                    Emprendedores Locales Destacados
+                </h2>
                 <div id="contenedor-emprendedores" class="grilla-ciudades"></div>
             </section>
             <section class="destacado" aria-labelledby="titulo-destacado">
-                <h2 id="titulo-destacado">Ruta recomendada del día</h2>
+                <h2 id="titulo-destacado" data-i18n="routes.recommended">
+                    Ruta recomendada del día
+                </h2>
 
                         <article class="carta-horizontal">
                             <img src="../assets/imagenes/reserva-malalcahuello2.webp" alt="Volcán nevado con bosque en primer plano" loading="lazy">
@@ -96,11 +138,14 @@
                         <h3>Reserva Nacional Malalcahuello</h3>
                         <p>Explora la belleza natural de la Reserva Nacional Malalcahuello, un destino ideal para los amantes de la naturaleza y el senderismo. Disfruta de sus paisajes impresionantes y su rica biodiversidad.</p>
                     </div>
-                    <a href="paginas extra/ruta-temuco.html" class="carta-btn" aria-label="Ver más información sobre la ruta destacada">Ver más</a>
+                    <a href="paginas extra/ruta-temuco.html" class="carta-btn" aria-label="Ver más información sobre la ruta destacada"
+                        data-i18n="routes.viewMore">
+                        Ver más
+                    </a>
                 </article>
             </section>
             <section class="seccion-mapa">
-                <h2>Ubicación de la Ruta</h2>
+                <h2 data-i18n="temuco.mapTitle">Ubicación de la Ruta</h2>
                 <div id="mapa-ruta" class="mapa-contenedor"></div>
             </section>
                 

@@ -5,27 +5,35 @@
     aria-modal="true"
     aria-labelledby="titulo-cookies"
     hidden
->    
+>
     <div class="contenido-cookies">
-        <h2 id="titulo-cookies">Tu privacidad importa</h2>
+        <h2 id="titulo-cookies" data-i18n="cookies.title">
+            Tu privacidad importa
+        </h2>
 
-        <p>
+        <p data-i18n="cookies.description">
             EcoRuta utiliza el almacenamiento local de este navegador
-            únicamente para recordar tus preferencias visuales
-            (tema, contraste y tamaño del texto).
+            para recordar tus preferencias de accesibilidad (tema,
+            contraste y tamaño del texto) y el idioma seleccionado.
+            Puedes gestionar estas preferencias o rechazarlas cuando quieras.
             No recopilamos datos personales mediante este aviso.
         </p>
 
         <div class="botones-cookies">
-            <button type="button" id="aceptar-cookies">
+            <button type="button" id="aceptar-cookies" data-i18n="cookies.accept">
                 Aceptar
             </button>
 
-            <button type="button" id="rechazar-cookies">
+            <button type="button" id="rechazar-cookies" data-i18n="cookies.reject">
                 Rechazar
             </button>
 
-            <button type="button" id="gestionar-cookies" aria-haspopup="dialog">
+            <button
+                type="button"
+                id="gestionar-cookies"
+                aria-haspopup="dialog"
+                data-i18n="cookies.manage"
+            >
                 Gestionar preferencias
             </button>
         </div>
