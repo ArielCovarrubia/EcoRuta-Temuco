@@ -208,12 +208,11 @@ export function crearSuites() {
                 {
                     nombre: "Debe rotar según el día del año",
                     ejecutar: () => {
-                        const fecha1 = new Date(2026, 0, 1);
-                        const fecha2 = new Date(2026, 0, 2);
-                        const r1 = obtenerRutaDelDia(rutas, "Temuco", fecha1);
-                        const r2 = obtenerRutaDelDia(rutas, "Temuco", fecha2);
+                        const r1 = obtenerRutaDelDia(rutas, "Temuco", new Date(2026, 0, 1));
+                        const r2 = obtenerRutaDelDia(rutas, "Temuco", new Date(2026, 0, 2));
                         expect(r1).toBeTruthy();
                         expect(r2).toBeTruthy();
+                        expect((r1 === null || r1 === void 0 ? void 0 : r1.id) === (r2 === null || r2 === void 0 ? void 0 : r2.id)).toBe(false);
                     }
                 }
             ]

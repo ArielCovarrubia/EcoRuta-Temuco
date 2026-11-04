@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Página de ejecución y reporte de pruebas automáticas para las funciones y modelos TypeScript de EcoRuta.">
+    <title>EcoRutas - Pruebas Automáticas TypeScript (QA)</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .contenedor-pruebas {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .cabecera-pruebas {
+            background: linear-gradient(135deg, #1b5e20, #2e7d32);
+            color: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .cabecera-pruebas h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.8rem;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        .cabecera-pruebas p {
+            margin: 0.25rem 0;
+            color: #e8f5e9;
+            font-size: 0.95rem;
+        }
+
+        .metadatos-qa {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.25);
+            font-size: 0.85rem;
+        }
+
+        .metadatos-qa span {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.35rem 0.75rem;
+            border-radius: 999px;
+        }
+
+        .panel-control {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            background: #ffffff;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .acciones-ejecucion {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-ejecutar {
+            background-color: #2e7d32;
+            color: #ffffff;
+            border: none;
+            padding: 0.65rem 1.4rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease, opacity 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-ejecutar:hover:not(:disabled) {
+            background-color: #1b5e20;
+            transform: translateY(-1px);
+        }
+
+        .btn-ejecutar:active:not(:disabled) {
+            transform: translateY(1px);
+        }
+
+        .btn-ejecutar:disabled {
+            background-color: #94a3b8;
+            cursor: not-allowed;
+            opacity: 0.85;
+        }
+
+        .btn-ejecutar:focus-visible {
+            outline: 3px solid #2878ff;
+            outline-offset: 2px;
+        }
+
+        .estado-ejecucion {
+            font-size: 0.85rem;
+            color: #475569;
+            font-weight: 500;
+        }
+
+        .filtros-vista {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-filtro {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            padding: 0.45rem 0.9rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .btn-filtro:hover {
+            background: #e2e8f0;
+        }
+
+        .btn-filtro.activo {
+            background: #1b5e20;
+            color: #ffffff;
+            border-color: #1b5e20;
+        }
+
+        .metricas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+            transition: opacity 0.2s ease;
+        }
+
+        .metricas-grid.actualizando {
+            opacity: 0.5;
+        }
+
+        .tarjeta-metrica {
+            background: #ffffff;
+            padding: 1.25rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .tarjeta-metrica .valor {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0.35rem 0;
+        }
+
+        .tarjeta-metrica .etiqueta {
+            font-size: 0.85rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .metrica-total .valor { color: #1e293b; }
+        .metrica-pasadas .valor { color: #16a34a; }
+        .metrica-fallidas .valor { color: #dc2626; }
+        .metrica-tasa .valor { color: #2563eb; }
+        .metrica-tiempo .valor { color: #7c3aed; }
+
+        .suite-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .suite-header {
+            background: #f8fafc;
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .suite-header h2 {
+            margin: 0;
+            font-size: 1.15rem;
+            color: #1e293b;
+        }
+
+        .suite-resumen {
+            font-size: 0.85rem;
+            color: #15803d;
+            font-weight: 700;
+            background: #dcfce7;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        .caso-lista {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .caso-item {
+            padding: 0.9rem 1.25rem;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .caso-item:last-child {
+            border-bottom: none;
+        }
+
+        .caso-item.fallido {
+            background-color: #fef2f2;
+        }
+
+        .caso-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-grow: 1;
+        }
+
+        .badge-estado {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .badge-paso {
+            background-color: #dcfce7;
+            color: #15803d;
+        }
+
+        .badge-fallo {
+            background-color: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .caso-tiempo {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            white-space: nowrap;
+        }
+
+        .error-detalle {
+            margin: 0.5rem 0 0 2.2rem;
+            padding: 0.5rem;
+            background: #f8fafc;
+            border-left: 3px solid #dc2626;
+            color: #b91c1c;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+
+        .enlace-volver {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: #1b5e20;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .enlace-volver:hover,
+        .enlace-volver:focus-visible {
+            text-decoration: underline;
+            outline: 2px solid #2878ff;
+        }
+
+        .mensaje-error-carga {
+            background: #fee2e2;
+            border: 1px solid #fca5a5;
+            color: #991b1b;
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        body.modo-oscuro .panel-control,
+        body.modo-oscuro .tarjeta-metrica,
+        body.modo-oscuro .suite-card {
+            background: #242424;
+            border-color: #383838;
+            color: #e2e8f0;
+        }
+
+        body.modo-oscuro .suite-header {
+            background: #2d2d2d;
+            border-color: #383838;
+        }
+
+        body.modo-oscuro .suite-header h2 {
+            color: #f1f5f9;
+        }
+
+        body.modo-oscuro .caso-item {
+            border-color: #383838;
+            color: #e2e8f0;
+        }
+
+        body.modo-oscuro .metrica-total .valor {
+            color: #f1f5f9;
+        }
+    </style>
+</head>
+<body data-page-title="EcoRutas - Pruebas TypeScript">
+    <div id="header-container"></div>
+
+    <main class="contenedor-pruebas">
+        <header class="cabecera-pruebas">
+            <h1>Suite de Pruebas Unitarias Automatizadas (TypeScript)</h1>
+            <p>Verificación técnica de lógica de negocio, tipado estricto y funciones puras de <code>js/rutas.ts</code>.</p>
+            <div class="metadatos-qa">
+                <span>Responsable: Ariel Covarrubia (QA / Tester)</span>
+                <span>Framework: Vanilla Test Runner (TypeScript / ESNext)</span>
+                <span>Fecha: 03/11/2026</span>
+                <span>Objetivo: HU-16 / HU-22 (Validación de Filtros y Ruta del Día)</span>
+            </div>
+        </header>
+
+        <section class="panel-control" aria-label="Panel de control de pruebas">
+            <div class="acciones-ejecucion">
+                <button id="btn-ejecutar" class="btn-ejecutar" type="button">
+                    Re-ejecutar pruebas
+                </button>
+                <span id="estado-ejecucion" class="estado-ejecucion">Cargando módulo de pruebas...</span>
+            </div>
+
+            <div class="filtros-vista" role="group" aria-label="Filtrar casos visibles">
+                <button type="button" class="btn-filtro activo" data-filtro="todos">Todas</button>
+                <button type="button" class="btn-filtro" data-filtro="pasados">Solo Pasadas</button>
+                <button type="button" class="btn-filtro" data-filtro="fallidos">Solo Fallidas</button>
+            </div>
+        </section>
+
+        <p id="anuncio-lector" class="sr-only" role="status" aria-live="polite"></p>
+
+        <section class="metricas-grid" id="grid-metricas" aria-label="Resumen de resultados">
+            <div class="tarjeta-metrica metrica-total">
+                <div class="etiqueta">Pruebas Totales</div>
+                <div class="valor" id="total-pruebas">0</div>
+            </div>
+            <div class="tarjeta-metrica metrica-pasadas">
+                <div class="etiqueta">Exitosas</div>
+                <div class="valor" id="total-pasadas">0</div>
+            </div>
+            <div class="tarjeta-metrica metrica-fallidas">
+                <div class="etiqueta">Fallidas</div>
+                <div class="valor" id="total-fallidas">0</div>
+            </div>
+            <div class="tarjeta-metrica metrica-tasa">
+                <div class="etiqueta">Aprobación</div>
+                <div class="valor" id="tasa-aprobacion">0%</div>
+            </div>
+            <div class="tarjeta-metrica metrica-tiempo">
+                <div class="etiqueta">Tiempo de Ejecución</div>
+                <div class="valor" id="tiempo-ejecucion">0 ms</div>
+            </div>
+        </section>
+
+        <section id="contenedor-suites" aria-label="Detalle de suites de prueba">
+            <p style="text-align: center; color: #64748b;">Cargando y ejecutando pruebas unitarias...</p>
+        </section>
+
+        <div>
+            <a href="../index.html" class="enlace-volver">&larr; Volver al Inicio de EcoRuta</a>
+        </div>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="../js/layout.js"></script>
+
+    <script type="module">
+        let resultadosActuales = null;
+        let filtroActual = 'todos';
+        let motorPruebas = null;
+
+        function renderizarResultados(resumen) {
+            resultadosActuales = resumen;
+
+            document.getElementById('total-pruebas').textContent = resumen.total;
+            document.getElementById('total-pasadas').textContent = resumen.pasadas;
+            document.getElementById('total-fallidas').textContent = resumen.fallidas;
+
+            const tasa = resumen.total > 0 ? ((resumen.pasadas / resumen.total) * 100).toFixed(0) : 0;
+            document.getElementById('tasa-aprobacion').textContent = `${tasa}%`;
+            document.getElementById('tiempo-ejecucion').textContent = `${resumen.duracionTotalMs} ms`;
+
+            const anuncio = document.getElementById('anuncio-lector');
+            anuncio.textContent = `Pruebas finalizadas: ${resumen.pasadas} de ${resumen.total} superadas en ${resumen.duracionTotalMs} milisegundos.`;
+
+            const suitesMap = new Map();
+            resumen.resultados.forEach(item => {
+                if (!suitesMap.has(item.suite)) suitesMap.set(item.suite, []);
+                suitesMap.get(item.suite).push(item);
+            });
+
+            const contenedor = document.getElementById('contenedor-suites');
+            contenedor.innerHTML = '';
+
+            suitesMap.forEach((casos, nombreSuite) => {
+                const casosFiltrados = casos.filter(c => {
+                    if (filtroActual === 'pasados') return c.paso;
+                    if (filtroActual === 'fallidos') return !c.paso;
+                    return true;
+                });
+
+                if (casosFiltrados.length === 0) return;
+
+                const pasadasSuite = casos.filter(c => c.paso).length;
+                const tarjeta = document.createElement('article');
+                tarjeta.className = 'suite-card';
+
+                const header = document.createElement('div');
+                header.className = 'suite-header';
+                header.innerHTML = `
+                    <h2>${nombreSuite}</h2>
+                    <span class="suite-resumen">${pasadasSuite}/${casos.length} aprobadas</span>
+                `;
+                tarjeta.appendChild(header);
+
+                const lista = document.createElement('ul');
+                lista.className = 'caso-lista';
+
+                casosFiltrados.forEach(caso => {
+                    const li = document.createElement('li');
+                    li.className = `caso-item ${caso.paso ? 'pasado' : 'fallido'}`;
+                    li.innerHTML = `
+                        <div class="caso-info">
+                            <span class="badge-estado ${caso.paso ? 'badge-paso' : 'badge-fallo'}">
+                                ${caso.paso ? 'PASÓ' : 'FALLÓ'}
+                            </span>
+                            <span>${caso.nombre}</span>
+                        </div>
+                        <span class="caso-tiempo">${caso.duracionMs} ms</span>
+                    `;
+
+                    if (!caso.paso && caso.error) {
+                        const errorDiv = document.createElement('div');
+                        errorDiv.className = 'error-detalle';
+                        errorDiv.textContent = `Error: ${caso.error}`;
+                        li.appendChild(errorDiv);
+                    }
+
+                    lista.appendChild(li);
+                });
+
+                tarjeta.appendChild(lista);
+                contenedor.appendChild(tarjeta);
+            });
+        }
+
+        function correrPruebas() {
+            if (!motorPruebas) return;
+
+            const btn = document.getElementById('btn-ejecutar');
+            const estado = document.getElementById('estado-ejecucion');
+            const grid = document.getElementById('grid-metricas');
+
+            btn.disabled = true;
+            btn.textContent = 'Ejecutando...';
+            estado.textContent = 'Procesando suites de prueba...';
+            grid.classList.add('actualizando');
+
+            setTimeout(() => {
+                try {
+                    const resumen = motorPruebas();
+                    renderizarResultados(resumen);
+
+                    const ahora = new Date();
+                    const horaStr = ahora.toLocaleTimeString('es-CL');
+                    estado.textContent = `Última ejecución: ${horaStr} (${resumen.duracionTotalMs} ms)`;
+                } catch (error) {
+                    console.error("Error al ejecutar suite:", error);
+                    estado.textContent = 'Error al ejecutar pruebas';
+                    document.getElementById('contenedor-suites').innerHTML = `
+                        <p style="color: #dc2626; padding: 1rem; background: #fee2e2; border-radius: 8px;">
+                            Error al correr las pruebas: ${error.message}
+                        </p>
+                    `;
+                } finally {
+                    btn.disabled = false;
+                    btn.textContent = 'Re-ejecutar pruebas';
+                    grid.classList.remove('actualizando');
+                }
+            }, 180);
+        }
+
+        document.getElementById('btn-ejecutar').addEventListener('click', correrPruebas);
+
+        document.querySelectorAll('.btn-filtro').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.btn-filtro').forEach(b => b.classList.remove('activo'));
+                btn.classList.add('activo');
+                filtroActual = btn.dataset.filtro;
+                if (resultadosActuales) renderizarResultados(resultadosActuales);
+            });
+        });
+
+        import('./pruebas.js')
+            .then(modulo => {
+                motorPruebas = modulo.ejecutarPruebas;
+                correrPruebas();
+            })
+            .catch(err => {
+                document.getElementById('estado-ejecucion').textContent =
+                    'Error: could not load the test module. Run the page from a local server.';
+                document.getElementById('contenedor-suites').innerHTML = `
+                    <div class="mensaje-error-carga">
+                        <p><strong>Error al cargar el módulo de pruebas</strong></p>
+                        <p>Para ejecutar las pruebas en el navegador, ejecuta la página desde un servidor local (por ejemplo, con Live Server en VS Code o desplegado en GitHub Pages).</p>
+                    </div>
+                `;
+                console.error(err);
+            });
+    </script>
+</body>
+</html>
+

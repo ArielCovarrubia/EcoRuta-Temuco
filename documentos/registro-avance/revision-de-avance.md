@@ -56,7 +56,7 @@ Se auditó exhaustivamente el estado de cada ticket reportado previamente, verif
   * [x] Optimización completa de peso de imágenes y formato WebP (`ISSUE-03`). -> *Estado: Cumple* (Todas las imágenes del repositorio convertidas a formato `.webp`).
   * [x] Buscador y generador dinámico de rutas (`HU-22`). -> *Estado: Cumple* (Implementado en `js/rutas.ts`, `js/rutas.js` y `js/buscador.js` con filtros por dificultad y actividad, y selección determinista de la ruta del día).
   * [x] Consumo de API de clima para seguridad en terreno (`HU-04`). -> *Estado: Cumple* (Integrado con Open-Meteo en `js/clima.js`, inyectando temperatura, sensación térmica, viento y condición en tiempo real).
-  * [x] Migración progresiva a TypeScript y suite de pruebas unitarias (`HU-16`). -> *Estado: Cumple* (Configurado `tsconfig.json`, tipado estricto en `js/rutas.ts` y página de ejecución automática en `pruebas/index.html` con 26 pruebas unitarias aprobadas al 100%).
+  * [x] Migración progresiva a TypeScript y suite de pruebas unitarias (`HU-16`). -> *Estado: Cumple* (Configurado `tsconfig.json`, tipado estricto en `js/rutas.ts` y página de ejecución automática en `tests/pruebas.html` con 26 pruebas unitarias aprobadas al 100%).
 
 ---
 

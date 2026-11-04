@@ -1,7 +1,7 @@
 const currentPath = window.location.pathname;
 
 const isInsidePages = currentPath.includes('/paginas/');
-const isInsidePruebas = currentPath.includes('/pruebas');
+const isInsideTests = currentPath.includes('/tests') || currentPath.includes('/pruebas');
 
 const isInsideExtraPages =
     currentPath.includes('/paginas extra/') ||
@@ -9,7 +9,7 @@ const isInsideExtraPages =
 
 const basePath = isInsideExtraPages
     ? '../components/'
-    : isInsidePruebas
+    : isInsideTests
         ? '../paginas/components/'
         : isInsidePages
             ? 'components/'
