@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "none",
+    "strict": true,
+    "lib": ["ES2020", "DOM"],
+    "outFile": "js/puntaje.js",
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "files": ["js/puntaje.ts"]
+}
