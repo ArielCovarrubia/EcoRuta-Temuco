@@ -1059,22 +1059,6 @@ html.texto-muy-grande {
     font-size: 143.75%;
 }
 
-body.alto-contraste {
-    background: #000;
-    color: #fff;
-}
-
-body.alto-contraste a {
-    color: #ffff00;
-}
-
-body.alto-contraste button,
-body.alto-contraste select {
-    background: #000;
-    color: #fff;
-    border: 2px solid #fff;
-}
-
 body.modo-oscuro {
     background: #181818;
     color: #f5f5f5;
@@ -1545,4 +1529,93 @@ body.alto-contraste .etiqueta-dato {
 
 body.modo-oscuro .contacto h2 {
     color: #b8e0b8;
+}
+
+/* Fondo general y enlaces predeterminados */
+body.alto-contraste {
+    background: #000000 !important;
+    color: #ffffff !important;
+}
+
+body.alto-contraste a {
+    color: #ffff00 !important
+}
+
+/*Fix el botón "Inicio" y enlaces del nav del header */
+body.alto-contraste header nav a,
+body.alto-contraste .header-derecha nav a,
+body.alto-contraste .link-nav {
+    background-color: #000000 !important;
+    color: #ffff00 !important;
+    border: 2px solid #ffff00 !important;
+}
+
+body.alto-contraste header nav a:hover,
+body.alto-contraste header nav a:focus-visible {
+    background-color: #ffff00 !important;
+    color: #000000 !important;
+}
+
+/*Títulos h1, h2 y h3, en contacto y secciones destacadas*/
+body.alto-contraste h1,
+body.alto-contraste h2,
+body.alto-contraste h3,
+body.alto-contraste .contacto h2,
+body.alto-contraste .destacado h2,
+body.alto-contraste .contenido-baner h2,
+body.alto-contraste #titulo-contacto,
+body.alto-contraste #titulo-destacado-contacto {
+    color: #ffffff !important;
+}
+
+/* Contenedores, tarjetas y formularios en alto contraste */
+body.alto-contraste .baner,
+body.alto-contraste .info-contacto,
+body.alto-contraste .tarjeta-formulario,
+body.alto-contraste .carta-horizontal,
+body.alto-contraste .carta,
+body.alto-contraste .carta-ciudad {
+    background-color: #000000 !important;
+    border: 1.5px solid #ffffff !important;
+    color: #ffffff !important;
+}
+
+/* Textos dentro de contenedores en alto contraste*/
+body.alto-contraste .contenido-baner p,
+body.alto-contraste .info-contacto p,
+body.alto-contraste .contenido-carta p,
+body.alto-contraste .carta p,
+body.alto-contraste .carta-ciudad p {
+    color: #ffffff !important;
+}
+
+body.alto-contraste .campo-grupo label {
+    color: #ffffff !important;
+}
+
+body.alto-contraste .campo-grupo input,
+body.alto-contraste .campo-grupo textarea {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border: 1.5px solid #ffffff !important;
+}
+
+/* Color del texto del placeholder en los inputs para alto contraste*/
+body.alto-contraste .campo-grupo input::placeholder,
+body.alto-contraste .campo-grupo textarea::placeholder {
+    color: #ffffff !important;
+    opacity: 1;
+}
+
+/* Corrección de botones de redes sociales en alto contraste*/
+body.alto-contraste .botones-redes a {
+    background-color: #000000 !important;
+    color: #ffff00 !important;
+    border: 1.5px solid #ffff00 !important;
+}
+
+body.alto-contraste .botones-redes a:hover,
+body.alto-contraste .botones-redes a:focus-visible {
+    background-color: #ffff00 !important;
+    color: #000000 !important;
 }
