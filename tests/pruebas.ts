@@ -90,6 +90,15 @@ export function crearSuites(): SuitePrueba[] {
                 },
 
                 {
+                    nombre: "Debe filtrar correctamente por Comuna 'Temuco' (5 rutas)",
+                    ejecutar: () => {
+                        const resultado = filtrarRutas(rutas, { comuna: "Temuco" });
+                        expect(resultado.length).toBe(5);
+                        resultado.forEach(r => expect(r.comuna).toBe("Temuco"));
+                    }
+                },
+
+                {
                     nombre: "Debe filtrar correctamente por Comuna 'Pucón' (5 rutas)",
                     ejecutar: () => {
                         const resultado = filtrarRutas(rutas, { comuna: "Pucón" });
