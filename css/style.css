@@ -828,7 +828,7 @@ body.modo-oscuro .mensaje-exito {
     bottom: 20px;
     right: 20px;
     z-index: 9999;
-    background-color: #e74c3c;
+    background-color: #c0392b;
     color: #ffffff;
     border: none;
     border-radius: 50px;
@@ -842,7 +842,7 @@ body.modo-oscuro .mensaje-exito {
 
 .btn-emergencia-sticky:hover,
 .btn-emergencia-sticky:focus {
-    background-color: #c0392b;
+    background-color: #962d22;
     transform: scale(1.05);
     outline: 2px solid #ffffff;
 }
