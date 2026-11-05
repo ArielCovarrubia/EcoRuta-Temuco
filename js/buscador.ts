@@ -72,8 +72,22 @@ document.addEventListener('DOMContentLoaded', () => {
         let visiblesContador = 0;
 
         tarjetas.forEach(tarjeta => {
-            const idTarjeta = Number(tarjeta.dataset.id);
-            const esCoincidente = idsVisibles.has(idTarjeta);
+            const claveNombre = tarjeta.querySelector<HTMLElement>(
+                '[data-i18n$="Name"]'
+            )?.dataset.i18n;
+            const idDesdeClave = claveNombre?.match(/\.route(\d+)Name$/)?.[1];
+            const idDesdeDatos = Number(tarjeta.dataset.id);
+            const idRuta = idDesdeClave
+                ? Number(idDesdeClave)
+                : Number.isInteger(idDesdeDatos)
+                    ? idDesdeDatos
+                    : null;
+
+            // Prefer the route ID in the translation key, which remains tied to
+            // the dataset even if data-id is missing or accidentally incorrect.
+            // Unknown cards stay visible so a markup issue never hides content.
+            const idExiste = idRuta !== null && rutas.some(ruta => ruta.id === idRuta);
+            const esCoincidente = !idExiste || idsVisibles.has(idRuta);
 
             if (esCoincidente) {
                 tarjeta.classList.remove('oculto');

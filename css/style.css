@@ -214,13 +214,13 @@ main {
     font-size: 0.75rem;
     padding: 0;
     margin-bottom: 0.25rem;
-    color: #4a5568;
+    color: #334155;
 }
 
 .info-clima p:last-child {
     margin-top: 0.5rem;
     font-size: 0.68rem;
-    color: #64748b;
+    color: #334155;
 }
 
 /* Featured route section */
