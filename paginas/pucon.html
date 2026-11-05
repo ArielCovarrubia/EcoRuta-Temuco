@@ -27,32 +27,42 @@
                 <div class="contenedor-buscador">
                     <form id="form-filtros-rutas" class="formulario-filtros" aria-label="Filtros para buscar rutas">
                         <div class="grupo-filtro">
-                            <label for="filtro-dificultad">Dificultad:</label>
+                            <label for="filtro-dificultad" data-i18n="routes.difficulty">
+                                Dificultad:
+                            </label>
+                        
                             <select id="filtro-dificultad" name="dificultad">
-                                <option value="">Todas</option>
-                                <option value="Fácil">Fácil</option>
-                                <option value="Media">Media</option>
-                                <option value="Difícil">Difícil</option>
+                                <option value="" data-i18n="routes.all">Todas</option>
+                                <option value="Fácil" data-i18n="routes.easy">Fácil</option>
+                                <option value="Media" data-i18n="routes.medium">Media</option>
+                                <option value="Difícil" data-i18n="routes.hard">Difícil</option>
                             </select>
                         </div>
 
                         <div class="grupo-filtro">
-                            <label for="filtro-actividad">Tipo de Actividad</label>
+                            <label for="filtro-actividad" data-i18n="routes.activityType">
+                                Tipo de Actividad:
+                            </label>
+                        
                             <select id="filtro-actividad" name="tipoActividad">
-                                <option value="">Todas</option>
-                                <option value="Senderismo">Senderismo</option>
-                                <option value="Trekking">Trekking</option>
-                                <option value="Cultura y Naturaleza">Cultura y Naturaleza</option>
+                                <option value="" data-i18n="routes.all">Todas</option>
+                                <option value="Senderismo" data-i18n="routes.hiking">Senderismo</option>
+                                <option value="Trekking" data-i18n="routes.trekking">Trekking</option>
+                                <option value="Cultura y Naturaleza" data-i18n="routes.cultureNature">
+                                    Cultura y Naturaleza
+                                </option>
                             </select>
                         </div>
-
-                        <button type="button" id="btn-limpiar-filtros" class="btn-limpiar">Limpiar filtros</button>
+                        <button type="button" id="btn-limpiar-filtros" class="btn-limpiar" data-i18n="routes.clearFilters">
+                            Limpiar filtros
+                        </button>
                     </form>
 
                     <!-- Mensaje amigable cuando no hay resultados-->
-                     <p id="mensaje-sin-resultados" class="mensaje-no-resultados oculto" role="status" aria-live="polite">
+                    <p id="mensaje-sin-resultados" class="mensaje-no-resultados oculto" role="status" aria-live="polite"
+                        data-i18n="routes.noResults">
                         No se encontraron rutas que coincidan con los filtros seleccionados.
-                     </p>
+                    </p>
                 </div>
 
                 <div class="cartas-img">
@@ -96,7 +106,10 @@
                         <h3>Termas de Huife</h3>
                         <p>Relájate en piscinas de aguas termales naturales rodeadas de bosque nativo, a pocos minutos de Pucón. Una experiencia ideal para descansar después de un día de aventura.</p>
                     </div>
-                    <a href="paginas extra/ruta-pucon.html" class="carta-btn" aria-label="Ver más información sobre la ruta destacada">Ver más</a>
+                    <a href="paginas extra/ruta-pucon.html" class="carta-btn" aria-label="Ver más información sobre la ruta destacada"
+                        data-i18n="routes.viewMore">
+                        Ver más
+                    </a>
                 </article>
             </section>
             <section class="seccion-mapa">
