@@ -178,7 +178,7 @@ export function crearSuites() {
                     ejecutar: () => {
                         const ruta = obtenerRutaDelDia(rutas, "Temuco");
                         expect(ruta).toBeTruthy();
-                        expect(ruta === null || ruta === void 0 ? void 0 : ruta.comuna).toBe("Temuco");
+                        expect(ruta?.comuna).toBe("Temuco");
                     }
                 },
                 {
@@ -186,7 +186,7 @@ export function crearSuites() {
                     ejecutar: () => {
                         const ruta = obtenerRutaDelDia(rutas, "Pucón");
                         expect(ruta).toBeTruthy();
-                        expect(ruta === null || ruta === void 0 ? void 0 : ruta.comuna).toBe("Pucón");
+                        expect(ruta?.comuna).toBe("Pucón");
                     }
                 },
                 {
@@ -194,7 +194,7 @@ export function crearSuites() {
                     ejecutar: () => {
                         const ruta = obtenerRutaDelDia(rutas, "pucon");
                         expect(ruta).toBeTruthy();
-                        expect(ruta === null || ruta === void 0 ? void 0 : ruta.comuna).toBe("Pucón");
+                        expect(ruta?.comuna).toBe("Pucón");
                     }
                 },
                 {
@@ -202,7 +202,7 @@ export function crearSuites() {
                     ejecutar: () => {
                         const ruta = obtenerRutaDelDia(rutas, "Villarrica");
                         expect(ruta).toBeTruthy();
-                        expect(ruta === null || ruta === void 0 ? void 0 : ruta.comuna).toBe("Villarrica");
+                        expect(ruta?.comuna).toBe("Villarrica");
                     }
                 },
                 {
@@ -218,7 +218,7 @@ export function crearSuites() {
                         const fecha = new Date(2026, 9, 29);
                         const r1 = obtenerRutaDelDia(rutas, "Temuco", fecha);
                         const r2 = obtenerRutaDelDia(rutas, "Temuco", fecha);
-                        expect(r1 === null || r1 === void 0 ? void 0 : r1.id).toBe(r2 === null || r2 === void 0 ? void 0 : r2.id);
+                        expect(r1?.id).toBe(r2?.id);
                     }
                 },
                 {
@@ -228,7 +228,7 @@ export function crearSuites() {
                         const r2 = obtenerRutaDelDia(rutas, "Temuco", new Date(2026, 0, 2));
                         expect(r1).toBeTruthy();
                         expect(r2).toBeTruthy();
-                        expect((r1 === null || r1 === void 0 ? void 0 : r1.id) === (r2 === null || r2 === void 0 ? void 0 : r2.id)).toBe(false);
+                        expect(r1?.id === r2?.id).toBe(false);
                     }
                 }
             ]
@@ -290,9 +290,9 @@ export function crearSuites() {
                         const ruta1 = rutas.find(r => r.id === 1);
                         const ruta6 = rutas.find(r => r.id === 6);
                         const ruta11 = rutas.find(r => r.id === 11);
-                        expect(ruta1 === null || ruta1 === void 0 ? void 0 : ruta1.urlDetalle).toBe("paginas extra/ruta-temuco.html");
-                        expect(ruta6 === null || ruta6 === void 0 ? void 0 : ruta6.urlDetalle).toBe("paginas extra/ruta-pucon.html");
-                        expect(ruta11 === null || ruta11 === void 0 ? void 0 : ruta11.urlDetalle).toBe("paginas extra/ruta-villarrica.html");
+                        expect(ruta1?.urlDetalle).toBe("paginas extra/ruta-temuco.html");
+                        expect(ruta6?.urlDetalle).toBe("paginas extra/ruta-pucon.html");
+                        expect(ruta11?.urlDetalle).toBe("paginas extra/ruta-villarrica.html");
                     }
                 }
             ]
