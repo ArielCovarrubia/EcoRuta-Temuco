@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const nombreInput = document.getElementById('nombre') as HTMLInputElement | null;
     const emailInput = document.getElementById('email') as HTMLInputElement | null;
     const mensajeInput = document.getElementById('mensaje') as HTMLTextAreaElement | null;
-    const btnEnviar = document.getElementById('btn-enviar') as HTMLButtonElement | null;
     const errorNombre = document.getElementById('error-nombre');
     const errorEmail = document.getElementById('error-email');
     const errorMensaje = document.getElementById('error-mensaje');
@@ -15,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    function validarCampos(): boolean {
+    const validarCampos = (): boolean => {
         let esValido = true;
 
         if (nombreInput.value.trim() === '') {
@@ -56,9 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
             mensajeInput.removeAttribute('aria-invalid');
         }
 
-        if (btnEnviar) btnEnviar.disabled = !esValido;
         return esValido;
-    }
+    };
 
     nombreInput.addEventListener('input', validarCampos);
     emailInput.addEventListener('input', validarCampos);
@@ -70,8 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (validarCampos()) {
             if (mensajeExito) mensajeExito.textContent = '¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.';
             form.reset();
-            if (btnEnviar) btnEnviar.disabled = true;
-
             window.setTimeout(() => {
                 if (mensajeExito) mensajeExito.textContent = '';
             }, 5000);

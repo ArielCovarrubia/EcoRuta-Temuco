@@ -47,11 +47,7 @@ if (formulario && resultado) {
             pertinenciaTerritorial: Number(valores.get('pertinenciaTerritorial')) as ValorCriterio
         };
         const calculo = calcularPuntaje(criterios);
-        const requiereRevisionCultural = calculo.estado === 'rechazado' && criterios.cultura === 2;
-
-        resultado.textContent = requiereRevisionCultural
-            ? `Puntaje: ${calculo.total}/12. Estado: ${calculo.estado}. Sujeto a revisión del Product Owner.`
-            : `Puntaje: ${calculo.total}/12. Estado: ${calculo.estado}.`;
+        resultado.textContent = `Puntaje: ${calculo.total}/12. Estado: ${calculo.estado}.`;
         resultado.classList.remove('estado-aprobado', 'estado-pendiente', 'estado-rechazado');
         resultado.classList.add(`estado-${calculo.estado === 'pendiente de revisión' ? 'pendiente' : calculo.estado}`);
     });

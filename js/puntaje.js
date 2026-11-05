@@ -1,11 +1,14 @@
+"use strict";
 function calcularPuntaje(criterios) {
     const total = Object.values(criterios).reduce((suma, valor) => suma + valor, 0);
     let estado;
     if (total >= 8) {
         estado = 'aprobado';
-    } else if (total >= 5) {
+    }
+    else if (total >= 5) {
         estado = 'pendiente de revisión';
-    } else {
+    }
+    else {
         estado = 'rechazado';
     }
     return { total, estado };
@@ -25,10 +28,7 @@ if (formulario && resultado) {
             pertinenciaTerritorial: Number(valores.get('pertinenciaTerritorial'))
         };
         const calculo = calcularPuntaje(criterios);
-        const requiereRevisionCultural = calculo.estado === 'rechazado' && criterios.cultura === 2;
-        resultado.textContent = requiereRevisionCultural
-            ? `Puntaje: ${calculo.total}/12. Estado: ${calculo.estado}. Sujeto a revisión del Product Owner.`
-            : `Puntaje: ${calculo.total}/12. Estado: ${calculo.estado}.`;
+        resultado.textContent = `Puntaje: ${calculo.total}/12. Estado: ${calculo.estado}.`;
         resultado.classList.remove('estado-aprobado', 'estado-pendiente', 'estado-rechazado');
         resultado.classList.add(`estado-${calculo.estado === 'pendiente de revisión' ? 'pendiente' : calculo.estado}`);
     });
