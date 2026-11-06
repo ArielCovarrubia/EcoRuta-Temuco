@@ -99,7 +99,26 @@ fetch(`${basePath}header.html`)
     const headerContainer = document.getElementById('header-container');
     if (!headerContainer)
         return;
-    headerContainer.innerHTML = data;
+        headerContainer.innerHTML = data;
+        // Carga el funcionamiento del menú lateral.
+        const rutaMenuLateral = isInsideExtraPages
+            ? '../../js/menuLateral.js'
+            : isInsideTests || isInsidePages
+                ? '../js/menuLateral.js'
+                : 'js/menuLateral.js';
+
+        const scriptMenuLateral = document.createElement('script');
+        scriptMenuLateral.src = rutaMenuLateral;
+
+        scriptMenuLateral.onload = () => {
+            window.inicializarMenuLateral?.();
+        };
+
+        scriptMenuLateral.onerror = () => {
+            console.error('No se pudo cargar menuLateral.js');
+        };
+
+        document.head.appendChild(scriptMenuLateral);
     const traduccionesCargadas = await promesaTraducciones;
     if (traduccionesCargadas) {
         const idiomaGuardado = localStorage.getItem('guardarIdioma') === 'true'
@@ -182,37 +201,46 @@ fetch(`${basePath}header.html`)
     const tamanoInicial = textoGuardado && tamanosValidos.includes(textoGuardado)
         ? textoGuardado
         : 'normal';
-    function aplicarTamanoTexto(tamano, anunciar = false) {
-        document.body.classList.remove('texto-pequeno', 'texto-normal', 'texto-grande', 'texto-muy-grande', 'texto-grande-antiguo');
-        document.body.classList.add(`texto-${tamano}`);
-        // Aplicar el tamaño también al elemento raíz html.
-        document.documentElement.classList.remove('texto-pequeno', 'texto-normal', 'texto-grande', 'texto-muy-grande');
-        document.documentElement.classList.add(`texto-${tamano}`);
-        // 1. Actualiza el estado visual/accesible de los botones.
-        botonesTamano.forEach(btn => {
-            const esActivo = btn.dataset.tamano === tamano;
-            btn.setAttribute('aria-pressed', String(esActivo));
-        });
-        // 2. Anuncio para lectores de pantalla.
-        if (anunciar && anuncioAccesibilidad) {
-            const nombreLegible = nombreTamano[tamano] || tamano;
-            anuncioAccesibilidad.textContent =
-                `Tamaño del texto establecido en ${nombreLegible}.`;
-        }
-    }
-    aplicarTamanoTexto(tamanoInicial, false);
-    botonesTamano.forEach(boton => {
-        boton.addEventListener('click', () => {
-            const tamano = boton.dataset.tamano;
-            if (!tamano || !tamanosValidos.includes(tamano))
-                return;
-            aplicarTamanoTexto(tamano, true);
-            if (localStorage.getItem('guardarAccesibilidad') !== 'false') {
-                localStorage.setItem('tamanoTexto', tamano);
+
+                function aplicarTamanoTexto(tamano, anunciar = false) {
+            document.documentElement.classList.remove(
+                'texto-pequeno',
+                'texto-normal',
+                'texto-grande',
+                'texto-muy-grande'
+            );
+
+            document.documentElement.classList.add(`texto-${tamano}`);
+
+            botonesTamano.forEach(btn => {
+                const esActivo = btn.dataset.tamano === tamano;
+                btn.setAttribute('aria-pressed', String(esActivo));
+            });
+
+            if (anunciar && anuncioAccesibilidad) {
+                const nombreLegible = nombreTamano[tamano] || tamano;
+                anuncioAccesibilidad.textContent =
+                    `Tamaño del texto establecido en ${nombreLegible}.`;
             }
+        }
+
+        aplicarTamanoTexto(tamanoInicial, false);
+
+        botonesTamano.forEach(boton => {
+            boton.addEventListener('click', () => {
+                const tamano = boton.dataset.tamano;
+
+                if (!tamano || !tamanosValidos.includes(tamano)) return;
+
+                aplicarTamanoTexto(tamano, true);
+
+                if (localStorage.getItem('guardarAccesibilidad') !== 'false') {
+                    localStorage.setItem('tamanoTexto', tamano);
+                }
+            });
         });
-    });
-    // Cambiar alto contraste.
+
+        // Cambiar alto contraste.
     if (controlContraste) {
         controlContraste.addEventListener('change', () => {
             const activo = controlContraste.checked;

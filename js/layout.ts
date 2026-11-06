@@ -141,6 +141,29 @@ fetch(`${basePath}header.html`)
         if (!headerContainer) return;
 
         headerContainer.innerHTML = data;
+        // Carga el funcionamiento del menú lateral.
+        const rutaMenuLateral = isInsideExtraPages
+            ? '../../js/menuLateral.js'
+            : isInsideTests || isInsidePages
+                ? '../js/menuLateral.js'
+                : 'js/menuLateral.js';
+
+        const scriptMenuLateral = document.createElement('script');
+        scriptMenuLateral.src = rutaMenuLateral;
+
+        scriptMenuLateral.onload = () => {
+            const ventana = window as Window & {
+                inicializarMenuLateral?: () => void;
+            };
+
+            ventana.inicializarMenuLateral?.();
+        };
+
+        scriptMenuLateral.onerror = () => {
+            console.error('No se pudo cargar menuLateral.js');
+        };
+
+        document.head.appendChild(scriptMenuLateral);
 
         const traduccionesCargadas = await promesaTraducciones;
 
@@ -276,18 +299,7 @@ fetch(`${basePath}header.html`)
             ? textoGuardado
             : 'normal';
 
-        function aplicarTamanoTexto(tamano: string, anunciar = false): void {
-            document.body.classList.remove(
-                'texto-pequeno',
-                'texto-normal',
-                'texto-grande',
-                'texto-muy-grande',
-                'texto-grande-antiguo'
-            );
-
-            document.body.classList.add(`texto-${tamano}`);
-
-            // Aplicar el tamaño también al elemento raíz html.
+                function aplicarTamanoTexto(tamano: string, anunciar = false): void {
             document.documentElement.classList.remove(
                 'texto-pequeno',
                 'texto-normal',
@@ -297,13 +309,11 @@ fetch(`${basePath}header.html`)
 
             document.documentElement.classList.add(`texto-${tamano}`);
 
-            // 1. Actualiza el estado visual/accesible de los botones.
             botonesTamano.forEach(btn => {
                 const esActivo = btn.dataset.tamano === tamano;
                 btn.setAttribute('aria-pressed', String(esActivo));
             });
 
-            // 2. Anuncio para lectores de pantalla.
             if (anunciar && anuncioAccesibilidad) {
                 const nombreLegible = nombreTamano[tamano] || tamano;
                 anuncioAccesibilidad.textContent =
@@ -316,6 +326,7 @@ fetch(`${basePath}header.html`)
         botonesTamano.forEach(boton => {
             boton.addEventListener('click', () => {
                 const tamano = boton.dataset.tamano;
+
                 if (!tamano || !tamanosValidos.includes(tamano)) return;
 
                 aplicarTamanoTexto(tamano, true);

@@ -966,67 +966,149 @@ body.modo-oscuro .contacto-emprendedor p {
     color: #cbd5e0 !important;
 }
 
-#menu-accesibilidad {
-    position: absolute;
-    top: calc(100% + 10px);
-    right: 2rem;
-    z-index: 100;
 
-    display: grid;
-    gap: 12px;
+/* ========================================
+   MENÚ LATERAL
+======================================== */
 
-    width: min(280px, calc(100vw - 24px));
-    min-width: 200px;
-    padding: 16px;
-
-    border: 1px solid #d1d5db;
-    border-radius: 12px;
-
-    background-color: #ffffff;
-    color: #222222;
-
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+/* Botón hamburguesa */
+#btn-menu-lateral {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    border: 2px solid #2e7d32;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #2e7d32;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
-#menu-accesibilidad[hidden] {
+#btn-menu-lateral:hover {
+    background: #e8f5e9;
+}
+
+/* Fondo oscuro */
+#fondo-menu-lateral {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.55);
+}
+
+/* Barra lateral */
+#menu-accesibilidad {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1001;
+
+    width: min(380px, 90vw);
+    height: 100vh;
+    height: 100dvh;
+    padding: 75px 25px 30px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    overflow-y: auto;
+
+    background: #ffffff;
+    color: #263238;
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.2);
+
+    transform: translateX(100%);
+    visibility: hidden;
+
+    transition:
+        transform 0.3s ease,
+        visibility 0.3s ease;
+}
+
+/* Menú abierto */
+#menu-accesibilidad.abierto {
+    transform: translateX(0);
+    visibility: visible;
+    transition-delay: 0s;
+}
+
+/* Ocultar completamente */
+#menu-accesibilidad[hidden],
+#fondo-menu-lateral[hidden] {
     display: none;
 }
 
+/* Botón cerrar */
+#btn-cerrar-menu {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    border-radius: 50%;
+    background: #e8f5e9;
+    color: #2e7d32;
+
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+#btn-cerrar-menu:hover {
+    background: #c8e6c9;
+}
+
+/* Secciones */
+.seccion-contactos,
+.seccion-accesibilidad {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.seccion-contactos h2,
+.seccion-accesibilidad h2 {
+    margin: 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #2e7d32;
+    color: #2e7d32;
+    font-size: 1.3rem;
+}
+
+/* Enlaces de contacto y redes */
+.seccion-contactos a {
+    display: block;
+    padding: 9px 12px;
+    border-radius: 8px;
+    color: #263238;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+
+.seccion-contactos a:hover {
+    background: #e8f5e9;
+    color: #1b5e20;
+}
+
+/* Redes sociales */
+.redes-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Controles de accesibilidad */
 #menu-accesibilidad label {
     display: flex;
     align-items: center;
-    gap: 8px;
-}
-/* Enlace Contacto dentro del menú de accesibilidad */
-#menu-accesibilidad #enlace-contacto {
-    display: block;
-    width: 100%;
-    padding: 0.55rem 1rem;
-    border: 1px solid #2e7d32;
-    border-radius: 999px;
-    background-color: #2e7d32;
-    color: #ffffff;
-    text-align: center;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 600;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-}
-
-#menu-accesibilidad #enlace-contacto:hover {
-    background-color: #1b5e20;
-    color: #ffffff;
-    transform: translateY(-2px);
-}
-
-#menu-accesibilidad #enlace-contacto:focus-visible {
-    outline: 3px solid #2878ff;
-    outline-offset: 3px;
-}
-
-#menu-accesibilidad select {
-    width: 100%;
-    padding: 8px;
+    gap: 10px;
 }
 
 #menu-accesibilidad input,
@@ -1035,65 +1117,87 @@ body.modo-oscuro .contacto-emprendedor p {
     font: inherit;
 }
 
-:root {
-    font-size: 100%;
+#menu-accesibilidad select {
+    width: 100%;
+    padding: 9px;
+    border: 1px solid #999;
+    border-radius: 6px;
 }
 
-/* Tamaño pequeño */
-html.texto-pequeno {
-    font-size: 87.5%;
+#menu-accesibilidad .grupo-tamano-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
-/* Tamaño normal */
-html.texto-normal {
-    font-size: 100%;
+#menu-accesibilidad .botones-tamano {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
-/* Tamaño grande */
-html.texto-grande {
-    font-size: 118.75%;
+#menu-accesibilidad .btn-tamano {
+    padding: 8px 12px;
+    border: 1px solid #2e7d32;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #2e7d32;
+    cursor: pointer;
 }
 
-/* Tamaño muy grande */
-html.texto-muy-grande {
-    font-size: 143.75%;
+#menu-accesibilidad .btn-tamano[aria-pressed="true"] {
+    background: #2e7d32;
+    color: #ffffff;
 }
 
-body.modo-oscuro {
-    background: #181818;
-    color: #f5f5f5;
+/* Enfoque visible para teclado */
+#btn-menu-lateral:focus-visible,
+#btn-cerrar-menu:focus-visible,
+#menu-accesibilidad a:focus-visible,
+#menu-accesibilidad input:focus-visible,
+#menu-accesibilidad select:focus-visible,
+#menu-accesibilidad button:focus-visible {
+    outline: 3px solid #2878ff;
+    outline-offset: 3px;
 }
 
-body.modo-oscuro a {
-    color: #9ec5ff;
-}
-
+/* Modo oscuro */
 body.modo-oscuro #menu-accesibilidad {
-    background: #222;
-    color: #fff;
-    border-color: #777;
+    background: #222222;
+    color: #ffffff;
 }
 
-body.modo-oscuro #menu-accesibilidad #enlace-contacto {
-    background-color: #2e7d32;
+body.modo-oscuro #menu-accesibilidad h2 {
+    color: #81c784;
+    border-color: #81c784;
+}
+body.modo-oscuro #menu-accesibilidad a {
+    color: #ffffff;
+}
+
+body.modo-oscuro #menu-accesibilidad a:hover {
+    background: #333333;
+}
+
+body.modo-oscuro #menu-accesibilidad select {
+    background: #333333;
+    color: #ffffff;
+}
+
+body.modo-oscuro #menu-accesibilidad .btn-tamano {
+    background: #333333;
     color: #ffffff;
     border-color: #81c784;
 }
 
-body.modo-oscuro #menu-accesibilidad #enlace-contacto:hover {
-    background-color: #1b5e20;
+body.modo-oscuro #menu-accesibilidad .btn-tamano[aria-pressed="true"] {
+    background: #2e7d32;
 }
 
-body.modo-oscuro #menu-accesibilidad select {
-    background: #333;
-    color: #fff;
-}
-
-#btn-accesibilidad:focus-visible,
-#menu-accesibilidad input:focus-visible,
-#menu-accesibilidad select:focus-visible {
-    outline: 3px solid #2878ff;
-    outline-offset: 3px;
+body.modo-oscuro #btn-menu-lateral {
+    background: #222222;
+    color: #81c784;
+    border-color: #81c784;
 }
 
 /* Modal de aviso de cookies */
@@ -1619,3 +1723,31 @@ body.alto-contraste .botones-redes a:focus-visible {
     background-color: #ffff00 !important;
     color: #000000 !important;
 }
+/* ========================================
+   TAMAÑO DEL TEXTO - ACCESIBILIDAD
+======================================== */
+
+/* ========================================
+   TAMAÑO DEL TEXTO - ACCESIBILIDAD
+======================================== */
+
+:root {
+    font-size: 100%;
+}
+
+html.texto-pequeno {
+    font-size: 87.5%;
+}
+
+html.texto-normal {
+    font-size: 100%;
+}
+
+html.texto-grande {
+    font-size: 118.75%;
+}
+
+html.texto-muy-grande {
+    font-size: 143.75%;
+}
+

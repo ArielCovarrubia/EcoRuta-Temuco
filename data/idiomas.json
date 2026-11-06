@@ -11,7 +11,8 @@
             "highContrast": "Alto contraste",
             "darkMode": "Modo oscuro",
             "language": "Idioma",
-            "contact": "Contacto"
+            "contact": "Contacto",
+            "contacts": "Contactos"
         },
         "footer": {
             "followUs": "Síguenos",
@@ -170,7 +171,8 @@
             "highContrast": "High contrast",
             "darkMode": "Dark mode",
             "language": "Language",
-            "contact": "Contact"
+            "contact": "Contact",
+            "contacts": "Contacts"
         },
         "footer": {
             "followUs": "Follow us",

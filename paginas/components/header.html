@@ -1,3 +1,4 @@
+
 <header>
     <h1 id="page-title">EcoRuta</h1>
 
@@ -11,81 +12,145 @@
 
         <div class="acciones-header">
 
-            <button id="btn-accesibilidad" type="button" aria-expanded="false" aria-haspopup="true"
-                aria-controls="menu-accesibilidad" data-i18n="header.accessibility">
-                Accesibilidad
+            <!-- Botón de tres líneas -->
+            <button
+                id="btn-menu-lateral"
+                type="button"
+                aria-label="Abrir menú"
+                aria-expanded="false"
+                aria-controls="menu-accesibilidad"
+            >
+                <span aria-hidden="true">☰</span>
             </button>
 
-            <div id="menu-accesibilidad" hidden>
+        </div>
+    </div>
 
-                <fieldset class="grupo-tamano-texto">
-                    <legend data-i18n="header.textSize">
-                        Tamaño del texto
-                    </legend>
+    <!-- Fondo oscuro detrás del menú -->
+    <div id="fondo-menu-lateral" hidden></div>
 
-                    <div class="botones-tamano">
+    <!-- Barra lateral -->
+    <aside
+        id="menu-accesibilidad"
+        aria-label="Menú principal"
+        aria-hidden="true"
+        hidden
+    >
 
-                        <button type="button" class="btn-tamano" data-tamano="pequeno" aria-pressed="false"
-                            data-i18n="header.small">
-                            Pequeño
-                        </button>
+        <button
+            id="btn-cerrar-menu"
+            type="button"
+            aria-label="Cerrar menú"
+        >
+            ×
+        </button>
 
-                        <button type="button" class="btn-tamano" data-tamano="normal" aria-pressed="true"
-                            data-i18n="header.normal">
-                            Normal
-                        </button>
+        <!-- SECCIÓN CONTACTOS -->
+        <section class="seccion-contactos">
+            <h2 data-i18n="header.contacts">Contactos</h2>
 
-                        <button type="button" class="btn-tamano" data-tamano="grande" aria-pressed="false"
-                            data-i18n="header.large">
-                            Grande
-                        </button>
+            <a href="mailto:info@ecoruta.cl">
+                Correo: info@ecoruta.cl
+            </a>
 
-                        <button type="button" class="btn-tamano" data-tamano="muy-grande" aria-pressed="false"
-                            data-i18n="header.veryLarge">
-                            Muy grande
-                        </button>
+            <a href="tel:+56912345678">
+                Teléfono: +56 9 1234 5678
+            </a>
+            
+            <a id="enlace-contacto" data-link="contact" href="../paginas extra/contacto.html">
+                <span data-i18n="header.contact">Contacto</span>
+            </a>
 
-                    </div>
-                </fieldset>
+            <div class="redes-menu">
 
-                <p id="anuncio-accesibilidad" class="sr-only" aria-live="polite" aria-atomic="true"></p>
+                <a
+                    href="https://www.facebook.com/profile.php?id=61596273801992"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Facebook de EcoRuta"
+                >
+                    Facebook
+                </a>
 
-                <label>
-                    <input type="checkbox" id="contraste-alto">
-                    <span data-i18n="header.highContrast">
-                        Alto contraste
-                    </span>
-                </label>
+                <a
+                    href="https://www.instagram.com/ecoruta2026/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram de EcoRuta"
+                >
+                    Instagram
+                </a>
 
-                <label>
-                    <input type="checkbox" id="btn-tema">
-                    <span data-i18n="header.darkMode">
-                        Modo oscuro
-                    </span>
-                </label>
-
-                <div class="selector-idioma">
-
-                    <label for="selector-idioma" data-i18n="header.language">
-                        Idioma
-                    </label>
-
-                    <select id="selector-idioma">
-                        <option value="es">Español</option>
-                        <option value="en">English</option>
-                    </select>
-
-                </div>
-
-                <a id="enlace-contacto" data-link="contact" href="../paginas extra/contacto.html">
-                    <span data-i18n="header.contact">
-                        Contacto
-                    </span>
+                <a
+                    href="https://x.com/EcoRuta2026"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="X de EcoRuta"
+                >
+                    X
                 </a>
 
             </div>
+        </section>
 
-        </div>
+        <!-- SECCIÓN ACCESIBILIDAD -->
+        <section class="seccion-accesibilidad">
 
-    </div>
+            <h2 data-i18n="header.accessibility">Accesibilidad</h2>
+
+            <fieldset class="grupo-tamano-texto">
+                <legend data-i18n="header.textSize">
+                    Tamaño del texto
+                </legend>
+
+                <div class="botones-tamano">
+
+                    <button type="button" class="btn-tamano"
+                        data-tamano="pequeno" aria-pressed="false"
+                        data-i18n="header.small">Pequeño</button>
+
+                    <button type="button" class="btn-tamano"
+                        data-tamano="normal" aria-pressed="true"
+                        data-i18n="header.normal">Normal</button>
+
+                    <button type="button" class="btn-tamano"
+                        data-tamano="grande" aria-pressed="false"
+                        data-i18n="header.large">Grande</button>
+
+                    <button type="button" class="btn-tamano"
+                        data-tamano="muy-grande" aria-pressed="false"
+                        data-i18n="header.veryLarge">Muy grande</button>
+
+                </div>
+            </fieldset>
+
+            <p id="anuncio-accesibilidad" class="sr-only"
+                aria-live="polite" aria-atomic="true"></p>
+
+            <label>
+                <input type="checkbox" id="contraste-alto">
+                <span data-i18n="header.highContrast">Alto contraste</span>
+            </label>
+
+            <label>
+                <input type="checkbox" id="btn-tema">
+                <span data-i18n="header.darkMode">Modo oscuro</span>
+            </label>
+
+            <div class="selector-idioma">
+
+                <label for="selector-idioma" data-i18n="header.language">
+                    Idioma
+                </label>
+
+                <select id="selector-idioma">
+                    <option value="es">Español</option>
+                    <option value="en">English</option>
+                </select>
+
+            </div>
+
+        </section>
+
+    </aside>
 </header>
