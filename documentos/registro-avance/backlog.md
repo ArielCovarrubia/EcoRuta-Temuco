@@ -8,7 +8,7 @@
 - **QA / Tester:** Ariel Covarrubia
 - **Developers:** Lissete Delgado & Carlos Meléndez
 - **Scrum Master:** Patricio Salazar
-- **Fecha de Última Actualización:** 05/11/2026
+- **Fecha de Última Actualización:** 06/11/2026
 ---
 
 ## Resumen de Estado del Proyecto
