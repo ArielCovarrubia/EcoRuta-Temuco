@@ -13,7 +13,7 @@
 
 ## Resumen de Estado del Proyecto
 
-- **Estado General:** Cierre del Sprint 2 (Semana 5). La revisión QA del 03/11/2026 calificó el incremento como *Aceptado*. Tras la clase del 05/11/2026 cambia la prioridad: **la migración a React con TypeScript (HU-25) pasa a ser la primera prioridad**, y todo cambio nuevo de esta semana se construye directamente en React.
+- **Estado General:** La revisión QA del 03/11/2026 calificó el incremento como *Aceptado*. Cambio de prioridad: **la migración a React con TypeScript (HU-25) pasa a ser la primera prioridad**, y todo cambio nuevo de esta semana se construye directamente en React.
 - **Cambios pedidos:**
   - El detalle de una ruta ya no abre páginas nuevas: al presionar la tarjeta se abre una ventana más grande con toda la información (HU-09).
   - Las rutas deben indicar distancia en kilómetros, duración, punto de partida y punto de destino (HU-23).
@@ -21,6 +21,7 @@
   - El clima se muestra al presionar un botón, no de forma fija junto a la tarjeta (HU-04).
   - El botón "Accesibilidad" se reemplaza por un menú de tres líneas que abre una barra lateral con Accesibilidad y Contacto (HU-26).
 - **Validación de Cliente (Entrevista 2):** Se aprobó la línea gráfica, la paleta de colores y la disposición en cuadrícula. Las redes sociales fueron autorizadas como canales de contacto oficiales adicionales. Se aprueba la pertinencia del buscador general y herramientas de clima para turistas en terreno.
+- **Decisión del equipo:** las rutas se servirán desde una **API propia**, para que las tarjetas, el detalle y la incripción se generen de forma dinámica a partir de un backend controlado por el equipo. El catálogo de emprendedores de mantiene en MockAPI
 - **Entregable de la semana:** todo el código en TypeScript (HU-16) y rutas obtenidas desde una API (HU-23), funcionando en GitHub Pages
 - **Refinamiento de Alcance:** Se estableció un sistema de puntaje estricto de 12 puntos para evaluar la sustentabilidad antes de su publicación (RN-02). El mismo criterio de pertinencia territorial se aplica también a las **rutas**.
 - **Hitos Logrados Recientemente:** Buscador dinámico de rutas (HU-22), ruta recomendada del día (HU-10), API de clima con Open-Meteo (HU-04), suite de 26 pruebas unitarias en TypeScript y cierre de BUG-04, BUG-05, BUG-06, BUG-08, BUG-09, BUG-10, BUG-11 e ISSUE-03.
@@ -47,7 +48,7 @@ Todas las implementaciones desarrolladas a partir del Sprint 2 deben cumplir obl
 * **RN-05 (Arquitectura de Datos y APIs):** Los datos dinámicos provendrán de una fuente externa (API). La web debe contemplar manejo de errores si la API falla, evitando pantallas en blanco.
 * **RN-06 (Privacidad y Memoria):** Las preferencias de accesibilidad e idioma se guardarán localmente (Cookies/localStorage) de manera temporal, sin exigir registro ni recolectar datos personales del visitante.
 * **RN-07 (Clasificación de Rutas):** Cada ruta debe tener una dificultad (`Fácil`, `Media`, `Difícil`) y un tipo de actividad de una lista cerrada (`Senderismo`, `Trekking`, `Cultura y Patrimonio`, `Termas`, `Deportes acuáticos`). Los filtros del buscador (HU-22) dependen de estos valores.
-* **RN-08 (Datos de Inscripción):** Mientras el proyecto use MockAPI, los datos personales de una inscripción (nombre, correo, teléfono) **no se envían ni se guardan**, porque cualquier persona con la URL de MockAPI puede leer todos sus registros. Se validan, y se muestra una confirmación en pantalla. El envío a `/inscripciones` se habilita cuando exista un backend con control de acceso (Sprint 3).
+* **RN-08 (Datos de Inscripción):** Los datos personales de una inscripción (nombre, correo, teléfono) solo se envían a la API propia mediante  `POST /api/incripciones`. La API **nunca expone públicamente** el listado de inscripciones (no existe un `GET` abieto), valida los datos también en el servidor y guarda solo los campos definidos. Si la API no está disponible, el formulario muestra la confirmación en pantalla sin guardar nada.
 ---
 
 ## Priorización de Tareas (Prueba QA / GitHub Issues)
@@ -57,13 +58,15 @@ Todas las implementaciones desarrolladas a partir del Sprint 2 deben cumplir obl
 | :---: | :--- | :---: | :---: | :---: |
 | 1 | Crear la base del proyecto en React con TypeScript (**bloqueante**) | Developer 1 | HU-25 | — |
 | 2 | Definir el contrato de datos `src/types/ruta.ts` y JSON de ejemplo con 3 rutas | QA | HU-23 | — |
+| 2b | Crear la API propia (Node.js + Express + TypeScript) en la carpeta `api/` y publicarla | QA + Developers | HU-23 | 2 |
 | 3 | Definir los campos de la inscripción y los textos de las rutas | PO | HU-27 / HU-23 | — |
-| 4 | Publicar `/rutas` en MockAPI y crear `src/services/rutasApi.ts` | QA | HU-23 | 2, 3 |
+| 4 | Cargar los datos de rutas en la API propia y crear `src/services/rutasApi.ts` | QA | HU-23 | 2b, 3 |
 | 5 | Menú de tres líneas con barra lateral (Accesibilidad y Contacto) | Developer 1 | HU-26 | 1 |
 | 6 | Ventana emergente con el detalle completo de la ruta y clima al presionar | Developer 2 | HU-09 / HU-04 | 1, 2 |
 | 7 | Formulario de inscripción a la ruta | Developer 2 | HU-27 | 3, 6 |
 | 8 | Lista de APIs y parámetros de backend para la presentación; reparto de roles | Scrum Master / PO | — | 4 |
-| 9 | Resolver BUG-14 (contraste) | Scrum Master | — | — |
+| 9 | Verificar y cerrar los issues #83 (BUG-13) y #84 (BUG-14), ya corregidos en código | QA | — | — |
+
 ---
 
 ## Validación del Catálogo de Rutas
@@ -134,7 +137,7 @@ Descripción breve (para la tarjeta, máximo ~120 caracteres), descripción comp
   - [ ] **Interactivo:** el clima no se muestra fijo; aparece al presionar "Ver clima" dentro del detalle de la ruta, y solo entonces se consulta la API.
   - [ ] Usar las coordenadas del punto de partida de la ruta (`ubicacionInicio`), no las de la ciudad.
   - [ ] Mostrar "Cargando…" mientras responde la API.
-  - [ ] Corregir el contraste del widget de clima (BUG-14).
+  - [x] Corregir el contraste del widget de clima (BUG-14, commit `ba2d6d6`: contraste 9.38:1).
   - [ ] *(Sprint 3)* Pronóstico de los días siguientes (propuesta del PO, Acta 9).
 
 ### [HU-09] Detalle de la ruta en ventana emergente - Reenfocada
@@ -191,16 +194,17 @@ Descripción breve (para la tarjeta, máximo ~120 caracteres), descripción comp
   - [x] Crear un banner informativo indicando el uso de cookies para preferencias de accesibilidad (capa modal, BUG-04 cerrado).
   - [x] Añadir un selector rápido de idioma (ES/EN) con traducciones desde `data/idiomas.json`.
   - [x] Aplicar automáticamente la configuración guardada al cambiar de página (RN-06).
-
+  - [ ] 
 ### [HU-16] Migración completa a TypeScript (Entregable)
-* **Prioridad (MoSCoW):** Must have | **Estado:** En progreso (se cumple dentro de HU-25)
+* **Prioridad (MoSCoW):** Must have | **Estado:** Hecho
 * **Historia:** Como desarrollador, quiero migrar la lógica JS a TypeScript, para reducir errores y mejorar la mantenibilidad.
 * **Criterios de Aceptación:**
   - [x] Crear `tsconfig.json` con configuración compatible con el navegador.
   - [x] Migrar `rutas.ts` con interfaces `Ruta` y `FiltrosRuta` y tipo `Dificultad`.
   - [x] Suite de pruebas unitarias en `tests/pruebas.ts` (26 pruebas aprobadas).
-  - [ ] Toda la lógica restante (`layout`, `buscador`, `clima`, `retorno`, `script`) queda escrita en TypeScript como parte de los componentes y servicios de React.
-  - [ ] Compilar y verificar en GitHub Pages que la accesibilidad, el buscador y el clima sigan funcionando sin errores de consola.
+  - [x] Migrar la lógica restante: `layout.ts`, `buscador.ts`, `clima.ts`, `retorno.ts`, `script.ts` y `puntaje.ts`, cada uno junto a su `.js` compilado (commit `ef084e4`, 05/11/2026).
+  - [ ] Agregar `package.json` con `typescript` y un script de compilación (el README pide `npm install`, pero el archivo no existe).
+  - *Nota PO:* con la migración a React (HU-25) estos archivos pasan a componentes y servicios `.tsx`/`.ts`. Se debe confirmar con el profesor que la carpeta de salida de Vite cumple la regla de "`.ts` junto a sus `.js`".
 
 ### [HU-17] Catálogo Dinámico de Emprendimientos (Consumo API)
 * **Prioridad (MoSCoW):** Must have | **Estado:** Hecho (por trasladar a React)
@@ -237,12 +241,14 @@ Descripción breve (para la tarjeta, máximo ~120 caracteres), descripción comp
 * **Criterios de Aceptación:**
   - [ ] Publicar el contrato `src/types/ruta.ts` con la interface `Ruta` (ver Feedback PO) antes de que la API esté lista.
   - [ ] JSON de ejemplo con 3 rutas reales (una por comuna) para que los developers trabajen mientras la API no esté publicada.
-  - [ ] Endpoint `/rutas` en el mismo MockAPI de `/emprendedores`, con todas las rutas y los campos del contrato.
-  - [ ] `src/services/rutasApi.ts` con una función `async/await` + `fetch` tipada con `Ruta`.
-  - [ ] Validar cada objeto recibido y mostrar solo rutas con `estado: "Publicado"` (RN-02).
-  - [ ] `try/catch` que devuelva un error controlado para mostrar "Cargando…" y un mensaje amigable si la API falla (RN-05).
-  - [ ] Generar las tarjetas desde los datos (resuelve BUG-13).
-
+  - [ ] **API propia** con Node.js + Express + TypeScript en la carpeta `api/` del repositorio, publicada en un servicio que ejecute servidores (ej. Render), ya que GitHub Pages solo publica archivos estáticos.
+  - [ ] Endpoints `GET /api/rutas` (con filtros opcionales `comuna`, `dificultad`, `tipoActividad`, `horasMax`) y `GET /api/rutas/:id`, que devuelven solo rutas con `estado: "Publicado"` (RN-02).
+  - [ ] Respuestas con códigos HTTP correctos (`200`, `400`, `404`, `500`) y CORS habilitado solo para el dominio de GitHub Pages del proyecto.
+  - [ ] `src/services/rutasApi.ts` con una función `async/await` + `fetch` tipada con `Ruta`, y validación de cada objeto recibido.
+  - [ ] `try/catch` que devuelva un error controlado para mostrar "Cargando…" y un mensaje amigable si la API falla; usar el JSON local de respaldo si la API tarda o no responde (RN-05).
+  - [ ] Generar las tarjetas, la ruta del día y el detalle desde los datos de la API (solución definitiva de BUG-13).
+  - [ ] Documentar en el README cómo ejecutar la API en local y su URL publicada.
+   
 ### [HU-26] Menú de tres líneas con barra lateral *(Nueva)*
 * **Prioridad (MoSCoW):** Must have | **Estado:** Por hacer
 * **Historia:** Como visitante, quiero un único menú en el encabezado que reúna las opciones de accesibilidad y los datos de contacto, para encontrarlos rápido sin que ocupen espacio en la página.
@@ -260,7 +266,8 @@ Descripción breve (para la tarjeta, máximo ~120 caracteres), descripción comp
   - [ ] Componente `FormularioInscripcion` accesible desde el botón "Inscribirme" de la ventana de detalle, con la ruta ya seleccionada.
   - [ ] Permitir cambiar la ruta mediante una lista con las rutas publicadas.
   - [ ] Campos y validaciones definidos por el PO (ver Feedback PO), con errores en rojo y mensaje asociado al campo (`aria-describedby`).
-  - [ ] Al enviar, mostrar una confirmación con el resumen de la inscripción (`aria-live="polite"`), sin guardar datos personales (RN-08).
+  - [ ] Enviar la inscripción con `POST /api/inscripciones` a la API propia (RN-08), con validación también en el servidor.
+  - [ ] Mostrar una confirmación con el resumen de la inscripción (`aria-live="polite"`); si la API falla, avisar que la inscripción no se pudo registrar.
   - [ ] Navegación completa por teclado.
 
 ## Historias de Usuario Base y Reenfocadas
@@ -306,7 +313,7 @@ Descripción breve (para la tarjeta, máximo ~120 caracteres), descripción comp
 ---
 
 ## Control de Bugs e Incidencias (Actualizado al 03/11/2026)
-
+ 
 | ID | Incidencia / Hallazgo | Prioridad | Asignado | Estado | Observación |
 | :---: | :--- | :---: | :---: | :---: | :--- |
 | **ISSUE-02** | Falta de etiqueta `<meta name="description">` | **Media** | Developer 2 | **Resuelto / Cerrado** | PR #54 cerrado. Etiquetas añadidas en el `<head>`. |
@@ -320,8 +327,9 @@ Descripción breve (para la tarjeta, máximo ~120 caracteres), descripción comp
 | **BUG-10** | Atrapamiento de scroll en mapas móviles Leaflet | **Media** | Developers | **Resuelto / Cerrado** | `leaflet-gesture-handling` con `gestureHandling: true` en las 3 vistas (WCAG 2.1.2). |
 | **BUG-11** | Botón de emergencias flotante sin nombre accesible | **Media** | Developers | **Resuelto / Cerrado** | `aria-label="Abrir contactos de emergencia"` en `#btn-emergencia-flotante`. |
 | **BUG-12** | Sensibilidad a tildes en `filtrarRutas` y `obtenerRutaDelDia` | **Media** | Developers | **Corregido en código** | `normalizarTexto()` ya está en `rutas.ts` y `rutas.js`. Falta que QA lo verifique y cierre el issue #81. |
-| **BUG-13** | Dependencia estricta de `data-id` en el filtro de rutas | **Media** | Developers | **Pendiente** | Issue #83. Se resuelve al generar las tarjetas desde la API en React (HU-23 / HU-25). |
-| **BUG-14** | Contraste insuficiente en widget de clima y botón "Limpiar filtros" | **Media** | Scrum Master | **Pendiente** | Issue #84. Revisar colores con la norma WCAG AA (RN-04). |
+| **BUG-13** | Dependencia estricta de `data-id` en el filtro de rutas | **Media** | Developers | **Mitigado** | Commit `ba2d6d6`: el id se obtiene de la clave de traducción y las tarjetas sin id no se ocultan. Solución definitiva al generar las tarjetas desde la API propia (HU-23). Issue #83. |
+| **BUG-14** | Contraste insuficiente en widget de clima y botón "Limpiar filtros" | **Media** | Scrum Master | **Corregido en código** | Commit `ba2d6d6`: contraste 9.38:1 en el clima y 6.47:1 en el botón. Falta que QA cierre el issue #84. |
+
 ---
 
 ## Historial de Revisiones
@@ -334,7 +342,7 @@ Descripción breve (para la tarjeta, máximo ~120 caracteres), descripción comp
 * **12/10/2026 (Sprint 2):** Actualización post-Entrevista 2. Se integra el consumo de APIs (HU-17), OpenStreetMap (HU-12), sistema de puntajes RN-02, menú de accesibilidad (HU-11) y se planifican los registros de usuarios para el Sprint 3.
 - **22/10/2026 (Sprint 2):** Registro de reporte Bug Bounty y sesión de Planning Poker. El incremento es calificado como *Aceptado con observaciones* por bloqueos visuales (BUG-04 al 07). La estimación de la API (HU-17) arroja un promedio de 3.2 de dificultad. Se establece un flujo estricto de priorización de tareas (absorber API, resolver issues heredados y arreglar bugs de QA) y se inicia periodo de prueba de "Issues" en GitHub.
 * **28/10/2026 (Sprint 2):** Actualización de tabla de Control de Bugs tras resolver ISSUE-02 y BUG-07 (aprobados en PR). Se agregan al MVP del Sprint las historias HU-22 (Generador Dinámico de Rutas) y HU-23 (API Clima).
-* **06/11/2026 (Cierre Sprint 2):** Integración de la revisión de avance de QA (*Aceptado*): se cierran BUG-04, BUG-05, BUG-06, BUG-08, BUG-09, BUG-10, BUG-11 e ISSUE-03, se confirma el cierre de ISSUE-02 y BUG-07, y se registran BUG-12, BUG-13 y BUG-14. Validación del PO de la comuna, dificultad y tipo de actividad de las 15 rutas (3 con comuna incorrecta, 1 duplicada y 4 con actividad mal clasificada) y carga de los textos de 11 rutas. Se incorporan las indicaciones del profesor: React con TypeScript pasa a primera prioridad (HU-25), se reenfocan HU-09 (detalle en ventana emergente) y HU-04 (clima al presionar), y se agregan HU-10 (ruta recomendada del día), HU-23 (API propia de rutas), HU-24 (publicación de rutas por usuarios, Sprint 3), HU-26 (menú de tres líneas con barra lateral) y HU-27 (inscripción a ruta), junto con RN-07 y RN-08. HU-16 sube a *Must have* por ser entregable de laboratorio. Se define la lista de APIs para la presentación.
+* **06/11/2026 (Sprint 2):** Integración de la revisión de avance de QA (*Aceptado*): se cierran BUG-04, BUG-05, BUG-06, BUG-08, BUG-09, BUG-10, BUG-11 e ISSUE-03, se confirma el cierre de ISSUE-02 y BUG-07, y se registran BUG-12, BUG-13 y BUG-14. Validación del PO de la comuna, dificultad y tipo de actividad de las 15 rutas (3 con comuna incorrecta, 1 duplicada y 4 con actividad mal clasificada) y carga de los textos de 11 rutas. Se incorporan las indicaciones del profesor: React con TypeScript pasa a primera prioridad (HU-25), se reenfocan HU-09 (detalle en ventana emergente) y HU-04 (clima al presionar), y se agregan HU-10 (ruta recomendada del día), HU-23 (API propia de rutas), HU-24 (publicación de rutas por usuarios, Sprint 3), HU-26 (menú de tres líneas con barra lateral) y HU-27 (inscripción a ruta), junto con RN-07 y RN-08. HU-16 queda como *Hecho* tras la migración de todos los `.js` a `.ts`, y BUG-13 y BUG-14 quedan corregidos en código. El equipo decide construir una **API propia** para las rutas (Node.js + Express + TypeScript) en lugar de MockAPI, y la inscripción se enviará a esa API (RN-08). Se define la lista de APIs para la presentación.
 
 ### Compromiso de Cierre del Product Owner (Sprint 1) `@CarlosMeléndez`
 * Se da por finalizado el levantamiento inicial del Sprint 1. Los ajustes de rutas relativas hacia alguno de los bugs pendientes a resolver y el desarrollo de componentes del Sprint 2 quedan delegados a la célula de desarrollo.
