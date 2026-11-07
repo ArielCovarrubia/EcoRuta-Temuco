@@ -99,26 +99,23 @@ fetch(`${basePath}header.html`)
     const headerContainer = document.getElementById('header-container');
     if (!headerContainer)
         return;
-        headerContainer.innerHTML = data;
-        // Carga el funcionamiento del menú lateral.
-        const rutaMenuLateral = isInsideExtraPages
-            ? '../../js/menuLateral.js'
-            : isInsideTests || isInsidePages
-                ? '../js/menuLateral.js'
-                : 'js/menuLateral.js';
-
-        const scriptMenuLateral = document.createElement('script');
-        scriptMenuLateral.src = rutaMenuLateral;
-
-        scriptMenuLateral.onload = () => {
-            window.inicializarMenuLateral?.();
-        };
-
-        scriptMenuLateral.onerror = () => {
-            console.error('No se pudo cargar menuLateral.js');
-        };
-
-        document.head.appendChild(scriptMenuLateral);
+    headerContainer.innerHTML = data;
+    // Carga el funcionamiento del menú lateral.
+    const rutaMenuLateral = isInsideExtraPages
+        ? '../../js/menuLateral.js'
+        : isInsideTests || isInsidePages
+            ? '../js/menuLateral.js'
+            : 'js/menuLateral.js';
+    const scriptMenuLateral = document.createElement('script');
+    scriptMenuLateral.src = rutaMenuLateral;
+    scriptMenuLateral.onload = () => {
+        const ventana = window;
+        ventana.inicializarMenuLateral?.();
+    };
+    scriptMenuLateral.onerror = () => {
+        console.error('No se pudo cargar menuLateral.js');
+    };
+    document.head.appendChild(scriptMenuLateral);
     const traduccionesCargadas = await promesaTraducciones;
     if (traduccionesCargadas) {
         const idiomaGuardado = localStorage.getItem('guardarIdioma') === 'true'
@@ -127,45 +124,8 @@ fetch(`${basePath}header.html`)
         aplicarIdioma(idiomaGuardado || 'es');
         iniciarSelectorIdioma();
     }
-    const botonAccesibilidad = headerContainer.querySelector('#btn-accesibilidad');
-    const menuAccesibilidad = headerContainer.querySelector('#menu-accesibilidad');
-    const selectorTexto = headerContainer.querySelector('#tamano-texto');
     const controlContraste = headerContainer.querySelector('#contraste-alto');
     const controlTema = headerContainer.querySelector('#btn-tema');
-    if (botonAccesibilidad && menuAccesibilidad) {
-        function cerrarMenuAccesibilidad() {
-            menuAccesibilidad.hidden = true;
-            botonAccesibilidad.setAttribute('aria-expanded', 'false');
-        }
-        // Abrir y cerrar al presionar el botón
-        botonAccesibilidad.addEventListener('click', () => {
-            const abierto = botonAccesibilidad.getAttribute('aria-expanded') === 'true';
-            if (abierto) {
-                cerrarMenuAccesibilidad();
-            }
-            else {
-                menuAccesibilidad.hidden = false;
-                botonAccesibilidad.setAttribute('aria-expanded', 'true');
-            }
-        });
-        // Cerrar al hacer clic fuera del menú
-        document.addEventListener('click', (evento) => {
-            const objetivo = evento.target instanceof Node ? evento.target : null;
-            if (objetivo &&
-                !menuAccesibilidad.contains(objetivo) &&
-                !botonAccesibilidad.contains(objetivo)) {
-                cerrarMenuAccesibilidad();
-            }
-        });
-        // Cerrar al presionar Escape
-        document.addEventListener('keydown', (evento) => {
-            if (evento.key === 'Escape' &&
-                botonAccesibilidad.getAttribute('aria-expanded') === 'true') {
-                cerrarMenuAccesibilidad();
-                botonAccesibilidad.focus();
-            }
-        });
-    }
     const guardarAccesibilidad = localStorage.getItem('guardarAccesibilidad') === 'true';
     const temaGuardado = guardarAccesibilidad
         ? localStorage.getItem('tema')
@@ -201,46 +161,32 @@ fetch(`${basePath}header.html`)
     const tamanoInicial = textoGuardado && tamanosValidos.includes(textoGuardado)
         ? textoGuardado
         : 'normal';
-
-                function aplicarTamanoTexto(tamano, anunciar = false) {
-            document.documentElement.classList.remove(
-                'texto-pequeno',
-                'texto-normal',
-                'texto-grande',
-                'texto-muy-grande'
-            );
-
-            document.documentElement.classList.add(`texto-${tamano}`);
-
-            botonesTamano.forEach(btn => {
-                const esActivo = btn.dataset.tamano === tamano;
-                btn.setAttribute('aria-pressed', String(esActivo));
-            });
-
-            if (anunciar && anuncioAccesibilidad) {
-                const nombreLegible = nombreTamano[tamano] || tamano;
-                anuncioAccesibilidad.textContent =
-                    `Tamaño del texto establecido en ${nombreLegible}.`;
-            }
-        }
-
-        aplicarTamanoTexto(tamanoInicial, false);
-
-        botonesTamano.forEach(boton => {
-            boton.addEventListener('click', () => {
-                const tamano = boton.dataset.tamano;
-
-                if (!tamano || !tamanosValidos.includes(tamano)) return;
-
-                aplicarTamanoTexto(tamano, true);
-
-                if (localStorage.getItem('guardarAccesibilidad') !== 'false') {
-                    localStorage.setItem('tamanoTexto', tamano);
-                }
-            });
+    function aplicarTamanoTexto(tamano, anunciar = false) {
+        document.documentElement.classList.remove('texto-pequeno', 'texto-normal', 'texto-grande', 'texto-muy-grande');
+        document.documentElement.classList.add(`texto-${tamano}`);
+        botonesTamano.forEach(btn => {
+            const esActivo = btn.dataset.tamano === tamano;
+            btn.setAttribute('aria-pressed', String(esActivo));
         });
-
-        // Cambiar alto contraste.
+        if (anunciar && anuncioAccesibilidad) {
+            const nombreLegible = nombreTamano[tamano] || tamano;
+            anuncioAccesibilidad.textContent =
+                `Tamaño del texto establecido en ${nombreLegible}.`;
+        }
+    }
+    aplicarTamanoTexto(tamanoInicial, false);
+    botonesTamano.forEach(boton => {
+        boton.addEventListener('click', () => {
+            const tamano = boton.dataset.tamano;
+            if (!tamano || !tamanosValidos.includes(tamano))
+                return;
+            aplicarTamanoTexto(tamano, true);
+            if (localStorage.getItem('guardarAccesibilidad') !== 'false') {
+                localStorage.setItem('tamanoTexto', tamano);
+            }
+        });
+    });
+    // Cambiar alto contraste.
     if (controlContraste) {
         controlContraste.addEventListener('change', () => {
             const activo = controlContraste.checked;

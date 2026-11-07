@@ -74,8 +74,8 @@ Permite revisar localmente la versión compilada.
 Los archivos `.ts` están junto a sus `.js`. Desde la raíz, compila para renovar el JavaScript que cargan las páginas. Se requiere TypeScript 6:
 
 ```bash
-npx --yes --package typescript@5 tsc -p tsconfig.json
-npx --yes --package typescript@5 tsc -p tests/tsconfig.json
+npx --yes --package typescript@6 tsc -p tsconfig.json
+npx --yes --package typescript@6 tsc -p tests/tsconfig.json
 ```
 
 La primera orden compila los scripts de `js/`; la segunda renueva `tests/pruebas.js`.

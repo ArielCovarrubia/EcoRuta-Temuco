@@ -16,7 +16,9 @@
             "navLabel": "Navegación principal",
             "menuOpen": "Abrir menú",
             "menuLabel": "Menú principal",
-            "menuClose": "Cerrar menú"
+            "menuClose": "Cerrar menú",
+            "emailPending": "Correo: Pendiente de confirmar",
+            "phonePending": "Teléfono: Pendiente de confirmar"
         },
         "footer": {
             "followUs": "Síguenos",
@@ -180,7 +182,9 @@
             "navLabel": "Main navigation",
             "menuOpen": "Open menu",
             "menuLabel": "Main menu",
-            "menuClose": "Close menu"
+            "menuClose": "Close menu",
+            "emailPending": "Email: To be confirmed",
+            "phonePending": "Phone: To be confirmed"
         },
         "footer": {
             "followUs": "Follow us",

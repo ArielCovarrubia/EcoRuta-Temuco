@@ -14,7 +14,7 @@ function App() {
             </header>
 
             <main>
-                <h1>Rutas de EcoRuta</h1>
+                <h2>Rutas de EcoRuta</h2>
                 <p>Descubre las rutas disponibles de nuestra plataforma.</p>
 
                 <ListaRutas rutas={rutas} />
