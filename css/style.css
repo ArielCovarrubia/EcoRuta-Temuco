@@ -1034,7 +1034,7 @@ body.modo-oscuro .contacto-emprendedor p {
 #menu-accesibilidad.abierto {
     transform: translateX(0);
     visibility: visible;
-    transition-delay: 0s;
+    transition: transform 0.3s ease;
 }
 
 /* Ocultar completamente */

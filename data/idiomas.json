@@ -12,7 +12,11 @@
             "darkMode": "Modo oscuro",
             "language": "Idioma",
             "contact": "Contacto",
-            "contacts": "Contactos"
+            "contacts": "Contactos",
+            "navLabel": "Navegación principal",
+            "menuOpen": "Abrir menú",
+            "menuLabel": "Menú principal",
+            "menuClose": "Cerrar menú"
         },
         "footer": {
             "followUs": "Síguenos",
@@ -172,7 +176,11 @@
             "darkMode": "Dark mode",
             "language": "Language",
             "contact": "Contact",
-            "contacts": "Contacts"
+            "contacts": "Contacts",
+            "navLabel": "Main navigation",
+            "menuOpen": "Open menu",
+            "menuLabel": "Main menu",
+            "menuClose": "Close menu"
         },
         "footer": {
             "followUs": "Follow us",

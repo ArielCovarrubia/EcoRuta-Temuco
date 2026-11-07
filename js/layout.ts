@@ -177,73 +177,11 @@ fetch(`${basePath}header.html`)
             iniciarSelectorIdioma();
         }
 
-        const botonAccesibilidad =
-            headerContainer.querySelector<HTMLButtonElement>('#btn-accesibilidad');
-
-        const menuAccesibilidad =
-            headerContainer.querySelector<HTMLElement>('#menu-accesibilidad');
-
-        const selectorTexto =
-            headerContainer.querySelector<HTMLSelectElement>('#tamano-texto');
-
         const controlContraste =
             headerContainer.querySelector<HTMLInputElement>('#contraste-alto');
 
         const controlTema =
             headerContainer.querySelector<HTMLInputElement>('#btn-tema');
-
-        if (botonAccesibilidad && menuAccesibilidad) {
-
-            function cerrarMenuAccesibilidad() {
-                menuAccesibilidad!.hidden = true;
-
-                botonAccesibilidad!.setAttribute(
-                    'aria-expanded',
-                    'false'
-                );
-            }
-
-            // Abrir y cerrar al presionar el botón
-            botonAccesibilidad.addEventListener('click', () => {
-                const abierto =
-                    botonAccesibilidad.getAttribute('aria-expanded') === 'true';
-
-                if (abierto) {
-                    cerrarMenuAccesibilidad();
-                } else {
-                    menuAccesibilidad.hidden = false;
-
-                    botonAccesibilidad.setAttribute(
-                        'aria-expanded',
-                        'true'
-                    );
-                }
-            });
-
-            // Cerrar al hacer clic fuera del menú
-            document.addEventListener('click', (evento: MouseEvent) => {
-                const objetivo = evento.target instanceof Node ? evento.target : null;
-                if (
-                    objetivo &&
-                    !menuAccesibilidad.contains(objetivo) &&
-                    !botonAccesibilidad.contains(objetivo)
-                ) {
-                    cerrarMenuAccesibilidad();
-                }
-            });
-
-            // Cerrar al presionar Escape
-            document.addEventListener('keydown', (evento: KeyboardEvent) => {
-                if (
-                    evento.key === 'Escape' &&
-                    botonAccesibilidad.getAttribute('aria-expanded') === 'true'
-                ) {
-                    cerrarMenuAccesibilidad();
-                    botonAccesibilidad.focus();
-                }
-            });
-
-        }
 
         const guardarAccesibilidad =
             localStorage.getItem('guardarAccesibilidad') === 'true';
@@ -299,7 +237,7 @@ fetch(`${basePath}header.html`)
             ? textoGuardado
             : 'normal';
 
-                function aplicarTamanoTexto(tamano: string, anunciar = false): void {
+        function aplicarTamanoTexto(tamano: string, anunciar = false): void {
             document.documentElement.classList.remove(
                 'texto-pequeno',
                 'texto-normal',

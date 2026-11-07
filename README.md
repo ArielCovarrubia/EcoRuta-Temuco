@@ -71,7 +71,7 @@ Permite revisar localmente la versión compilada.
 
 ## Compilar TypeScript
 
-Los archivos `.ts` están junto a sus `.js`. Desde la raíz, compila para renovar el JavaScript que cargan las páginas. Se requiere TypeScript 5:
+Los archivos `.ts` están junto a sus `.js`. Desde la raíz, compila para renovar el JavaScript que cargan las páginas. Se requiere TypeScript 6:
 
 ```bash
 npx --yes --package typescript@5 tsc -p tsconfig.json

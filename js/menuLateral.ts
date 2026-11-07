@@ -50,9 +50,9 @@ function inicializarMenuLateral(): void {
 
         requestAnimationFrame(() => {
             panel.classList.add('abierto');
+            cerrar.focus();
         });
 
-        cerrar.focus();
     }
 
     // Cierra el menú lateral.
