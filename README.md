@@ -18,18 +18,56 @@ Eco Ruta Temuco, desarrollado por The Frontend Dropout (TFD), es una plataforma 
 
 - HTML5 / CSS3
 - JavaScript / TypeScript
-- (Framework a definir)
-- (API consumida)
+- React 19
+- Vite 8
+- Node.js / npm
+- Mock API REST (Emprendedores)
+
 
 ## Cómo ejecutar el proyecto
 
-```bash
-# Instalar dependencias
-npm install
+### Requisitos previos
 
-# Ejecutar en modo desarrollo
+- Node.js instalado.
+- npm (incluido con Node.js).
+- Git.
+
+### Instalación de dependencias
+
+Desde la carpeta raíz del repositorio, ejecutar:
+
+```bash
+npm install
+```
+
+Este comando instala las dependencias declaradas en `package.json`.
+
+### Ejecutar la aplicación React
+
+```bash
 npm run dev
 ```
+
+La aplicación estará disponible en:
+
+http://localhost:5173/react.html
+
+### Compilar para producción
+
+```bash
+npm run build
+```
+
+Este comando verifica TypeScript y genera los archivos de producción en la carpeta `dist/`.
+
+### Visualizar la compilación
+
+```bash
+npm run preview
+```
+
+Permite revisar localmente la versión compilada.
+
 
 ## Compilar TypeScript
 
@@ -45,7 +83,7 @@ La primera orden compila los scripts de `js/`; la segunda renueva `tests/pruebas
 ## Estado del proyecto
 
 - Sprint actual: Semana 4 de Sprint 2
-- Última actualización: 25 de octubre
+- Última actualización: 06 de noviembre
 
 ## Consumo de API / Integración
 
