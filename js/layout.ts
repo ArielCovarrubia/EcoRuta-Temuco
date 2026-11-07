@@ -141,6 +141,29 @@ fetch(`${basePath}header.html`)
         if (!headerContainer) return;
 
         headerContainer.innerHTML = data;
+        // Carga el funcionamiento del menú lateral.
+        const rutaMenuLateral = isInsideExtraPages
+            ? '../../js/menuLateral.js'
+            : isInsideTests || isInsidePages
+                ? '../js/menuLateral.js'
+                : 'js/menuLateral.js';
+
+        const scriptMenuLateral = document.createElement('script');
+        scriptMenuLateral.src = rutaMenuLateral;
+
+        scriptMenuLateral.onload = () => {
+            const ventana = window as Window & {
+                inicializarMenuLateral?: () => void;
+            };
+
+            ventana.inicializarMenuLateral?.();
+        };
+
+        scriptMenuLateral.onerror = () => {
+            console.error('No se pudo cargar menuLateral.js');
+        };
+
+        document.head.appendChild(scriptMenuLateral);
 
         const traduccionesCargadas = await promesaTraducciones;
 
@@ -154,73 +177,11 @@ fetch(`${basePath}header.html`)
             iniciarSelectorIdioma();
         }
 
-        const botonAccesibilidad =
-            headerContainer.querySelector<HTMLButtonElement>('#btn-accesibilidad');
-
-        const menuAccesibilidad =
-            headerContainer.querySelector<HTMLElement>('#menu-accesibilidad');
-
-        const selectorTexto =
-            headerContainer.querySelector<HTMLSelectElement>('#tamano-texto');
-
         const controlContraste =
             headerContainer.querySelector<HTMLInputElement>('#contraste-alto');
 
         const controlTema =
             headerContainer.querySelector<HTMLInputElement>('#btn-tema');
-
-        if (botonAccesibilidad && menuAccesibilidad) {
-
-            function cerrarMenuAccesibilidad() {
-                menuAccesibilidad!.hidden = true;
-
-                botonAccesibilidad!.setAttribute(
-                    'aria-expanded',
-                    'false'
-                );
-            }
-
-            // Abrir y cerrar al presionar el botón
-            botonAccesibilidad.addEventListener('click', () => {
-                const abierto =
-                    botonAccesibilidad.getAttribute('aria-expanded') === 'true';
-
-                if (abierto) {
-                    cerrarMenuAccesibilidad();
-                } else {
-                    menuAccesibilidad.hidden = false;
-
-                    botonAccesibilidad.setAttribute(
-                        'aria-expanded',
-                        'true'
-                    );
-                }
-            });
-
-            // Cerrar al hacer clic fuera del menú
-            document.addEventListener('click', (evento: MouseEvent) => {
-                const objetivo = evento.target instanceof Node ? evento.target : null;
-                if (
-                    objetivo &&
-                    !menuAccesibilidad.contains(objetivo) &&
-                    !botonAccesibilidad.contains(objetivo)
-                ) {
-                    cerrarMenuAccesibilidad();
-                }
-            });
-
-            // Cerrar al presionar Escape
-            document.addEventListener('keydown', (evento: KeyboardEvent) => {
-                if (
-                    evento.key === 'Escape' &&
-                    botonAccesibilidad.getAttribute('aria-expanded') === 'true'
-                ) {
-                    cerrarMenuAccesibilidad();
-                    botonAccesibilidad.focus();
-                }
-            });
-
-        }
 
         const guardarAccesibilidad =
             localStorage.getItem('guardarAccesibilidad') === 'true';
@@ -277,17 +238,6 @@ fetch(`${basePath}header.html`)
             : 'normal';
 
         function aplicarTamanoTexto(tamano: string, anunciar = false): void {
-            document.body.classList.remove(
-                'texto-pequeno',
-                'texto-normal',
-                'texto-grande',
-                'texto-muy-grande',
-                'texto-grande-antiguo'
-            );
-
-            document.body.classList.add(`texto-${tamano}`);
-
-            // Aplicar el tamaño también al elemento raíz html.
             document.documentElement.classList.remove(
                 'texto-pequeno',
                 'texto-normal',
@@ -297,13 +247,11 @@ fetch(`${basePath}header.html`)
 
             document.documentElement.classList.add(`texto-${tamano}`);
 
-            // 1. Actualiza el estado visual/accesible de los botones.
             botonesTamano.forEach(btn => {
                 const esActivo = btn.dataset.tamano === tamano;
                 btn.setAttribute('aria-pressed', String(esActivo));
             });
 
-            // 2. Anuncio para lectores de pantalla.
             if (anunciar && anuncioAccesibilidad) {
                 const nombreLegible = nombreTamano[tamano] || tamano;
                 anuncioAccesibilidad.textContent =
@@ -316,6 +264,7 @@ fetch(`${basePath}header.html`)
         botonesTamano.forEach(boton => {
             boton.addEventListener('click', () => {
                 const tamano = boton.dataset.tamano;
+
                 if (!tamano || !tamanosValidos.includes(tamano)) return;
 
                 aplicarTamanoTexto(tamano, true);
