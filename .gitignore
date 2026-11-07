@@ -17,3 +17,6 @@ node_modules/
 # Archivos temporales o de log
 *.log
 *.tmp
+
+# Compilacion de React y Vite
+dist/

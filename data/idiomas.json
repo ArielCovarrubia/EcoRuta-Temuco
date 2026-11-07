@@ -11,7 +11,14 @@
             "highContrast": "Alto contraste",
             "darkMode": "Modo oscuro",
             "language": "Idioma",
-            "contact": "Contacto"
+            "contact": "Contacto",
+            "contacts": "Contactos",
+            "navLabel": "Navegación principal",
+            "menuOpen": "Abrir menú",
+            "menuLabel": "Menú principal",
+            "menuClose": "Cerrar menú",
+            "emailPending": "Correo: Pendiente de confirmar",
+            "phonePending": "Teléfono: Pendiente de confirmar"
         },
         "footer": {
             "followUs": "Síguenos",
@@ -39,6 +46,7 @@
             "region": "Región",
             "phone": "Teléfono",
             "email": "Correo electrónico",
+            "pending": "Pendiente de confirmar",
             "formTitle": "Envíanos un mensaje",
             "name": "Nombre",
             "namePlaceholder": "Tu nombre completo",
@@ -170,7 +178,14 @@
             "highContrast": "High contrast",
             "darkMode": "Dark mode",
             "language": "Language",
-            "contact": "Contact"
+            "contact": "Contact",
+            "contacts": "Contacts",
+            "navLabel": "Main navigation",
+            "menuOpen": "Open menu",
+            "menuLabel": "Main menu",
+            "menuClose": "Close menu",
+            "emailPending": "Email: To be confirmed",
+            "phonePending": "Phone: To be confirmed"
         },
         "footer": {
             "followUs": "Follow us",
@@ -198,6 +213,7 @@
             "region": "Region",
             "phone": "Phone",
             "email": "Email",
+            "pending": "To be confirmed",
             "formTitle": "Send us a message",
             "name": "Name",
             "namePlaceholder": "Your full name",
