@@ -60,6 +60,34 @@ npm run build
 
 Este comando verifica TypeScript y genera los archivos de producción en la carpeta `dist/`.
 
+### Ejecutar las pruebas unitarias y de contrato (QA)
+
+```bash
+npm test
+```
+
+Ejecuta la suite de pruebas automatizadas sobre el contrato de datos, validadores de interfaz, filtrado multicriterio y selección determinista de la ruta del día.
+
+### Ejecutar la API Propia de Rutas e Inscripciones (Backend)
+
+El backend de rutas e inscripciones (Node.js + Express + TypeScript) se encuentra en la carpeta `api/`:
+
+```bash
+# Opción 1: Desde la raíz del proyecto
+npm run api:dev
+
+# Opción 2: Desde la carpeta api
+cd api
+npm install
+npm run dev
+```
+
+La API quedará escuchando en `http://localhost:3001` con los siguientes endpoints principales:
+- `GET /api/v1/rutas`: Listado de rutas publicadas (con filtros opcionales `comuna`, `dificultad`, `tipoActividad`, `horasMax`).
+- `GET /api/v1/rutas/:id`: Detalle de una ruta individual.
+- `POST /api/v1/inscripciones`: Registro de inscripción validado en el servidor (regla de privacidad RN-08).
+- `GET /api/health`: Estado del servicio.
+
 ### Visualizar la compilación
 
 ```bash

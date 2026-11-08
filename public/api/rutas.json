@@ -1,0 +1,369 @@
+[
+  {
+    "id": 1,
+    "nombre": "Cerro Ñielol",
+    "comuna": "Temuco",
+    "imagen": "assets/imagenes/cerro-nielol.webp",
+    "altImagen": "Sendero natural en Monumento Natural Cerro Ñielol",
+    "descripcionBreve": "Bosque nativo y miradores sobre Temuco, a minutos del centro.",
+    "descripcionCompleta": "Monumento Natural administrado por CONAF dentro de la ciudad. Sus senderos recorren bosque nativo hasta miradores con vista a todo Temuco. Es también un sitio histórico ligado a la fundación de la ciudad.",
+    "descripcion": "Bosque nativo y miradores sobre Temuco, a minutos del centro.",
+    "dificultad": "Fácil",
+    "tipoActividad": "Senderismo",
+    "distanciaKm": 3.5,
+    "horasSenderismo": 1.5,
+    "fechaInicio": "2026-11-15",
+    "horaInicio": "09:30",
+    "ubicacionInicio": {
+      "nombre": "Acceso Principal Cerro Ñielol (calle Prat)",
+      "latitud": -38.7297,
+      "longitud": -72.5898
+    },
+    "ubicacionFin": {
+      "nombre": "Mirador Principal Cerro Ñielol",
+      "latitud": -38.7245,
+      "longitud": -72.5881
+    },
+    "atractivos": [
+      "Miradores de la ciudad",
+      "Bosque nativo",
+      "Zona de copihues",
+      "La Patagua (sitio histórico)"
+    ],
+    "estado": "Publicado",
+    "puntajeSustentable": 11,
+    "urlDetalle": "paginas extra/ruta-temuco.html"
+  },
+  {
+    "id": 2,
+    "nombre": "Isla Cautín",
+    "comuna": "Temuco",
+    "imagen": "assets/imagenes/isla-cautin.webp",
+    "altImagen": "Parque urbano Isla Cautín junto al río",
+    "descripcionBreve": "Parque urbano a orillas del río Cautín para caminar en familia.",
+    "descripcionCompleta": "Espacio verde junto al río Cautín con senderos planos, ideal para caminatas cortas, picnic y actividades al aire libre sin salir de la ciudad.",
+    "descripcion": "Parque urbano a orillas del río Cautín para caminar en familia.",
+    "dificultad": "Fácil",
+    "tipoActividad": "Senderismo",
+    "distanciaKm": 2.8,
+    "horasSenderismo": 1.0,
+    "fechaInicio": "2026-11-16",
+    "horaInicio": "10:00",
+    "ubicacionInicio": {
+      "nombre": "Entrada Parque Isla Cautín",
+      "latitud": -38.7456,
+      "longitud": -72.5932
+    },
+    "ubicacionFin": {
+      "nombre": "Ribera del Río Cautín",
+      "latitud": -38.7478,
+      "longitud": -72.5915
+    },
+    "atractivos": [
+      "Ribera del río Cautín",
+      "Senderos planos",
+      "Áreas de picnic"
+    ],
+    "estado": "Publicado",
+    "puntajeSustentable": 10
+  },
+  {
+    "id": 3,
+    "nombre": "Parque Nacional Huerquehue",
+    "comuna": "Pucón",
+    "imagen": "assets/imagenes/paque-huerquehue.webp",
+    "altImagen": "Sendero Los Lagos en Parque Nacional Huerquehue",
+    "descripcionBreve": "Lagos de altura y araucarias milenarias en un sendero de día completo.",
+    "descripcionCompleta": "Área protegida de CONAF a unos 35 km de Pucón, por el camino a Caburgua. El sendero Los Lagos sube desde el lago Tinquilco entre bosque de coigües y araucarias hasta una serie de lagos de altura.",
+    "descripcion": "Lagos de altura y araucarias milenarias en un sendero de día completo.",
+    "dificultad": "Media",
+    "tipoActividad": "Trekking",
+    "distanciaKm": 12.0,
+    "horasSenderismo": 5.5,
+    "fechaInicio": "2026-11-20",
+    "horaInicio": "08:30",
+    "ubicacionInicio": {
+      "nombre": "Acceso CONAF Lago Tinquilco",
+      "latitud": -39.1558,
+      "longitud": -71.7242
+    },
+    "ubicacionFin": {
+      "nombre": "Lago Chico y Laguna Verde",
+      "latitud": -39.1385,
+      "longitud": -71.7103
+    },
+    "atractivos": [
+      "Lago Tinquilco",
+      "Sendero Los Lagos",
+      "Saltos de agua",
+      "Araucarias milenarias",
+      "Vista al volcán Villarrica"
+    ],
+    "estado": "Publicado",
+    "puntajeSustentable": 12
+  },
+  {
+    "id": 4,
+    "nombre": "Salto La China",
+    "comuna": "Pucón",
+    "imagen": "assets/imagenes/salto-la-china.webp",
+    "altImagen": "Cascada Salto La China rodeada de bosque nativo",
+    "descripcionBreve": "Caminata corta entre bosque nativo hasta una cascada escondida.",
+    "descripcionCompleta": "Sendero breve y de baja exigencia que atraviesa bosque nativo hasta una caída de agua. Recomendado para familias y para quienes buscan un primer acercamiento al senderismo.",
+    "descripcion": "Caminata corta entre bosque nativo hasta una cascada escondida.",
+    "dificultad": "Fácil",
+    "tipoActividad": "Senderismo",
+    "distanciaKm": 1.5,
+    "horasSenderismo": 0.8,
+    "fechaInicio": "2026-11-18",
+    "horaInicio": "11:00",
+    "ubicacionInicio": {
+      "nombre": "Entrada Salto La China",
+      "latitud": -39.3142,
+      "longitud": -71.7589
+    },
+    "ubicacionFin": {
+      "nombre": "Mirador Base de la Cascada",
+      "latitud": -39.3155,
+      "longitud": -71.7570
+    },
+    "atractivos": [
+      "Cascada",
+      "Bosque nativo"
+    ],
+    "estado": "Publicado",
+    "puntajeSustentable": 9,
+    "urlDetalle": "paginas extra/ruta-pucon.html"
+  },
+  {
+    "id": 5,
+    "nombre": "Termas de Huife",
+    "comuna": "Pucón",
+    "imagen": "assets/imagenes/termas-huife.webp",
+    "altImagen": "Pozas termales junto al río Liucura",
+    "descripcionBreve": "Piscinas termales naturales rodeadas de bosque junto al río.",
+    "descripcionCompleta": "Centro termal en el valle del río Liucura, con piscinas de agua termal al aire libre rodeadas de bosque nativo. Ideal para descansar después de una jornada de caminata.",
+    "descripcion": "Piscinas termales naturales rodeadas de bosque junto al río.",
+    "dificultad": "Fácil",
+    "tipoActividad": "Termas",
+    "distanciaKm": 1.0,
+    "horasSenderismo": 0.5,
+    "fechaInicio": "2026-11-21",
+    "horaInicio": "14:00",
+    "ubicacionInicio": {
+      "nombre": "Complejo Termal Huife",
+      "latitud": -39.2325,
+      "longitud": -71.6517
+    },
+    "ubicacionFin": {
+      "nombre": "Sendero Ribera Río Liucura",
+      "latitud": -39.2330,
+      "longitud": -71.6505
+    },
+    "atractivos": [
+      "Piscinas termales al aire libre",
+      "Río Liucura",
+      "Bosque nativo"
+    ],
+    "estado": "Publicado",
+    "puntajeSustentable": 10
+  },
+  {
+    "id": 6,
+    "nombre": "Ojos del Caburgua",
+    "comuna": "Pucón",
+    "imagen": "assets/imagenes/ojos-caburgua.webp",
+    "altImagen": "Pozas de agua cristalina Ojos del Caburgua",
+    "descripcionBreve": "Pozas turquesas y cascadas entre roca volcánica.",
+    "descripcionCompleta": "Conjunto de cascadas que caen sobre pozas de agua turquesa, rodeadas de bosque y roca volcánica. Se recorre por senderos cortos con miradores.",
+    "descripcion": "Pozas turquesas y cascadas entre roca volcánica.",
+    "dificultad": "Fácil",
+    "tipoActividad": "Senderismo",
+    "distanciaKm": 2.0,
+    "horasSenderismo": 1.0,
+    "fechaInicio": "2026-11-19",
+    "horaInicio": "10:30",
+    "ubicacionInicio": {
+      "nombre": "Acceso Ojos del Caburgua",
+      "latitud": -39.2638,
+      "longitud": -71.8344
+    },
+    "ubicacionFin": {
+      "nombre": "Mirador Central Pozas Azules",
+      "latitud": -39.2629,
+      "longitud": -71.8331
+    },
+    "atractivos": [
+      "Cascadas",
+      "Pozas de agua turquesa",
+      "Miradores"
+    ],
+    "estado": "Publicado",
+    "puntajeSustentable": 10
+  },
+  {
+    "id": 7,
+    "nombre": "Santuario El Cañi",
+    "comuna": "Pucón",
+    "imagen": "assets/imagenes/reserva-cani.webp",
+    "altImagen": "Sendero entre araucarias milenarias en Santuario El Cañi",
+    "descripcionBreve": "Trekking exigente entre araucarias milenarias con vista a los volcanes.",
+    "descripcionCompleta": "Área protegida privada con uno de los bosques de araucarias mejor conservados de la zona. El sendero sube con fuerte pendiente hasta lagunas de altura y miradores con vista a varios volcanes. Se recomienda buena condición física.",
+    "descripcion": "Trekking exigente entre araucarias milenarias con vista a los volcanes.",
+    "dificultad": "Difícil",
+    "tipoActividad": "Trekking",
+    "distanciaKm": 14.0,
+    "horasSenderismo": 6.5,
+    "fechaInicio": "2026-11-22",
+    "horaInicio": "07:30",
+    "ubicacionInicio": {
+      "nombre": "Refugio Santuario El Cañi (sector El Cerduo)",
+      "latitud": -39.255,
+      "longitud": -71.7483
+    },
+    "ubicacionFin": {
+      "nombre": "Mirador El Melillanca (Vista 360°)",
+      "latitud": -39.2312,
+      "longitud": -71.7391
+    },
+    "atractivos": [
+      "Araucarias milenarias",
+      "Lagunas de altura",
+      "Mirador a los volcanes"
+    ],
+    "estado": "Publicado",
+    "puntajeSustentable": 12
+  },
+  {
+    "id": 8,
+    "nombre": "Cañón del Río Trancura",
+    "comuna": "Pucón",
+    "imagen": "assets/imagenes/canon-trancura.webp",
+    "altImagen": "Río Trancura con rápidos y aguas turquesas",
+    "descripcionBreve": "Rafting en aguas turquesas con guías certificados.",
+    "descripcionCompleta": "Descenso en balsa por el río Trancura, rodeado de bosque y paredes de roca. Se realiza con operadores locales y equipo de seguridad incluido.",
+    "descripcion": "Rafting en aguas turquesas con guías certificados.",
+    "dificultad": "Media",
+    "tipoActividad": "Deportes acuáticos",
+    "distanciaKm": 8.5,
+    "horasSenderismo": 2.5,
+    "fechaInicio": "2026-11-23",
+    "horaInicio": "11:30",
+    "ubicacionInicio": {
+      "nombre": "Base de Operaciones Río Trancura",
+      "latitud": -39.298,
+      "longitud": -71.86
+    },
+    "ubicacionFin": {
+      "nombre": "Desembocadura sector Metreñehue",
+      "latitud": -39.2891,
+      "longitud": -71.8845
+    },
+    "atractivos": [
+      "Rafting",
+      "Río Trancura",
+      "Paisaje de cañón"
+    ],
+    "estado": "Publicado",
+    "puntajeSustentable": 10
+  },
+  {
+    "id": 9,
+    "nombre": "Costanera de Villarrica",
+    "comuna": "Villarrica",
+    "imagen": "assets/imagenes/costanera-villarrica.webp",
+    "altImagen": "Paseo peatonal costanera frente al Lago Villarrica",
+    "descripcionBreve": "Paseo junto al lago con vista directa al volcán.",
+    "descripcionCompleta": "Recorrido plano por el borde del lago Villarrica, con vista al volcán y a los cerros cercanos. Apto para todas las edades y accesible desde el centro de la ciudad.",
+    "descripcion": "Paseo junto al lago con vista directa al volcán.",
+    "dificultad": "Fácil",
+    "tipoActividad": "Senderismo",
+    "distanciaKm": 4.5,
+    "horasSenderismo": 1.5,
+    "fechaInicio": "2026-11-17",
+    "horaInicio": "17:00",
+    "ubicacionInicio": {
+      "nombre": "Playa Grande Villarrica",
+      "latitud": -39.2783,
+      "longitud": -72.2274
+    },
+    "ubicacionFin": {
+      "nombre": "Embarcadero y Muelle Histórico",
+      "latitud": -39.281,
+      "longitud": -72.2198
+    },
+    "atractivos": [
+      "Lago Villarrica",
+      "Vista al volcán",
+      "Playa"
+    ],
+    "estado": "Publicado",
+    "puntajeSustentable": 10,
+    "urlDetalle": "paginas extra/ruta-villarrica.html"
+  },
+  {
+    "id": 10,
+    "nombre": "Museo Histórico y Arqueológico",
+    "comuna": "Villarrica",
+    "imagen": "assets/imagenes/museo-villarrica.webp",
+    "altImagen": "Fachada y piezas culturales del Museo Histórico de Villarrica",
+    "descripcionBreve": "Cultura mapuche e historia de la fundación de Villarrica.",
+    "descripcionCompleta": "Museo con piezas de la cultura mapuche y de la historia de la ciudad. Una visita cultural ideal para días de lluvia.",
+    "descripcion": "Cultura mapuche e historia de la fundación de Villarrica.",
+    "dificultad": "Fácil",
+    "tipoActividad": "Cultura y Patrimonio",
+    "distanciaKm": 1.0,
+    "horasSenderismo": 1.0,
+    "fechaInicio": "2026-11-18",
+    "horaInicio": "15:00",
+    "ubicacionInicio": {
+      "nombre": "Museo Histórico de Villarrica (calle Pedro de Valdivia)",
+      "latitud": -39.2825,
+      "longitud": -72.2291
+    },
+    "ubicacionFin": {
+      "nombre": "Plaza de Armas de Villarrica",
+      "latitud": -39.2831,
+      "longitud": -72.2285
+    },
+    "atractivos": [
+      "Colección mapuche",
+      "Historia local"
+    ],
+    "estado": "Publicado",
+    "puntajeSustentable": 9
+  },
+  {
+    "id": 11,
+    "nombre": "Feria Costumbrista Mapuche",
+    "comuna": "Villarrica",
+    "imagen": "assets/imagenes/feria-costumbrista.webp",
+    "altImagen": "Puestos de artesanía y gastronomía en Feria Costumbrista Mapuche",
+    "descripcionBreve": "Artesanía, gastronomía y tradiciones del pueblo mapuche.",
+    "descripcionCompleta": "Espacio donde artesanos y cocineros locales muestran productos y preparaciones tradicionales. Aporta directamente a la economía de las comunidades de la zona.",
+    "descripcion": "Artesanía, gastronomía y tradiciones del pueblo mapuche.",
+    "dificultad": "Fácil",
+    "tipoActividad": "Cultura y Patrimonio",
+    "distanciaKm": 1.2,
+    "horasSenderismo": 1.0,
+    "fechaInicio": "2026-11-22",
+    "horaInicio": "12:00",
+    "ubicacionInicio": {
+      "nombre": "Recinto Feria Costumbrista Villarrica",
+      "latitud": -39.285,
+      "longitud": -72.225
+    },
+    "ubicacionFin": {
+      "nombre": "Sector Gastronomía Tradicional",
+      "latitud": -39.2855,
+      "longitud": -72.2245
+    },
+    "atractivos": [
+      "Artesanía",
+      "Gastronomía mapuche",
+      "Tradiciones"
+    ],
+    "estado": "Publicado",
+    "puntajeSustentable": 11
+  }
+]

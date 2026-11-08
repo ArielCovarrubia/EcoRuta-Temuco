@@ -2,7 +2,11 @@
   "scripts": {
     "dev": "vite --open /react.html",
     "build": "tsc -p tsconfig.app.json && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node --experimental-strip-types tests/rutas.test.ts",
+    "test:api": "node api/test-endpoints.js",
+    "api:start": "node --experimental-strip-types api/src/server.ts",
+    "api:dev": "node --watch --experimental-strip-types api/src/server.ts"
   },
   "dependencies": {
     "react": "^19.3.1",
