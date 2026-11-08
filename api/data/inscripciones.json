@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "rutaId": 1,
+    "nombreRuta": "Cerro Ñielol",
+    "fechaSalida": "2026-11-20",
+    "nombreCompleto": "Ariel Covarrubia",
+    "correo": "ariel@example.com",
+    "telefono": "+56 9 1234 5678",
+    "cantidadPersonas": 2,
+    "nivelExperiencia": "Intermedio",
+    "aceptaCondiciones": true,
+    "fechaRegistro": "2026-11-08T04:55:36.844Z"
+  },
+  {
+    "id": 2,
+    "rutaId": 1,
+    "nombreRuta": "Cerro Ñielol",
+    "fechaSalida": "2026-11-25",
+    "nombreCompleto": "Ariel Covarrubia",
+    "correo": "ariel.qa@ecoruta.cl",
+    "telefono": "+56 9 1234 5678",
+    "cantidadPersonas": 2,
+    "nivelExperiencia": "Intermedio",
+    "aceptaCondiciones": true,
+    "fechaRegistro": "2026-11-08T05:08:05.155Z"
+  },
+  {
+    "id": 3,
+    "rutaId": 1,
+    "nombreRuta": "Cerro Ñielol",
+    "fechaSalida": "2026-11-25",
+    "nombreCompleto": "Ariel Covarrubia",
+    "correo": "ariel.qa@ecoruta.cl",
+    "telefono": "+56 9 1234 5678",
+    "cantidadPersonas": 2,
+    "nivelExperiencia": "Intermedio",
+    "aceptaCondiciones": true,
+    "fechaRegistro": "2026-11-08T05:08:43.525Z"
+  },
+  {
+    "id": 4,
+    "rutaId": 1,
+    "nombreRuta": "Cerro Ñielol",
+    "fechaSalida": "2026-11-25",
+    "nombreCompleto": "Ariel Covarrubia",
+    "correo": "ariel.qa@ecoruta.cl",
+    "telefono": "+56 9 1234 5678",
+    "cantidadPersonas": 2,
+    "nivelExperiencia": "Intermedio",
+    "aceptaCondiciones": true,
+    "fechaRegistro": "2026-11-08T05:09:08.267Z"
+  },
+  {
+    "id": 5,
+    "rutaId": 1,
+    "nombreRuta": "Cerro Ñielol",
+    "fechaSalida": "2026-11-25",
+    "nombreCompleto": "Ariel Covarrubia",
+    "correo": "ariel.qa@ecoruta.cl",
+    "telefono": "+56 9 1234 5678",
+    "cantidadPersonas": 2,
+    "nivelExperiencia": "Intermedio",
+    "aceptaCondiciones": true,
+    "fechaRegistro": "2026-11-08T05:10:09.298Z"
+  },
+  {
+    "id": 6,
+    "rutaId": 1,
+    "nombreRuta": "Cerro Ñielol",
+    "fechaSalida": "2026-11-25",
+    "nombreCompleto": "Ariel Covarrubia",
+    "correo": "ariel.qa@ecoruta.cl",
+    "telefono": "+56 9 1234 5678",
+    "cantidadPersonas": 2,
+    "nivelExperiencia": "Intermedio",
+    "aceptaCondiciones": true,
+    "fechaRegistro": "2026-11-08T05:29:47.849Z"
+  }
+]
