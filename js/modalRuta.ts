@@ -32,7 +32,7 @@ const datosRutas: DictionarioRutas = {
         fechaInicio: "Martes a Domingo - 08:00 AM",
         duracion: "5 a 6 horas (dificultad media)",
         ubicacion: "Sector Lago Tinquilco, Caburgua / Temuco",
-        atractivos: "Laguna Verde, Lago Toro, Araucanía milenarias, cascadas"
+        atractivos: "Laguna Verde, Lago Toro, Araucarias milenarias, cascadas"
     },
     "3": {
         titulo: "Reserva Nacional Malalcahuello",
@@ -47,8 +47,8 @@ const datosRutas: DictionarioRutas = {
         titulo: "Isla Cautín",
         imagen: "../assets/imagenes/isla-cautin.webp",
         descripcion: "Extenso parque urbano junto al río Cautín con ciclovías, plazas temáticas y senderos de caminata accesible.",
-        fechaInicio: "Todos los días - 07:00 AM a 20:00 PM",
-        duracion: "1.5 horas (caminara familiar)",
+        fechaInicio: "Todos los días - 07:00 AM a 08:00 PM",
+        duracion: "1.5 horas (caminata familiar)",
         ubicacion: "Borde Río Cautín, Temuco",
         atractivos: "Plaza de los Plátanos, ciclovías, juegos inclusivos, vegetación riberana"
     },
@@ -66,11 +66,11 @@ const datosRutas: DictionarioRutas = {
     // ----------------------------------------------------------------------
     "6": {
         titulo: "Salto La China",
-        imagen: "assets/imagenes/salto-la-china.webp",
+        imagen: "../assets/imagenes/salto-la-china.webp",
         descripcion: "Camina hasta esta impresionante cascada escondida de 30 metros de caída entre denso bosque nativo y rocas volcánicas.",
         fechaInicio: "Sábados y Domingos - 09:00 AM",
         duracion: "2 horas (caminata suave)",
-        ubicacion: "KM 30 camino a Palguín, Pucón",
+        ubicacion: "Km 30 camino a Palguín, Pucón",
         atractivos: "Cascada de 30m, flora nativa, avistamiento de aves local"
     },
     "7": {
@@ -88,7 +88,7 @@ const datosRutas: DictionarioRutas = {
         descripcion: "Pozas profundas de agua color turquesa formadas por vertientes subterráneas del Lago Caburgua que afloran entre la vegetación.",
         fechaInicio: "Lunes a Domingo - 09:30 AM",
         duracion: "1.5 horas (pasarelas accesibles)",
-        ubicacion: "Sector Caburga, Pucón",
+        ubicacion: "Sector Caburgua, Pucón",
         atractivos: "Pozas turquesa, pasarelas de madera, cascadas menores"
     },
     "9": {
@@ -104,7 +104,7 @@ const datosRutas: DictionarioRutas = {
         titulo: "Cañón del Río Trancura",
         imagen: "../assets/imagenes/canon-trancura.webp",
         descripcion: "Recorrido de rafting y senderismo a lo largo del cañón del río Trancura, combinando adrenalina y hermosos paisajes cordilleranos.",
-        fechaInicio: "Diario - 11:00 AM y 15:00 PM",
+        fechaInicio: "Diario - 11:00 AM y 03:00 PM",
         duracion: "3 horas (actividad acuática)",
         ubicacion: "Río Trancura, Pucón",
         atractivos: "Rápidos clase III/IV, cañón rocoso, bosque templado lluvioso"
@@ -125,7 +125,7 @@ const datosRutas: DictionarioRutas = {
         titulo: "Museo Histórico y Arqueológico",
         imagen: "../assets/imagenes/museo-villarrica.webp",
         descripcion: "Exhibición permanente de cerámica, platería y piezas arqueológicas que rescatan la rica historia de la cultura Mapuche.",
-        fechaInicio: "Lunes a Viernes - 10:00 AM a 18:00 PM",
+        fechaInicio: "Lunes a Viernes - 10:00 AM a 06:00 PM",
         duracion: "1 hora (visita guiada)",
         ubicacion: "Pedro de Valdivia 365, Villarrica",
         atractivos: "Platería mapuche, cerámica ancestral, documentos históricos"
@@ -161,19 +161,19 @@ const datosRutas: DictionarioRutas = {
 
 let elementoPrevioEnfocado: HTMLElement | null = null;
 
-document.addEventListener("DOMContentLoaded", (): void => {
-    const modal = document.getElementById("modal-detalle-ruta") as HTMLElement | null;
+document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("modal-detalle-ruta") as HTMLDivElement | null;
     const btnCerrar = document.getElementById("btn-cerrar-modal") as HTMLButtonElement | null;
     const tarjetas = document.querySelectorAll<HTMLElement>(".cartas-img .carta");
 
     if (!modal) return;
 
     // Asignar accesibilidad y eventos a las tarjetas
-    tarjetas.forEach((carta: HTMLElement) => {
+    tarjetas.forEach((carta) => {
         carta.setAttribute("tabindex", "0");
         carta.setAttribute("role", "button");
         carta.setAttribute("aria-haspopup", "dialog");
-
+        
         const idRuta = carta.getAttribute("data-id");
         if (!idRuta) return;
 
@@ -189,22 +189,22 @@ document.addEventListener("DOMContentLoaded", (): void => {
     // Función para abrir el Modal
     function abrirModal(idRuta: string, elementoDisparador: HTMLElement): void {
         const info = datosRutas[idRuta];
-        if (!info) return;
+        if (!info || !modal) return;
 
         elementoPrevioEnfocado = elementoDisparador || (document.activeElement as HTMLElement);
 
-        const elTitulo = document.getElementById("modal-titulo-ruta");
+        const elTitulo = document.getElementById("modal-titulo-ruta") as HTMLHeadingElement | null;
         const elImg = document.getElementById("modal-img-ruta") as HTMLImageElement | null;
-        const elDesc = document.getElementById("modal-descripcion-ruta");
-        const elFecha = document.getElementById("modal-fecha-inicio");
-        const elDuracion = document.getElementById("modal-duracion");
-        const elUbicacion = document.getElementById("modal-ubicacion");
-        const elAtractivos = document.getElementById("modal-atractivos");
+        const elDesc = document.getElementById("modal-descripcion-ruta") as HTMLParagraphElement | null;
+        const elFecha = document.getElementById("modal-fecha-inicio") as HTMLSpanElement | null;
+        const elDuracion = document.getElementById("modal-duracion") as HTMLSpanElement | null;
+        const elUbicacion = document.getElementById("modal-ubicacion") as HTMLSpanElement | null;
+        const elAtractivos = document.getElementById("modal-atractivos") as HTMLSpanElement | null;
 
         if (elTitulo) elTitulo.textContent = info.titulo;
         if (elImg) {
             elImg.src = info.imagen;
-            elImg.alt = info.titulo;
+            elImg.alt = ""; // Punto 7 PR: alt decorativo para no duplicar h2
         }
         if (elDesc) elDesc.textContent = info.descripcion;
         if (elFecha) elFecha.textContent = info.fechaInicio;
@@ -216,35 +216,35 @@ document.addEventListener("DOMContentLoaded", (): void => {
         modal?.setAttribute("aria-hidden", "false");
         document.body.classList.add("modal-abierto");
 
-        if (btnCerrar) {
-            btnCerrar.focus();
-        }
+        if (btnCerrar) btnCerrar.focus();
     }
 
     // Función para cerrar el Modal
     function cerrarModal(): void {
-        modal?.classList.add("oculto");
-        modal?.setAttribute("aria-hidden", "true");
+        if (!modal) return;
+        modal.classList.add("oculto");
+        modal.setAttribute("aria-hidden", "true");
         document.body.classList.remove("modal-abierto");
 
-        if (elementoPrevioEnfocado) {
-            elementoPrevioEnfocado.focus();
-        }
+        if (elementoPrevioEnfocado) elementoPrevioEnfocado.focus();
     }
 
-    if (btnCerrar) {
-        btnCerrar.addEventListener("click", cerrarModal);
-    }
+    if (btnCerrar) btnCerrar.addEventListener("click", cerrarModal);
 
     modal.addEventListener("click", (e: MouseEvent) => {
-        if (e.target === modal) {
-            cerrarModal();
-        }
+        if (e.target === modal) cerrarModal();
     });
 
     document.addEventListener("keydown", (e: KeyboardEvent) => {
         if (e.key === "Escape" && !modal.classList.contains("oculto")) {
             cerrarModal();
+        }
+    });
+
+    modal.addEventListener("keydown", (e: KeyboardEvent) => {
+        if (e.key === "Tab" && btnCerrar) {
+            e.preventDefault();
+            btnCerrar.focus();
         }
     });
 });

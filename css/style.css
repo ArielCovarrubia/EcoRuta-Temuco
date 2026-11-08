@@ -1562,27 +1562,6 @@ body.modo-oscuro .info-clima p:last-child {
     }
 }
 
-@media (max-width: 600px) {
-    .datos-contacto {
-        grid-template-columns: 1fr;
-    }
-
-    /* Ajuste de accesibilidad y espacio del modal para pantallas móviles */
-    .modal-backdrop {
-        padding: 0.5rem;
-    }
-    .modal-contenido {
-        padding: 1.2rem;
-        border-radius: 12px;
-    }
-    .modal-img {
-        height: 160px;
-    }
-    .modal-contenido h2 {
-        font-size: 1.15rem;
-    }
-}
-
 /* En computador el enlace de retorno queda en el margen izquierdo, bajo el
    título del header, y no empuja el banner hacia abajo. */
 @media (min-width: 1380px) {
@@ -1742,10 +1721,6 @@ body.alto-contraste .botones-redes a:focus-visible {
    TAMAÑO DEL TEXTO - ACCESIBILIDAD
 ======================================== */
 
-/* ========================================
-   TAMAÑO DEL TEXTO - ACCESIBILIDAD
-======================================== */
-
 :root {
     font-size: 100%;
 }
@@ -1874,16 +1849,21 @@ body.modal-abierto {
 /* --------------------------------------------------------------------------
    ADAPTACIÓN A MODO OSCURO (body.modo-oscuro)
    -------------------------------------------------------------------------- */
+body.modo-oscuro .modal-contenido {
+    background-color: #243329 !important;
+    color: #edf5ee !important;
+    border-color: #45614c !important;
+}
 
 body.modo-oscuro .modal-contenido h2,
 body.modo-oscuro .modal-detalles-lista strong {
     color: #b8c8bb;
 }
 
-body.modo-oscuro .modal-description,
+body.modo-oscuro .modal-descripcion,
 body.modo-oscuro .modal-detalles-lista li {
-    color: #e2e8f0;
-    border-bottom-color: #3b4d3c;
+    color: #e2e8f0 !important;
+    border-bottom-color: #3b4d3c !important;
 }
 
 body.modo-oscuro .modal-btn-cerrar {
@@ -2004,3 +1984,24 @@ CORRECCIONES GENERALES CON EL BOTÓN DE ALTO CONTRASTE ENTRE LAS PÁGINAS
         color: #000000 !important;
         font-weight: bold;
     }
+
+    @media (max-width: 600px) {
+    .datos-contacto {
+        grid-template-columns: 1fr;
+    }
+
+    /* Ajuste de accesibilidad y espacio del modal para pantallas móviles */
+    .modal-backdrop {
+        padding: 0.5rem;
+    }
+    .modal-contenido {
+        padding: 1.2rem;
+        border-radius: 12px;
+    }
+    .modal-img {
+        height: 160px;
+    }
+    .modal-contenido h2 {
+        font-size: 1.15rem;
+    }
+}
