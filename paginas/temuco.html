@@ -172,6 +172,38 @@
                             <li><strong data-i18n="modal.location">Ubicación de inicio y fin:</strong> <span id="modal-ubicacion"></span></li>
                             <li><strong data-i18n="modal.attractions">Atractivos principales:</strong> <span id="modal-atractivos"></span></li>
                         </ul>
+                        
+                        <!-- Formulario de inscripción dentro del modal-->
+                         <form id="form-inscripcion-ruta" class="tarjeta-formulario" style="margin-top: 1.5rem;" novalidate>
+                            <h3>Inscribirse en esta ruta</h3>
+
+                            <div class="campo-grupo">
+                                <label for="ins-nombre">Nombre completo *</label>
+                                <input type="text" id="ins-nombre" placeholder="Ej: Carlos Pérez" required>
+                                <span id="error-nombre" class="mensaje-error" role="alert"></span>
+                            </div>
+
+                            <div class="campo-grupo">
+                                <label for="ins-email">Correo electrónico *</label>
+                                <input type="email" id="ins-email" placeholder="ejemplo@correo.com" required>
+                                <span id="error-email" class="mensaje-error" role="alert"></span>
+                            </div>
+
+                            <div class="campo-grupo">
+                                <label for="ins-telefono">Teléfono (opcional)</label>
+                                <input type="tel" id="ins-telefono" placeholder="+56 9 1234 5678">
+                                <span id="error-telefono" class="mensaje-error" role="alert"></span>
+                            </div>
+
+                            <div class="campo-grupo">
+                                <label for="ins-cupos">Número de cupos (1 a 5) *</label>
+                                <input type="number" id="ins-cupos" min="1" max="5" value="1" required>
+                                <span id="error-cupos" class="mensaje-error" role="alert"></span>
+                            </div>
+
+                            <button type="submit" class="btn-submit">Confirmar Inscripción</button>
+                            <p id="mensaje-exito-inscripcion" class="mensaje-exito oculto" role="status" aria-live="polite"></p>
+                         </form>
                     </div>
                 </div>
             </div>
@@ -207,5 +239,6 @@
         <script src="../js/clima.js"></script>
         <script src="../js/layout.js"></script>
         <script type="module" src="../js/modalRuta.js"></script>
+        <script type="module" src="../js/inscripcionRuta.js"></script>
     </body>
 </html>
