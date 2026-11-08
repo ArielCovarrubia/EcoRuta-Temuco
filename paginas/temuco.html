@@ -148,8 +148,33 @@
                 <h2 data-i18n="temuco.mapTitle">Ubicación de la Ruta</h2>
                 <div id="mapa-ruta" class="mapa-contenedor"></div>
             </section>
-                
 
+            <div id="modal-detalle-ruta"
+                 class="modal-backdrop oculto"
+                 role="dialog" 
+                 aria-modal="true" 
+                 aria-hidden="true" 
+                 aria-labelledby="modal-titulo-ruta">
+
+                <div class="modal-contenido">
+                    <button type="button" id ="btn-cerrar-modal" class="modal-btn-cerrar" aria-label="Cerrar ventana emergente">&times;</button>
+
+                    <h2 id="modal-titulo-ruta">Cargando ruta...</h2>
+
+                    <div class="modal-cuerpo">
+                        <img id="modal-img-ruta" src="" alt="" class="modal-img">
+
+                        <p id="modal-descripcion-ruta" class="modal-descripcion"></p>
+
+                        <ul class="modal-detalles-lista">
+                            <li><strong data-i18n="modal.startTime">Fecha y hora de inicio:</strong> <span id="modal-fecha-inicio"></span></li>
+                            <li><strong data-i18n="modal.duration">Duración:</strong> <span id="modal-duracion"></span></li>
+                            <li><strong data-i18n="modal.location">Ubicación de inicio y fin:</strong> <span id="modal-ubicacion"></span></li>
+                            <li><strong data-i18n="modal.attractions">Atractivos principales:</strong> <span id="modal-atractivos"></span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </main>
 
         <div id="footer-container"></div>
@@ -181,5 +206,6 @@
         <script type="module" src="../js/buscador.js"></script>
         <script src="../js/clima.js"></script>
         <script src="../js/layout.js"></script>
+        <script type="module" src="../js/modalRuta.js"></script>
     </body>
 </html>

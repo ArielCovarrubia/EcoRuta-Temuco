@@ -1562,12 +1562,6 @@ body.modo-oscuro .info-clima p:last-child {
     }
 }
 
-@media (max-width: 600px) {
-    .datos-contacto {
-        grid-template-columns: 1fr;
-    }
-}
-
 /* En computador el enlace de retorno queda en el margen izquierdo, bajo el
    título del header, y no empuja el banner hacia abajo. */
 @media (min-width: 1380px) {
@@ -1727,10 +1721,6 @@ body.alto-contraste .botones-redes a:focus-visible {
    TAMAÑO DEL TEXTO - ACCESIBILIDAD
 ======================================== */
 
-/* ========================================
-   TAMAÑO DEL TEXTO - ACCESIBILIDAD
-======================================== */
-
 :root {
     font-size: 100%;
 }
@@ -1751,3 +1741,267 @@ html.texto-muy-grande {
     font-size: 143.75%;
 }
 
+/* ==========================================================================
+   COMPONENTE: DetalleRutaModal (Ventana Emergente de Rutas)
+   ========================================================================== */
+
+/* Bloqueo de scroll en body cuando el modal está activo */
+body.modal-abierto {
+    overflow: hidden !important;
+}
+
+/* Fondo oscuro oscurecido (Backdrop) */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    backdrop-filter: blur(4px);
+    transition: opacity 0.3s ease;
+}
+
+/* Estado oculto */
+.modal-backdrop.oculto {
+    display: none !important;
+}
+
+/* Caja principal del Modal */
+.modal-contenido {
+    background-color: #ffffff;
+    color: #2d3748;
+    width: 100%;
+    max-width: 620px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 16px;
+    padding: 1.8rem;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border: 1px solid #e2e8f0;
+}
+
+/* Botón flotante para cerrar (X) */
+.modal-btn-cerrar {
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+    background: transparent;
+    border: none;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #4a5568;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.modal-btn-cerrar:hover,
+.modal-btn-cerrar:focus-visible {
+    color: #e53e3e;
+    outline: 3px solid #2878ff;
+    outline-offset: 2px;
+}
+
+.modal-contenido h2 {
+    color: #1b5e20;
+    margin-bottom: 1rem;
+    font-size: 1.35rem;
+    padding-right: 2rem;
+}
+
+.modal-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+}
+
+.modal-descripcion {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #4a5568;
+    margin-bottom: 1rem;
+}
+
+.modal-detalles-lista {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+    display: grid;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+}
+
+.modal-detalles-lista li {
+    padding: 0.4rem 0;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.modal-detalles-lista strong {
+    color: #1b5e20;
+}
+
+/* --------------------------------------------------------------------------
+   ADAPTACIÓN A MODO OSCURO (body.modo-oscuro)
+   -------------------------------------------------------------------------- */
+body.modo-oscuro .modal-contenido {
+    background-color: #243329 !important;
+    color: #edf5ee !important;
+    border-color: #45614c !important;
+}
+
+body.modo-oscuro .modal-contenido h2,
+body.modo-oscuro .modal-detalles-lista strong {
+    color: #b8c8bb;
+}
+
+body.modo-oscuro .modal-descripcion,
+body.modo-oscuro .modal-detalles-lista li {
+    color: #e2e8f0 !important;
+    border-bottom-color: #3b4d3c !important;
+}
+
+body.modo-oscuro .modal-btn-cerrar {
+    color: #b8e0b8;
+}
+
+/* --------------------------------------------------------------------------
+   ADAPTACIÓN A ALTO CONTRASTE (body.alto-contraste)
+   -------------------------------------------------------------------------- */
+body.alto-contraste .modal-contenido {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border: 2px solid #ffffff !important;
+}
+
+body.alto-contraste .modal-contenido h2,
+body.alto-contraste .modal-detalles-lista strong {
+    color: #ffff00 !important;
+}
+
+body.alto-contraste .modal-descripcion,
+body.alto-contraste .modal-detalles-lista li {
+    color: #ffffff !important;
+}
+
+body.alto-contraste .modal-btn-cerrar {
+    color: #ffff00 !important;
+}
+
+/* ==========================================================================
+CORRECCIONES GENERALES CON EL BOTÓN DE ALTO CONTRASTE ENTRE LAS PÁGINAS
+   ========================================================================== */
+
+   body.alto-contraste header {
+       background-color: #000000 !important;
+       border-bottom: 2px solid #ffff00 !important;
+   }
+
+   body.alto-contraste header h1,
+   body.alto-contraste header h1 a,
+   body.alto-contraste .header-derecha h1 {
+    color: #ffff00 !important;
+    background: transparent !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: inline-block !important;
+   }
+   
+   body.alto-contraste .carta h3,
+   body.alto-contraste .carta p,
+   body.alto-contraste .contenido-baner h2,
+   body.alto-contraste .rutas h2,
+   body.alto-contraste .destacado h2,
+   body.alto-contraste .seccion-mapa h2 {
+       color: #ffffff !important;
+       opacity: 1 !important;
+    }
+
+    body.alto-contraste .contenedor-buscador,
+    body.alto-contraste .formulario-filtros {
+        background-color: #000000 !important;
+        border: 1.5px solid #ffffff !important;
+        color: #ffffff !important;
+    }
+
+    body.alto-contraste .grupo-filtro label {
+        color: #ffffff !important;
+    }
+
+    body.alto-contraste .grupo-filtro select {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        border: 1.5px solid #ffff00 !important;
+    }
+
+    body.alto-contraste .info-clima {
+    background-color: #000000 !important;
+    border: 1.5px solid #ffff00 !important;
+    color: #ffffff !important;
+    }
+
+    body.alto-contraste .info-clima h4 {
+    color: #ffff00 !important;
+    }
+
+    body.alto-contraste .info-clima p {
+    color: #ffffff !important;
+    }
+
+    body.alto-contraste #menu-accesibilidad {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        border-left: 2px solid #ffff00 !important;
+    }
+
+    body.alto-contraste .seccion-contactos a,
+    body.alto-contraste .redes-menu a {
+        background-color: #000000 !important;
+        color: #ffff00 !important;
+        border: 1px solid #ffff00 !important;
+        margin-bottom: 0.3rem;
+    }
+
+    body.alto-contraste .seccion-contactos a:hover,
+    body.alto-contraste .redes-menu a:hover {
+        background-color: #ffff00 !important;
+        color: #000000 !important;
+    }
+
+    body.alto-contraste .btn-tamano {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        border: 1.5px solid #ffffff !important;
+    }
+
+    body.alto-contraste .btn-tamano[aria-pressed="true"] {
+        background-color: #ffff00 !important;
+        color: #000000 !important;
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+    .datos-contacto {
+        grid-template-columns: 1fr;
+    }
+
+    /* Ajuste de accesibilidad y espacio del modal para pantallas móviles */
+    .modal-backdrop {
+        padding: 0.5rem;
+    }
+    .modal-contenido {
+        padding: 1.2rem;
+        border-radius: 12px;
+    }
+    .modal-img {
+        height: 160px;
+    }
+    .modal-contenido h2 {
+        font-size: 1.15rem;
+    }
+}
