@@ -82,7 +82,7 @@ export const FormularioInscripcion: React.FC<FormularioInscripcionProps> = ({
                 setErrores({ general: 'Ocurrió un error al procesar la inscripción. Inténtalo nuevamente.' });
             }
         } catch {
-            setMensajeExito(`¡Gracias, ${nombre}! Tu inscripción ha sido registrada exitosamente.`);
+            setErrores({ general: 'Ocurrió un error de red al intentar conectar con el servidor. Revisa tu conexión.' });
         } finally {
             setCargando(false);
         }
