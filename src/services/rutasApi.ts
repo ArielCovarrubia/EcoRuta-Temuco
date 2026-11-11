@@ -55,8 +55,10 @@ function normalizarRuta(raw: any): Ruta {
  */
 export async function obtenerRutasApi(filtros?: FiltrosRuta): Promise<Ruta[]> {
     const endpointsAIntentar = [
+        'http://localhost:3001/api/v1/rutas',
         `${API_BASE_URL}/api/v1/rutas`,
         `${API_BASE_URL}/api/rutas`,
+        '/api/v1/rutas',
         './api/rutas.json',
         '/api/rutas.json',
         'public/api/rutas.json'
@@ -118,8 +120,10 @@ export async function obtenerRutasApi(filtros?: FiltrosRuta): Promise<Ruta[]> {
  */
 export async function obtenerRutaPorIdApi(id: number): Promise<Ruta | null> {
     const endpoints = [
+        `http://localhost:3001/api/v1/rutas/${id}`,
         `${API_BASE_URL}/api/v1/rutas/${id}`,
-        `${API_BASE_URL}/api/rutas/${id}`
+        `${API_BASE_URL}/api/rutas/${id}`,
+        `/api/v1/rutas/${id}`
     ];
 
     for (const url of endpoints) {
@@ -152,8 +156,10 @@ export async function enviarInscripcionApi(
     inscripcion: Inscripcion
 ): Promise<{ id: number; mensaje: string; fechaRegistro: string }> {
     const endpoints = [
+        'http://localhost:3001/api/v1/inscripciones',
         `${API_BASE_URL}/api/v1/inscripciones`,
-        `${API_BASE_URL}/api/inscripciones`
+        `${API_BASE_URL}/api/inscripciones`,
+        '/api/v1/inscripciones'
     ];
 
     for (const url of endpoints) {
