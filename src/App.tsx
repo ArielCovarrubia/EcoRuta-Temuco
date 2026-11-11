@@ -74,9 +74,9 @@ function App() {
                         <section aria-labelledby="seccion-inscripcion-titulo" style={{ marginTop: '2.5rem' }}>
                             <h3 id="seccion-inscripcion-titulo">Inscripción rápida a rutas</h3>
                             <FormularioInscripcion
-                                rutaId={rutas[0]?.id || 1}
-                                rutaPredeterminada={rutas[0]?.nombre || 'Cerro Ñielol'}
-                                dificultadRuta={rutas[0]?.dificultad || 'Fácil'}
+                                rutas={rutas}
+                                rutaIdInicial={rutas[0]?.id}
+                                origen={origen}
                             />
                         </section>
                     </>

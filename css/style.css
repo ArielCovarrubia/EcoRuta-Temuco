@@ -2084,3 +2084,26 @@ body.alto-contraste .mensaje-error-api {
     color: #ff5252;
     font-weight: bold;
 }
+
+.aviso-modo-respaldo {
+    background-color: #fff9c4;
+    color: #795548;
+    padding: 0.65rem 0.9rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-size: 0.88rem;
+    border: 1px solid #fff176;
+    line-height: 1.4;
+}
+
+body.modo-oscuro .aviso-modo-respaldo {
+    background-color: #3e3810;
+    color: #fff59d;
+    border-color: #fbc02d;
+}
+
+body.alto-contraste .aviso-modo-respaldo {
+    background-color: #000000;
+    color: #ffff00;
+    border: 2px solid #ffff00;
+}
