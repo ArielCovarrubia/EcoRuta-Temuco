@@ -2005,3 +2005,82 @@ CORRECCIONES GENERALES CON EL BOTÓN DE ALTO CONTRASTE ENTRE LAS PÁGINAS
         font-size: 1.15rem;
     }
 }
+
+/* ==========================================================================
+   ESTADOS DE CONEXION API Y ACCESIBILIDAD (HU-23 / RN-04 / RN-05 / BUG-14)
+   ========================================================================== */
+.contenedor-badge-api {
+    margin-bottom: 1rem;
+}
+
+.badge-api-conectada,
+.badge-api-respaldo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.badge-api-conectada {
+    background-color: #e8f5e9;
+    color: #1b5e20;
+    border: 1px solid #c8e6c9;
+}
+
+.badge-api-respaldo {
+    background-color: #fff9c4;
+    color: #795548;
+    border: 1px solid #fff176;
+}
+
+.mensaje-cargando-api {
+    font-style: italic;
+    color: #4a5568;
+}
+
+.mensaje-error-api {
+    color: #c53030;
+    font-weight: 600;
+}
+
+/* Adaptación a Modo Oscuro */
+body.modo-oscuro .badge-api-conectada {
+    background-color: #1b3820;
+    color: #a5d6a7;
+    border-color: #2e7d32;
+}
+
+body.modo-oscuro .badge-api-respaldo {
+    background-color: #3e3810;
+    color: #fff59d;
+    border-color: #fbc02d;
+}
+
+body.modo-oscuro .mensaje-cargando-api {
+    color: #cbd5e0;
+}
+
+body.modo-oscuro .mensaje-error-api {
+    color: #feb2b2;
+}
+
+/* Adaptación a Alto Contraste */
+body.alto-contraste .badge-api-conectada,
+body.alto-contraste .badge-api-respaldo {
+    background-color: #000000;
+    color: #ffff00;
+    border: 2px solid #ffff00;
+}
+
+body.alto-contraste .mensaje-cargando-api {
+    color: #ffffff;
+}
+
+body.alto-contraste .mensaje-error-api {
+    background-color: #000000;
+    color: #ff5252;
+    font-weight: bold;
+}

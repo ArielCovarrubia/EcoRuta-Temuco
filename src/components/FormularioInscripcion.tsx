@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
+import { enviarInscripcionApi } from '../services/rutasApi.ts';
+import type { Inscripcion } from '../types/ruta.ts';
 
 export interface FormularioInscripcionProps {
     rutaPredeterminada?: string;
     dificultadRuta?: string;
+    rutaId?: number | string;
 }
 
 export const FormularioInscripcion: React.FC<FormularioInscripcionProps> = ({
     rutaPredeterminada = '',
-    dificultadRuta = ''
+    dificultadRuta = '',
+    rutaId = 1
 }) => {
     // 1. Estados
     const [nombre, setNombre] = useState<string>('');
@@ -42,7 +46,7 @@ export const FormularioInscripcion: React.FC<FormularioInscripcionProps> = ({
         return Object.keys(nuevosErrores).length === 0;
     };
 
-    // 3. Solicitud HTTP POST /api/inscripciones (Punto 2 Bea)
+    // 3. Solicitud HTTP POST /api/v1/inscripciones (HU-27 / RN-08)
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setMensajeExito('');
@@ -50,39 +54,30 @@ export const FormularioInscripcion: React.FC<FormularioInscripcionProps> = ({
         if (!validarFormulario()) return;
 
         setCargando(true);
-        const cargaUtil = {
-            nombre: nombre.trim(),
-            email: email.trim(),
-            telefono: telefono.trim(),
-            cupos,
-            ruta: rutaSeleccionada,
+        const cargaUtil: Inscripcion = {
+            rutaId: Number(rutaId) || 1,
+            nombreCompleto: nombre.trim(),
+            correo: email.trim(),
+            telefono: telefono.trim() || undefined,
+            cantidadPersonas: cupos,
             fechaSalida,
-            nivelExperiencia,
-            aceptaTerminos
+            nivelExperiencia: nivelExperiencia as Inscripcion['nivelExperiencia'],
+            aceptaCondiciones: aceptaTerminos
         };
 
         try {
-            const respuesta = await fetch('/api/inscripciones', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(cargaUtil)
-            });
-
-            if (respuesta.ok || respuesta.status === 201) {
-                setMensajeExito(`¡Gracias, ${nombre}! Tu inscripción para ${cupos} cupo(s) ha sido registrada exitosamente.`);
-                setNombre('');
-                setEmail('');
-                setTelefono('');
-                setCupos(1);
-                setFechaSalida('');
-                setNivelExperiencia('Principiante');
-                setAceptaTerminos(false);
-                setErrores({});
-            } else {
-                setErrores({ general: 'Ocurrió un error al procesar la inscripción. Inténtalo nuevamente.' });
-            }
-        } catch {
-            setErrores({ general: 'Ocurrió un error de red al intentar conectar con el servidor. Revisa tu conexión.' });
+            const respuesta = await enviarInscripcionApi(cargaUtil);
+            setMensajeExito(`¡Gracias, ${nombre}! Tu inscripción #${respuesta.id} para ${cupos} cupo(s) ha sido registrada exitosamente.`);
+            setNombre('');
+            setEmail('');
+            setTelefono('');
+            setCupos(1);
+            setFechaSalida('');
+            setNivelExperiencia('Principiante');
+            setAceptaTerminos(false);
+            setErrores({});
+        } catch (err: any) {
+            setErrores({ general: err.message || 'Ocurrió un error al procesar la inscripción. Inténtalo nuevamente.' });
         } finally {
             setCargando(false);
         }

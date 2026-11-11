@@ -1,6 +1,11 @@
 import { rutas as rutasEstaticas } from '../../js/rutas.ts';
 import type { Ruta } from '../types/ruta.ts';
-import { obtenerRutasApi, obtenerRutaPorIdApi, enviarInscripcionApi } from './rutasApi.ts';
+import {
+    obtenerRutasApi,
+    obtenerRutaPorIdApi,
+    enviarInscripcionApi,
+    type ResultadoRutas
+} from './rutasApi.ts';
 
 /**
  * Retorna las rutas síncronas de respaldo para componentes existentes.
@@ -12,5 +17,6 @@ export function obtenerRutas(): Ruta[] {
 export {
     obtenerRutasApi,
     obtenerRutaPorIdApi,
-    enviarInscripcionApi
+    enviarInscripcionApi,
+    type ResultadoRutas
 };
