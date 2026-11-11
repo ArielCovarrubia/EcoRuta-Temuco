@@ -5,8 +5,9 @@
     "preview": "vite preview",
     "test": "node --experimental-strip-types tests/rutas.test.ts",
     "test:api": "node api/test-endpoints.js",
-    "api:start": "node --experimental-strip-types api/src/server.ts",
-    "api:dev": "node --watch --experimental-strip-types api/src/server.ts"
+    "api:start": "node api/dist/server.js",
+    "api:dev": "node --watch api/dist/server.js",
+    "api:build": "tsc -p api/tsconfig.json"
   },
   "dependencies": {
     "react": "^19.3.1",

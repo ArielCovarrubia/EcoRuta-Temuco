@@ -51,9 +51,17 @@ function normalizarRuta(raw: any): Ruta {
 }
 
 /**
+ * Interfaz que describe la respuesta de rutas indicando la fuente de los datos (HU-23 / RN-05).
+ */
+export interface ResultadoRutas {
+    rutas: Ruta[];
+    origen: 'api' | 'respaldo';
+}
+
+/**
  * Obtiene la lista de rutas desde la API propia o desde el respaldo JSON estático (RN-05).
  */
-export async function obtenerRutasApi(filtros?: FiltrosRuta): Promise<Ruta[]> {
+export async function obtenerRutasApi(filtros?: FiltrosRuta): Promise<ResultadoRutas> {
     const endpointsAIntentar = [
         `${API_BASE_URL}/api/v1/rutas`,
         `${API_BASE_URL}/api/rutas`,
@@ -63,6 +71,7 @@ export async function obtenerRutasApi(filtros?: FiltrosRuta): Promise<Ruta[]> {
     ];
 
     let rutasObtenidas: Ruta[] = [];
+    let origen: 'api' | 'respaldo' = 'respaldo';
     let exito = false;
 
     for (const url of endpointsAIntentar) {
@@ -89,6 +98,7 @@ export async function obtenerRutasApi(filtros?: FiltrosRuta): Promise<Ruta[]> {
                 const data = await response.json();
                 const listaRaw = Array.isArray(data) ? data : data.data || [];
                 rutasObtenidas = listaRaw.filter(esRutaValida).map(normalizarRuta);
+                origen = url.endsWith('.json') ? 'respaldo' : 'api';
                 exito = true;
                 break;
             }
@@ -106,11 +116,12 @@ export async function obtenerRutasApi(filtros?: FiltrosRuta): Promise<Ruta[]> {
     const soloPublicadas = rutasObtenidas.filter(r => r.estado === 'Publicado');
 
     // Aplicar filtros en el cliente para garantizar coherencia en modo Jamstack
-    if (filtros) {
-        return filtrarRutas(soloPublicadas, filtros);
-    }
+    const rutasFinales = filtros ? filtrarRutas(soloPublicadas, filtros) : soloPublicadas;
 
-    return soloPublicadas;
+    return {
+        rutas: rutasFinales,
+        origen
+    };
 }
 
 /**
@@ -141,12 +152,12 @@ export async function obtenerRutaPorIdApi(id: number): Promise<Ruta | null> {
     }
 
     // Fallback: buscar en la lista general
-    const todas = await obtenerRutasApi();
+    const { rutas: todas } = await obtenerRutasApi();
     return todas.find(r => r.id === id) || null;
 }
 
 /**
- * Envía una inscripción a la API propia mediante POST /api/inscripciones (RN-08).
+ * Envía una inscripción a la API propia mediante POST /api/v1/inscripciones (RN-08).
  */
 export async function enviarInscripcionApi(
     inscripcion: Inscripcion

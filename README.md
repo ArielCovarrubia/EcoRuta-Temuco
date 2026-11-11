@@ -70,17 +70,27 @@ Ejecuta la suite de pruebas automatizadas sobre el contrato de datos, validadore
 
 ### Ejecutar la API Propia de Rutas e Inscripciones (Backend)
 
-El backend de rutas e inscripciones (Node.js + Express + TypeScript) se encuentra en la carpeta `api/`:
+El backend de rutas e inscripciones (Node.js + Express + TypeScript) se encuentra en la carpeta `api/`.
+
+Para compilarlo y ejecutarlo:
 
 ```bash
-# Opción 1: Desde la raíz del proyecto
-npm run api:dev
-
-# Opción 2: Desde la carpeta api
+# Paso 1: Instalar dependencias del backend y compilar
 cd api
 npm install
+npm run build
+cd ..
+
+# Paso 2: Ejecutar el servidor backend
+# Opción A (desde la raíz):
+npm run api:dev
+
+# Opción B (desde la carpeta api):
+cd api
 npm run dev
 ```
+
+> Nota: Cada vez que se realicen cambios en el código TypeScript de `api/src/`, es necesario compilar nuevamente ejecutando `npm run api:build` desde la raíz (o `npm run build` dentro de `api/`).
 
 La API quedará escuchando en `http://localhost:3001` con los siguientes endpoints principales:
 - `GET /api/v1/rutas`: Listado de rutas publicadas (con filtros opcionales `comuna`, `dificultad`, `tipoActividad`, `horasMax`).

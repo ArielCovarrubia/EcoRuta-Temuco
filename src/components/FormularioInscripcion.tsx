@@ -1,32 +1,56 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { enviarInscripcionApi } from '../services/rutasApi.ts';
+import type { Inscripcion, Ruta } from '../types/ruta.ts';
 
 export interface FormularioInscripcionProps {
+    rutas?: Ruta[];
+    rutaIdInicial?: number;
     rutaPredeterminada?: string;
     dificultadRuta?: string;
+    rutaId?: number | string;
+    origen?: 'api' | 'respaldo' | null;
 }
 
 export const FormularioInscripcion: React.FC<FormularioInscripcionProps> = ({
+    rutas = [],
+    rutaIdInicial,
     rutaPredeterminada = '',
-    dificultadRuta = ''
+    dificultadRuta = '',
+    rutaId: propRutaId,
+    origen = null
 }) => {
     // 1. Estados
+    const idPorDefecto = rutaIdInicial ?? (propRutaId ? Number(propRutaId) : (rutas[0]?.id ?? 1));
+    const [rutaId, setRutaId] = useState<number>(idPorDefecto);
     const [nombre, setNombre] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [telefono, setTelefono] = useState<string>('');
     const [cupos, setCupos] = useState<number>(1);
-    const [rutaSeleccionada, setRutaSeleccionada] = useState<string>(rutaPredeterminada);
     const [fechaSalida, setFechaSalida] = useState<string>('');
     const [nivelExperiencia, setNivelExperiencia] = useState<string>('Principiante');
     const [aceptaTerminos, setAceptaTerminos] = useState<boolean>(false);
+
+    // Sincronizar rutaId si cargan rutas asíncronamente
+    useEffect(() => {
+        if (rutas.length > 0 && (!rutaId || !rutas.some(r => r.id === rutaId))) {
+            setRutaId(rutaIdInicial ?? rutas[0].id);
+        }
+    }, [rutas, rutaIdInicial]);
+
+    // Ruta activa para calcular advertencias y metadatos
+    const rutaActual = rutas.find(r => r.id === rutaId);
 
     // Estados UI
     const [errores, setErrores] = useState<{ [key: string]: string }>({});
     const [mensajeExito, setMensajeExito] = useState<string>('');
     const [cargando, setCargando] = useState<boolean>(false);
 
-    // 2. Advertencia condicional de seguridad (Punto 4 Bea)
+    // 2. Advertencia condicional de seguridad basada en la ruta seleccionada (RN-04)
     const mostrarAdvertenciaSeguridad =
-        nivelExperiencia === 'Principiante' && (dificultadRuta === 'Difícil' || rutaSeleccionada.includes('Difícil'));
+        nivelExperiencia === 'Principiante' &&
+        (rutaActual?.dificultad === 'Difícil' || (!rutaActual && dificultadRuta === 'Difícil'));
+
+    const fechaMinima = new Date().toISOString().split('T')[0];
 
     const validarFormulario = (): boolean => {
         const nuevosErrores: { [key: string]: string } = {};
@@ -42,47 +66,43 @@ export const FormularioInscripcion: React.FC<FormularioInscripcionProps> = ({
         return Object.keys(nuevosErrores).length === 0;
     };
 
-    // 3. Solicitud HTTP POST /api/inscripciones (Punto 2 Bea)
+    // 3. Solicitud HTTP POST /api/v1/inscripciones (HU-27 / RN-08)
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setMensajeExito('');
 
+        if (origen === 'respaldo') {
+            setErrores({ general: 'El servicio de inscripciones no está disponible sin conexión al backend.' });
+            return;
+        }
+
         if (!validarFormulario()) return;
 
         setCargando(true);
-        const cargaUtil = {
-            nombre: nombre.trim(),
-            email: email.trim(),
-            telefono: telefono.trim(),
-            cupos,
-            ruta: rutaSeleccionada,
+        const cargaUtil: Inscripcion = {
+            rutaId,
+            nombreCompleto: nombre.trim(),
+            correo: email.trim(),
+            telefono: telefono.trim() || undefined,
+            cantidadPersonas: cupos,
             fechaSalida,
-            nivelExperiencia,
-            aceptaTerminos
+            nivelExperiencia: nivelExperiencia as Inscripcion['nivelExperiencia'],
+            aceptaCondiciones: aceptaTerminos
         };
 
         try {
-            const respuesta = await fetch('/api/inscripciones', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(cargaUtil)
-            });
-
-            if (respuesta.ok || respuesta.status === 201) {
-                setMensajeExito(`¡Gracias, ${nombre}! Tu inscripción para ${cupos} cupo(s) ha sido registrada exitosamente.`);
-                setNombre('');
-                setEmail('');
-                setTelefono('');
-                setCupos(1);
-                setFechaSalida('');
-                setNivelExperiencia('Principiante');
-                setAceptaTerminos(false);
-                setErrores({});
-            } else {
-                setErrores({ general: 'Ocurrió un error al procesar la inscripción. Inténtalo nuevamente.' });
-            }
-        } catch {
-            setErrores({ general: 'Ocurrió un error de red al intentar conectar con el servidor. Revisa tu conexión.' });
+            const respuesta = await enviarInscripcionApi(cargaUtil);
+            setMensajeExito(`¡Gracias, ${nombre}! Tu inscripción #${respuesta.id} para ${cupos} cupo(s) en ${rutaActual?.nombre || 'la ruta'} ha sido registrada exitosamente.`);
+            setNombre('');
+            setEmail('');
+            setTelefono('');
+            setCupos(1);
+            setFechaSalida('');
+            setNivelExperiencia('Principiante');
+            setAceptaTerminos(false);
+            setErrores({});
+        } catch (err: any) {
+            setErrores({ general: err.message || 'Ocurrió un error al procesar la inscripción. Inténtalo nuevamente.' });
         } finally {
             setCargando(false);
         }
@@ -90,13 +110,43 @@ export const FormularioInscripcion: React.FC<FormularioInscripcionProps> = ({
 
     return (
         <form onSubmit={handleSubmit} className="tarjeta-formulario" noValidate style={{ marginTop: '1.5rem' }}>
-            <h3>Inscribirse en esta ruta</h3>
+            <h3>Inscribirse en una ruta</h3>
+
+            {origen === 'respaldo' && (
+                <div className="aviso-modo-respaldo" role="status">
+                    ℹ️ <strong>Modo sin conexión al servidor:</strong> El backend de inscripciones no está disponible actualmente. Puedes explorar las rutas en modo local.
+                </div>
+            )}
 
             {errores.general && (
                 <div className="mensaje-error" role="alert">
                     {errores.general}
                 </div>
             )}
+
+            <div className="campo-grupo">
+                <label htmlFor="ins-ruta">Selección de Ruta *</label>
+                {rutas && rutas.length > 0 ? (
+                    <select
+                        id="ins-ruta"
+                        value={rutaId}
+                        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setRutaId(Number(e.target.value))}
+                    >
+                        {rutas.map(r => (
+                            <option key={r.id} value={r.id}>
+                                {r.nombre} ({r.comuna}) — Dificultad: {r.dificultad}
+                            </option>
+                        ))}
+                    </select>
+                ) : (
+                    <input
+                        type="text"
+                        id="ins-ruta"
+                        value={rutaPredeterminada || 'Cargando rutas...'}
+                        readOnly
+                    />
+                )}
+            </div>
 
             <div className="campo-grupo">
                 <label htmlFor="ins-nombre">Nombre completo *</label>
@@ -136,21 +186,11 @@ export const FormularioInscripcion: React.FC<FormularioInscripcionProps> = ({
             </div>
 
             <div className="campo-grupo">
-                <label htmlFor="ins-ruta">Selección de Ruta *</label>
-                <input
-                    type="text"
-                    id="ins-ruta"
-                    value={rutaSeleccionada}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRutaSeleccionada(e.target.value)}
-                    placeholder="Nombre de la ruta"
-                />
-            </div>
-
-            <div className="campo-grupo">
                 <label htmlFor="ins-fecha">Fecha de salida *</label>
                 <input
                     type="date"
                     id="ins-fecha"
+                    min={fechaMinima}
                     value={fechaSalida}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFechaSalida(e.target.value)}
                     className={errores.fechaSalida ? 'invalido' : ''}
@@ -177,7 +217,7 @@ export const FormularioInscripcion: React.FC<FormularioInscripcionProps> = ({
                     style={{ backgroundColor: '#fff3cd', color: '#856404', padding: '10px', borderRadius: '6px', marginBottom: '1rem' }}
                     role="alert"
                 >
-                    <strong>Advertencia de Seguridad:</strong> Esta ruta es de alta dificultad y no se recomienda para nivel principiante sin un guía certificado.
+                    <strong>Advertencia de Seguridad:</strong> La ruta "{rutaActual?.nombre || 'seleccionada'}" es de alta dificultad y no se recomienda para nivel principiante sin un guía certificado.
                 </div>
             )}
 
@@ -208,8 +248,14 @@ export const FormularioInscripcion: React.FC<FormularioInscripcionProps> = ({
             </div>
             {errores.aceptaTerminos && <span className="mensaje-error" role="alert">{errores.aceptaTerminos}</span>}
 
-            <button type="submit" className="btn-submit" disabled={cargando} style={{ marginTop: '1rem' }}>
-                {cargando ? 'Enviando...' : 'Confirmar Inscripción'}
+            <button
+                type="submit"
+                className="btn-submit"
+                disabled={cargando || origen === 'respaldo'}
+                style={{ marginTop: '1rem' }}
+                title={origen === 'respaldo' ? 'Inscripciones no disponibles en modo respaldo local' : undefined}
+            >
+                {cargando ? 'Enviando...' : origen === 'respaldo' ? 'Inscripciones no disponibles sin API' : 'Confirmar Inscripción'}
             </button>
 
             {mensajeExito && (

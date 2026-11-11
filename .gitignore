@@ -18,5 +18,6 @@ node_modules/
 *.log
 *.tmp
 
-# Compilacion de React y Vite
+# Compilacion de React, Vite y API backend
 dist/
+api/dist/
