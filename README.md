@@ -120,8 +120,8 @@ La primera orden compila los scripts de `js/`; la segunda renueva `tests/pruebas
 
 ## Estado del proyecto
 
-- Sprint actual: Semana 4 de Sprint 2
-- Última actualización: 06 de noviembre
+- Sprint actual: cierre del sprint 2
+- Última actualización: 11 de noviembre
 
 ## Consumo de API / Integración
 
