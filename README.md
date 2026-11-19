@@ -4,11 +4,11 @@
 
 | Nombre | Rol ágil |
 |---|---|
-| Beatriz Martin | Product Owner |
-| Patricio Salazar | Scrum Master |
-| Lisette Delgado | Developer |
-| Carlos Melendez | Developer |
-| Ariel Covarrubia | QA/tester |
+| Ariel Covarrubia | Product Owner |
+| Carlos Meléndez  | Scrum Master |
+| Lisette Delgado  | Developer |
+| Beatriz Martin   | Developer |
+| Patricio Salazar | QA/tester |
 
 ## Descripción breve
 
@@ -120,8 +120,8 @@ La primera orden compila los scripts de `js/`; la segunda renueva `tests/pruebas
 
 ## Estado del proyecto
 
-- Sprint actual: cierre del sprint 2
-- Última actualización: 11 de noviembre
+- Sprint actual: comienzo y preparación del Sprint 3
+- Última actualización: 19 de noviembre
 
 ## Consumo de API / Integración
 
