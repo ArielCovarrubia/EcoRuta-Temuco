@@ -29,6 +29,7 @@ export const FormularioInscripcion: React.FC<FormularioInscripcionProps> = ({
     const [fechaSalida, setFechaSalida] = useState<string>('');
     const [nivelExperiencia, setNivelExperiencia] = useState<string>('Principiante');
     const [aceptaTerminos, setAceptaTerminos] = useState<boolean>(false);
+    const [mostrarTerminos, setMostrarTerminos] = useState<boolean>(false);
 
     // Sincronizar rutaId si cargan rutas asíncronamente
     useEffect(() => {
@@ -247,7 +248,39 @@ export const FormularioInscripcion: React.FC<FormularioInscripcionProps> = ({
                 </label>
             </div>
             {errores.aceptaTerminos && <span className="mensaje-error" role="alert">{errores.aceptaTerminos}</span>}
+            <div style={{ marginTop: '0.4rem', marginBottom: '0.5rem' }}>
+                <button
+                    type="button"
+                    onClick={() => setMostrarTerminos(!mostrarTerminos)}
+                    aria-expanded={mostrarTerminos}
+                    className="btn-toggle-terminos"
+                >
+                    {mostrarTerminos ? '▲ Ocultar normativas y condiciones' : 'ℹ️ Ver normativas y restricciones de la ruta'}
+                </button>
+            </div>
 
+            {mostrarTerminos && (
+                <div className="panel-terminos-desplegable" role="region" aria-live="polite">
+                    <h4>Normativas de la Ruta y Exoneración de Responsabilidad</h4>
+                    <ul>
+                        <li>
+                             <strong>Prohibido el ingreso de mascotas:</strong> Para resguardar la fauna silvestre nativa (Normativa CONAF).
+                        </li>
+                        <li>
+                             <strong>Prohibido encender fuego:</strong> Queda estrictamente prohibido hacer fogatas o usar fuego abierto en todo el trayecto.
+                        </li>
+                        <li>
+                             <strong>Equipamiento obligatorio:</strong> Calzado con agarre para trekking, agua mínima (1.5L) y protección solar.
+                        </li>
+                        <li>
+                             <strong>Política "No Deje Rastro":</strong> Todo residuo generado debe regresar con el visitante.
+                        </li>
+                        <li>
+                             <strong>Deslinde de responsabilidad:</strong> EcoRuta es una plataforma comunitaria e informativa. La participación en actividades al aire libre se realiza bajo la propia responsabilidad del usuario. La administración no se responsabiliza por extravíos o accidentes derivados de la imprudencia o condiciones climáticas imprevistas.
+                        </li>
+                    </ul>
+                </div>
+            )}
             <button
                 type="submit"
                 className="btn-submit"
