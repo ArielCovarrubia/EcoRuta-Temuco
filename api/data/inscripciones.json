@@ -76,5 +76,30 @@
     "nivelExperiencia": "Intermedio",
     "aceptaCondiciones": true,
     "fechaRegistro": "2026-11-08T05:29:47.849Z"
+  },
+  {
+    "id": 7,
+    "rutaId": 7,
+    "nombreRuta": "Santuario El Cañi",
+    "fechaSalida": "2026-11-13",
+    "nombreCompleto": "carlos peres",
+    "correo": "ejemplo@gmail.com",
+    "cantidadPersonas": 1,
+    "nivelExperiencia": "Principiante",
+    "aceptaCondiciones": true,
+    "fechaRegistro": "2026-11-12T03:24:45.950Z"
+  },
+  {
+    "id": 8,
+    "rutaId": 1,
+    "nombreRuta": "Cerro Ñielol",
+    "fechaSalida": "2026-11-13",
+    "nombreCompleto": "carlos peres",
+    "correo": "ejemplo@gmail.com",
+    "telefono": "*56961234",
+    "cantidadPersonas": 1,
+    "nivelExperiencia": "Principiante",
+    "aceptaCondiciones": true,
+    "fechaRegistro": "2026-11-12T12:23:27.162Z"
   }
 ]

@@ -2107,3 +2107,83 @@ body.alto-contraste .aviso-modo-respaldo {
     color: #ffff00;
     border: 2px solid #ffff00;
 }
+
+/* ==========================================================================
+   DESPLEGABLE DE TÉRMINOS Y RESTRICCIONES (RN-01 / RN-04)
+   ========================================================================== */
+.btn-toggle-terminos {
+    background: none;
+    border: none;
+    color: #2e7d32;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0.2rem 0;
+    transition: color 0.2s ease;
+}
+
+.btn-toggle-terminos:hover,
+.btn-toggle-terminos:focus-visible {
+    color: #1b5e20;
+}
+
+.panel-terminos-desplegable {
+    background-color: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-left: 4px solid #2e7d32;
+    border-radius: 6px;
+    padding: 0.8rem 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: #334155;
+}
+
+.panel-terminos-desplegable h4 {
+    margin-bottom: 0.4rem;
+    color: #1b5e20;
+    font-size: 0.88rem;
+}
+
+.panel-terminos-desplegable ul {
+    margin-left: 1.2rem;
+    margin-bottom: 0;
+}
+
+.panel-terminos-desplegable li {
+    margin-bottom: 0.3rem;
+}
+
+/* Modo Oscuro */
+body.modo-oscuro .btn-toggle-terminos {
+    color: #81c784;
+}
+
+body.modo-oscuro .panel-terminos-desplegable {
+    background-color: #1e293b;
+    border-color: #475569;
+    border-left-color: #81c784;
+    color: #e2e8f0;
+}
+
+body.modo-oscuro .panel-terminos-desplegable h4 {
+    color: #a5d6a7;
+}
+
+/* Alto Contraste */
+body.alto-contraste .btn-toggle-terminos {
+    color: #ffff00;
+    font-weight: bold;
+}
+
+body.alto-contraste .panel-terminos-desplegable {
+    background-color: #000000;
+    border: 2px solid #ffff00;
+    color: #ffffff;
+}
+
+body.alto-contraste .panel-terminos-desplegable h4 {
+    color: #ffff00;
+}
