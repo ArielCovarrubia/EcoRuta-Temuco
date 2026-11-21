@@ -2187,3 +2187,75 @@ body.alto-contraste .panel-terminos-desplegable {
 body.alto-contraste .panel-terminos-desplegable h4 {
     color: #ffff00;
 }
+
+/* Botón de favoritos */
+.carta {
+    position: relative;
+}
+
+.btn-favorito {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 5;
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background: white;
+    color: #777;
+    font-size: 1.8rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.btn-favorito:hover {
+    transform: scale(1.15);
+}
+
+.btn-favorito.activo {
+    color: #e63956;
+    animation: animacion-favorito 0.3s ease;
+}
+
+@keyframes animacion-favorito {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.35);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+.modal-encabezado {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.modal-encabezado h2 {
+    flex: 1;
+}
+
+#btn-favorito-modal {
+    position: static;
+    flex-shrink: 0;
+}
+.detalle-ruta {
+    position: relative;
+}
+
+.btn-favorito-ficha {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
