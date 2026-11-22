@@ -146,23 +146,115 @@ const datosRutas = {
     }
 };
 let elementoPrevioEnfocado = null;
+// Obtener los favoritos guardados
+function obtenerFavoritos() {
+    try {
+        const guardados = JSON.parse(
+            localStorage.getItem("favoritos") || "[]"
+        );
+
+        return Array.isArray(guardados)
+            ? guardados.map(Number).filter(Number.isFinite)
+            : [];
+    } catch {
+        return [];
+    }
+}
+
+// Comprobar si una ruta es favorita
+function esFavorita(idRuta) {
+    return obtenerFavoritos().includes(Number(idRuta));
+}
+
+// Actualizar el aspecto de un botón
+function actualizarBotonFavorito(boton, idRuta) {
+    const activo = esFavorita(idRuta);
+
+    boton.textContent = activo ? "♥" : "♡";
+    boton.classList.toggle("activo", activo);
+    boton.setAttribute("aria-pressed", String(activo));
+    boton.setAttribute(
+        "aria-label",
+        activo
+            ? "Quitar ruta de favoritos"
+            : "Agregar ruta a favoritos"
+    );
+}
+
+// Agregar o quitar una ruta de favoritos
+function alternarFavorito(idRuta) {
+    const id = Number(idRuta);
+    const favoritos = obtenerFavoritos();
+
+    const nuevosFavoritos = favoritos.includes(id)
+        ? favoritos.filter(favorito => favorito !== id)
+        : [...favoritos, id];
+
+    localStorage.setItem(
+        "favoritos",
+        JSON.stringify(nuevosFavoritos)
+    );
+
+    // Actualizar todos los corazones de la página
+    document.querySelectorAll(".btn-favorito[data-id-ruta]").forEach(boton => {
+        actualizarBotonFavorito(boton, boton.dataset.idRuta);
+    });
+
+    const botonModal = document.getElementById("btn-favorito-modal");
+
+    if (botonModal) {
+        actualizarBotonFavorito(botonModal, id);
+    }
+}
 document.addEventListener("DOMContentLoaded", () => {
+
     const modal = document.getElementById("modal-detalle-ruta");
     const btnCerrar = document.getElementById("btn-cerrar-modal");
     const tarjetas = document.querySelectorAll(".cartas-img .carta");
     if (!modal)
         return;
+    const btnFavoritoModal = document.getElementById("btn-favorito-modal");
+let rutaActualId = null;
+
+if (btnFavoritoModal) {
+    btnFavoritoModal.addEventListener("click", (e) => {
+        e.stopPropagation();
+
+        if (rutaActualId) {
+            alternarFavorito(rutaActualId);
+        }
+    });
+}
     // Asignar accesibilidad y eventos a las tarjetas
     tarjetas.forEach((carta) => {
         carta.setAttribute("tabindex", "0");
         carta.setAttribute("role", "button");
         carta.setAttribute("aria-haspopup", "dialog");
+
         const idRuta = carta.getAttribute("data-id");
-        if (!idRuta)
-            return;
+
+        if (!idRuta) return;
+
+        // Crear el botón de favoritos
+        const btnFavorito = document.createElement("button");
+
+        btnFavorito.type = "button";
+        btnFavorito.className = "btn-favorito";
+        btnFavorito.dataset.idRuta = idRuta;
+
+        actualizarBotonFavorito(btnFavorito, idRuta);
+
+        // Evitar que el corazón abra el modal
+        btnFavorito.addEventListener("click", (e) => {
+            e.stopPropagation();
+            alternarFavorito(idRuta);
+        });
+
+        carta.prepend(btnFavorito);
         carta.addEventListener("click", () => abrirModal(idRuta, carta));
         carta.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" || e.key === " ") {
+            if ((e.key === "Enter" || e.key === " ") && e.target === carta
+            ) {
                 e.preventDefault();
                 abrirModal(idRuta, carta);
             }
@@ -173,6 +265,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const info = datosRutas[idRuta];
         if (!info || !modal)
             return;
+        rutaActualId = idRuta;
+
+        if (btnFavoritoModal) {
+            actualizarBotonFavorito(btnFavoritoModal, idRuta);
+        }
         elementoPrevioEnfocado = elementoDisparador || document.activeElement;
         const elTitulo = document.getElementById("modal-titulo-ruta");
         const elImg = document.getElementById("modal-img-ruta");
