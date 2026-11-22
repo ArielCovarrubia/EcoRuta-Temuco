@@ -1,5 +1,7 @@
 import type { Ruta, FiltrosRuta, Inscripcion } from '../types/ruta.ts';
 import { filtrarRutas } from '../utils/rutas.ts';
+import { rutas as rutasEstaticas } from '../../js/rutas.ts';
+
 
 // URL base de la API: variable de entorno Vite o ruta relativa
 const API_BASE_URL = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_URL) || '';
@@ -63,12 +65,9 @@ export interface ResultadoRutas {
  */
 export async function obtenerRutasApi(filtros?: FiltrosRuta): Promise<ResultadoRutas> {
     const endpointsAIntentar = [
-        `${API_BASE_URL}/api/v1/rutas`,
-        `${API_BASE_URL}/api/rutas`,
-        './api/rutas.json',
-        '/api/rutas.json',
-        'public/api/rutas.json'
-    ];
+    `${API_BASE_URL}/api/v1/rutas`,
+    `${API_BASE_URL}/api/rutas`
+];
 
     let rutasObtenidas: Ruta[] = [];
     let origen: 'api' | 'respaldo' = 'respaldo';
@@ -109,7 +108,13 @@ export async function obtenerRutasApi(filtros?: FiltrosRuta): Promise<ResultadoR
     }
 
     if (!exito) {
-        throw new Error('No fue posible cargar las rutas desde la API ni desde el respaldo local.');
+        console.warn('No se pudo conectar con la API. Se utilizarán las rutas estáticas.');
+
+        rutasObtenidas = rutasEstaticas
+            .filter(esRutaValida)
+            .map(normalizarRuta);
+
+        origen = 'respaldo';
     }
 
     // Filtrar solo las rutas en estado Publicado (RN-02 / HU-23)
