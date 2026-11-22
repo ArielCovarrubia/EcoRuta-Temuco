@@ -53,6 +53,7 @@ function TarjetaRuta({ ruta }: TarjetaRutaProps) {
                 className="ruta-img"
                 src={`/${ruta.imagen}`}
                 alt={ruta.nombre}
+                loading="lazy"
             />
 
             <div>
