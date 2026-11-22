@@ -113,7 +113,17 @@
             "trekking": "Trekking",
             "cultureNature": "Cultura y Naturaleza",
             "clearFilters": "Limpiar filtros",
-            "noResults": "No se encontraron rutas que coincidan con los filtros seleccionados."
+            "noResults": "No se encontraron rutas que coincidan con los filtros seleccionados.",
+            "activeFilters": "Filtros activos:",
+            "removeFilter": "Quitar filtro"
+        },
+        "modal": {
+            "startTime": "Fecha y hora de inicio:",
+            "duration": "Duración:",
+            "location": "Ubicación de inicio y fin:",
+            "attractions": "Atractivos principales:",
+            "difficulty": "Dificultad:",
+            "activityType": "Tipo de actividad:"
         },
         "temuco": {
             "bannerAlt": "Carretera pavimentada atravesando un bosque nativo con montañas y volcán nevado al fondo",
@@ -280,7 +290,17 @@
             "trekking": "Trekking",
             "cultureNature": "Culture and Nature",
             "clearFilters": "Clear filters",
-            "noResults": "No routes match the selected filters."
+            "noResults": "No routes match the selected filters.",
+            "activeFilters": "Active filters:",
+            "removeFilter": "Remove filter"
+        },
+        "modal": {
+            "startTime": "Start date and time:",
+            "duration": "Duration:",
+            "location": "Start and end location:",
+            "attractions": "Main attractions:",
+            "difficulty": "Difficulty:",
+            "activityType": "Activity type:"
         },
         "temuco": {
             "bannerAlt": "Paved road crossing a native forest with mountains and a snow-covered volcano in the background",

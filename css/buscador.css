@@ -75,3 +75,86 @@
 .carta-btn[hidden] {
     display: none !important;
 }
+
+/* ------------------------------------------------------------------
+    Chips de filtros activos (se generan desde js/buscador.ts)
+   ------------------------------------------------------------------ */
+.filtros-activos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px dashed #c8cdd2;
+}
+
+.filtros-activos[hidden] {
+    display: none;
+}
+
+.filtros-activos-titulo {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.chip-filtro {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.35rem 0.25rem 0.75rem;
+    background-color: #e8f5e9;
+    color: #14532d;
+    border: 1px solid #27ae60;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    line-height: 1.2;
+}
+
+.chip-etiqueta {
+    font-weight: bold;
+}
+
+.chip-quitar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+    background-color: #14532d;
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.chip-quitar:hover,
+.chip-quitar:focus-visible {
+    background-color: #b91c1c;
+    outline: 2px solid #27ae60;
+    outline-offset: 2px;
+}
+
+body.alto-contraste .filtros-activos {
+    border-top-color: #ffffff !important;
+}
+
+body.alto-contraste .filtros-activos-titulo {
+    color: #ffffff !important;
+}
+
+body.alto-contraste .chip-filtro {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border: 1.5px solid #ffff00 !important;
+}
+
+body.alto-contraste .chip-quitar {
+    background-color: #ffff00 !important;
+    color: #000000 !important;
+}
