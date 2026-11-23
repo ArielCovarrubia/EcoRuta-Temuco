@@ -70,15 +70,23 @@ function App() {
 
                 {!cargando && !error && (
                     <>
-                        <ListaRutas rutas={rutas} />
-                        <section aria-labelledby="seccion-inscripcion-titulo" style={{ marginTop: '2.5rem' }}>
-                            <h3 id="seccion-inscripcion-titulo">Inscripción rápida a rutas</h3>
-                            <FormularioInscripcion
-                                rutas={rutas}
-                                rutaIdInicial={rutas[0]?.id}
-                                origen={origen}
-                            />
-                        </section>
+                        {rutas.length > 0 ? (
+                            <>
+                                <ListaRutas rutas={rutas} />
+                                <section aria-labelledby="seccion-inscripcion-titulo" style={{ marginTop: '2.5rem' }}>
+                                    <h3 id="seccion-inscripcion-titulo">Inscripción rápida a rutas</h3>
+                                    <FormularioInscripcion
+                                        rutas={rutas}
+                                        rutaIdInicial={rutas[0]?.id}
+                                        origen={origen}
+                                    />
+                                </section>
+                            </>
+                        ) : (
+                            <p role="status" className="mensaje-sin-resultados">
+                                No encontramos rutas disponibles. Intenta nuevamente más tarde.
+                            </p>
+                        )}
                     </>
                 )}
             </main>
