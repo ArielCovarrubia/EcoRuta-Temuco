@@ -3,6 +3,58 @@ import { datosRutas } from './detalleRutas.js';
 
 let elementoPrevioEnfocado: HTMLElement | null = null;
 
+// ----------------------------------------------------------------------
+// Favoritos (se guardan en localStorage bajo la clave "favoritos")
+// ----------------------------------------------------------------------
+function obtenerFavoritos(): number[] {
+    try {
+        const guardados: unknown = JSON.parse(localStorage.getItem("favoritos") || "[]");
+        return Array.isArray(guardados)
+            ? guardados.map(Number).filter(Number.isFinite)
+            : [];
+    } catch {
+        return [];
+    }
+}
+
+function esFavorita(idRuta: string | number): boolean {
+    return obtenerFavoritos().includes(Number(idRuta));
+}
+
+function actualizarBotonFavorito(boton: HTMLElement, idRuta: string | number): void {
+    const activo = esFavorita(idRuta);
+
+    boton.textContent = activo ? "♥" : "♡";
+    boton.classList.toggle("activo", activo);
+    boton.setAttribute("aria-pressed", String(activo));
+    boton.setAttribute(
+        "aria-label",
+        activo ? "Quitar ruta de favoritos" : "Agregar ruta a favoritos"
+    );
+}
+
+function alternarFavorito(idRuta: string | number): void {
+    const id = Number(idRuta);
+    const favoritos = obtenerFavoritos();
+    const nuevosFavoritos = favoritos.includes(id)
+        ? favoritos.filter(favorito => favorito !== id)
+        : [...favoritos, id];
+
+    try {
+        localStorage.setItem("favoritos", JSON.stringify(nuevosFavoritos));
+    } catch {
+        // Sin almacenamiento disponible: el estado visual no cambia.
+    }
+
+    // Actualizar todos los corazones de la página (tarjetas, ficha y modal).
+    document.querySelectorAll<HTMLElement>(".btn-favorito[data-id-ruta]").forEach(boton => {
+        actualizarBotonFavorito(boton, boton.dataset.idRuta ?? "");
+    });
+
+    const botonModal = document.getElementById("btn-favorito-modal");
+    if (botonModal) actualizarBotonFavorito(botonModal, id);
+}
+
 // Claves i18n de los valores del catálogo (las mismas de los <option> de los filtros).
 const CLAVES_VALORES_CATALOGO: Record<string, string> = {
     "Fácil": "routes.easy",
@@ -23,7 +75,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnCerrar = document.getElementById("btn-cerrar-modal") as HTMLButtonElement | null;
     const tarjetas = document.querySelectorAll<HTMLElement>(".cartas-img .carta");
 
+    document.querySelectorAll<HTMLElement>(".btn-favorito[data-id-ruta]").forEach(boton => {
+        const id = boton.dataset.idRuta;
+        if (!id) return;
+        actualizarBotonFavorito(boton, id);
+        boton.addEventListener("click", (e: MouseEvent) => {
+            e.stopPropagation();
+            alternarFavorito(id);
+        });
+    });
+
     if (!modal) return;
+
+    const btnFavoritoModal = document.getElementById("btn-favorito-modal") as HTMLButtonElement | null;
+    let rutaActualId: string | null = null;
+
+    if (btnFavoritoModal) {
+        btnFavoritoModal.addEventListener("click", (e: MouseEvent) => {
+            e.stopPropagation();
+            if (rutaActualId) alternarFavorito(rutaActualId);
+        });
+    }
 
     // Asignar accesibilidad y eventos a las tarjetas
     tarjetas.forEach((carta) => {
@@ -34,9 +106,23 @@ document.addEventListener("DOMContentLoaded", () => {
         const idRuta = carta.getAttribute("data-id");
         if (!idRuta) return;
 
+        // Botón de favoritos de la tarjeta
+        const btnFavorito = document.createElement("button");
+        btnFavorito.type = "button";
+        btnFavorito.className = "btn-favorito";
+        btnFavorito.dataset.idRuta = idRuta;
+        actualizarBotonFavorito(btnFavorito, idRuta);
+
+        // Evitar que el corazón abra el modal
+        btnFavorito.addEventListener("click", (e: MouseEvent) => {
+            e.stopPropagation();
+            alternarFavorito(idRuta);
+        });
+        carta.prepend(btnFavorito);
+
         carta.addEventListener("click", () => abrirModal(idRuta, carta));
         carta.addEventListener("keydown", (e: KeyboardEvent) => {
-            if (e.key === "Enter" || e.key === " ") {
+            if ((e.key === "Enter" || e.key === " ") && e.target === carta) {
                 e.preventDefault();
                 abrirModal(idRuta, carta);
             }
@@ -46,10 +132,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // Función para abrir el Modal
     function abrirModal(idRuta: string, elementoDisparador: HTMLElement): void {
         const info = datosRutas[idRuta];
-        // La dificultad y el tipo de actividad salen del catálogo (fuente única),
-        // los mismos valores que usan las tarjetas y los filtros.
         const ruta = rutas.find(r => String(r.id) === idRuta);
         if (!info || !modal) return;
+
+        rutaActualId = idRuta;
+        if (btnFavoritoModal) actualizarBotonFavorito(btnFavoritoModal, idRuta);
 
         elementoPrevioEnfocado = elementoDisparador || (document.activeElement as HTMLElement);
 
