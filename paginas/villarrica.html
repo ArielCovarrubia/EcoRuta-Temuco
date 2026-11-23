@@ -15,7 +15,7 @@
         <div id="header-container"></div>
         <main>  
             <section class="baner" aria-label="Banner de la página">
-                <img src="../assets/imagenes/baner-villarrica.webp" alt="Costanera de Villarrica junto al lago con el volcán nevado al fondo" class="baner-img">
+                <img src="../assets/imagenes/baner-villarrica.webp" alt="Costanera de Villarrica junto al lago con el volcán nevado al fondo" class="baner-img" loading="lazy">
                 <div class="contenido-baner">
                     <h2 id="titulo-baner">Descubre las rutas ecológicas de Villarrica</h2>
                     <p>Explora el lago, la costanera y los paisajes lacustres más tranquilos de la región.</p>
@@ -58,6 +58,9 @@
                             Limpiar filtros
                         </button>
                     </form>
+
+                    <!-- Filtros aplicados actualmente -->
+                    <div id="filtros-activos" class="filtros-activos" role="group" aria-labelledby="filtros-activos-titulo" hidden></div>
 
                     <!-- Mensaje amigable cuando no hay resultados-->
                     <p id="mensaje-sin-resultados" class="mensaje-no-resultados oculto" role="status" aria-live="polite"
@@ -137,11 +140,13 @@
     </div>
 
                     <div class="modal-cuerpo">
-                        <img id="modal-img-ruta" src="" alt="" class="modal-img">
+                        <img id="modal-img-ruta" src="" alt="" class="modal-img" loading="lazy">
 
                         <p id="modal-descripcion-ruta" class="modal-descripcion"></p>
 
                         <ul class="modal-detalles-lista">
+                            <li><strong data-i18n="modal.difficulty">Dificultad:</strong> <span id="modal-dificultad"></span></li>
+                            <li><strong data-i18n="modal.activityType">Tipo de actividad:</strong> <span id="modal-actividad"></span></li>
                             <li><strong data-i18n="modal.startTime">Fecha y hora de inicio:</strong> <span id="modal-fecha-inicio"></span></li>
                             <li><strong data-i18n="modal.duration">Duración:</strong> <span id="modal-duracion"></span></li>
                             <li><strong data-i18n="modal.location">Ubicación de inicio y fin:</strong> <span id="modal-ubicacion"></span></li>
