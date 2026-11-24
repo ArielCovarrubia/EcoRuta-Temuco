@@ -46,6 +46,7 @@ function obtenerTraduccion(clave) {
     }
     return typeof valor === 'string' ? valor : undefined;
 }
+const ATRIBUTOS_TRADUCIBLES = ['alt', 'aria-label', 'placeholder', 'title', 'content'];
 // Aplica el idioma seleccionado.
 function aplicarIdioma(idioma) {
     if (!traducciones[idioma]) {
@@ -70,10 +71,29 @@ function aplicarIdioma(idioma) {
             elemento.textContent = texto;
         }
     });
+    // Atributos traducibles con data-i18n-<atributo>="clave" (alt, aria-label,
+    // placeholder, title y content). A diferencia de data-i18n-attr, un mismo
+    // elemento puede traducir su texto y varios atributos a la vez.
+    ATRIBUTOS_TRADUCIBLES.forEach(atributo => {
+        document.querySelectorAll(`[data-i18n-${atributo}]`).forEach(elemento => {
+            const clave = elemento.getAttribute(`data-i18n-${atributo}`);
+            if (!clave)
+                return;
+            const texto = obtenerTraduccion(clave);
+            if (texto === undefined) {
+                console.warn(`No se encontró la traducción: ${clave}`);
+                return;
+            }
+            elemento.setAttribute(atributo, texto);
+        });
+    });
     const selectorIdioma = document.getElementById('selector-idioma');
     if (selectorIdioma) {
         selectorIdioma.value = idioma;
     }
+    // Avisa a los módulos con contenido dinámico (ruta del día, ficha modal,
+    // clima, favoritos...) para que vuelvan a dibujarse en el idioma nuevo.
+    document.dispatchEvent(new CustomEvent('idiomacambiado', { detail: { idioma } }));
 }
 // Conecta el selector con la función de traducción.
 function iniciarSelectorIdioma() {
@@ -685,6 +705,52 @@ function iniciarModulos() {
 // ==========================================================================
 // CÁTALOGO DE EMPRENDEDORES (HU-03 / Fetch de emprendedores publicados)
 // ==========================================================================
+let emprendedoresMostrados = null;
+function claveDescripcion(texto) {
+    return texto
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '')
+        .slice(0, 60);
+}
+function descripcionEmprendedor(emp) {
+    if (idiomaActual === 'en' && emp.descripcionEn)
+        return emp.descripcionEn;
+    const traducida = obtenerTraduccion(`entrepreneurDescriptions.${claveDescripcion(emp.descripcion)}`);
+    return traducida || emp.descripcion;
+}
+function dibujarEmprendedores(contenedor, publicados) {
+    contenedor.innerHTML = '';
+    publicados.forEach(emp => {
+        const tarjeta = document.createElement('article');
+        tarjeta.className = 'carta-ciudad';
+        tarjeta.innerHTML = `
+        <h3>${emp.nombre}</h3>
+        <p>
+        <strong>${obtenerTraduccion('routes.location')}:</strong>
+        ${emp.ubicacion}
+        </p>
+        <p>${descripcionEmprendedor(emp)}</p>
+        <p>
+        <strong>${obtenerTraduccion('routes.score')}:</strong>
+        ${emp.puntajeSustentable} / 12
+        </p>
+        <div class="contacto-emprendedor" style="margin-top: 0.8rem; text-align: center;">
+          <a href="https://wa.me/${emp.whatsapp.replace(/\+|\s/g, '')}" target="_blank" rel="noopener noreferrer" class="btn-ciudad">WhatsApp</a>
+          <p style="font-size: 0.8rem; margin-top: 0.4rem; color: #4a5568;">${emp.redesSociales}</p>
+        </div>
+      `;
+        contenedor.appendChild(tarjeta);
+    });
+}
+document.addEventListener('idiomacambiado', () => {
+    const contenedor = document.getElementById('contenedor-emprendedores');
+    if (contenedor && emprendedoresMostrados && emprendedoresMostrados.length > 0) {
+        dibujarEmprendedores(contenedor, emprendedoresMostrados);
+    }
+});
 async function cargarEmprendedoresPublicados() {
     const contenedor = document.getElementById('contenedor-emprendedores');
     // Si en la página actual no existe el contenedor, no hace nada
@@ -729,27 +795,8 @@ async function cargarEmprendedoresPublicados() {
             return;
         }
         // 4. Dibujar las tarjetas dinámicamente en el DOM
-        publicados.forEach(emp => {
-            const tarjeta = document.createElement('article');
-            tarjeta.className = 'carta-ciudad';
-            tarjeta.innerHTML = `
-        <h3>${emp.nombre}</h3>
-        <p>
-        <strong>${obtenerTraduccion('routes.location')}:</strong>
-        ${emp.ubicacion}
-        </p>
-        <p>${emp.descripcion}</p>
-        <p>
-        <strong>${obtenerTraduccion('routes.score')}:</strong>
-        ${emp.puntajeSustentable} / 12
-        </p>
-        <div class="contacto-emprendedor" style="margin-top: 0.8rem; text-align: center;">
-          <a href="https://wa.me/${emp.whatsapp.replace(/\+|\s/g, '')}" target="_blank" rel="noopener noreferrer" class="btn-ciudad">WhatsApp</a>
-          <p style="font-size: 0.8rem; margin-top: 0.4rem; color: #4a5568;">${emp.redesSociales}</p>
-        </div>
-      `;
-            contenedor.appendChild(tarjeta);
-        });
+        emprendedoresMostrados = publicados;
+        dibujarEmprendedores(contenedor, publicados);
     }
     catch (error) {
         // 5. Manejo amigable con try/catch sin romper el sitio

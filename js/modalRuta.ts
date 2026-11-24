@@ -29,7 +29,9 @@ function actualizarBotonFavorito(boton: HTMLElement, idRuta: string | number): v
     boton.setAttribute("aria-pressed", String(activo));
     boton.setAttribute(
         "aria-label",
-        activo ? "Quitar ruta de favoritos" : "Agregar ruta a favoritos"
+        activo
+            ? obtenerTraduccion("a11y.removeFavorite") || "Quitar ruta de favoritos"
+            : obtenerTraduccion("a11y.addFavorite") || "Agregar ruta a favoritos"
     );
 }
 
@@ -65,6 +67,17 @@ const CLAVES_VALORES_CATALOGO: Record<string, string> = {
     "Cultura y Naturaleza": "routes.cultureNature"
 };
 
+// Clave de traducción de cada comuna (secciones de idiomas.json).
+const CLAVES_COMUNA: Record<string, string> = {
+    "Temuco": "temuco",
+    "Pucón": "pucon",
+    "Villarrica": "villarrica"
+};
+
+function textoFicha(idRuta: string, campo: string, respaldo: string): string {
+    return obtenerTraduccion(`routeDetails.${idRuta}.${campo}`) || respaldo;
+}
+
 function traducirValorCatalogo(valor: string): string {
     const clave = CLAVES_VALORES_CATALOGO[valor];
     return (clave && obtenerTraduccion(clave)) || valor;
@@ -82,6 +95,13 @@ document.addEventListener("DOMContentLoaded", () => {
         boton.addEventListener("click", (e: MouseEvent) => {
             e.stopPropagation();
             alternarFavorito(id);
+        });
+    });
+
+
+    document.addEventListener("idiomacambiado", () => {
+        document.querySelectorAll<HTMLElement>(".btn-favorito[data-id-ruta]").forEach(boton => {
+            actualizarBotonFavorito(boton, boton.dataset.idRuta ?? "");
         });
     });
 
@@ -129,16 +149,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Función para abrir el Modal
-    function abrirModal(idRuta: string, elementoDisparador: HTMLElement): void {
+    // Rellena la ficha con los datos de la ruta en el idioma actual.
+    function rellenarModal(idRuta: string): void {
         const info = datosRutas[idRuta];
         const ruta = rutas.find(r => String(r.id) === idRuta);
-        if (!info || !modal) return;
-
-        rutaActualId = idRuta;
-        if (btnFavoritoModal) actualizarBotonFavorito(btnFavoritoModal, idRuta);
-
-        elementoPrevioEnfocado = elementoDisparador || (document.activeElement as HTMLElement);
+        if (!info) return;
 
         const elTitulo = document.getElementById("modal-titulo-ruta") as HTMLHeadingElement | null;
         const elImg = document.getElementById("modal-img-ruta") as HTMLImageElement | null;
@@ -150,18 +165,35 @@ document.addEventListener("DOMContentLoaded", () => {
         const elUbicacion = document.getElementById("modal-ubicacion") as HTMLSpanElement | null;
         const elAtractivos = document.getElementById("modal-atractivos") as HTMLSpanElement | null;
 
-        if (elTitulo) elTitulo.textContent = info.titulo;
+        const claveComuna = ruta ? CLAVES_COMUNA[ruta.comuna] : undefined;
+        const titulo = claveComuna
+            ? obtenerTraduccion(`${claveComuna}.route${idRuta}Name`) || info.titulo
+            : info.titulo;
+
+        if (elTitulo) elTitulo.textContent = titulo;
         if (elImg) {
             elImg.src = info.imagen;
-            elImg.alt = ""; // Punto 7 PR: alt decorativo para no duplicar h2
+            elImg.alt = ""; 
         }
-        if (elDesc) elDesc.textContent = info.descripcion;
+        if (elDesc) elDesc.textContent = textoFicha(idRuta, "description", info.descripcion);
         if (elDificultad && ruta) elDificultad.textContent = traducirValorCatalogo(ruta.dificultad);
         if (elActividad && ruta) elActividad.textContent = traducirValorCatalogo(ruta.tipoActividad);
-        if (elFecha) elFecha.textContent = info.fechaInicio;
-        if (elDuracion) elDuracion.textContent = info.duracion;
-        if (elUbicacion) elUbicacion.textContent = info.ubicacion;
-        if (elAtractivos) elAtractivos.textContent = info.atractivos;
+        if (elFecha) elFecha.textContent = textoFicha(idRuta, "startDate", info.fechaInicio);
+        if (elDuracion) elDuracion.textContent = textoFicha(idRuta, "duration", info.duracion);
+        if (elUbicacion) elUbicacion.textContent = textoFicha(idRuta, "location", info.ubicacion);
+        if (elAtractivos) elAtractivos.textContent = textoFicha(idRuta, "attractions", info.atractivos);
+    }
+
+    // Función para abrir el Modal
+    function abrirModal(idRuta: string, elementoDisparador: HTMLElement): void {
+        if (!datosRutas[idRuta] || !modal) return;
+
+        rutaActualId = idRuta;
+        if (btnFavoritoModal) actualizarBotonFavorito(btnFavoritoModal, idRuta);
+
+        elementoPrevioEnfocado = elementoDisparador || (document.activeElement as HTMLElement);
+
+        rellenarModal(idRuta);
 
         modal?.classList.remove("oculto");
         modal?.setAttribute("aria-hidden", "false");
@@ -197,5 +229,11 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
             btnCerrar.focus();
         }
+    });
+
+    document.addEventListener("idiomacambiado", () => {
+        if (!rutaActualId) return;
+        if (btnFavoritoModal) actualizarBotonFavorito(btnFavoritoModal, rutaActualId);
+        if (!modal.classList.contains("oculto")) rellenarModal(rutaActualId);
     });
 });

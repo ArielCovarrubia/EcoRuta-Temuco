@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Guía turística de nuestra ruta en Villarrica: atractivos naturales, servicios cercanos e información para la buena prevalencia del entorno.">
-    <title>Ruta Villarrica</title>
+    <meta data-i18n-content="meta.routeVillarricaDescription" name="description" content="Guía turística de nuestra ruta en Villarrica: atractivos naturales, servicios cercanos e información para la buena prevalencia del entorno.">
+    <title data-i18n="villarrica.mapPopup">Ruta Villarrica</title>
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
@@ -21,14 +21,14 @@
     aria-pressed="false">
     ♡
 </button>
-            <h2>Atardecer en el Lago Villarrica</h2>
-            <img src="../../assets/imagenes/lago-villarrica-destacado.webp" alt="Ruta destacada" loading="lazy">
-            <p>Desde la costanera de Villarrica se puede disfrutar de uno de los atardeceres más fotografiados de la región, con el volcán Villarrica reflejado en las aguas calmas del lago. Un momento perfecto para caminar o cerrar el día después de recorrer la ciudad.</p>
-            <p><strong>Ubicación:</strong> Villarrica, Chile</p>
-            <p><strong>Duración:</strong> 1 hora</p>
+            <h2 data-i18n="routePage.villarricaName">Atardecer en el Lago Villarrica</h2>
+            <img data-i18n-alt="routePage.featuredAlt" src="../../assets/imagenes/lago-villarrica-destacado.webp" alt="Ruta destacada" loading="lazy">
+            <p data-i18n="routePage.villarricaDescription">Desde la costanera de Villarrica se puede disfrutar de uno de los atardeceres más fotografiados de la región, con el volcán Villarrica reflejado en las aguas calmas del lago. Un momento perfecto para caminar o cerrar el día después de recorrer la ciudad.</p>
+            <p><strong data-i18n="routePage.locationLabel">Ubicación:</strong> Villarrica, Chile</p>
+            <p><strong data-i18n="routePage.durationLabel">Duración:</strong> <span data-i18n="routePage.villarricaDuration">1 hora</span></p>
 
             <section class="seccion-mapa" style="margin: 1.5rem 0;">
-                <h2>Ubicación de la Ruta</h2>
+                <h2 data-i18n="routes.mapTitle">Ubicación de la Ruta</h2>
                 <div id="mapa-ruta" class="mapa-contenedor"></div>
             </section>
 
@@ -50,9 +50,18 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(mapa);
 
-        L.marker([lat, lng]).addTo(mapa)
-            .bindPopup('<b>Atardecer en el Lago Villarrica</b><br>Punto de inicio de la ruta.')
+        function textoPopup() {
+            const t = (clave, respaldo) =>
+                (typeof obtenerTraduccion === 'function' && obtenerTraduccion(clave)) || respaldo;
+            return '<b>' + t('routePage.villarricaName', 'Atardecer en el Lago Villarrica') + '</b><br>' +
+                t('routePage.startPoint', 'Punto de inicio de la ruta.');
+        }
+
+        const marcador = L.marker([lat, lng]).addTo(mapa)
+            .bindPopup(textoPopup())
             .openPopup();
+
+        document.addEventListener('idiomacambiado', () => marcador.setPopupContent(textoPopup()));
     </script>
 
     <script src="../../js/layout.js"></script>
