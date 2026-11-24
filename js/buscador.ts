@@ -231,6 +231,57 @@ document.addEventListener('DOMContentLoaded', () => {
         contenedorChips.hidden = totalActivos === 0;
     }
 
+    // Identificación de tarjetas (BUG-13)
+
+    const tarjetasAdvertidas = new WeakSet<HTMLElement>();
+
+    const CONSECUENCIA_VISIBLE = 'La tarjeta se mantiene visible y no se puede filtrar.';
+
+    function advertirTarjeta(tarjeta: HTMLElement, motivo: string, consecuencia: string = CONSECUENCIA_VISIBLE): void {
+        if (tarjetasAdvertidas.has(tarjeta)) return;
+        tarjetasAdvertidas.add(tarjeta);
+
+        const titulo = tarjeta.querySelector('h3')?.textContent?.trim() || '(sin título)';
+        console.warn(
+            `[EcoRuta] Tarjeta "${titulo}" (${window.location.pathname}): ${motivo}. ${consecuencia}`
+        );
+    }
+
+    function resolverIdTarjeta(tarjeta: HTMLElement): number | null {
+        const atributo = tarjeta.getAttribute('data-id');
+        const idDesdeDatos = atributo !== null && atributo.trim() !== '' ? Number(atributo) : NaN;
+
+        const claveNombre = tarjeta.querySelector<HTMLElement>('[data-i18n$="Name"]')?.dataset.i18n;
+        const textoClave = claveNombre?.match(/\.route(\d+)Name$/)?.[1];
+        const idDesdeClave = textoClave ? Number(textoClave) : null;
+
+        if (atributo === null || atributo.trim() === '') {
+            advertirTarjeta(tarjeta, 'no tiene el atributo data-id');
+        } else if (!Number.isInteger(idDesdeDatos)) {
+            advertirTarjeta(tarjeta, `data-id="${atributo}" no es un número entero válido`);
+        } else if (!rutas.some(ruta => ruta.id === idDesdeDatos)) {
+            advertirTarjeta(tarjeta, `data-id="${atributo}" no existe en js/rutas.ts`);
+        } else if (idDesdeClave !== null && idDesdeClave !== idDesdeDatos) {
+            advertirTarjeta(
+                tarjeta,
+                `data-id="${atributo}" no coincide con la ruta ${idDesdeClave} indicada por su clave de traducción "${claveNombre}"`,
+                `Se filtrará como la ruta ${idDesdeClave}; corrige el data-id.`
+            );
+        } else {
+            const ruta = rutas.find(r => r.id === idDesdeDatos);
+            const src = tarjeta.querySelector('img')?.getAttribute('src');
+            if (ruta && src && src !== `../${ruta.imagen}`) {
+                advertirTarjeta(
+                    tarjeta,
+                    `data-id="${atributo}" corresponde a "${ruta.nombre}" en js/rutas.ts, pero la imagen de la tarjeta es "${src}"`,
+                    `Se filtrará como la ruta ${idDesdeDatos}; revisa el data-id o la imagen.`
+                );
+            }
+        }
+
+        if (idDesdeClave !== null) return idDesdeClave;
+        return Number.isInteger(idDesdeDatos) ? idDesdeDatos : null;
+    }
     function aplicarFiltros() {
         const filtros = {
             comuna: comunaActual,
@@ -245,20 +296,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let visiblesContador = 0;
 
         tarjetas.forEach(tarjeta => {
-            const claveNombre = tarjeta.querySelector<HTMLElement>(
-                '[data-i18n$="Name"]'
-            )?.dataset.i18n;
-            const idDesdeClave = claveNombre?.match(/\.route(\d+)Name$/)?.[1];
-            const idDesdeDatos = Number(tarjeta.dataset.id);
-            const idRuta = idDesdeClave
-                ? Number(idDesdeClave)
-                : Number.isInteger(idDesdeDatos)
-                    ? idDesdeDatos
-                    : null;
-
-            // Es preferible utilizar el ID de la ruta en la clave de traducción, ya que este permanece vinculado al
-            // conjunto de datos, incluso si el «data-id» falta o es incorrecto por error. 
-            // Las tarjetas desconocidas permanecen visibles, de modo que un problema en el marcado nunca oculte el contenido.
+            const idRuta = resolverIdTarjeta(tarjeta);
+            
             const idExiste = idRuta !== null && rutas.some(ruta => ruta.id === idRuta);
             const esCoincidente = !idExiste || idsVisibles.has(idRuta);
 
