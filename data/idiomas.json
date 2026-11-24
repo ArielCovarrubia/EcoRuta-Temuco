@@ -18,7 +18,10 @@
             "menuLabel": "Menú principal",
             "menuClose": "Cerrar menú",
             "emailPending": "Correo: Pendiente de confirmar",
-            "phonePending": "Teléfono: Pendiente de confirmar"
+            "phonePending": "Teléfono: Pendiente de confirmar",
+            "facebookLabel": "Facebook de EcoRuta",
+            "instagramLabel": "Instagram de EcoRuta",
+            "xLabel": "X de EcoRuta"
         },
         "footer": {
             "followUs": "Síguenos",
@@ -87,7 +90,10 @@
             "villarrica": "Explorar Villarrica",
             "temucoDescription": "Parques, monumentos y senderos urbanos te esperan.",
             "puconDescription": "Aventura, volcanes y naturaleza salvaje.",
-            "villarricaDescription": "Tranquilidad lacustre y hermosos paisajes naturales."
+            "villarricaDescription": "Tranquilidad lacustre y hermosos paisajes naturales.",
+            "temucoAlt": "Letras grandes y coloridas con el nombre Temuco en una plaza urbana",
+            "puconAlt": "Letrero de Pucón junto a un lago con el volcán Villarrica al fondo",
+            "villarricaAlt": "Pareja caminando junto al letrero de Villarrica con el lago y el volcán nevado de fondo"
         },
         "routes": {
             "popular": "Rutas populares",
@@ -123,7 +129,8 @@
             "location": "Ubicación de inicio y fin:",
             "attractions": "Atractivos principales:",
             "difficulty": "Dificultad:",
-            "activityType": "Tipo de actividad:"
+            "activityType": "Tipo de actividad:",
+            "loading": "Cargando ruta..."
         },
         "temuco": {
             "bannerAlt": "Carretera pavimentada atravesando un bosque nativo con montañas y volcán nevado al fondo",
@@ -141,7 +148,12 @@
             "route4Name": "Isla Cautín",
             "route4Description": "Disfruta de este espacio verde ideal para caminatas y actividades al aire libre.",
             "route5Name": "Monumento Cerro Ñielol",
-            "route5Description": "Conoce la historia y la cultura de Temuco en este emblemático monumento."
+            "route5Description": "Conoce la historia y la cultura de Temuco en este emblemático monumento.",
+            "route1Alt": "Mirador de madera con vista panorámica de la ciudad de Temuco rodeado de vegetación",
+            "route2Alt": "Vista aérea de lagos color turquesa rodeados de bosque nativo en el Parque Nacional Huerquehue",
+            "route3Alt": "Volcán nevado con laderas de tierra volcánica bajo un cielo despejado",
+            "route4Alt": "Vista aérea de un área verde con senderos junto a una zona urbana",
+            "route5Alt": "Esculturas de madera con árboles nativos por detrás"
         },
         "pucon": {
             "title": "Descubre las rutas ecológicas de Pucón",
@@ -157,7 +169,13 @@
             "route9Name": "Reserva Nacional Cañi",
             "route9Description": "Recorre senderos entre araucarias milenarias en uno de los bosques nativos mejor conservados.",
             "route10Name": "Cañón del Río Trancura",
-            "route10Description": "Disfruta de rafting y paisajes de aguas turquesas en este cañón rodeado de naturaleza."
+            "route10Description": "Disfruta de rafting y paisajes de aguas turquesas en este cañón rodeado de naturaleza.",
+            "route6Alt": "Cascada de agua cayendo entre rocas volcánicas rodeada de bosque nativo",
+            "route7Alt": "Piscinas termales de piedra rodeadas de vegetación nativa junto a un río",
+            "route8Alt": "Pozas de agua turquesa formadas por pequeñas cascadas entre la roca volcánica",
+            "route9Alt": "Sendero de trekking rodeado de araucarias milenarias en la Reserva Nacional Cañi",
+            "route10Alt": "Río de aguas turquesas atravesando un cañón rocoso rodeado de vegetación",
+            "bannerAlt": "Camino de tierra rodeado de bosque nativo y vapor de aguas termales cerca de Pucón"
         },
         "villarrica": {
             "title": "Descubre las rutas ecológicas de Villarrica",
@@ -173,7 +191,251 @@
             "route14Name": "Termas Geométricas",
             "route14Description": "Recorre pasarelas de madera entre pozas termales en un entorno natural único.",
             "route15Name": "Mirador Bellavista",
-            "route15Description": "Disfruta de una vista panorámica completa del lago y el volcán desde las alturas."
+            "route15Description": "Disfruta de una vista panorámica completa del lago y el volcán desde las alturas.",
+            "route11Alt": "Costanera con playa de arena volcánica junto al lago Villarrica",
+            "route12Alt": "Sala de museo con piezas arqueológicas mapuche en exhibición",
+            "route13Alt": "Puestos de artesanía mapuche en la feria costumbrista de Villarrica",
+            "route14Alt": "Pasarelas de madera entre pozas termales rojas rodeadas de vegetación",
+            "route15Alt": "Mirador con vista panorámica del lago y el volcán desde un cerro cercano",
+            "bannerAlt": "Costanera de Villarrica junto al lago con el volcán nevado al fondo"
+        },
+        "meta": {
+            "indexTitle": "EcoRutas La Araucanía: Inicio",
+            "indexDescription": "Bienvenidos a EcoRutas: explora rutas turísticas sustentables, actividades ecológicas y emprendimientos ubicados todos en La Araucanía.",
+            "temucoDescription": "Explora los mejores senderos urbanos, parques y emprendimientos sostenibles en la ciudad de Temuco, en compañía con EcoRutas.",
+            "puconDescription": "Descubre tus mejores rutas turísticas, emprendimientos y panoramas con enfoque sustentables en Pucón, junto a EcoRutas.",
+            "villarricaDescription": "Conoce paisajes lacustres, rutas sustentables y servicios destacados en Villarrica a través de EcoRutas.",
+            "contactTitle": "EcoRutas La Araucanía: Contacto",
+            "contactDescription": "Ponte en contacto con nuestro equipo para resolver tus dudas sobre nuestras rutas ecológicas y servicios turísticos regionales.",
+            "sustainabilityTitle": "EcoRutas La Araucanía: Qué significa sustentable",
+            "sustainabilityDescription": "Conoce qué significa sustentable en EcoRutas: los 6 criterios y el puntaje de 0 a 12 que usamos para publicar emprendimientos en La Araucanía.",
+            "routeTemucoDescription": "Información detallada sobre nuestras rutas, recomendaciones de viajes y emprendimientos en Temuco.",
+            "routePuconDescription": "Detalles completos de la ruta turística en Pucón, formularios y lugares de interés sugeridos.",
+            "routeVillarricaDescription": "Guía turística de nuestra ruta en Villarrica: atractivos naturales, servicios cercanos e información para la buena prevalencia del entorno."
+        },
+        "a11y": {
+            "banner": "Banner de la página",
+            "filters": "Filtros para buscar rutas",
+            "featuredMore": "Ver más información sobre la ruta destacada",
+            "closeModal": "Cerrar ventana emergente",
+            "addFavorite": "Agregar ruta a favoritos",
+            "removeFavorite": "Quitar ruta de favoritos",
+            "backToPrevious": "a la página anterior"
+        },
+        "inscription": {
+            "title": "Inscribirse en esta ruta",
+            "fullName": "Nombre completo *",
+            "namePlaceholder": "Ej: Carlos Pérez",
+            "email": "Correo electrónico *",
+            "phone": "Teléfono (opcional)",
+            "spots": "Número de cupos (1 a 5) *",
+            "submit": "Confirmar Inscripción",
+            "nameRequired": "El nombre completo es obligatorio.",
+            "spotsInvalid": "La cantidad debe ser entre 1 y 5 personas.",
+            "success": "¡Gracias, {name}! Tu inscripción para {spots} cupo(s) ha sido registrada exitosamente."
+        },
+        "weather": {
+            "title": "Información del clima",
+            "temperature": "Temperatura",
+            "condition": "Condición",
+            "feelsLike": "Sensación térmica",
+            "humidity": "Humedad",
+            "wind": "Viento",
+            "updated": "Última actualización",
+            "loading": "Consultando clima...",
+            "unavailable": "Clima temporalmente no disponible",
+            "unknown": "Condición no identificada"
+        },
+        "weatherCodes": {
+            "c0": "Despejado",
+            "c1": "Mayormente despejado",
+            "c2": "Parcialmente nublado",
+            "c3": "Nublado",
+            "c45": "Niebla",
+            "c48": "Niebla con escarcha",
+            "c51": "Llovizna ligera",
+            "c53": "Llovizna moderada",
+            "c55": "Llovizna intensa",
+            "c56": "Llovizna helada ligera",
+            "c57": "Llovizna helada intensa",
+            "c61": "Lluvia ligera",
+            "c63": "Lluvia moderada",
+            "c65": "Lluvia intensa",
+            "c66": "Lluvia helada ligera",
+            "c67": "Lluvia helada intensa",
+            "c71": "Nevada ligera",
+            "c73": "Nevada moderada",
+            "c75": "Nevada intensa",
+            "c77": "Granizo pequeño",
+            "c80": "Chubascos ligeros",
+            "c81": "Chubascos moderados",
+            "c82": "Chubascos intensos",
+            "c85": "Chubascos de nieve ligeros",
+            "c86": "Chubascos de nieve intensos",
+            "c95": "Tormenta eléctrica",
+            "c96": "Tormenta con granizo ligero",
+            "c99": "Tormenta con granizo intenso"
+        },
+        "contactPage": {
+            "title": "Conversemos sobre tu próxima ruta",
+            "regionValue": "Región de La Araucanía, Chile",
+            "nameLabel": "Nombre:",
+            "emailLabel": "Correo electrónico:",
+            "messageLabel": "Mensaje:",
+            "bannerAlt": "Vista aérea de una península con bosque nativo en el lago Villarrica, con el volcán nevado al fondo",
+            "businessTitle": "¿Tienes un emprendimiento?",
+            "businessAlt": "Bosque de araucarias frente a un volcán nevado",
+            "businessCardTitle": "Qué significa sustentable en EcoRutas",
+            "businessCardText": "Revisa los 6 criterios y el puntaje que usamos para publicar emprendimientos en la plataforma.",
+            "businessLink": "Ver criterios"
+        },
+        "sustainability": {
+            "bannerAlt": "Volcán nevado rodeado de bosque de araucarias junto a un lago en La Araucanía",
+            "title": "¿Qué significa sustentable en EcoRutas?",
+            "intro": "Solo publicamos emprendimientos que cuidan el entorno y aportan a las comunidades de La Araucanía.",
+            "criteriaTitle": "Los 6 criterios",
+            "criteriaIntro": "Cada criterio aporta hasta 2 puntos al puntaje total.",
+            "c1Title": "Impacto ambiental:",
+            "c1Text": "El emprendimiento reduce sus residuos, cuida el agua y la energía, y evita dañar el entorno donde funciona.",
+            "c2Title": "Aporte local:",
+            "c2Text": "Trabaja con personas, proveedores y productos de la zona, y deja beneficios en la comunidad.",
+            "c3Title": "Relación con la naturaleza:",
+            "c3Text": "Sus actividades se integran al paisaje y promueven el respeto por la flora, la fauna y los espacios naturales.",
+            "c4Title": "Cultura y patrimonio:",
+            "c4Text": "Valora y difunde la identidad de La Araucanía, incluida la cultura mapuche, con respeto y sin apropiarse de ella.",
+            "c5Title": "Prácticas responsables:",
+            "c5Text": "Funciona de forma honesta y segura, con condiciones justas para su equipo y sus visitantes.",
+            "c6Title": "Pertinencia territorial:",
+            "c6Text": "Está ubicado en La Araucanía y su propuesta tiene sentido para el territorio donde se desarrolla.",
+            "scoreTitle": "¿Cómo se usa el puntaje?",
+            "scoreIntro": "Al sumar los 6 criterios, el emprendimiento obtiene un puntaje de 0 a 12 puntos:",
+            "approvedTitle": "8 a 12 puntos, aprobado:",
+            "approvedText": "El emprendimiento se publica en EcoRutas.",
+            "pendingTitle": "5 a 7 puntos, pendiente de revisión:",
+            "pendingText": "Le pedimos más antecedentes antes de decidir.",
+            "rejectedTitle": "0 a 4 puntos, rechazado:",
+            "rejectedText": "Por ahora no se publica en la plataforma.",
+            "outro": "Por eso, en el catálogo solo verás emprendimientos aprobados, junto con su puntaje sustentable.",
+            "contactLink": "Contáctanos"
+        },
+        "routePage": {
+            "featuredAlt": "Ruta destacada",
+            "locationLabel": "Ubicación:",
+            "durationLabel": "Duración:",
+            "temucoDescription": "La Reserva Nacional Malalcahuello se ubica a los pies del volcán Lonquimay y ofrece senderos rodeados de araucarias, coigües y lengas. Es un destino ideal para el senderismo, la observación de flora y fauna nativa y el contacto directo con la cordillera andina.",
+            "temucoDuration": "3 horas",
+            "puconDescription": "Las Termas de Huife se encuentran a orillas del río Liucura, a pocos minutos de Pucón. Sus piscinas de piedra están rodeadas de bosque nativo y ofrecen aguas termales que superan los 40 grados, ideales para descansar después de un día de aventura.",
+            "puconDuration": "2 horas",
+            "villarricaName": "Atardecer en el Lago Villarrica",
+            "villarricaDescription": "Desde la costanera de Villarrica se puede disfrutar de uno de los atardeceres más fotografiados de la región, con el volcán Villarrica reflejado en las aguas calmas del lago. Un momento perfecto para caminar o cerrar el día después de recorrer la ciudad.",
+            "villarricaDuration": "1 hora"
+        },
+        "routeDetails": {
+            "1": {
+                "description": "Monumento Natural ubicado a pasos del centro de Temuco. Cuenta con senderos rodeados de selva valdiviana e impresionantes miradores hacia la ciudad.",
+                "startDate": "Lunes a Domingo - 08:30 AM",
+                "duration": "2 horas",
+                "location": "Av. Arturo Prat final, Temuco",
+                "attractions": "Pataguas monumentales, Mirador Antupirén, Centro de Información Ambiental"
+            },
+            "2": {
+                "description": "Recorrido entre milenarias araucarias y hermosas lagunas cordilleranas de origen volcánico. Un clásico del trekking en la Araucanía.",
+                "startDate": "Martes a Domingo - 08:00 AM",
+                "duration": "5 a 6 horas",
+                "location": "Sector Lago Tinquilco, Caburgua / Temuco",
+                "attractions": "Laguna Verde, Lago Toro, Araucarias milenarias, cascadas"
+            },
+            "3": {
+                "description": "Espectacular sendero entre escoriales volcánicos y bosques nativos a los pies del volcán Lonquimay.",
+                "startDate": "Miércoles a Domingo - 09:00 AM",
+                "duration": "4 horas",
+                "location": "Comuna de Curacautín / Ruta internacional",
+                "attractions": "Cráter Navidad, Bosque de Araucarias, Vistas al Volcán Lonquimay"
+            },
+            "4": {
+                "description": "Extenso parque urbano junto al río Cautín con ciclovías, plazas temáticas y senderos de caminata accesible.",
+                "startDate": "Todos los días - 07:00 AM a 08:00 PM",
+                "duration": "1.5 horas (caminata familiar)",
+                "location": "Borde Río Cautín, Temuco",
+                "attractions": "Plaza de los Plátanos, ciclovías, juegos inclusivos, vegetación riberana"
+            },
+            "5": {
+                "description": "Sitio de alto valor histórico y cultural mapuche, donde se ubican los Chemamüll y el hito del parlamento de 1881.",
+                "startDate": "Martes a Domingo - 09:00 AM",
+                "duration": "1 hora (recorrido cultural)",
+                "location": "Cumbre Cerro Ñielol, Temuco",
+                "attractions": "Esculturas Chemamüll, Bosque Nativo, Hito Histórico de Paz"
+            },
+            "6": {
+                "description": "Camina hasta esta impresionante cascada escondida de 30 metros de caída entre denso bosque nativo y rocas volcánicas.",
+                "startDate": "Sábados y Domingos - 09:00 AM",
+                "duration": "2 horas (caminata suave)",
+                "location": "Km 30 camino a Palguín, Pucón",
+                "attractions": "Cascada de 30m, flora nativa, avistamiento de aves local"
+            },
+            "7": {
+                "description": "Piscinas de aguas termales naturales a orillas del río Liucura. Perfecto para una jornada de descanso y revitalización.",
+                "startDate": "Todos los días - 10:00 AM",
+                "duration": "4 horas (recreativo)",
+                "location": "Sector Huife Alto, Pucón",
+                "attractions": "Aguas termales, hidromasaje natural, bosque nativo"
+            },
+            "8": {
+                "description": "Pozas profundas de agua color turquesa formadas por vertientes subterráneas del Lago Caburgua que afloran entre la vegetación.",
+                "startDate": "Lunes a Domingo - 09:30 AM",
+                "duration": "1.5 horas (pasarelas accesibles)",
+                "location": "Sector Caburgua, Pucón",
+                "attractions": "Pozas turquesa, pasarelas de madera, cascadas menores"
+            },
+            "9": {
+                "description": "Una de las primeras reservas privadas del país. Trekking exigente rodeado de araucarias milenarias y miradores hacia los volcanes.",
+                "startDate": "Martes a Domingo - 08:30 AM",
+                "duration": "6 a 8 horas (exigente)",
+                "location": "Sector Pichares, Pucón",
+                "attractions": "Araucarias milenarias, lagunas de altura, vista panorámica de volcanes"
+            },
+            "10": {
+                "description": "Recorrido de rafting y senderismo a lo largo del cañón del río Trancura, combinando adrenalina y hermosos paisajes cordilleranos.",
+                "startDate": "Diario - 11:00 AM y 03:00 PM",
+                "duration": "3 horas (actividad acuática)",
+                "location": "Río Trancura, Pucón",
+                "attractions": "Rápidos clase III/IV, cañón rocoso, bosque templado lluvioso"
+            },
+            "11": {
+                "description": "Paseo peatonal bordeando el lago Villarrica con playas de arena volcánica y vistas privilegiadas al volcán.",
+                "startDate": "Acceso libre 24/7",
+                "duration": "1.5 horas (caminata contemplativa)",
+                "location": "Av. Costanera, Villarrica",
+                "attractions": "Playa grande, esculturas locales, atardecer sobre el lago"
+            },
+            "12": {
+                "description": "Exhibición permanente de cerámica, platería y piezas arqueológicas que rescatan la rica historia de la cultura Mapuche.",
+                "startDate": "Lunes a Viernes - 10:00 AM a 06:00 PM",
+                "duration": "1 hora (visita guiada)",
+                "location": "Pedro de Valdivia 365, Villarrica",
+                "attractions": "Platería mapuche, cerámica ancestral, documentos históricos"
+            },
+            "13": {
+                "description": "Espacio cultural y gastronómico donde artesanos locales ofrecen productos típicos, textiles en telar y comida tradicional.",
+                "startDate": "Miércoles a Domingo - 11:00 AM",
+                "duration": "2 horas (gastronomía y compras)",
+                "location": "Sector Muelle Histórico, Villarrica",
+                "attractions": "Gastronomía mapuche, artesanía en madera y telar, música folclórica"
+            },
+            "14": {
+                "description": "Santuario termal en medio de una quebrada nativa, articulado por pasarelas rojas de madera rodeadas de vegetación exuberante.",
+                "startDate": "Todos los días - 10:00 AM",
+                "duration": "4 horas",
+                "location": "Fundo Coñaripe / Panguipulli cerca de Villarrica",
+                "attractions": "20 pozas termales, pasarelas rojas, cascada natural"
+            },
+            "15": {
+                "description": "Punto elevado en la zona alta de la ciudad que ofrece una vista panorámica despejada del Lago y el Volcán Villarrica.",
+                "startDate": "Acceso libre 24/7",
+                "duration": "1 hora",
+                "location": "Sector Bellavista, Villarrica",
+                "attractions": "Vista 360°, fotografía de paisajes, avistamiento del volcán"
+            }
         }
     },
     "en": {
@@ -195,7 +457,10 @@
             "menuLabel": "Main menu",
             "menuClose": "Close menu",
             "emailPending": "Email: To be confirmed",
-            "phonePending": "Phone: To be confirmed"
+            "phonePending": "Phone: To be confirmed",
+            "facebookLabel": "EcoRuta on Facebook",
+            "instagramLabel": "EcoRuta on Instagram",
+            "xLabel": "EcoRuta on X"
         },
         "footer": {
             "followUs": "Follow us",
@@ -264,7 +529,10 @@
             "villarrica": "Explore Villarrica",
             "temucoDescription": "Parks, monuments and urban trails are waiting for you.",
             "puconDescription": "Adventure, volcanoes and wild nature.",
-            "villarricaDescription": "Lakeside tranquility and beautiful natural landscapes."
+            "villarricaDescription": "Lakeside tranquility and beautiful natural landscapes.",
+            "temucoAlt": "Large colorful letters spelling Temuco in an urban plaza",
+            "puconAlt": "Pucón sign next to a lake with the Villarrica volcano in the background",
+            "villarricaAlt": "Couple walking next to the Villarrica sign with the lake and the snow-capped volcano in the background"
         },
         "routes": {
             "popular": "Popular routes",
@@ -300,7 +568,8 @@
             "location": "Start and end location:",
             "attractions": "Main attractions:",
             "difficulty": "Difficulty:",
-            "activityType": "Activity type:"
+            "activityType": "Activity type:",
+            "loading": "Loading route..."
         },
         "temuco": {
             "bannerAlt": "Paved road crossing a native forest with mountains and a snow-covered volcano in the background",
@@ -318,7 +587,12 @@
             "route4Name": "Cautín Island",
             "route4Description": "Enjoy this green space, ideal for walks and outdoor activities.",
             "route5Name": "Ñielol Hill Monument",
-            "route5Description": "Discover the history and culture of Temuco at this iconic monument."
+            "route5Description": "Discover the history and culture of Temuco at this iconic monument.",
+            "route1Alt": "Wooden viewpoint with a panoramic view of the city of Temuco surrounded by vegetation",
+            "route2Alt": "Aerial view of turquoise lakes surrounded by native forest in Huerquehue National Park",
+            "route3Alt": "Snow-capped volcano with volcanic soil slopes under a clear sky",
+            "route4Alt": "Aerial view of a green area with trails next to an urban zone",
+            "route5Alt": "Wooden sculptures with native trees behind them"
         },
         "pucon": {
             "title": "Discover Pucón's ecological routes",
@@ -334,7 +608,13 @@
             "route9Name": "Cañi National Reserve",
             "route9Description": "Explore trails among ancient araucaria trees in one of the best-preserved native forests.",
             "route10Name": "Trancura River Canyon",
-            "route10Description": "Enjoy rafting and turquoise waters in this canyon surrounded by nature."
+            "route10Description": "Enjoy rafting and turquoise waters in this canyon surrounded by nature.",
+            "route6Alt": "Waterfall cascading over volcanic rocks surrounded by native forest",
+            "route7Alt": "Stone hot spring pools surrounded by native vegetation next to a river",
+            "route8Alt": "Turquoise pools formed by small waterfalls among volcanic rock",
+            "route9Alt": "Trekking trail surrounded by ancient araucaria trees in Cañi National Reserve",
+            "route10Alt": "Turquoise river running through a rocky canyon surrounded by vegetation",
+            "bannerAlt": "Dirt road surrounded by native forest and hot spring steam near Pucón"
         },
         "villarrica": {
             "title": "Discover Villarrica's ecological routes",
@@ -350,7 +630,251 @@
             "route14Name": "Geometric Hot Springs",
             "route14Description": "Walk along wooden pathways between hot pools in a unique natural setting.",
             "route15Name": "Bellavista Viewpoint",
-            "route15Description": "Enjoy a complete panoramic view of the lake and volcano from above."
+            "route15Description": "Enjoy a complete panoramic view of the lake and volcano from above.",
+            "route11Alt": "Waterfront with a volcanic sand beach next to Lake Villarrica",
+            "route12Alt": "Museum room with Mapuche archaeological pieces on display",
+            "route13Alt": "Mapuche craft stalls at the Villarrica traditional fair",
+            "route14Alt": "Wooden walkways among red hot spring pools surrounded by vegetation",
+            "route15Alt": "Viewpoint with a panoramic view of the lake and the volcano from a nearby hill",
+            "bannerAlt": "Villarrica waterfront by the lake with the snow-capped volcano in the background"
+        },
+        "meta": {
+            "indexTitle": "EcoRutas La Araucanía: Home",
+            "indexDescription": "Welcome to EcoRutas: explore sustainable tourist routes, ecological activities and local businesses, all located in La Araucanía.",
+            "temucoDescription": "Explore the best urban trails, parks and sustainable businesses in the city of Temuco with EcoRutas.",
+            "puconDescription": "Discover the best tourist routes, businesses and activities with a sustainable focus in Pucón, with EcoRutas.",
+            "villarricaDescription": "Discover lake landscapes, sustainable routes and outstanding services in Villarrica with EcoRutas.",
+            "contactTitle": "EcoRutas La Araucanía: Contact",
+            "contactDescription": "Get in touch with our team to resolve your questions about our ecological routes and regional tourist services.",
+            "sustainabilityTitle": "EcoRutas La Araucanía: What sustainable means",
+            "sustainabilityDescription": "Learn what sustainable means at EcoRutas: the 6 criteria and the 0 to 12 score we use to publish businesses in La Araucanía.",
+            "routeTemucoDescription": "Detailed information about our routes, travel recommendations and businesses in Temuco.",
+            "routePuconDescription": "Full details of the tourist route in Pucón, forms and suggested places of interest.",
+            "routeVillarricaDescription": "Tourist guide to our route in Villarrica: natural attractions, nearby services and information to help preserve the surroundings."
+        },
+        "a11y": {
+            "banner": "Page banner",
+            "filters": "Route search filters",
+            "featuredMore": "See more information about the featured route",
+            "closeModal": "Close pop-up window",
+            "addFavorite": "Add route to favorites",
+            "removeFavorite": "Remove route from favorites",
+            "backToPrevious": "to the previous page"
+        },
+        "inscription": {
+            "title": "Sign up for this route",
+            "fullName": "Full name *",
+            "namePlaceholder": "E.g. Carlos Pérez",
+            "email": "Email *",
+            "phone": "Phone (optional)",
+            "spots": "Number of spots (1 to 5) *",
+            "submit": "Confirm sign-up",
+            "nameRequired": "Full name is required.",
+            "spotsInvalid": "The number must be between 1 and 5 people.",
+            "success": "Thank you, {name}! Your sign-up for {spots} spot(s) has been registered successfully."
+        },
+        "weather": {
+            "title": "Weather information",
+            "temperature": "Temperature",
+            "condition": "Condition",
+            "feelsLike": "Feels like",
+            "humidity": "Humidity",
+            "wind": "Wind",
+            "updated": "Last updated",
+            "loading": "Checking the weather...",
+            "unavailable": "Weather temporarily unavailable",
+            "unknown": "Unidentified condition"
+        },
+        "weatherCodes": {
+            "c0": "Clear",
+            "c1": "Mostly clear",
+            "c2": "Partly cloudy",
+            "c3": "Overcast",
+            "c45": "Fog",
+            "c48": "Rime fog",
+            "c51": "Light drizzle",
+            "c53": "Moderate drizzle",
+            "c55": "Heavy drizzle",
+            "c56": "Light freezing drizzle",
+            "c57": "Heavy freezing drizzle",
+            "c61": "Light rain",
+            "c63": "Moderate rain",
+            "c65": "Heavy rain",
+            "c66": "Light freezing rain",
+            "c67": "Heavy freezing rain",
+            "c71": "Light snowfall",
+            "c73": "Moderate snowfall",
+            "c75": "Heavy snowfall",
+            "c77": "Small hail",
+            "c80": "Light showers",
+            "c81": "Moderate showers",
+            "c82": "Heavy showers",
+            "c85": "Light snow showers",
+            "c86": "Heavy snow showers",
+            "c95": "Thunderstorm",
+            "c96": "Thunderstorm with light hail",
+            "c99": "Thunderstorm with heavy hail"
+        },
+        "contactPage": {
+            "title": "Let’s talk about your next route",
+            "regionValue": "La Araucanía Region, Chile",
+            "nameLabel": "Name:",
+            "emailLabel": "Email:",
+            "messageLabel": "Message:",
+            "bannerAlt": "Aerial view of a peninsula with native forest on Lake Villarrica, with the snow-capped volcano in the background",
+            "businessTitle": "Do you have a business?",
+            "businessAlt": "Araucaria forest in front of a snow-capped volcano",
+            "businessCardTitle": "What sustainable means at EcoRutas",
+            "businessCardText": "Review the 6 criteria and the score we use to publish businesses on the platform.",
+            "businessLink": "View criteria"
+        },
+        "sustainability": {
+            "bannerAlt": "Snow-capped volcano surrounded by araucaria forest next to a lake in La Araucanía",
+            "title": "What does sustainable mean at EcoRutas?",
+            "intro": "We only publish businesses that care for the environment and support the communities of La Araucanía.",
+            "criteriaTitle": "The 6 criteria",
+            "criteriaIntro": "Each criterion contributes up to 2 points to the total score.",
+            "c1Title": "Environmental impact:",
+            "c1Text": "The business reduces its waste, looks after water and energy, and avoids harming the environment where it operates.",
+            "c2Title": "Local contribution:",
+            "c2Text": "It works with local people, suppliers and products, and leaves benefits in the community.",
+            "c3Title": "Relationship with nature:",
+            "c3Text": "Its activities blend into the landscape and promote respect for flora, fauna and natural spaces.",
+            "c4Title": "Culture and heritage:",
+            "c4Text": "It values and shares the identity of La Araucanía, including Mapuche culture, with respect and without appropriating it.",
+            "c5Title": "Responsible practices:",
+            "c5Text": "It operates honestly and safely, with fair conditions for its team and its visitors.",
+            "c6Title": "Territorial relevance:",
+            "c6Text": "It is located in La Araucanía and its offering makes sense for the territory where it operates.",
+            "scoreTitle": "How is the score used?",
+            "scoreIntro": "Adding up the 6 criteria, the business gets a score from 0 to 12 points:",
+            "approvedTitle": "8 to 12 points, approved:",
+            "approvedText": "The business is published on EcoRutas.",
+            "pendingTitle": "5 to 7 points, pending review:",
+            "pendingText": "We ask for more information before deciding.",
+            "rejectedTitle": "0 to 4 points, rejected:",
+            "rejectedText": "For now it is not published on the platform.",
+            "outro": "That is why the catalog only shows approved businesses, along with their sustainability score.",
+            "contactLink": "Contact us"
+        },
+        "routePage": {
+            "featuredAlt": "Featured route",
+            "locationLabel": "Location:",
+            "durationLabel": "Duration:",
+            "temucoDescription": "Malalcahuello National Reserve lies at the foot of the Lonquimay volcano and offers trails surrounded by araucarias, coigües and lengas. It is an ideal destination for hiking, observing native flora and fauna, and getting up close with the Andes mountain range.",
+            "temucoDuration": "3 hours",
+            "puconDescription": "Huife Hot Springs sit on the banks of the Liucura River, a few minutes from Pucón. Its stone pools are surrounded by native forest and offer thermal waters above 40 degrees, ideal for resting after a day of adventure.",
+            "puconDuration": "2 hours",
+            "villarricaName": "Sunset on Lake Villarrica",
+            "villarricaDescription": "From the Villarrica waterfront you can enjoy one of the most photographed sunsets in the region, with the Villarrica volcano reflected in the calm waters of the lake. A perfect moment to take a walk or end the day after exploring the city.",
+            "villarricaDuration": "1 hour"
+        },
+        "routeDetails": {
+            "1": {
+                "description": "Natural Monument just steps from downtown Temuco. It has trails surrounded by Valdivian rainforest and impressive viewpoints over the city.",
+                "startDate": "Monday to Sunday - 8:30 AM",
+                "duration": "2 hours",
+                "location": "End of Av. Arturo Prat, Temuco",
+                "attractions": "Monumental pataguas, Antupirén Viewpoint, Environmental Information Center"
+            },
+            "2": {
+                "description": "A route among ancient araucarias and beautiful volcanic mountain lakes. A trekking classic in La Araucanía.",
+                "startDate": "Tuesday to Sunday - 8:00 AM",
+                "duration": "5 to 6 hours",
+                "location": "Lake Tinquilco area, Caburgua / Temuco",
+                "attractions": "Laguna Verde, Lake Toro, ancient araucarias, waterfalls"
+            },
+            "3": {
+                "description": "A spectacular trail among volcanic scoria fields and native forests at the foot of the Lonquimay volcano.",
+                "startDate": "Wednesday to Sunday - 9:00 AM",
+                "duration": "4 hours",
+                "location": "Curacautín district / International route",
+                "attractions": "Navidad Crater, Araucaria Forest, views of the Lonquimay Volcano"
+            },
+            "4": {
+                "description": "A large urban park along the Cautín River with bike lanes, themed plazas and accessible walking trails.",
+                "startDate": "Every day - 7:00 AM to 8:00 PM",
+                "duration": "1.5 hours (family walk)",
+                "location": "Cautín riverside, Temuco",
+                "attractions": "Plaza de los Plátanos, bike lanes, inclusive playgrounds, riverside vegetation"
+            },
+            "5": {
+                "description": "A site of great Mapuche historical and cultural value, home to the Chemamüll and the landmark of the 1881 parliament.",
+                "startDate": "Tuesday to Sunday - 9:00 AM",
+                "duration": "1 hour (cultural tour)",
+                "location": "Summit of Cerro Ñielol, Temuco",
+                "attractions": "Chemamüll sculptures, native forest, historic Peace Landmark"
+            },
+            "6": {
+                "description": "Walk to this impressive hidden waterfall with a 30-meter drop amid dense native forest and volcanic rocks.",
+                "startDate": "Saturdays and Sundays - 9:00 AM",
+                "duration": "2 hours (easy walk)",
+                "location": "Km 30 on the road to Palguín, Pucón",
+                "attractions": "30 m waterfall, native flora, local bird watching"
+            },
+            "7": {
+                "description": "Natural hot spring pools on the banks of the Liucura River. Perfect for a day of rest and revitalization.",
+                "startDate": "Every day - 10:00 AM",
+                "duration": "4 hours (recreational)",
+                "location": "Huife Alto area, Pucón",
+                "attractions": "Hot springs, natural hydromassage, native forest"
+            },
+            "8": {
+                "description": "Deep turquoise pools fed by underground springs from Lake Caburgua that surface among the vegetation.",
+                "startDate": "Monday to Sunday - 9:30 AM",
+                "duration": "1.5 hours (accessible walkways)",
+                "location": "Caburgua area, Pucón",
+                "attractions": "Turquoise pools, wooden walkways, small waterfalls"
+            },
+            "9": {
+                "description": "One of the first private reserves in the country. A demanding trek surrounded by ancient araucarias and viewpoints toward the volcanoes.",
+                "startDate": "Tuesday to Sunday - 8:30 AM",
+                "duration": "6 to 8 hours (demanding)",
+                "location": "Pichares area, Pucón",
+                "attractions": "Ancient araucarias, high-altitude lagoons, panoramic views of volcanoes"
+            },
+            "10": {
+                "description": "A rafting and hiking route along the Trancura River canyon, combining adrenaline and beautiful mountain scenery.",
+                "startDate": "Daily - 11:00 AM and 3:00 PM",
+                "duration": "3 hours (water activity)",
+                "location": "Trancura River, Pucón",
+                "attractions": "Class III/IV rapids, rocky canyon, temperate rainforest"
+            },
+            "11": {
+                "description": "A pedestrian promenade along Lake Villarrica with volcanic sand beaches and privileged views of the volcano.",
+                "startDate": "Open access 24/7",
+                "duration": "1.5 hours (contemplative walk)",
+                "location": "Av. Costanera, Villarrica",
+                "attractions": "Playa Grande, local sculptures, sunset over the lake"
+            },
+            "12": {
+                "description": "A permanent exhibition of ceramics, silverwork and archaeological pieces that preserve the rich history of Mapuche culture.",
+                "startDate": "Monday to Friday - 10:00 AM to 6:00 PM",
+                "duration": "1 hour (guided visit)",
+                "location": "Pedro de Valdivia 365, Villarrica",
+                "attractions": "Mapuche silverwork, ancestral ceramics, historical documents"
+            },
+            "13": {
+                "description": "A cultural and culinary space where local artisans offer traditional products, loom textiles and traditional food.",
+                "startDate": "Wednesday to Sunday - 11:00 AM",
+                "duration": "2 hours (food and shopping)",
+                "location": "Historic Pier area, Villarrica",
+                "attractions": "Mapuche cuisine, wood and loom crafts, folk music"
+            },
+            "14": {
+                "description": "A thermal sanctuary in the middle of a native ravine, linked by red wooden walkways surrounded by lush vegetation.",
+                "startDate": "Every day - 10:00 AM",
+                "duration": "4 hours",
+                "location": "Fundo Coñaripe / Panguipulli, near Villarrica",
+                "attractions": "20 hot spring pools, red walkways, natural waterfall"
+            },
+            "15": {
+                "description": "An elevated spot in the upper part of the city that offers a clear panoramic view of the lake and the Villarrica Volcano.",
+                "startDate": "Open access 24/7",
+                "duration": "1 hour",
+                "location": "Bellavista area, Villarrica",
+                "attractions": "360° views, landscape photography, volcano watching"
+            }
         }
     }
 }

@@ -24,47 +24,54 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (pageTitle.includes('Temuco')) comunaActual = 'Temuco';
     else if (pageTitle.includes('Villarrica')) comunaActual = 'Villarrica';
 
-    const rutaDia = obtenerRutaDelDia(rutas, comunaActual);
+    function actualizarRutaDelDia(): void {
+        const rutaDia = obtenerRutaDelDia(rutas, comunaActual);
 
-    if (rutaDia) {
+        if (!rutaDia) return;
+
         const destacado = document.querySelector('.destacado');
 
-        if (destacado) {
-            const h3 = destacado.querySelector('h3');
-            const p = destacado.querySelector('p');
-            const img = destacado.querySelector('img');
-            const btn = destacado.querySelector<HTMLAnchorElement>('.carta-btn');
+        if (!destacado) return;
 
-            const numeroRuta = rutaDia.id;
-            const idioma = document.documentElement.lang || 'es';
-            const prefijo = comunaActual.toLowerCase();
+        const h3 = destacado.querySelector('h3');
+        const p = destacado.querySelector('p');
+        const img = destacado.querySelector('img');
+        const btn = destacado.querySelector<HTMLAnchorElement>('.carta-btn');
 
-            const nombreTraducido = obtenerTraduccion(
-                `${prefijo}.route${numeroRuta}Name`
-            );
+        const numeroRuta = rutaDia.id;
+        const prefijo = comunaActual
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase();
 
-            const descripcionTraducida = obtenerTraduccion(
-                `${prefijo}.route${numeroRuta}Description`
-            );
+        const nombreTraducido = obtenerTraduccion(
+            `${prefijo}.route${numeroRuta}Name`
+        );
 
-            if (h3) h3.textContent = nombreTraducido || rutaDia.nombre;
-            if (p) p.textContent = descripcionTraducida || rutaDia.descripcion;
+        const descripcionTraducida = obtenerTraduccion(
+            `${prefijo}.route${numeroRuta}Description`
+        );
 
-            if (img) {
-                img.src = '../' + rutaDia.imagen;
-                img.alt = nombreTraducido || rutaDia.nombre;
-            }
+        if (h3) h3.textContent = nombreTraducido || rutaDia.nombre;
+        if (p) p.textContent = descripcionTraducida || rutaDia.descripcion;
 
-            if (btn) {
-                if (rutaDia.urlDetalle) {
-                    btn.href = rutaDia.urlDetalle;
-                    btn.hidden = false;
-                } else {
-                    btn.hidden = true;
-                }
+        if (img) {
+            img.src = '../' + rutaDia.imagen;
+            img.alt = nombreTraducido || rutaDia.nombre;
+        }
+
+        if (btn) {
+            if (rutaDia.urlDetalle) {
+                btn.href = rutaDia.urlDetalle;
+                btn.hidden = false;
+            } else {
+                btn.hidden = true;
             }
         }
     }
+
+    actualizarRutaDelDia();
+    document.addEventListener('idiomacambiado', actualizarRutaDelDia);
 
     if (!formFiltros) return;
 
@@ -231,7 +238,8 @@ document.addEventListener('DOMContentLoaded', () => {
         contenedorChips.hidden = totalActivos === 0;
     }
 
-    // Identificación de tarjetas (BUG-13)
+
+    // Identificación de tarjetas 
 
     const tarjetasAdvertidas = new WeakSet<HTMLElement>();
 
@@ -282,6 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (idDesdeClave !== null) return idDesdeClave;
         return Number.isInteger(idDesdeDatos) ? idDesdeDatos : null;
     }
+
     function aplicarFiltros() {
         const filtros = {
             comuna: comunaActual,
@@ -297,7 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         tarjetas.forEach(tarjeta => {
             const idRuta = resolverIdTarjeta(tarjeta);
-            
+
             const idExiste = idRuta !== null && rutas.some(ruta => ruta.id === idRuta);
             const esCoincidente = !idExiste || idsVisibles.has(idRuta);
 

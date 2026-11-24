@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Información detallada sobre nuestras rutas, recomendaciones de viajes y emprendimientos en Temuco.">
-    <title>Ruta Temuco</title>
+    <meta data-i18n-content="meta.routeTemucoDescription" name="description" content="Información detallada sobre nuestras rutas, recomendaciones de viajes y emprendimientos en Temuco.">
+    <title data-i18n="temuco.mapPopup">Ruta Temuco</title>
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
@@ -21,14 +21,14 @@
     aria-pressed="false">
     ♡
 </button>
-            <h2>Reserva Nacional Malalcahuello</h2>
-            <img src="../../assets/imagenes/reserva-malalcahuello2.webp" alt="Ruta destacada" loading="lazy">
-            <p>La Reserva Nacional Malalcahuello se ubica a los pies del volcán Lonquimay y ofrece senderos rodeados de araucarias, coigües y lengas. Es un destino ideal para el senderismo, la observación de flora y fauna nativa y el contacto directo con la cordillera andina.</p>
-            <p><strong>Ubicación:</strong> Temuco, Chile</p>
-            <p><strong>Duración:</strong> 3 horas</p>
+            <h2 data-i18n="temuco.route3Name">Reserva Nacional Malalcahuello</h2>
+            <img data-i18n-alt="routePage.featuredAlt" src="../../assets/imagenes/reserva-malalcahuello2.webp" alt="Ruta destacada" loading="lazy">
+            <p data-i18n="routePage.temucoDescription">La Reserva Nacional Malalcahuello se ubica a los pies del volcán Lonquimay y ofrece senderos rodeados de araucarias, coigües y lengas. Es un destino ideal para el senderismo, la observación de flora y fauna nativa y el contacto directo con la cordillera andina.</p>
+            <p><strong data-i18n="routePage.locationLabel">Ubicación:</strong> Temuco, Chile</p>
+            <p><strong data-i18n="routePage.durationLabel">Duración:</strong> <span data-i18n="routePage.temucoDuration">3 horas</span></p>
 
             <section class="seccion-mapa" style="margin: 1.5rem 0;">
-                <h2>Ubicación de la Ruta</h2>
+                <h2 data-i18n="routes.mapTitle">Ubicación de la Ruta</h2>
                 <div id="mapa-ruta" class="mapa-contenedor"></div>
             </section>
 
@@ -51,7 +51,7 @@
         }).addTo(mapa);
 
         L.marker([lat, lng]).addTo(mapa)
-            .bindPopup('<b>Reserva Nacional Malalcahuello</b><br>Punto de inicio de la ruta.')
+            .bindPopup('<b data-i18n="temuco.route3Name">Reserva Nacional Malalcahuello</b><br>Punto de inicio de la ruta.')
             .openPopup();
     </script>
     <script src="../../js/layout.js"></script>

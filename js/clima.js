@@ -66,7 +66,42 @@ function obtenerDescripcionClima(codigo) {
         96: "Tormenta con granizo ligero",
         99: "Tormenta con granizo intenso"
     };
-    return condiciones[codigo] || "Condición no identificada";
+    return (obtenerTraduccion(`weatherCodes.c${codigo}`) ||
+        condiciones[codigo] ||
+        obtenerTraduccion("weather.unknown") ||
+        "Condición no identificada");
+}
+let estadoClima = { tipo: "consultando" };
+function textoClima(clave, respaldo) {
+    return obtenerTraduccion(clave) || respaldo;
+}
+// Dibuja el estado actual del clima en todas las tarjetas, en el idioma actual.
+function renderizarClima() {
+    document.querySelectorAll(".cartas-img .carta .info-clima").forEach(contenedor => {
+        if (estadoClima.tipo === "consultando") {
+            contenedor.textContent = textoClima("weather.loading", "Consultando clima...");
+            return;
+        }
+        if (estadoClima.tipo === "error") {
+            contenedor.textContent = textoClima("weather.unavailable", "Clima temporalmente no disponible");
+            return;
+        }
+        const { temperatura, humedad, sensacion, viento, codigo, hora } = estadoClima.datos;
+        const idioma = document.documentElement.lang === "en" ? "en-US" : "es-CL";
+        const actualizacion = new Date(hora).toLocaleString(idioma, {
+            dateStyle: "short",
+            timeStyle: "short"
+        });
+        contenedor.innerHTML = `
+            <h4>${textoClima("weather.title", "Información del clima")}</h4>
+            <p><strong>${textoClima("weather.temperature", "Temperatura")}:</strong> ${temperatura} °C</p>
+            <p><strong>${textoClima("weather.condition", "Condición")}:</strong> ${obtenerDescripcionClima(codigo)}</p>
+            <p><strong>${textoClima("weather.feelsLike", "Sensación térmica")}:</strong> ${sensacion} °C</p>
+            <p><strong>${textoClima("weather.humidity", "Humedad")}:</strong> ${humedad}%</p>
+            <p><strong>${textoClima("weather.wind", "Viento")}:</strong> ${viento} km/h</p>
+            <p><strong>${textoClima("weather.updated", "Última actualización")}:</strong> ${actualizacion}</p>
+        `;
+    });
 }
 // Consultar el clima de una ciudad
 async function consultarClima(ciudad) {
@@ -83,41 +118,23 @@ async function consultarClima(ciudad) {
         }
         const datos = await respuesta.json();
         const clima = datos.current;
-        const temperatura = clima.temperature_2m;
-        const humedad = clima.relative_humidity_2m;
-        const sensacion = clima.apparent_temperature;
-        const viento = clima.wind_speed_10m;
-        const descripcion = obtenerDescripcionClima(clima.weather_code);
-        const actualizacion = new Date(clima.time).toLocaleString("es-CL", {
-            dateStyle: "short",
-            timeStyle: "short"
-        });
-        // Mostrar los mismos datos en todas las tarjetas
-        tarjetas.forEach((tarjeta) => {
-            const contenedorClima = tarjeta.querySelector(".info-clima");
-            if (!contenedorClima)
-                return;
-            contenedorClima.innerHTML = `
-                <h4>Información del clima</h4>
-                <p><strong>Temperatura:</strong> ${temperatura} °C</p>
-                <p><strong>Condición:</strong> ${descripcion}</p>
-                <p><strong>Sensación térmica:</strong> ${sensacion} °C</p>
-                <p><strong>Humedad:</strong> ${humedad}%</p>
-                <p><strong>Viento:</strong> ${viento} km/h</p>
-                <p><strong>Última actualización:</strong> ${actualizacion}</p>
-            `;
-        });
+        estadoClima = {
+            tipo: "datos",
+            datos: {
+                temperatura: clima.temperature_2m,
+                humedad: clima.relative_humidity_2m,
+                sensacion: clima.apparent_temperature,
+                viento: clima.wind_speed_10m,
+                codigo: clima.weather_code,
+                hora: clima.time
+            }
+        };
     }
     catch (error) {
         console.error("Error al consultar el clima:", error);
-        tarjetas.forEach((tarjeta) => {
-            const contenedorClima = tarjeta.querySelector(".info-clima");
-            if (!contenedorClima)
-                return;
-            contenedorClima.textContent =
-                "Clima temporalmente no disponible";
-        });
+        estadoClima = { tipo: "error" };
     }
+    renderizarClima();
 }
 // Preparar las tarjetas para mostrar el clima
 function prepararTarjetasClima() {
@@ -125,11 +142,14 @@ function prepararTarjetasClima() {
     tarjetas.forEach((tarjeta) => {
         const contenedorClima = document.createElement("div");
         contenedorClima.classList.add("info-clima");
-        contenedorClima.textContent = "Consultando clima...";
         tarjeta.appendChild(contenedorClima);
     });
+    estadoClima = { tipo: "consultando" };
+    renderizarClima();
     return tarjetas;
 }
+// Al cambiar de idioma, las tarjetas se vuelven a dibujar con el estado guardado.
+document.addEventListener("idiomacambiado", renderizarClima);
 // Iniciar consulta cuando se carga la página
 document.addEventListener("DOMContentLoaded", () => {
     const ciudad = obtenerCiudad();

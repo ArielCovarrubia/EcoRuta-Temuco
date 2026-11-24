@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Conoce paisajes lacustres, rutas sustentables y servicios destacados en Villarrica a través de EcoRutas.">
+        <meta data-i18n-content="meta.villarricaDescription" name="description" content="Conoce paisajes lacustres, rutas sustentables y servicios destacados en Villarrica a través de EcoRutas.">
         <title>EcoRuta Villarrica</title>
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -14,18 +14,18 @@
     <body data-page-title="EcoRuta Villarrica">
         <div id="header-container"></div>
         <main>  
-            <section class="baner" aria-label="Banner de la página">
-                <img src="../assets/imagenes/baner-villarrica.webp" alt="Costanera de Villarrica junto al lago con el volcán nevado al fondo" class="baner-img" loading="lazy">
+            <section data-i18n-aria-label="a11y.banner" class="baner" aria-label="Banner de la página">
+                <img data-i18n-alt="villarrica.bannerAlt" src="../assets/imagenes/baner-villarrica.webp" alt="Costanera de Villarrica junto al lago con el volcán nevado al fondo" class="baner-img" loading="lazy">
                 <div class="contenido-baner">
-                    <h2 id="titulo-baner">Descubre las rutas ecológicas de Villarrica</h2>
-                    <p>Explora el lago, la costanera y los paisajes lacustres más tranquilos de la región.</p>
+                    <h2 id="titulo-baner" data-i18n="villarrica.title">Descubre las rutas ecológicas de Villarrica</h2>
+                    <p data-i18n="villarrica.description">Explora el lago, la costanera y los paisajes lacustres más tranquilos de la región.</p>
                 </div>
             </section>
             <section class="rutas" aria-labelledby="titulo-rutas">
-                <h2 id="titulo-rutas">Rutas populares</h2>
+                <h2 id="titulo-rutas" data-i18n="routes.popular">Rutas populares</h2>
 
                 <div class="contenedor-buscador">
-                    <form id="form-filtros-rutas" class="formulario-filtros" aria-label="Filtros para buscar rutas">
+                    <form data-i18n-aria-label="a11y.filters" id="form-filtros-rutas" class="formulario-filtros" aria-label="Filtros para buscar rutas">
                         <div class="grupo-filtro">
                             <label for="filtro-dificultad" data-i18n="routes.difficulty">
                                 Dificultad:
@@ -71,38 +71,38 @@
 
                 <div class="cartas-img">
                     <article class="carta" data-id="11">
-                        <img src="../assets/imagenes/costanera-villarrica.webp" alt="Costanera con playa de arena volcánica junto al lago Villarrica" class="ruta-img" loading="lazy">
-                            <h3>Costanera de Villarrica</h3>
-                            <p>Camina junto al lago disfrutando de vistas panorámicas del volcán y los cerros cercanos.</p>
+                        <img data-i18n-alt="villarrica.route11Alt" src="../assets/imagenes/costanera-villarrica.webp" alt="Costanera con playa de arena volcánica junto al lago Villarrica" class="ruta-img" loading="lazy">
+                            <h3 data-i18n="villarrica.route11Name">Costanera de Villarrica</h3>
+                            <p data-i18n="villarrica.route11Description">Camina junto al lago disfrutando de vistas panorámicas del volcán y los cerros cercanos.</p>
                         </article>
                     <article class="carta" data-id="12">
-                        <img src="../assets/imagenes/museo-villarrica.webp" alt="Sala de museo con piezas arqueológicas mapuche en exhibición" class="ruta-img" loading="lazy">
-                        <h3>Museo Histórico y Arqueológico</h3>
-                        <p>Conoce la cultura mapuche y la historia de la fundación de la ciudad.</p>
+                        <img data-i18n-alt="villarrica.route12Alt" src="../assets/imagenes/museo-villarrica.webp" alt="Sala de museo con piezas arqueológicas mapuche en exhibición" class="ruta-img" loading="lazy">
+                        <h3 data-i18n="villarrica.route12Name">Museo Histórico y Arqueológico</h3>
+                        <p data-i18n="villarrica.route12Description">Conoce la cultura mapuche y la historia de la fundación de la ciudad.</p>
                     </article>
                     <article class="carta" data-id="13">
-                        <img src="../assets/imagenes/feria-costumbrista.webp" alt="Puestos de artesanía mapuche en la feria costumbrista de Villarrica" class="ruta-img" loading="lazy">
-                        <h3>Feria Costumbrista Mapuche</h3>
-                        <p>Descubre artesanía, gastronomía y tradiciones del pueblo mapuche.</p>
+                        <img data-i18n-alt="villarrica.route13Alt" src="../assets/imagenes/feria-costumbrista.webp" alt="Puestos de artesanía mapuche en la feria costumbrista de Villarrica" class="ruta-img" loading="lazy">
+                        <h3 data-i18n="villarrica.route13Name">Feria Costumbrista Mapuche</h3>
+                        <p data-i18n="villarrica.route13Description">Descubre artesanía, gastronomía y tradiciones del pueblo mapuche.</p>
                     </article>
                     <article class="carta" data-id="14">
-                        <img src="../assets/imagenes/termas-geometricas.webp" alt="Pasarelas de madera entre pozas termales rojas rodeadas de vegetación" class="ruta-img" loading="lazy">
-                            <h3>Termas Geométricas</h3>
-                            <p>Recorre pasarelas de madera entre pozas termales en un entorno natural único.</p>
+                        <img data-i18n-alt="villarrica.route14Alt" src="../assets/imagenes/termas-geometricas.webp" alt="Pasarelas de madera entre pozas termales rojas rodeadas de vegetación" class="ruta-img" loading="lazy">
+                            <h3 data-i18n="villarrica.route14Name">Termas Geométricas</h3>
+                            <p data-i18n="villarrica.route14Description">Recorre pasarelas de madera entre pozas termales en un entorno natural único.</p>
                     </article>
                     <article class="carta" data-id="15">
-                        <img src="../assets/imagenes/mirador-villarrica.webp" alt="Mirador con vista panorámica del lago y el volcán desde un cerro cercano" class="ruta-img" loading="lazy">
-                            <h3>Mirador Bellavista</h3>
-                            <p>Disfruta de una vista panorámica completa del lago y el volcán desde las alturas.</p>
+                        <img data-i18n-alt="villarrica.route15Alt" src="../assets/imagenes/mirador-villarrica.webp" alt="Mirador con vista panorámica del lago y el volcán desde un cerro cercano" class="ruta-img" loading="lazy">
+                            <h3 data-i18n="villarrica.route15Name">Mirador Bellavista</h3>
+                            <p data-i18n="villarrica.route15Description">Disfruta de una vista panorámica completa del lago y el volcán desde las alturas.</p>
                         </article>
                 </div>
             </section>
             <section class="seccion-emprendedores">
-                <h2>Emprendedores Locales Destacados</h2>
+                <h2 data-i18n="routes.entrepreneurs">Emprendedores Locales Destacados</h2>
                 <div id="contenedor-emprendedores" class="grilla-ciudades"></div>
             </section>
             <section class="destacado" aria-labelledby="titulo-destacado">
-                <h2 id="titulo-destacado">Ruta recomendada del día</h2>
+                <h2 id="titulo-destacado" data-i18n="routes.recommended">Ruta recomendada del día</h2>
 
                         <article class="carta-horizontal">
                             <img src="../assets/imagenes/lago-villarrica-destacado.webp" alt="Atardecer sobre el lago Villarrica con el volcán reflejado en el agua" loading="lazy">
@@ -110,14 +110,14 @@
                         <h3>Atardecer en el Lago Villarrica</h3>
                         <p>Vive un atardecer inolvidable junto al lago, con el volcán reflejado en sus aguas calmas. Ideal para cerrar el día con tranquilidad y paisajes de postal.</p>
                     </div>
-                    <a href="paginas extra/ruta-villarrica.html" class="carta-btn" aria-label="Ver más información sobre la ruta destacada"
+                    <a data-i18n-aria-label="a11y.featuredMore" href="paginas extra/ruta-villarrica.html" class="carta-btn" aria-label="Ver más información sobre la ruta destacada"
                         data-i18n="routes.viewMore">
                         Ver más
                     </a>
                 </article>
             </section>
             <section class="seccion-mapa">
-                <h2>Ubicación de la Ruta</h2>
+                <h2 data-i18n="routes.mapTitle">Ubicación de la Ruta</h2>
                 <div id="mapa-ruta" class="mapa-contenedor"></div>
             </section>
             <div id="modal-detalle-ruta"
@@ -128,7 +128,7 @@
                  aria-labelledby="modal-titulo-ruta">
 
                 <div class="modal-contenido">
-                    <button type="button" id ="btn-cerrar-modal" class="modal-btn-cerrar" aria-label="Cerrar ventana emergente">&times;</button>
+                    <button data-i18n-aria-label="a11y.closeModal" type="button" id ="btn-cerrar-modal" class="modal-btn-cerrar" aria-label="Cerrar ventana emergente">&times;</button>
 
                     <div class="modal-encabezado">
     <h2 id="modal-titulo-ruta">Cargando ruta...</h2>
@@ -155,33 +155,33 @@
 
                         <!-- Formulario de inscripción dentro del modal-->
                          <form id="form-inscripcion-ruta" class="tarjeta-formulario" style="margin-top: 1.5rem;" novalidate>
-                            <h3>Inscribirse en esta ruta</h3>
+                            <h3 data-i18n="inscription.title">Inscribirse en esta ruta</h3>
 
                             <div class="campo-grupo">
-                                <label for="ins-nombre">Nombre completo *</label>
-                                <input type="text" id="ins-nombre" placeholder="Ej: Carlos Pérez" required>
+                                <label for="ins-nombre" data-i18n="inscription.fullName">Nombre completo *</label>
+                                <input data-i18n-placeholder="inscription.namePlaceholder" type="text" id="ins-nombre" placeholder="Ej: Carlos Pérez" required>
                                 <span id="error-nombre" class="mensaje-error" role="alert"></span>
                             </div>
 
                             <div class="campo-grupo">
-                                <label for="ins-email">Correo electrónico *</label>
-                                <input type="email" id="ins-email" placeholder="ejemplo@correo.com" required>
+                                <label for="ins-email" data-i18n="inscription.email">Correo electrónico *</label>
+                                <input data-i18n-placeholder="contact.emailPlaceholder" type="email" id="ins-email" placeholder="ejemplo@correo.com" required>
                                 <span id="error-email" class="mensaje-error" role="alert"></span>
                             </div>
 
                             <div class="campo-grupo">
-                                <label for="ins-telefono">Teléfono (opcional)</label>
+                                <label for="ins-telefono" data-i18n="inscription.phone">Teléfono (opcional)</label>
                                 <input type="tel" id="ins-telefono" placeholder="+56 9 1234 5678">
                                 <span id="error-telefono" class="mensaje-error" role="alert"></span>
                             </div>
 
                             <div class="campo-grupo">
-                                <label for="ins-cupos">Número de cupos (1 a 5) *</label>
+                                <label for="ins-cupos" data-i18n="inscription.spots">Número de cupos (1 a 5) *</label>
                                 <input type="number" id="ins-cupos" min="1" max="5" value="1" required>
                                 <span id="error-cupos" class="mensaje-error" role="alert"></span>
                             </div>
 
-                            <button type="submit" class="btn-submit">Confirmar Inscripción</button>
+                            <button type="submit" class="btn-submit" data-i18n="inscription.submit">Confirmar Inscripción</button>
                             <p id="mensaje-exito-inscripcion" class="mensaje-exito oculto" role="status" aria-live="polite"></p>
                          </form>
                     </div>

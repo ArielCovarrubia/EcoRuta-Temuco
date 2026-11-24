@@ -17,38 +17,44 @@ document.addEventListener('DOMContentLoaded', () => {
         comunaActual = 'Temuco';
     else if (pageTitle.includes('Villarrica'))
         comunaActual = 'Villarrica';
-    const rutaDia = obtenerRutaDelDia(rutas, comunaActual);
-    if (rutaDia) {
+    function actualizarRutaDelDia() {
+        const rutaDia = obtenerRutaDelDia(rutas, comunaActual);
+        if (!rutaDia)
+            return;
         const destacado = document.querySelector('.destacado');
-        if (destacado) {
-            const h3 = destacado.querySelector('h3');
-            const p = destacado.querySelector('p');
-            const img = destacado.querySelector('img');
-            const btn = destacado.querySelector('.carta-btn');
-            const numeroRuta = rutaDia.id;
-            const idioma = document.documentElement.lang || 'es';
-            const prefijo = comunaActual.toLowerCase();
-            const nombreTraducido = obtenerTraduccion(`${prefijo}.route${numeroRuta}Name`);
-            const descripcionTraducida = obtenerTraduccion(`${prefijo}.route${numeroRuta}Description`);
-            if (h3)
-                h3.textContent = nombreTraducido || rutaDia.nombre;
-            if (p)
-                p.textContent = descripcionTraducida || rutaDia.descripcion;
-            if (img) {
-                img.src = '../' + rutaDia.imagen;
-                img.alt = nombreTraducido || rutaDia.nombre;
+        if (!destacado)
+            return;
+        const h3 = destacado.querySelector('h3');
+        const p = destacado.querySelector('p');
+        const img = destacado.querySelector('img');
+        const btn = destacado.querySelector('.carta-btn');
+        const numeroRuta = rutaDia.id;
+        const prefijo = comunaActual
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase();
+        const nombreTraducido = obtenerTraduccion(`${prefijo}.route${numeroRuta}Name`);
+        const descripcionTraducida = obtenerTraduccion(`${prefijo}.route${numeroRuta}Description`);
+        if (h3)
+            h3.textContent = nombreTraducido || rutaDia.nombre;
+        if (p)
+            p.textContent = descripcionTraducida || rutaDia.descripcion;
+        if (img) {
+            img.src = '../' + rutaDia.imagen;
+            img.alt = nombreTraducido || rutaDia.nombre;
+        }
+        if (btn) {
+            if (rutaDia.urlDetalle) {
+                btn.href = rutaDia.urlDetalle;
+                btn.hidden = false;
             }
-            if (btn) {
-                if (rutaDia.urlDetalle) {
-                    btn.href = rutaDia.urlDetalle;
-                    btn.hidden = false;
-                }
-                else {
-                    btn.hidden = true;
-                }
+            else {
+                btn.hidden = true;
             }
         }
     }
+    actualizarRutaDelDia();
+    document.addEventListener('idiomacambiado', actualizarRutaDelDia);
     if (!formFiltros)
         return;
     // ------------------------------------------------------------------
@@ -189,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         contenedorChips.hidden = totalActivos === 0;
     }
-    // Identificación de tarjetas (BUG-13)
+    // Identificación de tarjetas 
     const tarjetasAdvertidas = new WeakSet();
     const CONSECUENCIA_VISIBLE = 'La tarjeta se mantiene visible y no se puede filtrar.';
     function advertirTarjeta(tarjeta, motivo, consecuencia = CONSECUENCIA_VISIBLE) {

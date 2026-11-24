@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Descubre tus mejores rutas turísticas, emprendimientos y panoramas con enfoque sustentables en Pucón, junto a EcoRutas.">
+        <meta data-i18n-content="meta.puconDescription" name="description" content="Descubre tus mejores rutas turísticas, emprendimientos y panoramas con enfoque sustentables en Pucón, junto a EcoRutas.">
         <title>EcoRuta Pucón</title>
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -14,18 +14,18 @@
     <body data-page-title="EcoRuta Pucón">
         <div id="header-container"></div>
         <main>  
-            <section class="baner" aria-label="Banner de la página">
-                <img src="../assets/imagenes/baner-pucon.webp" alt="Camino de tierra rodeado de bosque nativo y vapor de aguas termales cerca de Pucón" class="baner-img" loading="lazy">
+            <section data-i18n-aria-label="a11y.banner" class="baner" aria-label="Banner de la página">
+                <img data-i18n-alt="pucon.bannerAlt" src="../assets/imagenes/baner-pucon.webp" alt="Camino de tierra rodeado de bosque nativo y vapor de aguas termales cerca de Pucón" class="baner-img" loading="lazy">
                 <div class="contenido-baner">
-                    <h2 id="titulo-baner">Descubre las rutas ecológicas de Pucón</h2>
-                    <p>Explora termas, cascadas y bosques nativos en la capital turística del sur de Chile.</p>
+                    <h2 id="titulo-baner" data-i18n="pucon.title">Descubre las rutas ecológicas de Pucón</h2>
+                    <p data-i18n="pucon.description">Explora termas, cascadas y bosques nativos en la capital turística del sur de Chile.</p>
                 </div>
             </section>
             <section class="rutas" aria-labelledby="titulo-rutas">
-                <h2 id="titulo-rutas">Rutas populares</h2>
+                <h2 id="titulo-rutas" data-i18n="routes.popular">Rutas populares</h2>
 
                 <div class="contenedor-buscador">
-                    <form id="form-filtros-rutas" class="formulario-filtros" aria-label="Filtros para buscar rutas">
+                    <form data-i18n-aria-label="a11y.filters" id="form-filtros-rutas" class="formulario-filtros" aria-label="Filtros para buscar rutas">
                         <div class="grupo-filtro">
                             <label for="filtro-dificultad" data-i18n="routes.difficulty">
                                 Dificultad:
@@ -70,38 +70,38 @@
 
                 <div class="cartas-img">
                     <article class="carta" data-id="6">
-                        <img src="../assets/imagenes/salto-la-china.webp" alt="Cascada de agua cayendo entre rocas volcánicas rodeada de bosque nativo" class="ruta-img" loading="lazy">
-                            <h3>Salto La China</h3>
-                            <p>Camina hasta esta cascada escondida entre bosque nativo, ideal para una caminata corta.</p>
+                        <img data-i18n-alt="pucon.route6Alt" src="../assets/imagenes/salto-la-china.webp" alt="Cascada de agua cayendo entre rocas volcánicas rodeada de bosque nativo" class="ruta-img" loading="lazy">
+                            <h3 data-i18n="pucon.route6Name">Salto La China</h3>
+                            <p data-i18n="pucon.route6Description">Camina hasta esta cascada escondida entre bosque nativo, ideal para una caminata corta.</p>
                         </article>
                     <article class="carta" data-id="7">
-                        <img src="../assets/imagenes/termas-huife.webp" alt="Piscinas termales de piedra rodeadas de vegetación nativa junto a un río" class="ruta-img" loading="lazy">
-                        <h3>Termas de Huife</h3>
-                        <p>Relájate en aguas termales naturales rodeadas de bosque nativo.</p>
+                        <img data-i18n-alt="pucon.route7Alt" src="../assets/imagenes/termas-huife.webp" alt="Piscinas termales de piedra rodeadas de vegetación nativa junto a un río" class="ruta-img" loading="lazy">
+                        <h3 data-i18n="pucon.route7Name">Termas de Huife</h3>
+                        <p data-i18n="pucon.route7Description">Relájate en aguas termales naturales rodeadas de bosque nativo.</p>
                     </article>
                     <article class="carta" data-id="8">
-                        <img src="../assets/imagenes/ojos-caburgua.webp" alt="Pozas de agua turquesa formadas por pequeñas cascadas entre la roca volcánica" class="ruta-img" loading="lazy">
-                        <h3>Ojos del Caburgua</h3>
-                        <p>Descubre estas pozas de agua cristalina escondidas entre bosque y roca volcánica.</p>
+                        <img data-i18n-alt="pucon.route8Alt" src="../assets/imagenes/ojos-caburgua.webp" alt="Pozas de agua turquesa formadas por pequeñas cascadas entre la roca volcánica" class="ruta-img" loading="lazy">
+                        <h3 data-i18n="pucon.route8Name">Ojos del Caburgua</h3>
+                        <p data-i18n="pucon.route8Description">Descubre estas pozas de agua cristalina escondidas entre bosque y roca volcánica.</p>
                     </article>
                     <article class="carta" data-id="9">
-                        <img src="../assets/imagenes/reserva-cani.webp" alt="Sendero de trekking rodeado de araucarias milenarias en la Reserva Nacional Cañi" class="ruta-img" loading="lazy">
-                            <h3>Reserva Nacional Cañi</h3>
-                            <p>Recorre senderos entre araucarias milenarias en uno de los bosques nativos mejor conservados.</p>
+                        <img data-i18n-alt="pucon.route9Alt" src="../assets/imagenes/reserva-cani.webp" alt="Sendero de trekking rodeado de araucarias milenarias en la Reserva Nacional Cañi" class="ruta-img" loading="lazy">
+                            <h3 data-i18n="pucon.route9Name">Reserva Nacional Cañi</h3>
+                            <p data-i18n="pucon.route9Description">Recorre senderos entre araucarias milenarias en uno de los bosques nativos mejor conservados.</p>
                     </article>
                     <article class="carta" data-id="10">
-                        <img src="../assets/imagenes/canon-trancura.webp" alt="Río de aguas turquesas atravesando un cañón rocoso rodeado de vegetación" class="ruta-img" loading="lazy">
-                            <h3>Cañón del Río Trancura</h3>
-                            <p>Disfruta de rafting y paisajes de aguas turquesas en este cañón rodeado de naturaleza.</p>
+                        <img data-i18n-alt="pucon.route10Alt" src="../assets/imagenes/canon-trancura.webp" alt="Río de aguas turquesas atravesando un cañón rocoso rodeado de vegetación" class="ruta-img" loading="lazy">
+                            <h3 data-i18n="pucon.route10Name">Cañón del Río Trancura</h3>
+                            <p data-i18n="pucon.route10Description">Disfruta de rafting y paisajes de aguas turquesas en este cañón rodeado de naturaleza.</p>
                         </article>
                 </div>
             </section>
             <section class="seccion-emprendedores">
-                <h2>Emprendedores Locales Destacados</h2>
+                <h2 data-i18n="routes.entrepreneurs">Emprendedores Locales Destacados</h2>
                 <div id="contenedor-emprendedores" class="grilla-ciudades"></div>
             </section>
             <section class="destacado" aria-labelledby="titulo-destacado">
-                <h2 id="titulo-destacado">Ruta recomendada del día</h2>
+                <h2 id="titulo-destacado" data-i18n="routes.recommended">Ruta recomendada del día</h2>
 
                         <article class="carta-horizontal">
                             <img src="../assets/imagenes/termas-huife-destacado.webp" alt="Piscinas termales humeantes rodeadas de bosque nativo al atardecer" loading="lazy">
@@ -109,14 +109,14 @@
                         <h3>Termas de Huife</h3>
                         <p>Relájate en piscinas de aguas termales naturales rodeadas de bosque nativo, a pocos minutos de Pucón. Una experiencia ideal para descansar después de un día de aventura.</p>
                     </div>
-                    <a href="paginas extra/ruta-pucon.html" class="carta-btn" aria-label="Ver más información sobre la ruta destacada"
+                    <a data-i18n-aria-label="a11y.featuredMore" href="paginas extra/ruta-pucon.html" class="carta-btn" aria-label="Ver más información sobre la ruta destacada"
                         data-i18n="routes.viewMore">
                         Ver más
                     </a>
                 </article>
             </section>
             <section class="seccion-mapa">
-                <h2>Ubicación de la Ruta</h2>
+                <h2 data-i18n="routes.mapTitle">Ubicación de la Ruta</h2>
                 <div id="mapa-ruta" class="mapa-contenedor"></div>
             </section>
                 
@@ -128,7 +128,7 @@
                  aria-labelledby="modal-titulo-ruta">
 
                 <div class="modal-contenido">
-                    <button type="button" id ="btn-cerrar-modal" class="modal-btn-cerrar" aria-label="Cerrar ventana emergente">&times;</button>
+                    <button data-i18n-aria-label="a11y.closeModal" type="button" id ="btn-cerrar-modal" class="modal-btn-cerrar" aria-label="Cerrar ventana emergente">&times;</button>
 
                     <div class="modal-encabezado">
     <h2 id="modal-titulo-ruta">Cargando ruta...</h2>
@@ -155,33 +155,33 @@
                         
                         <!-- Formulario de inscripción dentro del modal-->
                          <form id="form-inscripcion-ruta" class="tarjeta-formulario" style="margin-top: 1.5rem;" novalidate>
-                            <h3>Inscribirse en esta ruta</h3>
+                            <h3 data-i18n="inscription.title">Inscribirse en esta ruta</h3>
 
                             <div class="campo-grupo">
-                                <label for="ins-nombre">Nombre completo *</label>
-                                <input type="text" id="ins-nombre" placeholder="Ej: Carlos Pérez" required>
+                                <label for="ins-nombre" data-i18n="inscription.fullName">Nombre completo *</label>
+                                <input data-i18n-placeholder="inscription.namePlaceholder" type="text" id="ins-nombre" placeholder="Ej: Carlos Pérez" required>
                                 <span id="error-nombre" class="mensaje-error" role="alert"></span>
                             </div>
 
                             <div class="campo-grupo">
-                                <label for="ins-email">Correo electrónico *</label>
-                                <input type="email" id="ins-email" placeholder="ejemplo@correo.com" required>
+                                <label for="ins-email" data-i18n="inscription.email">Correo electrónico *</label>
+                                <input data-i18n-placeholder="contact.emailPlaceholder" type="email" id="ins-email" placeholder="ejemplo@correo.com" required>
                                 <span id="error-email" class="mensaje-error" role="alert"></span>
                             </div>
 
                             <div class="campo-grupo">
-                                <label for="ins-telefono">Teléfono (opcional)</label>
+                                <label for="ins-telefono" data-i18n="inscription.phone">Teléfono (opcional)</label>
                                 <input type="tel" id="ins-telefono" placeholder="+56 9 1234 5678">
                                 <span id="error-telefono" class="mensaje-error" role="alert"></span>
                             </div>
 
                             <div class="campo-grupo">
-                                <label for="ins-cupos">Número de cupos (1 a 5) *</label>
+                                <label for="ins-cupos" data-i18n="inscription.spots">Número de cupos (1 a 5) *</label>
                                 <input type="number" id="ins-cupos" min="1" max="5" value="1" required>
                                 <span id="error-cupos" class="mensaje-error" role="alert"></span>
                             </div>
 
-                            <button type="submit" class="btn-submit">Confirmar Inscripción</button>
+                            <button type="submit" class="btn-submit" data-i18n="inscription.submit">Confirmar Inscripción</button>
                             <p id="mensaje-exito-inscripcion" class="mensaje-exito oculto" role="status" aria-live="polite"></p>
                          </form>
                     </div>

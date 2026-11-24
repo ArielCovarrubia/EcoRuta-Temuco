@@ -70,6 +70,8 @@ function obtenerTraduccion(clave: string): string | undefined {
 }
 
 
+const ATRIBUTOS_TRADUCIBLES = ['alt', 'aria-label', 'placeholder', 'title', 'content'];
+
 // Aplica el idioma seleccionado.
 function aplicarIdioma(idioma: string): void {
     if (!traducciones[idioma]) {
@@ -99,11 +101,33 @@ function aplicarIdioma(idioma: string): void {
         }
     });
 
+    // Atributos traducibles con data-i18n-<atributo>="clave" (alt, aria-label,
+    // placeholder, title y content). A diferencia de data-i18n-attr, un mismo
+    // elemento puede traducir su texto y varios atributos a la vez.
+    ATRIBUTOS_TRADUCIBLES.forEach(atributo => {
+        document.querySelectorAll<HTMLElement>(`[data-i18n-${atributo}]`).forEach(elemento => {
+            const clave = elemento.getAttribute(`data-i18n-${atributo}`);
+            if (!clave) return;
+            const texto = obtenerTraduccion(clave);
+
+            if (texto === undefined) {
+                console.warn(`No se encontró la traducción: ${clave}`);
+                return;
+            }
+
+            elemento.setAttribute(atributo, texto);
+        });
+    });
+
     const selectorIdioma = document.getElementById('selector-idioma') as HTMLSelectElement | null;
 
     if (selectorIdioma) {
         selectorIdioma.value = idioma;
     }
+
+    // Avisa a los módulos con contenido dinámico (ruta del día, ficha modal,
+    // clima, favoritos...) para que vuelvan a dibujarse en el idioma nuevo.
+    document.dispatchEvent(new CustomEvent('idiomacambiado', { detail: { idioma } }));
 }
 
 

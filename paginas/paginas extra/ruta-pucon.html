@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Detalles completos de la ruta turística en Pucón, formularios y lugares de interés sugeridos.">
-    <title>Ruta Pucón</title>
+    <meta data-i18n-content="meta.routePuconDescription" name="description" content="Detalles completos de la ruta turística en Pucón, formularios y lugares de interés sugeridos.">
+    <title data-i18n="pucon.mapPopup">Ruta Pucón</title>
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
@@ -21,14 +21,14 @@
     aria-pressed="false">
     ♡
 </button>
-            <h2>Termas de Huife</h2>
-            <img src="../../assets/imagenes/termas-huife-destacado.webp" alt="Ruta destacada" loading="lazy">
-            <p>Las Termas de Huife se encuentran a orillas del río Liucura, a pocos minutos de Pucón. Sus piscinas de piedra están rodeadas de bosque nativo y ofrecen aguas termales que superan los 40 grados, ideales para descansar después de un día de aventura.</p>
-            <p><strong>Ubicación:</strong> Pucón, Chile</p>
-            <p><strong>Duración:</strong> 2 horas</p>
+            <h2 data-i18n="pucon.route7Name">Termas de Huife</h2>
+            <img data-i18n-alt="routePage.featuredAlt" src="../../assets/imagenes/termas-huife-destacado.webp" alt="Ruta destacada" loading="lazy">
+            <p data-i18n="routePage.puconDescription">Las Termas de Huife se encuentran a orillas del río Liucura, a pocos minutos de Pucón. Sus piscinas de piedra están rodeadas de bosque nativo y ofrecen aguas termales que superan los 40 grados, ideales para descansar después de un día de aventura.</p>
+            <p><strong data-i18n="routePage.locationLabel">Ubicación:</strong> Pucón, Chile</p>
+            <p><strong data-i18n="routePage.durationLabel">Duración:</strong> <span data-i18n="routePage.puconDuration">2 horas</span></p>
 
             <section class="seccion-mapa" style="margin: 1.5rem 0;">
-                <h2>Ubicación de la Ruta</h2>
+                <h2 data-i18n="routes.mapTitle">Ubicación de la Ruta</h2>
                 <div id="mapa-ruta" class="mapa-contenedor"></div>
             </section>
 
@@ -51,7 +51,7 @@
         }).addTo(mapa);
 
         L.marker([lat, lng]).addTo(mapa)
-            .bindPopup('<b>Termas de Huife</b><br>Punto de inicio de la ruta.')
+            .bindPopup('<b data-i18n="pucon.route7Name">Termas de Huife</b><br>Punto de inicio de la ruta.')
             .openPopup();
     </script>
     <script src="../../js/layout.js"></script>
