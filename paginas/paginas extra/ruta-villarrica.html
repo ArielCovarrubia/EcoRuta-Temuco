@@ -50,9 +50,18 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(mapa);
 
-        L.marker([lat, lng]).addTo(mapa)
-            .bindPopup('<b data-i18n="routePage.villarricaName">Atardecer en el Lago Villarrica</b><br>Punto de inicio de la ruta.')
+        function textoPopup() {
+            const t = (clave, respaldo) =>
+                (typeof obtenerTraduccion === 'function' && obtenerTraduccion(clave)) || respaldo;
+            return '<b>' + t('routePage.villarricaName', 'Atardecer en el Lago Villarrica') + '</b><br>' +
+                t('routePage.startPoint', 'Punto de inicio de la ruta.');
+        }
+
+        const marcador = L.marker([lat, lng]).addTo(mapa)
+            .bindPopup(textoPopup())
             .openPopup();
+
+        document.addEventListener('idiomacambiado', () => marcador.setPopupContent(textoPopup()));
     </script>
 
     <script src="../../js/layout.js"></script>

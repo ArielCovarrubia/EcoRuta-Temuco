@@ -318,8 +318,16 @@
             "outro": "Por eso, en el catálogo solo verás emprendimientos aprobados, junto con su puntaje sustentable.",
             "contactLink": "Contáctanos"
         },
+        "entrepreneurDescriptions": {
+            "alojamiento-ecologico-rodeado-de-bosque-nativo-con-recorrido": "Alojamiento ecológico rodeado de bosque nativo con recorridos guiados por el Cerro Ñielol.",
+            "tallados-en-madera-nativa-y-tenidos-tradicionales": "Tallados en madera nativa y teñidos tradicionales.",
+            "reposteria-artesanal-con-frutos-silvestres-de-la-araucania": "Repostería artesanal con frutos silvestres de La Araucanía.",
+            "arriendo-de-bicicletas-ecologicas-y-excursiones-guiadas-a-lo": "Arriendo de bicicletas ecológicas y excursiones guiadas a lo largo de la ribera de Isla Cautín.",
+            "alojamiento-con-energia-solar-y-huerto-organico": "Alojamiento con energía solar y huerto orgánico"
+        },
         "routePage": {
             "featuredAlt": "Ruta destacada",
+            "startPoint": "Punto de inicio de la ruta.",
             "locationLabel": "Ubicación:",
             "durationLabel": "Duración:",
             "temucoDescription": "La Reserva Nacional Malalcahuello se ubica a los pies del volcán Lonquimay y ofrece senderos rodeados de araucarias, coigües y lengas. Es un destino ideal para el senderismo, la observación de flora y fauna nativa y el contacto directo con la cordillera andina.",
@@ -757,8 +765,16 @@
             "outro": "That is why the catalog only shows approved businesses, along with their sustainability score.",
             "contactLink": "Contact us"
         },
+        "entrepreneurDescriptions": {
+            "alojamiento-ecologico-rodeado-de-bosque-nativo-con-recorrido": "Eco-friendly lodging surrounded by native forest, with guided tours of Ñielol Hill.",
+            "tallados-en-madera-nativa-y-tenidos-tradicionales": "Native wood carvings and traditional dyeing.",
+            "reposteria-artesanal-con-frutos-silvestres-de-la-araucania": "Artisan pastries made with wild fruits from La Araucanía.",
+            "arriendo-de-bicicletas-ecologicas-y-excursiones-guiadas-a-lo": "Eco-friendly bike rentals and guided excursions along the Cautín Island riverbank.",
+            "alojamiento-con-energia-solar-y-huerto-organico": "Lodging powered by solar energy, with an organic garden."
+        },
         "routePage": {
             "featuredAlt": "Featured route",
+            "startPoint": "Starting point of the route.",
             "locationLabel": "Location:",
             "durationLabel": "Duration:",
             "temucoDescription": "Malalcahuello National Reserve lies at the foot of the Lonquimay volcano and offers trails surrounded by araucarias, coigües and lengas. It is an ideal destination for hiking, observing native flora and fauna, and getting up close with the Andes mountain range.",

@@ -242,9 +242,19 @@
             }).addTo(mapa);
 
             // Agregar el marcador con una ventana informativa
-            L.marker([lat, lng]).addTo(mapa)
-                .bindPopup('<b>Ruta Temuco</b><br>Punto de partida del recorrido.')
+            // El texto se traduce y se vuelve a dibujar cuando cambia el idioma.
+            function textoPopup() {
+                const t = (clave, respaldo) =>
+                    (typeof obtenerTraduccion === 'function' && obtenerTraduccion(clave)) || respaldo;
+                return '<b>' + t('temuco.mapPopup', 'Ruta Temuco') + '</b><br>' +
+                    t('temuco.mapDescription', 'Punto de partida del recorrido.');
+            }
+
+            const marcador = L.marker([lat, lng]).addTo(mapa)
+                .bindPopup(textoPopup())
                 .openPopup();
+
+            document.addEventListener('idiomacambiado', () => marcador.setPopupContent(textoPopup()));
         </script>
 
         <script type="module" src="../js/buscador.js"></script>

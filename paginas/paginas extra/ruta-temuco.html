@@ -50,9 +50,18 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(mapa);
 
-        L.marker([lat, lng]).addTo(mapa)
-            .bindPopup('<b data-i18n="temuco.route3Name">Reserva Nacional Malalcahuello</b><br>Punto de inicio de la ruta.')
+        function textoPopup() {
+            const t = (clave, respaldo) =>
+                (typeof obtenerTraduccion === 'function' && obtenerTraduccion(clave)) || respaldo;
+            return '<b>' + t('temuco.route3Name', 'Reserva Nacional Malalcahuello') + '</b><br>' +
+                t('routePage.startPoint', 'Punto de inicio de la ruta.');
+        }
+
+        const marcador = L.marker([lat, lng]).addTo(mapa)
+            .bindPopup(textoPopup())
             .openPopup();
+
+        document.addEventListener('idiomacambiado', () => marcador.setPopupContent(textoPopup()));
     </script>
     <script src="../../js/layout.js"></script>
     <script type="module" src="../../js/modalRuta.js"></script>

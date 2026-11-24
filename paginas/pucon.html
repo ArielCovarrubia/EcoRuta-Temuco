@@ -210,8 +210,17 @@
             }).addTo(mapa);
 
             // 3. Marcador en Pucón
-            L.marker([lat, lng]).addTo(mapa)
-                .bindPopup('<b>Ruta Pucón</b><br>Punto de partida del recorrido.')
+            function textoPopup() {
+                const t = (clave, respaldo) =>
+                    (typeof obtenerTraduccion === 'function' && obtenerTraduccion(clave)) || respaldo;
+                return '<b>' + t('pucon.mapPopup', 'Ruta Pucón') + '</b><br>' +
+                    t('pucon.mapDescription', 'Punto de partida del recorrido.');
+            }
+
+            const marcador = L.marker([lat, lng]).addTo(mapa)
+                .bindPopup(textoPopup());
+
+            document.addEventListener('idiomacambiado', () => marcador.setPopupContent(textoPopup()));
         </script>
 
         <script type="module" src="../js/buscador.js"></script>

@@ -210,9 +210,18 @@
             }).addTo(mapa);
 
             // 3. Marcador en Villarrica
-            L.marker([lat, lng]).addTo(mapa)
-                .bindPopup('<b>Ruta Villarrica</b><br>Punto de partida del recorrido.')
+            function textoPopup() {
+                const t = (clave, respaldo) =>
+                    (typeof obtenerTraduccion === 'function' && obtenerTraduccion(clave)) || respaldo;
+                return '<b>' + t('villarrica.mapPopup', 'Ruta Villarrica') + '</b><br>' +
+                    t('villarrica.mapDescription', 'Punto de partida del recorrido.');
+            }
+
+            const marcador = L.marker([lat, lng]).addTo(mapa)
+                .bindPopup(textoPopup())
                 .openPopup();
+
+            document.addEventListener('idiomacambiado', () => marcador.setPopupContent(textoPopup()));
         </script>
 
         <script type="module" src="../js/buscador.js"></script>
